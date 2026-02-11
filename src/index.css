@@ -465,30 +465,30 @@
     letter-spacing: 0;
   }
 
-  /* Paragraph Small Regular: Geist Regular 14/20 ls:0.5 */
+  /* Paragraph Small Regular: Geist Regular 14/20 ls:0.5% */
   .text-paragraph-sm {
     font-family: var(--font-body);
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.07px;
   }
 
-  /* Paragraph Small Semibold: Geist Semibold 14/20 ls:0.5 */
+  /* Paragraph Small Semibold: Geist Semibold 14/20 ls:0.5% */
   .text-paragraph-sm-bold {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.07px;
   }
 
-  /* Paragraph Mini: Geist Regular 12/16 ls:1.5 */
+  /* Paragraph Mini: Geist Regular 12/16 ls:1.5% */
   .text-paragraph-mini {
     font-family: var(--font-body);
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.18px;
   }
 }

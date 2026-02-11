@@ -33,11 +33,11 @@ const buttonVariants = cva(
           "bg-red-50 text-red-600 border border-red-500 hover:bg-red-100 active:bg-red-100 focus-visible:ring-red-200",
       },
       size: {
-        lg: "h-10 px-6 gap-2 text-sm tracking-[0.5px] [&_svg:not([class*='size-'])]:size-5",
+        lg: "h-10 px-6 gap-2 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
         default:
-          "h-9 px-4 gap-2 text-sm tracking-[0.5px] [&_svg:not([class*='size-'])]:size-5",
-        sm: "h-8 px-3 gap-1.5 text-sm tracking-[0.5px] [&_svg:not([class*='size-'])]:size-5",
-        xs: "h-6 px-2 gap-1 text-xs tracking-[1.5px] [&_svg:not([class*='size-'])]:size-4",
+          "h-9 px-4 gap-2 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
+        sm: "h-8 px-3 gap-1.5 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
+        xs: "h-6 px-2 gap-1 text-xs tracking-[0.18px] [&_svg:not([class*='size-'])]:size-4",
         icon: "size-9 [&_svg:not([class*='size-'])]:size-5",
         "icon-sm": "size-8 [&_svg:not([class*='size-'])]:size-5",
         "icon-lg": "size-10 [&_svg:not([class*='size-'])]:size-5",
