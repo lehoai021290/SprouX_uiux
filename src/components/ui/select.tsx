@@ -19,14 +19,14 @@ const SelectGroup = SelectPrimitive.Group
 const SelectValue = SelectPrimitive.Value
 
 const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-xs rounded-lg border border-border bg-input font-body font-normal text-foreground transition-colors focus:outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error [&>span]:line-clamp-1",
+  "flex w-full items-center justify-between rounded-lg border border-border bg-input font-body font-normal text-sm tracking-sm text-foreground transition-colors focus:outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error [&>span]:line-clamp-1",
   {
     variants: {
       size: {
-        lg: "h-3xl px-md text-sm tracking-sm",
-        default: "h-9 px-sm text-sm tracking-sm",
-        sm: "h-2xl px-xs text-sm tracking-sm",
-        xs: "h-xl px-2xs rounded-sm text-xs tracking-xs",
+        lg: "h-3xl pl-md pr-xs gap-sm",
+        default: "h-9 pl-sm pr-xs gap-xs",
+        sm: "h-2xl px-xs gap-2xs",
+        xs: "h-2xl px-2xs gap-1",
       },
     },
     defaultVariants: {
