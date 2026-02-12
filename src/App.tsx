@@ -78,7 +78,7 @@ function Example({
       <div className="border-t border-border">
         <button
           onClick={() => setShowCode(!showCode)}
-          className="w-full flex items-center justify-between px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-slate-50 transition-colors font-mono"
+          className="w-full flex items-center justify-between px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors font-mono"
         >
           <span>{showCode ? "Hide code" : "Show code"}</span>
           <ChevronRight
@@ -170,7 +170,7 @@ function ButtonPropsTable() {
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-slate-50 border-b border-border text-left">
+          <tr className="bg-muted border-b border-border text-left">
             <th className="px-4 py-3 font-semibold">Prop</th>
             <th className="px-4 py-3 font-semibold">Type</th>
             <th className="px-4 py-3 font-semibold">Default</th>
@@ -213,46 +213,76 @@ function ButtonTokensTable() {
       usage: "Primary button text",
     },
     {
+      token: "--primary-hover",
+      value: "hsl(175 84% 32%)",
+      hex: "#0d9488",
+      usage: "Primary button hover/active",
+    },
+    {
+      token: "--secondary",
+      value: "hsl(60 5% 91%)",
+      hex: "#e9e9e7",
+      usage: "Secondary button background",
+    },
+    {
+      token: "--secondary-foreground",
+      value: "hsl(60 5% 17%)",
+      hex: "#2f2f2b",
+      usage: "Secondary button text",
+    },
+    {
+      token: "--secondary-hover",
+      value: "hsl(60 4% 95.3%)",
+      hex: "#f3f3f2",
+      usage: "Secondary / Outline hover/active",
+    },
+    {
+      token: "--ghost-foreground",
+      value: "hsl(60 3% 42%)",
+      hex: "#6f6f6a",
+      usage: "Ghost button text",
+    },
+    {
+      token: "--ghost-hover",
+      value: "hsl(0 0% 0% / 0.05)",
+      hex: "rgba(0,0,0,0.05)",
+      usage: "Ghost button hover/active",
+    },
+    {
       token: "--destructive",
-      value: "hsl(0 84% 60%)",
+      value: "hsl(0 72% 51%)",
       hex: "#dc2626",
       usage: "Destructive button background",
+    },
+    {
+      token: "--destructive-subtle",
+      value: "hsl(0 86% 97%)",
+      hex: "#fef2f2",
+      usage: "Destructive secondary background",
+    },
+    {
+      token: "--destructive-border",
+      value: "hsl(0 84% 60%)",
+      hex: "#ef4444",
+      usage: "Destructive secondary border",
+    },
+    {
+      token: "--ring",
+      value: "hsl(60 5% 91%)",
+      hex: "#e9e9e7",
+      usage: "Focus ring (standard variants)",
+    },
+    {
+      token: "--ring-error",
+      value: "hsl(0 93% 89%)",
+      hex: "#fecaca",
+      usage: "Focus ring (destructive variants)",
     },
     {
       token: "--border",
       value: "hsl(60 5% 91%)",
       hex: "#e9e9e7",
-      usage: "Outline border, focus ring",
-    },
-    {
-      token: "slate-200",
-      value: "#e9e9e7",
-      hex: "#e9e9e7",
-      usage: "Secondary button background",
-    },
-    {
-      token: "slate-700",
-      value: "#6f6f6a",
-      hex: "#6f6f6a",
-      usage: "Ghost button text",
-    },
-    {
-      token: "red-50",
-      value: "#fef2f2",
-      hex: "#fef2f2",
-      usage: "Destructive secondary background",
-    },
-    {
-      token: "red-200",
-      value: "#fecaca",
-      hex: "#fecaca",
-      usage: "Destructive focus ring",
-    },
-    {
-      token: "red-500",
-      value: "#ef4444",
-      hex: "#ef4444",
-      usage: "Destructive secondary border",
+      usage: "Outline button border",
     },
     {
       token: "--radius (rounded-lg)",
@@ -266,7 +296,7 @@ function ButtonTokensTable() {
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-slate-50 border-b border-border text-left">
+          <tr className="bg-muted border-b border-border text-left">
             <th className="px-4 py-3 font-semibold">Token</th>
             <th className="px-4 py-3 font-semibold">Value</th>
             <th className="px-4 py-3 font-semibold">Swatch</th>
@@ -688,7 +718,7 @@ const handleAsyncSave = async () => {
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="text-paragraph-sm text-muted-foreground">
           Button extends all native{" "}
-          <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             {"<button>"}
           </code>{" "}
           HTML attributes in addition to the following:
@@ -701,7 +731,7 @@ const handleAsyncSave = async () => {
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
         <p className="text-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
-          <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
           </code>{" "}
           and sourced from the Figma file{" "}
@@ -782,7 +812,7 @@ const handleAsyncSave = async () => {
             <p>
               <strong className="text-foreground">Buttons</strong> perform an
               action (submit form, open modal, trigger process). They use{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 {"<button>"}
               </code>{" "}
               semantically.
@@ -790,14 +820,14 @@ const handleAsyncSave = async () => {
             <p>
               <strong className="text-foreground">Links</strong> navigate to a
               new page or location. They use{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 {"<a>"}
               </code>{" "}
               semantically.
             </p>
             <p>
               If you need a link that looks like a button, use{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 asChild
               </code>{" "}
               with an anchor tag. This preserves the correct semantics while
@@ -823,7 +853,7 @@ const handleAsyncSave = async () => {
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="bg-slate-50 border-b border-border text-left">
+              <tr className="bg-muted border-b border-border text-left">
                 <th className="px-4 py-3 font-semibold">Figma Property</th>
                 <th className="px-4 py-3 font-semibold">Figma Value</th>
                 <th className="px-4 py-3 font-semibold">Code Prop</th>
@@ -893,7 +923,7 @@ const handleAsyncSave = async () => {
                 <tbody>
                   <tr className="border-b border-border">
                     <td className="pr-6 py-2">
-                      <kbd className="bg-slate-100 border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
                         Tab
                       </kbd>
                     </td>
@@ -903,11 +933,11 @@ const handleAsyncSave = async () => {
                   </tr>
                   <tr className="border-b border-border">
                     <td className="pr-6 py-2">
-                      <kbd className="bg-slate-100 border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
                         Enter
                       </kbd>{" "}
                       /{" "}
-                      <kbd className="bg-slate-100 border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
                         Space
                       </kbd>
                     </td>
@@ -927,24 +957,24 @@ const handleAsyncSave = async () => {
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
               <li>
                 Icon-only buttons <strong>must</strong> include{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-label
                 </code>{" "}
                 describing the action.
               </li>
               <li>
                 For buttons that control expandable content, use{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-expanded
                 </code>{" "}
                 and{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-controls
                 </code>.
               </li>
               <li>
                 For toggle buttons, use{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-pressed
                 </code>{" "}
                 to indicate the current state.
@@ -952,7 +982,7 @@ const handleAsyncSave = async () => {
               <li>
                 Links opening in a new tab should include a visual indicator
                 (e.g., ExternalLink icon) and{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   rel="noopener"
                 </code>.
               </li>
@@ -965,15 +995,15 @@ const handleAsyncSave = async () => {
             </h3>
             <p className="text-muted-foreground">
               All buttons display a visible <strong>3px ring</strong> on{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 :focus-visible
               </code>
               . The ring uses{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 --border (#e9e9e7)
               </code>{" "}
               for standard variants and{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 red-200 (#fecaca)
               </code>{" "}
               for destructive variants. This meets WCAG 2.1 focus visibility
@@ -996,7 +1026,7 @@ const handleAsyncSave = async () => {
                 Groups related buttons together with consistent spacing.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Planned
             </span>
           </div>
@@ -1009,7 +1039,7 @@ const handleAsyncSave = async () => {
                 alternative.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Planned
             </span>
           </div>
@@ -1021,7 +1051,7 @@ const handleAsyncSave = async () => {
                 button.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Planned
             </span>
           </div>
@@ -1091,7 +1121,7 @@ function InputPropsTable() {
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-slate-50 border-b border-border text-left">
+          <tr className="bg-muted border-b border-border text-left">
             <th className="px-4 py-3 font-semibold">Prop</th>
             <th className="px-4 py-3 font-semibold">Type</th>
             <th className="px-4 py-3 font-semibold">Default</th>
@@ -1131,7 +1161,13 @@ function InputTokensTable() {
       token: "--border",
       value: "hsl(60 5% 91%)",
       hex: "#e9e9e7",
-      usage: "Input border, focus ring",
+      usage: "Input border",
+    },
+    {
+      token: "--border-strong",
+      value: "hsl(60 2% 68%)",
+      hex: "#afafab",
+      usage: "Border when focused + has value",
     },
     {
       token: "--foreground",
@@ -1146,14 +1182,20 @@ function InputTokensTable() {
       usage: "Placeholder text",
     },
     {
-      token: "red-500",
-      value: "#ef4444",
+      token: "--ring",
+      value: "hsl(60 5% 91%)",
+      hex: "#e9e9e7",
+      usage: "Focus ring (default state)",
+    },
+    {
+      token: "--destructive-border",
+      value: "hsl(0 84% 60%)",
       hex: "#ef4444",
       usage: "Error state border",
     },
     {
-      token: "red-200",
-      value: "#fecaca",
+      token: "--ring-error",
+      value: "hsl(0 93% 89%)",
       hex: "#fecaca",
       usage: "Error state focus ring",
     },
@@ -1175,7 +1217,7 @@ function InputTokensTable() {
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full text-xs">
         <thead>
-          <tr className="bg-slate-50 border-b border-border text-left">
+          <tr className="bg-muted border-b border-border text-left">
             <th className="px-4 py-3 font-semibold">Token</th>
             <th className="px-4 py-3 font-semibold">Value</th>
             <th className="px-4 py-3 font-semibold">Swatch</th>
@@ -1462,7 +1504,7 @@ const filtered = items.filter((i) =>
                 {["Dashboard", "Settings", "Profile", "Billing", "Notifications"]
                   .filter((i) => i.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((item) => (
-                    <li key={item} className="py-1 px-2 rounded hover:bg-slate-100">{item}</li>
+                    <li key={item} className="py-1 px-2 rounded hover:bg-muted">{item}</li>
                   ))}
                 {["Dashboard", "Settings", "Profile", "Billing", "Notifications"]
                   .filter((i) => i.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -1674,10 +1716,10 @@ const handleFormSubmit = (e: React.FormEvent) => {
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="text-paragraph-sm text-muted-foreground">
           Input extends all native{" "}
-          <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             {"<input>"}
           </code>{" "}
-          HTML attributes (except <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">size</code>, which is replaced by the variant prop) in addition to the following:
+          HTML attributes (except <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">size</code>, which is replaced by the variant prop) in addition to the following:
         </p>
         <InputPropsTable />
       </section>
@@ -1687,7 +1729,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
         <p className="text-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
-          <code className="text-xs bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
           </code>{" "}
           and sourced from the Figma file{" "}
@@ -1715,10 +1757,10 @@ const handleFormSubmit = (e: React.FormEvent) => {
               </p>
               <p>
                 Link the label to the input via{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono text-[10px]">
+                <code className="bg-muted px-1 rounded font-mono text-[10px]">
                   htmlFor
                 </code>{" "}
-                + <code className="bg-slate-100 px-1 rounded font-mono text-[10px]">id</code>.
+                + <code className="bg-muted px-1 rounded font-mono text-[10px]">id</code>.
               </p>
             </DoItem>
             <DontItem>
@@ -1739,7 +1781,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
           <div className="flex gap-4">
             <DoItem>
               <p>
-                Use <code className="bg-slate-100 px-1 rounded font-mono text-[10px]">aria-invalid</code>{" "}
+                Use <code className="bg-muted px-1 rounded font-mono text-[10px]">aria-invalid</code>{" "}
                 to trigger error styling. Pair with a descriptive error message below.
               </p>
               <p>
@@ -1804,7 +1846,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="bg-slate-50 border-b border-border text-left">
+              <tr className="bg-muted border-b border-border text-left">
                 <th className="px-4 py-3 font-semibold">Figma Property</th>
                 <th className="px-4 py-3 font-semibold">Figma Value</th>
                 <th className="px-4 py-3 font-semibold">Code Prop</th>
@@ -1867,7 +1909,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
                 <tbody>
                   <tr className="border-b border-border">
                     <td className="pr-6 py-2">
-                      <kbd className="bg-slate-100 border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
                         Tab
                       </kbd>
                     </td>
@@ -1877,7 +1919,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
                   </tr>
                   <tr className="border-b border-border">
                     <td className="pr-6 py-2">
-                      <kbd className="bg-slate-100 border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
                         Ctrl+A
                       </kbd>
                     </td>
@@ -1897,35 +1939,35 @@ const handleFormSubmit = (e: React.FormEvent) => {
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
               <li>
                 Every input <strong>must</strong> have an associated{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   {"<label>"}
                 </code>{" "}
                 using{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   htmlFor
                 </code>{" "}
-                + <code className="bg-slate-100 px-1 rounded font-mono">id</code>.
+                + <code className="bg-muted px-1 rounded font-mono">id</code>.
               </li>
               <li>
                 If a visible label isn't possible, use{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-label
                 </code>{" "}
                 or{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-labelledby
                 </code>.
               </li>
               <li>
                 Link error messages to the input using{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-describedby
                 </code>{" "}
                 so screen readers announce the error.
               </li>
               <li>
                 Use{" "}
-                <code className="bg-slate-100 px-1 rounded font-mono">
+                <code className="bg-muted px-1 rounded font-mono">
                   aria-invalid="true"
                 </code>{" "}
                 to programmatically mark invalid inputs.
@@ -1939,19 +1981,19 @@ const handleFormSubmit = (e: React.FormEvent) => {
             </h3>
             <p className="text-muted-foreground">
               All inputs display a visible <strong>3px ring</strong> on{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 :focus-visible
               </code>
               . The ring uses{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 --border (#e9e9e7)
               </code>{" "}
               for the default state and{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 red-200 (#fecaca)
               </code>{" "}
               when{" "}
-              <code className="bg-slate-100 px-1 rounded font-mono">
+              <code className="bg-muted px-1 rounded font-mono">
                 aria-invalid
               </code>{" "}
               is set. This meets WCAG 2.1 focus visibility requirements.
@@ -1973,7 +2015,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
                 Multi-line text input for longer content like descriptions or messages.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Planned
             </span>
           </div>
@@ -1984,7 +2026,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
                 Dropdown selection for choosing from predefined options.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-slate-100 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Planned
             </span>
           </div>
@@ -2022,9 +2064,9 @@ function App() {
   const categories = [...new Set(components.map((c) => c.category))]
 
   return (
-    <div className="min-h-screen bg-slate-50 text-foreground flex">
-      {/* ---- Sidebar ---- */}
-      <aside className="w-56 shrink-0 border-r border-border bg-background p-4 space-y-6 sticky top-0 h-screen overflow-y-auto">
+    <div className="min-h-screen bg-muted text-foreground">
+      {/* ---- Sidebar (fixed) ---- */}
+      <aside className="fixed left-0 top-0 w-56 h-screen border-r border-border bg-background p-4 space-y-6 overflow-y-auto z-10">
         <div className="space-y-1">
           <h2 className="font-heading font-bold text-sm tracking-tight">
             SprouX DS
@@ -2048,7 +2090,7 @@ function App() {
                   className={`w-full text-left px-2 py-1.5 rounded-md text-xs font-medium transition-colors ${
                     active === c.id
                       ? "bg-primary text-primary-foreground"
-                      : "text-foreground hover:bg-slate-100"
+                      : "text-foreground hover:bg-muted"
                   }`}
                 >
                   {c.label}
@@ -2059,9 +2101,11 @@ function App() {
       </aside>
 
       {/* ---- Content ---- */}
-      <main className="flex-1 max-w-4xl mx-auto px-8 py-12">
-        {active === "button" && <ButtonDocs />}
-        {active === "input" && <InputDocs />}
+      <main className="ml-56 px-8 py-12">
+        <div className="max-w-4xl mx-auto">
+          {active === "button" && <ButtonDocs />}
+          {active === "input" && <InputDocs />}
+        </div>
       </main>
     </div>
   )

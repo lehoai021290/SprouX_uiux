@@ -48,7 +48,7 @@
   --color-border-strong: hsl(var(--border-strong));
   --color-ghost: hsl(var(--ghost));
   --color-ghost-foreground: hsl(var(--ghost-foreground));
-  --color-ghost-hover: var(--ghost-hover);
+  --color-ghost-hover: hsl(var(--ghost-hover));
   --color-destructive-subtle: hsl(var(--destructive-subtle));
   --color-destructive-subtle-foreground: hsl(var(--destructive-subtle-foreground));
   --color-destructive-border: hsl(var(--destructive-border));
