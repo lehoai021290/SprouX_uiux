@@ -81,6 +81,10 @@
   --max-width-6xl: 72rem;   /* 1152px */
   --max-width-7xl: 80rem;   /* 1280px */
 
+  /* --- Letter Spacing (from Figma typography tokens) --- */
+  --tracking-sm: 0.07px;     /* Paragraph Small: 14px text, ls 0.5% */
+  --tracking-xs: 0.18px;     /* Paragraph Mini: 12px text, ls 1.5% */
+
   /* --- Border Radius --- */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

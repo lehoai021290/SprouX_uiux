@@ -16,10 +16,10 @@ const inputVariants = cva(
   {
     variants: {
       size: {
-        lg: "h-10 px-4 rounded-lg text-sm tracking-[0.07px]",
-        default: "h-9 px-3 rounded-lg text-sm tracking-[0.07px]",
-        sm: "h-8 px-2 rounded-lg text-sm tracking-[0.07px]",
-        xs: "h-6 px-1.5 rounded-sm text-xs tracking-[0.18px]",
+        lg: "h-3xl px-md rounded-lg text-sm tracking-sm",
+        default: "h-9 px-sm rounded-lg text-sm tracking-sm",
+        sm: "h-2xl px-xs rounded-lg text-sm tracking-sm",
+        xs: "h-xl px-1.5 rounded-sm text-xs tracking-xs",
       },
     },
     defaultVariants: {

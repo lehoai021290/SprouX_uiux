@@ -33,14 +33,14 @@ const buttonVariants = cva(
           "bg-destructive-subtle text-destructive-subtle-foreground border border-destructive-border hover:bg-destructive-subtle active:bg-destructive-subtle focus-visible:ring-ring-error",
       },
       size: {
-        lg: "h-10 px-6 gap-2 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
+        lg: "h-3xl px-xl gap-xs text-sm tracking-sm [&_svg:not([class*='size-'])]:size-lg",
         default:
-          "h-9 px-4 gap-2 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
-        sm: "h-8 px-3 gap-1.5 text-sm tracking-[0.07px] [&_svg:not([class*='size-'])]:size-5",
-        xs: "h-6 px-2 gap-1 text-xs tracking-[0.18px] [&_svg:not([class*='size-'])]:size-4",
-        icon: "size-9 [&_svg:not([class*='size-'])]:size-5",
-        "icon-sm": "size-8 [&_svg:not([class*='size-'])]:size-5",
-        "icon-lg": "size-10 [&_svg:not([class*='size-'])]:size-5",
+          "h-9 px-md gap-xs text-sm tracking-sm [&_svg:not([class*='size-'])]:size-lg",
+        sm: "h-2xl px-sm gap-1.5 text-sm tracking-sm [&_svg:not([class*='size-'])]:size-lg",
+        xs: "h-xl px-xs gap-1.5 text-xs tracking-xs [&_svg:not([class*='size-'])]:size-md",
+        icon: "size-9 [&_svg:not([class*='size-'])]:size-lg",
+        "icon-sm": "size-2xl [&_svg:not([class*='size-'])]:size-lg",
+        "icon-lg": "size-3xl [&_svg:not([class*='size-'])]:size-lg",
       },
     },
     defaultVariants: {

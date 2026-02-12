@@ -19,14 +19,14 @@ const SelectGroup = SelectPrimitive.Group
 const SelectValue = SelectPrimitive.Value
 
 const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-2 rounded-lg border border-border bg-input font-body font-normal text-foreground transition-colors focus:outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error [&>span]:line-clamp-1",
+  "flex w-full items-center justify-between gap-xs rounded-lg border border-border bg-input font-body font-normal text-foreground transition-colors focus:outline-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error [&>span]:line-clamp-1",
   {
     variants: {
       size: {
-        lg: "h-10 px-4 text-sm tracking-[0.07px]",
-        default: "h-9 px-3 text-sm tracking-[0.07px]",
-        sm: "h-8 px-2 text-sm tracking-[0.07px]",
-        xs: "h-6 px-1.5 rounded-sm text-xs tracking-[0.18px]",
+        lg: "h-3xl px-md text-sm tracking-sm",
+        default: "h-9 px-sm text-sm tracking-sm",
+        sm: "h-2xl px-xs text-sm tracking-sm",
+        xs: "h-xl px-1.5 rounded-sm text-xs tracking-xs",
       },
     },
     defaultVariants: {
@@ -51,7 +51,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className="size-4 text-muted-foreground shrink-0" />
+        <ChevronDown className="size-md text-muted-foreground shrink-0" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   )
@@ -124,7 +124,7 @@ function SelectItem({
     >
       <span className="absolute right-2 flex size-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className="size-4" />
+          <Check className="size-md" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -158,7 +158,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <ChevronUp className="size-4" />
+      <ChevronUp className="size-md" />
     </SelectPrimitive.ScrollUpButton>
   )
 }
@@ -176,7 +176,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <ChevronDown className="size-4" />
+      <ChevronDown className="size-md" />
     </SelectPrimitive.ScrollDownButton>
   )
 }
