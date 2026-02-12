@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import {
   Plus,
   Trash2,
@@ -2015,8 +2016,8 @@ const handleFormSubmit = (e: React.FormEvent) => {
                 Multi-line text input for longer content like descriptions or messages.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
-              Planned
+            <span className="text-muted-foreground text-[10px] font-mono bg-teal-50 text-teal-700 px-2 py-0.5 rounded">
+              Available
             </span>
           </div>
           <div className="px-5 py-3.5 flex justify-between items-center">
@@ -2048,12 +2049,796 @@ const handleFormSubmit = (e: React.FormEvent) => {
 }
 
 /* ================================================================
+   Component: Textarea Docs
+   ================================================================ */
+
+function TextareaPropsTable() {
+  const props = [
+    {
+      name: "placeholder",
+      type: "string",
+      default: "—",
+      description: "Hint text displayed when the textarea is empty.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Disables the textarea, reducing opacity to 50% and preventing interaction.",
+    },
+    {
+      name: "aria-invalid",
+      type: "boolean",
+      default: "false",
+      description: "Marks the textarea as invalid, applying a red border and red focus ring.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes to merge via cn() utility.",
+    },
+    {
+      name: "rows",
+      type: "number",
+      default: "—",
+      description: "Number of visible text lines. Overrides min-height when set.",
+    },
+    {
+      name: "value / defaultValue",
+      type: "string",
+      default: "—",
+      description: "Controlled or uncontrolled value for the textarea.",
+    },
+    {
+      name: "onChange",
+      type: "(e: ChangeEvent) => void",
+      default: "—",
+      description: "Change event handler fired on every keystroke.",
+    },
+    {
+      name: "maxLength",
+      type: "number",
+      default: "—",
+      description: "Maximum number of characters allowed. Use with a character counter for UX.",
+    },
+  ]
+
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Prop</th>
+            <th className="px-4 py-3 font-semibold">Type</th>
+            <th className="px-4 py-3 font-semibold">Default</th>
+            <th className="px-4 py-3 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.map((p) => (
+            <tr key={p.name} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">
+                {p.name}
+              </td>
+              <td className="px-4 py-3 font-mono text-muted-foreground max-w-xs">
+                {p.type}
+              </td>
+              <td className="px-4 py-3 font-mono">{p.default}</td>
+              <td className="px-4 py-3 text-muted-foreground">
+                {p.description}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function TextareaTokensTable() {
+  const tokens = [
+    {
+      token: "--input",
+      value: "hsl(0 0% 100%)",
+      hex: "#ffffff",
+      usage: "Textarea background",
+    },
+    {
+      token: "--border",
+      value: "hsl(60 5% 91%)",
+      hex: "#e9e9e7",
+      usage: "Textarea border",
+    },
+    {
+      token: "--border-strong",
+      value: "hsl(60 2% 68%)",
+      hex: "#afafab",
+      usage: "Border when focused + has value",
+    },
+    {
+      token: "--foreground",
+      value: "hsl(60 4% 14%)",
+      hex: "#252522",
+      usage: "Textarea text value",
+    },
+    {
+      token: "--muted-foreground",
+      value: "hsl(60 2% 68%)",
+      hex: "#afafab",
+      usage: "Placeholder text",
+    },
+    {
+      token: "--ring",
+      value: "hsl(60 5% 91%)",
+      hex: "#e9e9e7",
+      usage: "Focus ring (default state)",
+    },
+    {
+      token: "--destructive-border",
+      value: "hsl(0 84% 60%)",
+      hex: "#ef4444",
+      usage: "Error state border",
+    },
+    {
+      token: "--ring-error",
+      value: "hsl(0 93% 89%)",
+      hex: "#fecaca",
+      usage: "Error state focus ring",
+    },
+    {
+      token: "--radius (rounded-lg)",
+      value: "8px",
+      hex: "—",
+      usage: "Border radius",
+    },
+  ]
+
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">
+                {t.token}
+              </td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">
+                {t.value}
+              </td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div
+                    className="size-5 rounded border border-border"
+                    style={{ backgroundColor: t.hex }}
+                  />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function TextareaDocs() {
+  const [controlled, setControlled] = useState("")
+  const [charCount, setCharCount] = useState("")
+  const [autoResize, setAutoResize] = useState("")
+  const [formData, setFormData] = useState({ name: "", message: "" })
+  const [formErrors, setFormErrors] = useState<{ name?: string; message?: string }>({})
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const MAX_CHARS = 200
+
+  const handleAutoResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setAutoResize(e.target.value)
+    e.target.style.height = "auto"
+    e.target.style.height = e.target.scrollHeight + "px"
+  }
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const errors: { name?: string; message?: string } = {}
+    if (!formData.name.trim()) errors.name = "Name is required."
+    if (!formData.message.trim()) errors.message = "Message is required."
+    else if (formData.message.trim().length < 10)
+      errors.message = "Message must be at least 10 characters."
+    setFormErrors(errors)
+    if (Object.keys(errors).length === 0) {
+      setFormSubmitted(true)
+      setTimeout(() => setFormSubmitted(false), 3000)
+    }
+  }
+
+  return (
+    <div className="space-y-12">
+      {/* ---- Header ---- */}
+      <header className="space-y-3 border-b border-border pb-8">
+        <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
+          Components / Forms
+        </p>
+        <h1 className="text-heading-3">Textarea</h1>
+        <p className="text-paragraph-sm text-muted-foreground max-w-2xl">
+          A multi-line text input field for longer-form content such as
+          descriptions, messages, comments, or notes. Supports native browser
+          resize, error states, and character counting.
+        </p>
+      </header>
+
+      {/* ---- Installation ---- */}
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Installation</h2>
+        <CodeBlock
+          code={`# Install dependencies (if not already installed)
+pnpm add class-variance-authority clsx tailwind-merge
+
+# The component lives at:
+# src/components/ui/textarea.tsx`}
+        />
+        <CodeBlock
+          code={`import { Textarea } from "@/components/ui/textarea"`}
+        />
+      </section>
+
+      {/* ---- Examples ---- */}
+      <section className="space-y-6">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        {/* Default */}
+        <Example
+          title="Default textarea"
+          description="The basic textarea with no props. Renders with a minimum height of 76px and native resize enabled."
+          code={`<Textarea />`}
+        >
+          <Textarea className="max-w-sm" />
+        </Example>
+
+        {/* Placeholder */}
+        <Example
+          title="Placeholder"
+          description="Use placeholder to provide a hint about what the user should enter."
+          code={`<Textarea placeholder="Write your message here..." />`}
+        >
+          <Textarea placeholder="Write your message here..." className="max-w-sm" />
+        </Example>
+
+        {/* With Value */}
+        <Example
+          title="With value (defaultValue)"
+          description="Use defaultValue for uncontrolled textareas when you only need the value on submit."
+          code={`<Textarea defaultValue="This textarea has a pre-filled value that the user can edit." />`}
+        >
+          <Textarea
+            defaultValue="This textarea has a pre-filled value that the user can edit."
+            className="max-w-sm"
+          />
+        </Example>
+
+        {/* Controlled */}
+        <Example
+          title="Controlled textarea (onChange)"
+          description="Use value + onChange for controlled textareas. The component forwards all native textarea events."
+          code={`const [controlled, setControlled] = useState("")
+
+<Textarea
+  value={controlled}
+  onChange={(e) => setControlled(e.target.value)}
+  placeholder="Type something..."
+/>
+<p className="text-xs text-muted-foreground">
+  Value: "{controlled}" ({controlled.length} chars)
+</p>`}
+        >
+          <div className="max-w-sm w-full space-y-2">
+            <Textarea
+              value={controlled}
+              onChange={(e) => setControlled(e.target.value)}
+              placeholder="Type something..."
+            />
+            <p className="text-xs text-muted-foreground">
+              Value: "{controlled}" ({controlled.length} chars)
+            </p>
+          </div>
+        </Example>
+
+        {/* Error */}
+        <Example
+          title="Error state"
+          description="Use aria-invalid to indicate validation errors. The border turns red and the focus ring becomes red-200."
+          code={`<div className="space-y-1.5">
+  <Textarea aria-invalid placeholder="Describe the issue..." />
+  <p className="text-xs text-red-500">
+    Please provide a description of at least 10 characters.
+  </p>
+</div>`}
+        >
+          <div className="max-w-sm space-y-1.5">
+            <Textarea aria-invalid placeholder="Describe the issue..." />
+            <p className="text-xs text-red-500">
+              Please provide a description of at least 10 characters.
+            </p>
+          </div>
+        </Example>
+
+        {/* Disabled */}
+        <Example
+          title="Disabled state"
+          description="Disabled textareas have 50% opacity and a not-allowed cursor. Use when the field isn't relevant to the current context."
+          code={`<Textarea disabled placeholder="Disabled textarea" />
+<Textarea disabled defaultValue="Disabled with value" />`}
+        >
+          <div className="w-full max-w-sm space-y-3">
+            <Textarea disabled placeholder="Disabled textarea" />
+            <Textarea disabled defaultValue="Disabled with value" />
+          </div>
+        </Example>
+
+        {/* Character Count */}
+        <Example
+          title="Character count"
+          description="Combine maxLength with a character counter to give users feedback on their remaining allowance."
+          code={`const MAX_CHARS = 200
+const [charCount, setCharCount] = useState("")
+
+<div className="space-y-1.5">
+  <Textarea
+    value={charCount}
+    onChange={(e) => setCharCount(e.target.value)}
+    placeholder="Write a short bio..."
+    maxLength={MAX_CHARS}
+  />
+  <p className="text-xs text-muted-foreground text-right">
+    {charCount.length}/{MAX_CHARS}
+  </p>
+</div>`}
+        >
+          <div className="max-w-sm w-full space-y-1.5">
+            <Textarea
+              value={charCount}
+              onChange={(e) => setCharCount(e.target.value)}
+              placeholder="Write a short bio..."
+              maxLength={MAX_CHARS}
+            />
+            <p className="text-xs text-muted-foreground text-right">
+              {charCount.length}/{MAX_CHARS}
+            </p>
+          </div>
+        </Example>
+
+        {/* With Label */}
+        <Example
+          title="With label"
+          description="Always pair textareas with a visible label for accessibility. Use htmlFor to link the label to the textarea's id."
+          code={`<div className="space-y-1.5 max-w-sm">
+  <label htmlFor="description" className="text-sm font-medium">
+    Description
+  </label>
+  <Textarea id="description" placeholder="Enter a description..." />
+</div>`}
+        >
+          <div className="space-y-1.5 max-w-sm w-full">
+            <label htmlFor="textarea-desc-demo" className="text-sm font-medium">
+              Description
+            </label>
+            <Textarea id="textarea-desc-demo" placeholder="Enter a description..." />
+          </div>
+        </Example>
+
+        {/* Auto-resize */}
+        <Example
+          title="Auto-resize"
+          description="Use a simple onInput handler to auto-resize the textarea as the user types. Set overflow-hidden to prevent the scrollbar from flashing."
+          code={`const [autoResize, setAutoResize] = useState("")
+
+const handleAutoResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  setAutoResize(e.target.value)
+  e.target.style.height = "auto"
+  e.target.style.height = e.target.scrollHeight + "px"
+}
+
+<Textarea
+  value={autoResize}
+  onChange={handleAutoResize}
+  placeholder="Start typing — I'll grow..."
+  className="overflow-hidden resize-none"
+/>`}
+        >
+          <div className="max-w-sm w-full">
+            <Textarea
+              value={autoResize}
+              onChange={handleAutoResize}
+              placeholder="Start typing — I'll grow..."
+              className="overflow-hidden resize-none"
+            />
+          </div>
+        </Example>
+
+        {/* Form Validation */}
+        <Example
+          title="Form with validation (fully interactive)"
+          description="A complete form using Textarea with real validation on submit. The message field requires at least 10 characters."
+          code={`const [formData, setFormData] = useState({ name: "", message: "" })
+const [formErrors, setFormErrors] = useState<{ name?: string; message?: string }>({})
+const [formSubmitted, setFormSubmitted] = useState(false)
+
+const handleFormSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+  const errors: { name?: string; message?: string } = {}
+  if (!formData.name.trim()) errors.name = "Name is required."
+  if (!formData.message.trim()) errors.message = "Message is required."
+  else if (formData.message.trim().length < 10)
+    errors.message = "Message must be at least 10 characters."
+  setFormErrors(errors)
+  if (Object.keys(errors).length === 0) {
+    setFormSubmitted(true)
+    setTimeout(() => setFormSubmitted(false), 3000)
+  }
+}
+
+<form onSubmit={handleFormSubmit} className="space-y-4 max-w-sm">
+  <div className="space-y-1.5">
+    <label htmlFor="name" className="text-sm font-medium">Name</label>
+    <Input
+      id="name"
+      placeholder="Your name"
+      value={formData.name}
+      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      aria-invalid={!!formErrors.name || undefined}
+    />
+    {formErrors.name && <p className="text-xs text-red-500">{formErrors.name}</p>}
+  </div>
+  <div className="space-y-1.5">
+    <label htmlFor="message" className="text-sm font-medium">Message</label>
+    <Textarea
+      id="message"
+      placeholder="Your message (min 10 characters)..."
+      value={formData.message}
+      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+      aria-invalid={!!formErrors.message || undefined}
+    />
+    {formErrors.message && <p className="text-xs text-red-500">{formErrors.message}</p>}
+  </div>
+  <Button type="submit" className="w-full">
+    {formSubmitted ? <><Check /> Sent!</> : "Send message"}
+  </Button>
+</form>`}
+        >
+          <form onSubmit={handleFormSubmit} className="space-y-4 max-w-sm w-full">
+            <div className="space-y-1.5">
+              <label htmlFor="textarea-form-name" className="text-sm font-medium">Name</label>
+              <Input
+                id="textarea-form-name"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                aria-invalid={!!formErrors.name || undefined}
+              />
+              {formErrors.name && <p className="text-xs text-red-500">{formErrors.name}</p>}
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="textarea-form-message" className="text-sm font-medium">Message</label>
+              <Textarea
+                id="textarea-form-message"
+                placeholder="Your message (min 10 characters)..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                aria-invalid={!!formErrors.message || undefined}
+              />
+              {formErrors.message && <p className="text-xs text-red-500">{formErrors.message}</p>}
+            </div>
+            <Button type="submit" className="w-full">
+              {formSubmitted ? <><Check /> Sent!</> : "Send message"}
+            </Button>
+          </form>
+        </Example>
+      </section>
+
+      {/* ---- Props ---- */}
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="text-paragraph-sm text-muted-foreground">
+          Textarea extends all native{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
+            {"<textarea>"}
+          </code>{" "}
+          HTML attributes in addition to the following:
+        </p>
+        <TextareaPropsTable />
+      </section>
+
+      {/* ---- Design Tokens ---- */}
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="text-paragraph-sm text-muted-foreground">
+          These tokens are defined in{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
+            src/index.css
+          </code>{" "}
+          and sourced from the Figma file{" "}
+          <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <TextareaTokensTable />
+      </section>
+
+      {/* ---- Best Practices ---- */}
+      <section className="space-y-6">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Labels & placeholders</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>
+                Always use a visible <strong>label</strong> above the textarea.
+                Placeholder is a hint, not a replacement for labels.
+              </p>
+              <p>
+                Use descriptive placeholder text like{" "}
+                <strong>"Describe the issue in detail..."</strong> rather than
+                just <strong>"Enter text"</strong>.
+              </p>
+              <p>
+                Link the label to the textarea via{" "}
+                <code className="bg-muted px-1 rounded font-mono text-[10px]">
+                  htmlFor
+                </code>{" "}
+                + <code className="bg-muted px-1 rounded font-mono text-[10px]">id</code>.
+              </p>
+            </DoItem>
+            <DontItem>
+              <p>
+                Don't rely solely on placeholder text as the label — it
+                disappears once the user starts typing.
+              </p>
+              <p>
+                Don't use a textarea for single-line input — use Input instead.
+              </p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Character limits & sizing</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>
+                Use <code className="bg-muted px-1 rounded font-mono text-[10px]">maxLength</code>{" "}
+                with a visible character counter so users know their limit.
+              </p>
+              <p>
+                Set an appropriate <code className="bg-muted px-1 rounded font-mono text-[10px]">rows</code>{" "}
+                value to hint at expected content length.
+              </p>
+              <p>
+                Consider auto-resize for a better UX when content length varies.
+              </p>
+            </DoItem>
+            <DontItem>
+              <p>
+                Don't set a character limit without showing a counter — users
+                won't know why they can't type more.
+              </p>
+              <p>
+                Don't disable resize unless you have a specific layout reason.
+              </p>
+            </DontItem>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Figma Mapping ---- */}
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">
+          Figma Component Mapping
+        </h2>
+        <p className="text-paragraph-sm text-muted-foreground">
+          Reference for mapping Figma component properties to code props, based
+          on the{" "}
+          <strong>
+            [SprouX - DS] Foundation & Component
+          </strong>{" "}
+          file.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Figma Property</th>
+                <th className="px-4 py-3 font-semibold">Figma Value</th>
+                <th className="px-4 py-3 font-semibold">Code Prop</th>
+                <th className="px-4 py-3 font-semibold">Code Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["State", "Default", "—", "default"],
+                ["State", "Focus", "—", "CSS :focus-visible"],
+                ["State", "Error", "aria-invalid", "true"],
+                ["State", "Error + Focus", "aria-invalid", "true + :focus-visible"],
+                ["State", "Disabled", "disabled", "true"],
+                ["Content", "Empty", "—", "no value"],
+                ["Content", "Placeholder", "placeholder", '"Hint text"'],
+                ["Content", "Value", "value / defaultValue", '"Entered text"'],
+                ["Font", "Geist Regular 14/20", "—", "text-sm (font-normal)"],
+                ["Padding", "8px (semantic/xs)", "—", "p-2"],
+                ["Min Height", "76px", "—", "min-h-[76px]"],
+                ["Border Radius", "8px (rounded-lg)", "—", "rounded-lg"],
+                ["Resize", "Enabled", "—", "Native resize (default)"],
+              ].map(([figProp, figVal, codeProp, codeVal], i) => (
+                <tr
+                  key={i}
+                  className="border-b border-border last:border-0"
+                >
+                  <td className="px-4 py-2.5 font-semibold">{figProp}</td>
+                  <td className="px-4 py-2.5">{figVal}</td>
+                  <td className="px-4 py-2.5 font-mono text-primary">
+                    {codeProp}
+                  </td>
+                  <td className="px-4 py-2.5 font-mono text-muted-foreground">
+                    {codeVal}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ---- Accessibility ---- */}
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Keyboard support
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th className="pr-6 py-2 font-semibold">Key</th>
+                    <th className="pr-6 py-2 font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                        Tab
+                      </kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">
+                      Move focus to / from the textarea
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Labeling
+            </h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                Every textarea <strong>must</strong> have an associated{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  {"<label>"}
+                </code>{" "}
+                using{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  htmlFor
+                </code>{" "}
+                + <code className="bg-muted px-1 rounded font-mono">id</code>.
+              </li>
+              <li>
+                If a visible label isn't possible, use{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-label
+                </code>{" "}
+                or{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-labelledby
+                </code>.
+              </li>
+              <li>
+                Link error messages to the textarea using{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-describedby
+                </code>{" "}
+                so screen readers announce the error.
+              </li>
+              <li>
+                Use{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-invalid="true"
+                </code>{" "}
+                to programmatically mark invalid textareas.
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Focus indicator
+            </h3>
+            <p className="text-muted-foreground">
+              All textareas display a visible <strong>3px ring</strong> on{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                :focus-visible
+              </code>
+              . The ring uses{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                --ring (#e9e9e7)
+              </code>{" "}
+              for the default state and{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                --ring-error (#fecaca)
+              </code>{" "}
+              when{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                aria-invalid
+              </code>{" "}
+              is set. This meets WCAG 2.1 focus visibility requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Related Components ---- */}
+      <section className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">
+          Related Components
+        </h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Input</p>
+              <p className="text-muted-foreground mt-0.5">
+                Single-line text input for shorter content like names and emails.
+              </p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-teal-50 text-teal-700 px-2 py-0.5 rounded">
+              Available
+            </span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Select</p>
+              <p className="text-muted-foreground mt-0.5">
+                Dropdown selection for choosing from predefined options.
+              </p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
+              Planned
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
    Navigation & Layout
    ================================================================ */
 
 const components = [
   { id: "button", label: "Button", category: "Actions" },
   { id: "input", label: "Input", category: "Forms" },
+  { id: "textarea", label: "Textarea", category: "Forms" },
 ] as const
 
 type ComponentId = (typeof components)[number]["id"]
@@ -2105,6 +2890,7 @@ function App() {
         <div className="max-w-4xl mx-auto">
           {active === "button" && <ButtonDocs />}
           {active === "input" && <InputDocs />}
+          {active === "textarea" && <TextareaDocs />}
         </div>
       </main>
     </div>
