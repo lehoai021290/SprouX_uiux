@@ -19,7 +19,7 @@ const inputVariants = cva(
         lg: "h-3xl px-md rounded-lg text-sm tracking-sm",
         default: "h-9 px-sm rounded-lg text-sm tracking-sm",
         sm: "h-2xl px-xs rounded-lg text-sm tracking-sm",
-        xs: "h-xl px-1.5 rounded-sm text-xs tracking-xs",
+        xs: "h-xl px-2xs rounded-sm text-xs tracking-xs",
       },
     },
     defaultVariants: {
