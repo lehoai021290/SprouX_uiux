@@ -139,6 +139,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Calendar } from "@/components/ui/calendar"
 import { DatePicker } from "@/components/ui/date-picker"
+import { Combobox } from "@/components/ui/combobox"
 import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -7962,6 +7963,81 @@ function DatePickerDocs() {
 }
 
 /* ================================================================
+   Combobox Docs
+   ================================================================ */
+
+function ComboboxDocs() {
+  const frameworks = [
+    { value: "next", label: "Next.js" },
+    { value: "sveltekit", label: "SvelteKit" },
+    { value: "nuxt", label: "Nuxt.js" },
+    { value: "remix", label: "Remix" },
+    { value: "astro", label: "Astro" },
+  ]
+
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Forms</p>
+        <h1 className="text-heading-3">Combobox</h1>
+        <p className="text-paragraph-md text-muted-foreground">Searchable select dropdown. Composition of Command + Popover.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Import</h2>
+        <Example title="Import" code={`import { Combobox } from "@/components/ui/combobox"`}>
+          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`const frameworks = [\n  { value: "next", label: "Next.js" },\n  { value: "sveltekit", label: "SvelteKit" },\n  { value: "nuxt", label: "Nuxt.js" },\n  { value: "remix", label: "Remix" },\n  { value: "astro", label: "Astro" },\n]\n\n<Combobox\n  options={frameworks}\n  placeholder="Select framework..."\n  searchPlaceholder="Search framework..."\n/>`}>
+          <Combobox
+            options={frameworks}
+            placeholder="Select framework..."
+            searchPlaceholder="Search framework..."
+          />
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">API Reference</h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted">
+                <th className="text-left p-3 font-semibold">Prop</th>
+                <th className="text-left p-3 font-semibold">Type</th>
+                <th className="text-left p-3 font-semibold">Default</th>
+                <th className="text-left p-3 font-semibold">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="p-3 font-mono text-xs">options</td><td className="p-3 font-mono text-xs">ComboboxOption[]</td><td className="p-3 font-mono text-xs">—</td><td className="p-3">Array of {`{ value, label }`} objects.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">value</td><td className="p-3 font-mono text-xs">string</td><td className="p-3 font-mono text-xs">—</td><td className="p-3">Controlled selected value.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">onValueChange</td><td className="p-3 font-mono text-xs">(value: string) =&gt; void</td><td className="p-3 font-mono text-xs">—</td><td className="p-3">Callback when value changes.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">placeholder</td><td className="p-3 font-mono text-xs">string</td><td className="p-3 font-mono text-xs">"Select option..."</td><td className="p-3">Placeholder text.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">searchPlaceholder</td><td className="p-3 font-mono text-xs">string</td><td className="p-3 font-mono text-xs">"Search..."</td><td className="p-3">Search input placeholder.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">emptyText</td><td className="p-3 font-mono text-xs">string</td><td className="p-3 font-mono text-xs">"No results found."</td><td className="p-3">Text when no results match.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Combobox when you have more than 7 options to search through." />
+          <DontItem text="Don't use Combobox for less than 5 options — use Select instead." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
    Radio Group Docs
    ================================================================ */
 
@@ -8218,6 +8294,7 @@ const components = [
   { id: "scroll-area", label: "Scroll Area", category: "Layout" },
   { id: "calendar", label: "Calendar", category: "Forms" },
   { id: "date-picker", label: "Date Picker", category: "Forms" },
+  { id: "combobox", label: "Combobox", category: "Forms" },
 ] as const
 
 type ComponentId = (typeof components)[number]["id"]
@@ -8307,6 +8384,7 @@ function App() {
           {active === "scroll-area" && <ScrollAreaDocs />}
           {active === "calendar" && <CalendarDocs />}
           {active === "date-picker" && <DatePickerDocs />}
+          {active === "combobox" && <ComboboxDocs />}
         </div>
       </main>
       <Toaster />
