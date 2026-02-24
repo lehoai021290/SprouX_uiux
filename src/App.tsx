@@ -104,24 +104,24 @@ function Example({
   )
 }
 
-function DoItem({ children }: { children: React.ReactNode }) {
+function DoItem({ children, text }: { children?: React.ReactNode; text?: string }) {
   return (
     <div className="flex-1 rounded-xl border-2 border-green-500 overflow-hidden">
       <div className="bg-green-50 px-4 py-2 text-xs font-semibold text-green-700">
         Do
       </div>
-      <div className="p-4 space-y-2 text-xs text-foreground">{children}</div>
+      <div className="p-4 space-y-2 text-xs text-foreground">{text ?? children}</div>
     </div>
   )
 }
 
-function DontItem({ children }: { children: React.ReactNode }) {
+function DontItem({ children, text }: { children?: React.ReactNode; text?: string }) {
   return (
     <div className="flex-1 rounded-xl border-2 border-red-500 overflow-hidden">
       <div className="bg-red-50 px-4 py-2 text-xs font-semibold text-red-700">
         Don't
       </div>
-      <div className="p-4 space-y-2 text-xs text-foreground">{children}</div>
+      <div className="p-4 space-y-2 text-xs text-foreground">{text ?? children}</div>
     </div>
   )
 }
