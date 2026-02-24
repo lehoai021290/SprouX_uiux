@@ -70,8 +70,8 @@ function ContextMenuSubTrigger({
     <ContextMenuPrimitive.SubTrigger
       data-slot="context-menu-sub-trigger"
       className={cn(
-        "flex cursor-default select-none items-center gap-2 rounded-sm px-xs py-2xs text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-        inset && "pl-8",
+        "flex cursor-default select-none items-center gap-2 rounded-sm px-xs py-2xs text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-md [&_svg]:shrink-0",
+        inset && "pl-2xl",
         className
       )}
       {...props}
@@ -127,8 +127,8 @@ function ContextMenuItem({
     <ContextMenuPrimitive.Item
       data-slot="context-menu-item"
       className={cn(
-        "relative flex cursor-default select-none items-center gap-2 rounded-sm px-xs py-2xs text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-        inset && "pl-8",
+        "relative flex cursor-default select-none items-center gap-2 rounded-sm px-xs py-2xs text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-md [&_svg]:shrink-0",
+        inset && "pl-2xl",
         className
       )}
       {...props}
@@ -152,9 +152,9 @@ function ContextMenuCheckboxItem({
       checked={checked}
       {...props}
     >
-      <span className="absolute left-2 flex size-3.5 items-center justify-center">
+      <span className="absolute left-xs flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <Check className="size-4" />
+          <Check className="size-md" />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -176,9 +176,9 @@ function ContextMenuRadioItem({
       )}
       {...props}
     >
-      <span className="absolute left-2 flex size-3.5 items-center justify-center">
+      <span className="absolute left-xs flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <Circle className="size-2 fill-current" />
+          <Circle className="size-xs fill-current" />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -198,7 +198,7 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       className={cn(
         "px-xs py-2xs text-sm font-semibold text-foreground",
-        inset && "pl-8",
+        inset && "pl-2xl",
         className
       )}
       {...props}
