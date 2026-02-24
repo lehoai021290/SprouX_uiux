@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -83,6 +83,48 @@ import {
 } from "@/components/ui/tooltip"
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@/components/ui/pagination"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  CommandDialog,
+} from "@/components/ui/command"
 import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -112,6 +154,12 @@ import {
   AlertCircle,
   Terminal,
   Info,
+  CreditCard,
+  LogOut,
+  LifeBuoy,
+  Calculator,
+  Calendar,
+  Smile,
 } from "lucide-react"
 
 /* ================================================================
@@ -7333,6 +7381,341 @@ function ToastDocs() {
 }
 
 /* ================================================================
+   Tabs Docs
+   ================================================================ */
+
+function TabsDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
+        <h1 className="text-heading-3">Tabs</h1>
+        <p className="text-paragraph-md text-muted-foreground">Tabbed interface for switching between different views or content panels.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<Tabs defaultValue="account" className="w-[400px]">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="password">Password</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">\n    <Card>\n      <CardHeader>\n        <CardTitle>Account</CardTitle>\n        <CardDescription>Make changes to your account.</CardDescription>\n      </CardHeader>\n      <CardContent className="space-y-2">\n        <div className="space-y-1">\n          <Label htmlFor="tab-name">Name</Label>\n          <Input id="tab-name" defaultValue="Pedro Duarte" />\n        </div>\n      </CardContent>\n    </Card>\n  </TabsContent>\n</Tabs>`}>
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger value="account">Account</TabsTrigger>
+              <TabsTrigger value="password">Password</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Account</CardTitle>
+                  <CardDescription>Make changes to your account here.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <div className="space-y-1">
+                    <Label htmlFor="tab-name">Name</Label>
+                    <Input id="tab-name" defaultValue="Pedro Duarte" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor="tab-username">Username</Label>
+                    <Input id="tab-username" defaultValue="@peduarte" />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="password">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Password</CardTitle>
+                  <CardDescription>Change your password here.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <div className="space-y-1">
+                    <Label htmlFor="tab-current">Current password</Label>
+                    <Input id="tab-current" type="password" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor="tab-new">New password</Label>
+                    <Input id="tab-new" type="password" />
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Tabs for content that is related but independent." />
+          <DontItem text="Don't use Tabs for sequential steps — use a Stepper pattern instead." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Breadcrumb Docs
+   ================================================================ */
+
+function BreadcrumbDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
+        <h1 className="text-heading-3">Breadcrumb</h1>
+        <p className="text-paragraph-md text-muted-foreground">Breadcrumb navigation trail showing the user's location in a hierarchy.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/components">Components</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Components</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Always include the current page as the last non-linked item." />
+          <DontItem text="Don't make the current page a link — it should be plain text." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Pagination Docs
+   ================================================================ */
+
+function PaginationDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
+        <h1 className="text-heading-3">Pagination</h1>
+        <p className="text-paragraph-md text-muted-foreground">Page navigation with previous/next and numbered links.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<Pagination>\n  <PaginationContent>\n    <PaginationItem>\n      <PaginationPrevious href="#" />\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#">1</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#" isActive>2</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#">3</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationEllipsis />\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationNext href="#" />\n    </PaginationItem>\n  </PaginationContent>\n</Pagination>`}>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive>2</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Highlight the current page for clear context." />
+          <DontItem text="Don't show too many page numbers — use ellipsis for large ranges." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Dropdown Menu Docs
+   ================================================================ */
+
+function DropdownMenuDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
+        <h1 className="text-heading-3">Dropdown Menu</h1>
+        <p className="text-paragraph-md text-muted-foreground">Contextual menu triggered by a button. Supports labels, separators, checkbox items, sub-menus, and keyboard shortcuts.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button variant="outline">Open</Button>\n  </DropdownMenuTrigger>\n  <DropdownMenuContent className="w-56">\n    <DropdownMenuLabel>My Account</DropdownMenuLabel>\n    <DropdownMenuSeparator />\n    <DropdownMenuGroup>\n      <DropdownMenuItem>\n        <User className="mr-2 size-4" /> Profile\n        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>\n      </DropdownMenuItem>\n      <DropdownMenuItem>\n        <Settings className="mr-2 size-4" /> Settings\n        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>\n      </DropdownMenuItem>\n    </DropdownMenuGroup>\n    <DropdownMenuSeparator />\n    <DropdownMenuItem>\n      <LogOut className="mr-2 size-4" /> Log out\n    </DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>`}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">Open Menu</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <User className="mr-2 size-4" /> Profile
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard className="mr-2 size-4" /> Billing
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="mr-2 size-4" /> Settings
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <User className="mr-2 size-4" /> Invite users
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem><Mail className="mr-2 size-4" /> Email</DropdownMenuItem>
+                    <DropdownMenuItem><Plus className="mr-2 size-4" /> More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <LifeBuoy className="mr-2 size-4" /> Support
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <LogOut className="mr-2 size-4" /> Log out
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Group related items and use separators for clarity." />
+          <DontItem text="Don't nest sub-menus more than one level deep." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Command Docs
+   ================================================================ */
+
+function CommandDocs() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
+        <h1 className="text-heading-3">Command</h1>
+        <p className="text-paragraph-md text-muted-foreground">Command palette with search. Built on cmdk. Use as inline menu or as a dialog.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Inline" code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>\n      <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
+          <Command className="rounded-lg border shadow-md">
+            <CommandInput placeholder="Type a command or search..." />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup heading="Suggestions">
+                <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>
+                <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
+                <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+              </CommandGroup>
+              <CommandSeparator />
+              <CommandGroup heading="Settings">
+                <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>
+                <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </Example>
+
+        <Example title="Dialog (⌘J)" code={`<CommandDialog open={open} onOpenChange={setOpen}>\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem>Calendar</CommandItem>\n      <CommandItem>Search Emoji</CommandItem>\n    </CommandGroup>\n  </CommandList>\n</CommandDialog>`}>
+          <div>
+            <p className="text-sm text-muted-foreground mb-2">
+              Press{" "}
+              <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+                <span className="text-xs">⌘</span>J
+              </kbd>
+            </p>
+            <Button variant="outline" onClick={() => setOpen(true)}>Open Command Palette</Button>
+            <CommandDialog open={open} onOpenChange={setOpen}>
+              <CommandInput placeholder="Type a command or search..." />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Suggestions">
+                  <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>
+                  <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
+                  <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Settings">
+                  <CommandItem><User className="mr-2 size-4" /> Profile</CommandItem>
+                  <CommandItem><Settings className="mr-2 size-4" /> Settings</CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </CommandDialog>
+          </div>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Command for searchable lists and keyboard-first interactions." />
+          <DontItem text="Don't put too many items without grouping — use headings to organize." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
    Radio Group Docs
    ================================================================ */
 
@@ -7579,6 +7962,11 @@ const components = [
   { id: "popover", label: "Popover", category: "Overlay & Feedback" },
   { id: "tooltip", label: "Tooltip", category: "Overlay & Feedback" },
   { id: "toast", label: "Toast (Sonner)", category: "Overlay & Feedback" },
+  { id: "tabs", label: "Tabs", category: "Navigation" },
+  { id: "breadcrumb", label: "Breadcrumb", category: "Navigation" },
+  { id: "pagination", label: "Pagination", category: "Navigation" },
+  { id: "dropdown-menu", label: "Dropdown Menu", category: "Navigation" },
+  { id: "command", label: "Command", category: "Navigation" },
 ] as const
 
 type ComponentId = (typeof components)[number]["id"]
@@ -7658,6 +8046,11 @@ function App() {
           {active === "popover" && <PopoverDocs />}
           {active === "tooltip" && <TooltipDocs />}
           {active === "toast" && <ToastDocs />}
+          {active === "tabs" && <TabsDocs />}
+          {active === "breadcrumb" && <BreadcrumbDocs />}
+          {active === "pagination" && <PaginationDocs />}
+          {active === "dropdown-menu" && <DropdownMenuDocs />}
+          {active === "command" && <CommandDocs />}
         </div>
       </main>
       <Toaster />
