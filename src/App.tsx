@@ -137,6 +137,8 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Calendar } from "@/components/ui/calendar"
+import { DatePicker } from "@/components/ui/date-picker"
 import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -170,7 +172,7 @@ import {
   LogOut,
   LifeBuoy,
   Calculator,
-  Calendar,
+  Calendar as CalendarIcon,
   Smile,
   ChevronsUpDown,
 } from "lucide-react"
@@ -7669,13 +7671,13 @@ function CommandDocs() {
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <Example title="Inline" code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>\n      <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
+        <Example title="Inline" code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>\n      <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
           <Command className="rounded-lg border shadow-md">
             <CommandInput placeholder="Type a command or search..." />
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Suggestions">
-                <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>
+                <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
                 <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
                 <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
               </CommandGroup>
@@ -7702,7 +7704,7 @@ function CommandDocs() {
               <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
-                  <CommandItem><Calendar className="mr-2 size-4" /> Calendar</CommandItem>
+                  <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
                   <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
                   <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
                 </CommandGroup>
@@ -7875,6 +7877,84 @@ function ScrollAreaDocs() {
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use ScrollArea for constrained containers with lots of content." />
           <DontItem text="Don't use ScrollArea where native scroll is sufficient." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Calendar Docs
+   ================================================================ */
+
+function CalendarDocs() {
+  const [date, setDate] = useState<Date | undefined>(new Date())
+
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Forms</p>
+        <h1 className="text-heading-3">Calendar</h1>
+        <p className="text-paragraph-md text-muted-foreground">Date picker calendar component built on react-day-picker v9.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Single Date" code={`<Calendar\n  mode="single"\n  selected={date}\n  onSelect={setDate}\n  className="rounded-md border"\n/>`}>
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md border border-border"
+          />
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Calendar for date range selection and scheduling UIs." />
+          <DontItem text="Don't use Calendar inline when a Date Picker popover is more space-efficient." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Date Picker Docs
+   ================================================================ */
+
+function DatePickerDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Forms</p>
+        <h1 className="text-heading-3">Date Picker</h1>
+        <p className="text-paragraph-md text-muted-foreground">Date selection using a Calendar in a Popover. Compact input pattern.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Import</h2>
+        <Example title="Import" code={`import { DatePicker } from "@/components/ui/date-picker"`}>
+          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<DatePicker />`}>
+          <DatePicker />
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use DatePicker for form fields where a single date is needed." />
+          <DontItem text="Don't use DatePicker for date ranges — compose Calendar with custom UI." />
         </div>
       </section>
     </div>
@@ -8136,6 +8216,8 @@ const components = [
   { id: "accordion", label: "Accordion", category: "Layout" },
   { id: "collapsible", label: "Collapsible", category: "Layout" },
   { id: "scroll-area", label: "Scroll Area", category: "Layout" },
+  { id: "calendar", label: "Calendar", category: "Forms" },
+  { id: "date-picker", label: "Date Picker", category: "Forms" },
 ] as const
 
 type ComponentId = (typeof components)[number]["id"]
@@ -8223,6 +8305,8 @@ function App() {
           {active === "accordion" && <AccordionDocs />}
           {active === "collapsible" && <CollapsibleDocs />}
           {active === "scroll-area" && <ScrollAreaDocs />}
+          {active === "calendar" && <CalendarDocs />}
+          {active === "date-picker" && <DatePickerDocs />}
         </div>
       </main>
       <Toaster />
