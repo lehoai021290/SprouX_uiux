@@ -15,7 +15,11 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Slider } from "@/components/ui/slider"
@@ -45,6 +49,9 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  AlertCircle,
+  Terminal,
+  Info,
 } from "lucide-react"
 
 /* ================================================================
@@ -6412,6 +6419,220 @@ function ToggleGroupDocs() {
 }
 
 /* ================================================================
+   Card Docs
+   ================================================================ */
+
+function CardDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Data Display</p>
+        <h1 className="text-heading-3">Card</h1>
+        <p className="text-paragraph-md text-muted-foreground">Content container with composable sub-components: Header, Title, Description, Content, Footer.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+        <Example title="Default" code={`<Card className="w-[350px]">\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card description goes here.</CardDescription>\n  </CardHeader>\n  <CardContent>\n    <p>Card content area.</p>\n  </CardContent>\n  <CardFooter>\n    <Button>Action</Button>\n  </CardFooter>\n</Card>`}>
+          <Card className="w-[350px]">
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card description goes here.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm">Card content area.</p>
+            </CardContent>
+            <CardFooter>
+              <Button size="sm">Action</Button>
+            </CardFooter>
+          </Card>
+        </Example>
+
+        <Example title="Simple card" code={`<Card className="p-md">\n  <p>Simple card with just padding.</p>\n</Card>`}>
+          <Card className="p-md w-[350px]">
+            <p className="text-sm">Simple card with just padding.</p>
+          </Card>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Sub-components</h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b border-border bg-muted"><th className="text-left p-3 font-semibold">Component</th><th className="text-left p-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="p-3 font-mono text-xs">Card</td><td className="p-3">Root container with border, shadow, and rounded corners.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">CardHeader</td><td className="p-3">Top section with padding, contains Title and Description.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">CardTitle</td><td className="p-3">Bold heading text.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">CardDescription</td><td className="p-3">Muted description text.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">CardContent</td><td className="p-3">Main content area.</td></tr>
+              <tr><td className="p-3 font-mono text-xs">CardFooter</td><td className="p-3">Bottom section for actions.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Avatar Docs
+   ================================================================ */
+
+function AvatarDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Data Display</p>
+        <h1 className="text-heading-3">Avatar</h1>
+        <p className="text-paragraph-md text-muted-foreground">User avatar with image and fallback support (initials or icon).</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+        <Example title="With image" code={`<Avatar>\n  <AvatarImage src="https://github.com/shadcn.png" alt="User" />\n  <AvatarFallback>CN</AvatarFallback>\n</Avatar>`}>
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </Example>
+
+        <Example title="Fallback initials" code={`<Avatar>\n  <AvatarFallback>TN</AvatarFallback>\n</Avatar>`}>
+          <div className="flex gap-3">
+            <Avatar><AvatarFallback>TN</AvatarFallback></Avatar>
+            <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
+            <Avatar><AvatarFallback><User className="size-4" /></AvatarFallback></Avatar>
+          </div>
+        </Example>
+
+        <Example title="Sizes" code={`<Avatar className="size-8">...</Avatar>\n<Avatar className="size-10">...</Avatar>\n<Avatar className="size-14">...</Avatar>`}>
+          <div className="flex items-center gap-3">
+            <Avatar className="size-8"><AvatarFallback className="text-xs">S</AvatarFallback></Avatar>
+            <Avatar className="size-10"><AvatarFallback>MD</AvatarFallback></Avatar>
+            <Avatar className="size-14"><AvatarFallback className="text-lg">LG</AvatarFallback></Avatar>
+          </div>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Always provide a fallback (initials or icon) for when the image fails to load." />
+          <DontItem text="Don't use Avatar for decorative images — use a regular img tag." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Progress Docs
+   ================================================================ */
+
+function ProgressDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Data Display</p>
+        <h1 className="text-heading-3">Progress</h1>
+        <p className="text-paragraph-md text-muted-foreground">Progress bar indicating completion status. Supports determinate values (0-100).</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+        <Example title="25%" code={`<Progress value={25} />`}>
+          <Progress value={25} className="w-60" />
+        </Example>
+        <Example title="50%" code={`<Progress value={50} />`}>
+          <Progress value={50} className="w-60" />
+        </Example>
+        <Example title="75%" code={`<Progress value={75} />`}>
+          <Progress value={75} className="w-60" />
+        </Example>
+        <Example title="100%" code={`<Progress value={100} />`}>
+          <Progress value={100} className="w-60" />
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">API Reference</h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b border-border bg-muted"><th className="text-left p-3 font-semibold">Prop</th><th className="text-left p-3 font-semibold">Type</th><th className="text-left p-3 font-semibold">Default</th><th className="text-left p-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="p-3 font-mono text-xs">value</td><td className="p-3 font-mono text-xs">number</td><td className="p-3 font-mono text-xs">0</td><td className="p-3">Current progress (0–100).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Alert Docs
+   ================================================================ */
+
+function AlertDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Data Display</p>
+        <h1 className="text-heading-3">Alert</h1>
+        <p className="text-paragraph-md text-muted-foreground">Inline alert messages for info, warning, error, and success feedback.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+        <Example title="Default" code={`<Alert>\n  <Terminal className="size-4" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>\n</Alert>`}>
+          <Alert>
+            <Terminal className="size-4" />
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+          </Alert>
+        </Example>
+
+        <Example title="Destructive" code={`<Alert variant="destructive">\n  <AlertCircle className="size-4" />\n  <AlertTitle>Error</AlertTitle>\n  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>\n</Alert>`}>
+          <Alert variant="destructive">
+            <AlertCircle className="size-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+          </Alert>
+        </Example>
+
+        <Example title="Info" code={`<Alert>\n  <Info className="size-4" />\n  <AlertTitle>Information</AlertTitle>\n  <AlertDescription>This feature is currently in beta.</AlertDescription>\n</Alert>`}>
+          <Alert>
+            <Info className="size-4" />
+            <AlertTitle>Information</AlertTitle>
+            <AlertDescription>This feature is currently in beta.</AlertDescription>
+          </Alert>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">API Reference</h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b border-border bg-muted"><th className="text-left p-3 font-semibold">Prop</th><th className="text-left p-3 font-semibold">Type</th><th className="text-left p-3 font-semibold">Default</th><th className="text-left p-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="p-3 font-mono text-xs">variant</td><td className="p-3 font-mono text-xs">"default" | "destructive"</td><td className="p-3 font-mono text-xs">"default"</td><td className="p-3">Visual style of the alert.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Alert for persistent, inline messages related to a page section." />
+          <DontItem text="Don't use Alert for transient notifications — use Toast instead." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
    Badge Docs
    ================================================================ */
 
@@ -6782,7 +7003,11 @@ const components = [
   { id: "toggle", label: "Toggle", category: "Forms" },
   { id: "toggle-group", label: "Toggle Group", category: "Forms" },
   { id: "slider", label: "Slider", category: "Forms" },
+  { id: "card", label: "Card", category: "Data Display" },
   { id: "badge", label: "Badge", category: "Data Display" },
+  { id: "avatar", label: "Avatar", category: "Data Display" },
+  { id: "progress", label: "Progress", category: "Data Display" },
+  { id: "alert", label: "Alert", category: "Data Display" },
   { id: "separator", label: "Separator", category: "Data Display" },
   { id: "skeleton", label: "Skeleton", category: "Data Display" },
 ] as const
@@ -6849,7 +7074,11 @@ function App() {
           {active === "toggle" && <ToggleDocs />}
           {active === "toggle-group" && <ToggleGroupDocs />}
           {active === "slider" && <SliderDocs />}
+          {active === "card" && <CardDocs />}
           {active === "badge" && <BadgeDocs />}
+          {active === "avatar" && <AvatarDocs />}
+          {active === "progress" && <ProgressDocs />}
+          {active === "alert" && <AlertDocs />}
           {active === "separator" && <SeparatorDocs />}
           {active === "skeleton" && <SkeletonDocs />}
         </div>
