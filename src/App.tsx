@@ -125,6 +125,18 @@ import {
   CommandSeparator,
   CommandDialog,
 } from "@/components/ui/command"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion"
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -160,6 +172,7 @@ import {
   Calculator,
   Calendar,
   Smile,
+  ChevronsUpDown,
 } from "lucide-react"
 
 /* ================================================================
@@ -7716,6 +7729,159 @@ function CommandDocs() {
 }
 
 /* ================================================================
+   Accordion Docs
+   ================================================================ */
+
+function AccordionDocs() {
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Layout</p>
+        <h1 className="text-heading-3">Accordion</h1>
+        <p className="text-paragraph-md text-muted-foreground">Vertically collapsible content sections. Single or multiple items can be open.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Single (default)" code={`<Accordion type="single" collapsible className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>Is it styled?</AccordionTrigger>\n    <AccordionContent>Yes. It comes with SprouX default styles.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-3">\n    <AccordionTrigger>Is it animated?</AccordionTrigger>\n    <AccordionContent>Yes. It's animated by default with smooth transitions.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>Yes. It comes with SprouX default styles that match the design system.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>Yes. It's animated by default with smooth open/close transitions.</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </Example>
+
+        <Example title="Multiple" code={`<Accordion type="multiple" className="w-full">\n  ...\n</Accordion>`}>
+          <Accordion type="multiple" className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Can I open multiple?</AccordionTrigger>
+              <AccordionContent>Yes. Set type="multiple" to allow multiple items open at once.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>How does it work?</AccordionTrigger>
+              <AccordionContent>Each item toggles independently.</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Accordion for FAQ sections and collapsible settings." />
+          <DontItem text="Don't nest Accordions inside Accordions — keep the hierarchy flat." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Collapsible Docs
+   ================================================================ */
+
+function CollapsibleDocs() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Layout</p>
+        <h1 className="text-heading-3">Collapsible</h1>
+        <p className="text-paragraph-md text-muted-foreground">Toggle visibility of a content section. Simpler than Accordion for single-item toggling.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Default" code={`<Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2">\n  <div className="flex items-center justify-between space-x-4 px-4">\n    <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>\n    <CollapsibleTrigger asChild>\n      <Button variant="ghost" size="sm">\n        <ChevronsUpDown className="size-4" />\n        <span className="sr-only">Toggle</span>\n      </Button>\n    </CollapsibleTrigger>\n  </div>\n  <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/primitives</div>\n  <CollapsibleContent className="space-y-2">\n    <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/colors</div>\n    <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@stitches/react</div>\n  </CollapsibleContent>\n</Collapsible>`}>
+          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2">
+            <div className="flex items-center justify-between space-x-4 px-4">
+              <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+              <CollapsibleTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  <ChevronsUpDown className="size-4" />
+                  <span className="sr-only">Toggle</span>
+                </Button>
+              </CollapsibleTrigger>
+            </div>
+            <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/primitives</div>
+            <CollapsibleContent className="space-y-2">
+              <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/colors</div>
+              <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@stitches/react</div>
+            </CollapsibleContent>
+          </Collapsible>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use Collapsible for toggling a single section of content." />
+          <DontItem text="Don't use Collapsible for multiple expandable items — use Accordion." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Scroll Area Docs
+   ================================================================ */
+
+function ScrollAreaDocs() {
+  const tags = Array.from({ length: 50 }).map(
+    (_, i, a) => `v1.2.0-beta.${a.length - i}`
+  )
+
+  return (
+    <div className="space-y-12 max-w-4xl">
+      <section className="space-y-4">
+        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Layout</p>
+        <h1 className="text-heading-3">Scroll Area</h1>
+        <p className="text-paragraph-md text-muted-foreground">Custom scrollbar overlay for constrained regions. Cross-browser consistent.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <Example title="Vertical" code={`<ScrollArea className="h-72 w-48 rounded-md border">\n  <div className="p-4">\n    <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>\n    {tags.map((tag) => (\n      <div key={tag} className="text-sm">{tag}</div>\n    ))}\n  </div>\n</ScrollArea>`}>
+          <ScrollArea className="h-72 w-48 rounded-md border border-border">
+            <div className="p-4">
+              <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+              {tags.map((tag) => (
+                <div key={tag}>
+                  <div className="text-sm">{tag}</div>
+                  <Separator className="my-2" />
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </Example>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <DoItem text="Use ScrollArea for constrained containers with lots of content." />
+          <DontItem text="Don't use ScrollArea where native scroll is sufficient." />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
    Radio Group Docs
    ================================================================ */
 
@@ -7967,6 +8133,9 @@ const components = [
   { id: "pagination", label: "Pagination", category: "Navigation" },
   { id: "dropdown-menu", label: "Dropdown Menu", category: "Navigation" },
   { id: "command", label: "Command", category: "Navigation" },
+  { id: "accordion", label: "Accordion", category: "Layout" },
+  { id: "collapsible", label: "Collapsible", category: "Layout" },
+  { id: "scroll-area", label: "Scroll Area", category: "Layout" },
 ] as const
 
 type ComponentId = (typeof components)[number]["id"]
@@ -8051,6 +8220,9 @@ function App() {
           {active === "pagination" && <PaginationDocs />}
           {active === "dropdown-menu" && <DropdownMenuDocs />}
           {active === "command" && <CommandDocs />}
+          {active === "accordion" && <AccordionDocs />}
+          {active === "collapsible" && <CollapsibleDocs />}
+          {active === "scroll-area" && <ScrollAreaDocs />}
         </div>
       </main>
       <Toaster />
