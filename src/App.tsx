@@ -9163,6 +9163,15 @@ function SidebarDocs() {
    Navigation & Layout
    ================================================================ */
 
+const foundations = [
+  { id: "colors", label: "Colors" },
+  { id: "typography", label: "Typography" },
+  { id: "spacing", label: "Spacing" },
+  { id: "border-radius", label: "Border Radius" },
+  { id: "icons", label: "Icons" },
+  { id: "illustrations", label: "Illustrations" },
+] as const
+
 const components = [
   { id: "accordion", label: "Accordion" },
   { id: "alert", label: "Alert" },
@@ -9170,14 +9179,12 @@ const components = [
   { id: "aspect-ratio", label: "Aspect Ratio" },
   { id: "avatar", label: "Avatar" },
   { id: "badge", label: "Badge" },
-  { id: "border-radius", label: "Border Radius" },
   { id: "breadcrumb", label: "Breadcrumb" },
   { id: "button", label: "Button" },
   { id: "calendar", label: "Calendar" },
   { id: "card", label: "Card" },
   { id: "checkbox", label: "Checkbox" },
   { id: "collapsible", label: "Collapsible" },
-  { id: "colors", label: "Colors" },
   { id: "combobox", label: "Combobox" },
   { id: "command", label: "Command" },
   { id: "context-menu", label: "Context Menu" },
@@ -9186,8 +9193,6 @@ const components = [
   { id: "drawer", label: "Drawer" },
   { id: "dropdown-menu", label: "Dropdown Menu" },
   { id: "hover-card", label: "Hover Card" },
-  { id: "icons", label: "Icons" },
-  { id: "illustrations", label: "Illustrations" },
   { id: "input", label: "Input" },
   { id: "input-otp", label: "Input OTP" },
   { id: "label", label: "Label" },
@@ -9202,7 +9207,6 @@ const components = [
   { id: "sidebar", label: "Sidebar" },
   { id: "skeleton", label: "Skeleton" },
   { id: "slider", label: "Slider" },
-  { id: "spacing", label: "Spacing" },
   { id: "spinner", label: "Spinner" },
   { id: "switch", label: "Switch" },
   { id: "table", label: "Table" },
@@ -9212,42 +9216,54 @@ const components = [
   { id: "toggle", label: "Toggle" },
   { id: "toggle-group", label: "Toggle Group" },
   { id: "tooltip", label: "Tooltip" },
-  { id: "typography", label: "Typography" },
 ] as const
 
-type ComponentId = (typeof components)[number]["id"]
+type ComponentId = (typeof foundations)[number]["id"] | (typeof components)[number]["id"]
 
 /* ================================================================
    Components Grid (Home page)
    ================================================================ */
 
 function ComponentsGrid({ onNavigate }: { onNavigate: (id: ComponentId) => void }) {
+  const renderGrid = (items: ReadonlyArray<{ id: ComponentId; label: string }>) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-md">
+      {items.map(c => (
+        <button
+          key={c.id}
+          onClick={() => onNavigate(c.id)}
+          className="group text-left rounded-xl border border-border overflow-hidden bg-background hover:shadow-md transition-all"
+        >
+          <div className="h-36 bg-muted/50 flex items-center justify-center">
+            <span className="text-2xl font-heading font-bold text-muted-foreground/30 group-hover:scale-110 transition-transform">
+              {c.label.charAt(0)}
+            </span>
+          </div>
+          <div className="p-md border-t border-border">
+            <p className="font-medium text-sm">{c.label}</p>
+          </div>
+        </button>
+      ))}
+    </div>
+  )
+
   return (
-    <div className="space-y-xl">
+    <div className="space-y-3xl">
       <div className="space-y-sm">
-        <h1 className="text-heading-2">SprouX Components</h1>
+        <h1 className="text-heading-2">SprouX Design System</h1>
         <p className="text-paragraph text-muted-foreground max-w-3xl">
-          An open-source collection of 49 components built with React 19, Tailwind CSS v4,
-          and Radix UI primitives. Browse and explore the full component library.
+          A comprehensive design system with foundations and 43 components built with
+          React 19, Tailwind CSS v4, and Radix UI primitives.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-md">
-        {components.map(c => (
-          <button
-            key={c.id}
-            onClick={() => onNavigate(c.id)}
-            className="group text-left rounded-xl border border-border overflow-hidden bg-background hover:shadow-md transition-all"
-          >
-            <div className="h-36 bg-muted/50 flex items-center justify-center">
-              <span className="text-2xl font-heading font-bold text-muted-foreground/30 group-hover:scale-110 transition-transform">
-                {c.label.charAt(0)}
-              </span>
-            </div>
-            <div className="p-md border-t border-border">
-              <p className="font-medium text-sm">{c.label}</p>
-            </div>
-          </button>
-        ))}
+
+      <div className="space-y-lg">
+        <h2 className="text-heading-4">Foundations</h2>
+        {renderGrid(foundations)}
+      </div>
+
+      <div className="space-y-lg">
+        <h2 className="text-heading-4">Components</h2>
+        {renderGrid(components)}
       </div>
     </div>
   )
@@ -9331,22 +9347,39 @@ function App() {
         </div>
       </header>
 
-      {/* ---- Sidebar (flat A→Z, conditional) ---- */}
+      {/* ---- Sidebar (Foundations + Components, conditional) ---- */}
       {active !== null && (
         <aside className="fixed left-0 top-16 w-[260px] h-[calc(100vh-4rem)] bg-background border-r border-border/50 overflow-y-auto z-10">
-          <nav className="p-md">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-sm px-sm">Components</p>
-            <div className="flex flex-col gap-0.5">
-              {components.map(c => (
-                <button key={c.id} onClick={() => setActive(c.id)}
-                  className={`w-full text-left px-sm py-1 rounded-md text-sm transition-colors ${
-                    active === c.id
-                      ? "bg-muted font-medium text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}>
-                  {c.label}
-                </button>
-              ))}
+          <nav className="p-md space-y-lg">
+            <div>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-xs px-sm">Foundations</p>
+              <div className="flex flex-col gap-0.5">
+                {foundations.map(c => (
+                  <button key={c.id} onClick={() => setActive(c.id)}
+                    className={`w-full text-left px-sm py-1 rounded-md text-sm transition-colors ${
+                      active === c.id
+                        ? "bg-muted font-medium text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}>
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-xs px-sm">Components</p>
+              <div className="flex flex-col gap-0.5">
+                {components.map(c => (
+                  <button key={c.id} onClick={() => setActive(c.id)}
+                    className={`w-full text-left px-sm py-1 rounded-md text-sm transition-colors ${
+                      active === c.id
+                        ? "bg-muted font-medium text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}>
+                    {c.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </nav>
         </aside>
@@ -9410,9 +9443,16 @@ function App() {
 
       {/* ---- Search Command Palette ---- */}
       <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
-        <CommandInput placeholder="Search components..." />
+        <CommandInput placeholder="Search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Foundations">
+            {foundations.map(c => (
+              <CommandItem key={c.id} onSelect={() => { setActive(c.id); setSearchOpen(false) }}>
+                {c.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
           <CommandGroup heading="Components">
             {components.map(c => (
               <CommandItem key={c.id} onSelect={() => { setActive(c.id); setSearchOpen(false) }}>
