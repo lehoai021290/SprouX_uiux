@@ -7080,6 +7080,11 @@ function AlertDialogDocs() {
         <p className="text-paragraph-md text-muted-foreground">Modal for confirmations and destructive actions. Cannot be dismissed by clicking outside.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogFooter,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from "@/components/ui/alert-dialog"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7269,6 +7274,11 @@ function PopoverDocs() {
         <p className="text-paragraph-md text-muted-foreground">Floating content panel anchored to a trigger. For rich interactive content.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n} from "@/components/ui/popover"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7321,6 +7331,11 @@ function TooltipDocs() {
         <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Overlay & Feedback</p>
         <h1 className="text-heading-3">Tooltip</h1>
         <p className="text-paragraph-md text-muted-foreground">Informational popup shown on hover or focus. For brief, non-interactive hints.</p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Tooltip,\n  TooltipTrigger,\n  TooltipContent,\n  TooltipProvider,\n} from "@/components/ui/tooltip"`} />
       </section>
 
       <section className="space-y-4">
@@ -7439,6 +7454,11 @@ function TabsDocs() {
         <p className="text-paragraph-md text-muted-foreground">Tabbed interface for switching between different views or content panels.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7512,6 +7532,11 @@ function BreadcrumbDocs() {
         <p className="text-paragraph-md text-muted-foreground">Breadcrumb navigation trail showing the user's location in a hierarchy.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from "@/components/ui/breadcrumb"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7556,6 +7581,11 @@ function PaginationDocs() {
         <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
         <h1 className="text-heading-3">Pagination</h1>
         <p className="text-paragraph-md text-muted-foreground">Page navigation with previous/next and numbered links.</p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationPrevious,\n  PaginationNext,\n  PaginationEllipsis,\n} from "@/components/ui/pagination"`} />
       </section>
 
       <section className="space-y-4">
@@ -7609,6 +7639,11 @@ function DropdownMenuDocs() {
         <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Navigation</p>
         <h1 className="text-heading-3">Dropdown Menu</h1>
         <p className="text-paragraph-md text-muted-foreground">Contextual menu triggered by a button. Supports labels, separators, checkbox items, sub-menus, and keyboard shortcuts.</p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuShortcut,\n  DropdownMenuGroup,\n  DropdownMenuSub,\n  DropdownMenuSubTrigger,\n  DropdownMenuSubContent,\n} from "@/components/ui/dropdown-menu"`} />
       </section>
 
       <section className="space-y-4">
@@ -7699,6 +7734,11 @@ function CommandDocs() {
         <p className="text-paragraph-md text-muted-foreground">Command palette with search. Built on cmdk. Use as inline menu or as a dialog.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Command,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  CommandSeparator,\n  CommandDialog,\n} from "@/components/ui/command"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7774,6 +7814,11 @@ function AccordionDocs() {
         <p className="text-paragraph-md text-muted-foreground">Vertically collapsible content sections. Single or multiple items can be open.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Accordion,\n  AccordionItem,\n  AccordionTrigger,\n  AccordionContent,\n} from "@/components/ui/accordion"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7834,6 +7879,11 @@ function CollapsibleDocs() {
         <p className="text-paragraph-md text-muted-foreground">Toggle visibility of a content section. Simpler than Accordion for single-item toggling.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import {\n  Collapsible,\n  CollapsibleTrigger,\n  CollapsibleContent,\n} from "@/components/ui/collapsible"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7885,6 +7935,11 @@ function ScrollAreaDocs() {
         <p className="text-paragraph-md text-muted-foreground">Custom scrollbar overlay for constrained regions. Cross-browser consistent.</p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"`} />
+      </section>
+
       <section className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
@@ -7927,6 +7982,11 @@ function CalendarDocs() {
         <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Forms</p>
         <h1 className="text-heading-3">Calendar</h1>
         <p className="text-paragraph-md text-muted-foreground">Date picker calendar component built on react-day-picker v9.</p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-heading-5">Import</h2>
+        <CodeBlock code={`import { Calendar } from "@/components/ui/calendar"`} />
       </section>
 
       <section className="space-y-4">
