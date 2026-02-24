@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
  * Variants: default | secondary | outline | destructive
  */
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium tracking-xs transition-colors focus:outline-none focus:ring-[3px] focus:ring-ring",
+  "inline-flex items-center rounded-md border px-xs py-3xs text-xs font-medium tracking-xs transition-colors focus:outline-none focus:ring-[3px] focus:ring-ring",
   {
     variants: {
       variant: {
