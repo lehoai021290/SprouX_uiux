@@ -86,7 +86,7 @@ function SheetContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close data-slot="sheet-close" className="absolute right-md top-md rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <DialogPrimitive.Close data-slot="sheet-close" className="absolute right-md top-md rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-muted">
           <X className="size-md" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
