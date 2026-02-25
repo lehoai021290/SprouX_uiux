@@ -9012,13 +9012,13 @@ function AccordionExploreBehavior() {
   return (
     <div className="rounded-2xl border border-border/50 overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
-        {/* pointer-events-none: prevent click/hover/focus on the preview
-            Neutralize native hover:underline so only controlled state applies */}
+        {/* pointer-events-none: prevent interactive states; visual overrides for Figma states */}
         <div className={[
           "w-full max-w-md pointer-events-none",
           "[&_[data-slot=accordion-trigger]]:hover:no-underline",
-          isHover ? "[&_[data-slot=accordion-trigger]]:underline" : "",
+          isHover ? "[&_[data-slot=accordion-trigger]]:underline [&_[data-slot=accordion-trigger]]:rounded-lg" : "",
           isFocus ? "[&_[data-slot=accordion-trigger]]:rounded-lg [&_[data-slot=accordion-trigger]]:ring-focus" : "",
+          endItem ? "" : "[&_[data-slot=accordion-item]]:!border-b",
         ].filter(Boolean).join(" ")}>
           <Accordion
             type="single"
@@ -9028,7 +9028,7 @@ function AccordionExploreBehavior() {
           >
             <AccordionItem
               value="preview"
-              className={endItem ? "last:border-b-0" : "border-b"}
+              className={endItem ? "last:border-b-0" : ""}
             >
               <AccordionTrigger>Accordion trigger label</AccordionTrigger>
               <AccordionContent>
