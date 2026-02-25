@@ -206,7 +206,6 @@ import {
   Calendar as CalendarIcon,
   Smile,
   ChevronsUpDown,
-  ChevronDown,
   Home,
   Moon,
   Sun,
@@ -9000,51 +8999,36 @@ function AccordionExploreBehavior() {
   const [type, setType] = useState("Closed")
   const [endItem, setEndItem] = useState(false)
 
-  const isOpen = type === "Open"
+  const isDisable = state === "Disable"
   const isHover = state === "Hover"
   const isFocus = state === "Focus"
-  const isDisable = state === "Disable"
-
   // Disable forces Closed per Figma (no Open variant for Disable)
-  const effectiveOpen = isDisable ? false : isOpen
+  const effectiveValue = isDisable ? undefined : type === "Open" ? "preview" : undefined
+
+  // Style overrides for visual states (hover/focus can't be triggered programmatically)
+  const triggerStateClass = [
+    isHover ? "[&_[data-slot=accordion-trigger]]:underline" : "",
+    isFocus ? "[&_[data-slot=accordion-trigger]]:rounded-lg [&_[data-slot=accordion-trigger]]:ring-focus" : "",
+  ].filter(Boolean).join(" ")
 
   return (
     <div className="rounded-2xl border border-border/50 overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
-        <div
-          className={[
-            "w-full max-w-md font-body transition-opacity duration-200",
-            endItem ? "" : "border-b border-border",
-            isDisable ? "opacity-50 pointer-events-none" : "",
-          ].join(" ")}
+        <Accordion
+          type="single"
+          collapsible
+          value={effectiveValue}
+          onValueChange={(v) => setType(v === "preview" ? "Open" : "Closed")}
+          disabled={isDisable}
+          className={["w-full max-w-md", triggerStateClass].filter(Boolean).join(" ")}
         >
-          <div
-            className={[
-              "flex flex-1 items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground text-left transition-all",
-              isHover ? "underline" : "",
-              isFocus ? "rounded-lg ring-focus" : "",
-            ].join(" ")}
-          >
-            <span className="flex-1 text-left">Accordion trigger label</span>
-            <ChevronDown
-              aria-hidden="true"
-              className={[
-                "size-md shrink-0 text-ghost-foreground transition-transform duration-200",
-                effectiveOpen ? "rotate-180" : "",
-              ].join(" ")}
-            />
-          </div>
-          <div
-            className={[
-              "overflow-hidden transition-all duration-200 ease-in-out",
-              effectiveOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
-            ].join(" ")}
-          >
-            <div className="pt-0 pb-sm text-sm tracking-sm text-foreground">
+          <AccordionItem value="preview" className={endItem ? "border-b-0" : ""}>
+            <AccordionTrigger>Accordion trigger label</AccordionTrigger>
+            <AccordionContent>
               This is the accordion content area. It expands when the trigger is activated.
-            </div>
-          </div>
-        </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
       <div className="border-t border-border/50 bg-muted/30 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
@@ -9072,13 +9056,9 @@ function AccordionExploreBehavior() {
           </div>
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">End Item</Label>
-            <Select value={endItem ? "True" : "False"} onValueChange={(v) => setEndItem(v === "True")}>
-              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="False">False</SelectItem>
-                <SelectItem value="True">True</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="pt-1">
+              <Switch checked={endItem} onCheckedChange={setEndItem} />
+            </div>
           </div>
         </div>
       </div>
