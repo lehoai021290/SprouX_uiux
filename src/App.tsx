@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -338,14 +338,16 @@ function DontItem({ children, text }: { children?: React.ReactNode; text?: strin
 }
 
 function FigmaMapping({
+  id,
   nodeId,
   rows,
 }: {
+  id?: string
   nodeId?: string
   rows: [string, string, string, string][]
 }) {
   return (
-    <section className="space-y-4 pt-3xl">
+    <section id={id} className="space-y-4 pt-3xl">
       <h2 className="font-heading font-semibold text-xl">
         Figma Component Mapping
       </h2>
@@ -459,6 +461,75 @@ function Playground({
         </div>
       )}
     </div>
+  )
+}
+
+type TocSection = { id: string; label: string }
+
+function TableOfContents({ sections }: { sections: TocSection[] }) {
+  const [activeId, setActiveId] = useState<string>("")
+  const sectionsRef = useRef(sections)
+  sectionsRef.current = sections
+
+  useEffect(() => {
+    const root = document.getElementById("main-content")
+    if (!root) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id)
+        }
+      },
+      {
+        root,
+        rootMargin: "-80px 0px -60% 0px",
+        threshold: 0,
+      }
+    )
+
+    for (const section of sectionsRef.current) {
+      const el = document.getElementById(section.id)
+      if (el) observer.observe(el)
+    }
+
+    return () => observer.disconnect()
+  }, [sections])
+
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id)
+    const root = document.getElementById("main-content")
+    if (!el || !root) return
+    const top = el.getBoundingClientRect().top + root.scrollTop - 80
+    root.scrollTo({ top, behavior: "smooth" })
+  }
+
+  return (
+    <nav className="hidden xl:block fixed right-8 top-24 w-56 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-xs px-sm">
+        On this page
+      </p>
+      <ul className="space-y-0.5">
+        {sections.map((s) => (
+          <li key={s.id}>
+            <button
+              onClick={() => handleClick(s.id)}
+              className={[
+                "w-full text-left px-sm py-1 text-xs rounded-md transition-colors border-l-2",
+                activeId === s.id
+                  ? "border-primary text-primary font-medium bg-primary/5"
+                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border",
+              ].join(" ")}
+            >
+              {s.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 
@@ -8819,68 +8890,200 @@ function CommandDocs() {
    Accordion Docs
    ================================================================ */
 
+function AccordionPropsTable() {
+  const renderTable = (title: string, props: { name: string; type: string; default: string; description: string }[]) => (
+    <div className="space-y-2">
+      <h3 className="font-body font-semibold text-sm">{title}</h3>
+      <div className="overflow-x-auto rounded-xl border border-border">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="bg-muted border-b border-border text-left">
+              <th className="px-4 py-3 font-semibold">Prop</th>
+              <th className="px-4 py-3 font-semibold">Type</th>
+              <th className="px-4 py-3 font-semibold">Default</th>
+              <th className="px-4 py-3 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.map((p) => (
+              <tr key={p.name} className="border-b border-border last:border-0">
+                <td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">{p.name}</td>
+                <td className="px-4 py-3 font-mono text-muted-foreground max-w-xs">{p.type}</td>
+                <td className="px-4 py-3 font-mono">{p.default}</td>
+                <td className="px-4 py-3 text-muted-foreground">{p.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="space-y-4">
+      {renderTable("Accordion", [
+        { name: "type", type: '"single" | "multiple"', default: "—", description: "Whether one or multiple items can be open at once." },
+        { name: "collapsible", type: "boolean", default: "false", description: 'When type="single", allows closing the open item by clicking its trigger.' },
+        { name: "defaultValue", type: "string | string[]", default: "—", description: "The value(s) of the item(s) open by default (uncontrolled)." },
+        { name: "value", type: "string | string[]", default: "—", description: "The controlled value(s) of the open item(s)." },
+        { name: "onValueChange", type: "(value) => void", default: "—", description: "Callback when the open item(s) change." },
+        { name: "disabled", type: "boolean", default: "false", description: "Disables all items in the accordion." },
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes for the root element." },
+      ])}
+      {renderTable("AccordionItem", [
+        { name: "value", type: "string", default: "—", description: "Unique identifier for the item (required)." },
+        { name: "disabled", type: "boolean", default: "false", description: "Disables this specific item." },
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+      ])}
+      {renderTable("AccordionTrigger", [
+        { name: "children", type: "React.ReactNode", default: "—", description: "Trigger label content." },
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+      ])}
+      {renderTable("AccordionContent", [
+        { name: "children", type: "React.ReactNode", default: "—", description: "Content shown when the item is open." },
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes for the inner wrapper." },
+      ])}
+    </div>
+  )
+}
+
+function AccordionTokensTable() {
+  const tokens = [
+    { token: "--foreground", value: "hsl(60 6% 14%)", hex: "#252522", usage: "Trigger label & content text" },
+    { token: "--ghost-foreground", value: "hsl(60 3% 42%)", hex: "#6f6f6a", usage: "Chevron icon color" },
+    { token: "--border", value: "hsl(60 5% 91%)", hex: "#e9e9e7", usage: "Item bottom border" },
+    { token: "--ring", value: "hsl(60 5% 91%)", hex: "#e9e9e7", usage: "Focus ring (3px)" },
+    { token: "--radius-lg", value: "8px", hex: "—", usage: "Focus state border-radius" },
+    { token: "--spacing-xs", value: "8px", hex: "—", usage: "Trigger gap between label & icon" },
+    { token: "--spacing-sm", value: "12px", hex: "—", usage: "Trigger vertical padding, content bottom padding" },
+    { token: "--size-md", value: "16px", hex: "—", usage: "Chevron icon size" },
+  ]
+
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+const accordionSections: TocSection[] = [
+  { id: "playground", label: "Playground" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function AccordionDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={accordionSections} />
+
+      {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="text-heading-2">Accordion</h1>
         <p className="text-paragraph text-muted-foreground max-w-3xl">Vertically collapsible content sections. Single or multiple items can be open.</p>
       </header>
 
-      {/* Interactive playground — matches Figma variant properties */}
-      <Playground
-        controls={[
-          { type: "select", label: "State", prop: "state", defaultValue: "default", options: [
-            { label: "Default", value: "default" },
-            { label: "Hover", value: "hover" },
-            { label: "Focus", value: "focus" },
-          ]},
-          { type: "select", label: "Type", prop: "openState", defaultValue: "closed", options: [
-            { label: "Open", value: "open" },
-            { label: "Closed", value: "closed" },
-          ]},
-          { type: "switch", label: "End Item", prop: "endItem", defaultValue: false },
-        ]}
-        render={(p) => {
-          const isOpen = p.openState === "open"
-          const isFocus = p.state === "focus"
-          const isHover = p.state === "hover"
-          return (
-            <div className={[
-              "w-full max-w-md font-body",
-              p.endItem ? "" : "border-b border-border",
-            ].join(" ")}>
+      {/* ---- Playground ---- */}
+      <section id="playground">
+        <Playground
+          controls={[
+            { type: "select", label: "State", prop: "state", defaultValue: "default", options: [
+              { label: "Default", value: "default" },
+              { label: "Hover", value: "hover" },
+              { label: "Focus", value: "focus" },
+            ]},
+            { type: "select", label: "Type", prop: "openState", defaultValue: "closed", options: [
+              { label: "Open", value: "open" },
+              { label: "Closed", value: "closed" },
+            ]},
+            { type: "switch", label: "End Item", prop: "endItem", defaultValue: false },
+          ]}
+          render={(p) => {
+            const isOpen = p.openState === "open"
+            const isFocus = p.state === "focus"
+            const isHover = p.state === "hover"
+            return (
               <div className={[
-                "flex flex-1 items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground text-left transition-all",
-                isHover ? "underline" : "",
-                isFocus ? "rounded-lg ring-focus" : "",
+                "w-full max-w-md font-body",
+                p.endItem ? "" : "border-b border-border",
               ].join(" ")}>
-                <span className="flex-1 text-left">Accordion trigger label</span>
-                <ChevronDown aria-hidden="true" className={[
-                  "size-md shrink-0 text-ghost-foreground transition-transform duration-200",
-                  isOpen ? "rotate-180" : "",
-                ].join(" ")} />
-              </div>
-              {isOpen && (
-                <div className="pt-0 pb-sm text-sm tracking-sm text-foreground">
-                  This is the accordion content panel. It slides down when the trigger is clicked.
+                <div className={[
+                  "flex flex-1 items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground text-left transition-all",
+                  isHover ? "underline" : "",
+                  isFocus ? "rounded-lg ring-focus" : "",
+                ].join(" ")}>
+                  <span className="flex-1 text-left">Accordion trigger label</span>
+                  <ChevronDown aria-hidden="true" className={[
+                    "size-md shrink-0 text-ghost-foreground transition-transform duration-200",
+                    isOpen ? "rotate-180" : "",
+                  ].join(" ")} />
                 </div>
-              )}
-            </div>
-          )
-        }}
-      />
-
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-heading-5">Import</h2>
-        <CodeBlock code={`import {\n  Accordion,\n  AccordionItem,\n  AccordionTrigger,\n  AccordionContent,\n} from "@/components/ui/accordion"`} />
+                {isOpen && (
+                  <div className="pt-0 pb-sm text-sm tracking-sm text-foreground">
+                    This is the accordion content panel. It slides down when the trigger is clicked.
+                  </div>
+                )}
+              </div>
+            )
+          }}
+        />
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <section id="installation" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Installation</h2>
+        <CodeBlock
+          code={`# Install dependencies
+pnpm add @radix-ui/react-accordion lucide-react clsx tailwind-merge
+
+# The component lives at:
+# src/components/ui/accordion.tsx`}
+        />
+        <CodeBlock
+          code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion"`}
+        />
+      </section>
+
+      {/* ---- Examples ---- */}
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <Example title="Single (default)" code={`<Accordion type="single" collapsible className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>Is it styled?</AccordionTrigger>\n    <AccordionContent>Yes. It comes with SprouX default styles.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-3">\n    <AccordionTrigger>Is it animated?</AccordionTrigger>\n    <AccordionContent>Yes. It's animated by default with smooth transitions.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
+        <Example title="Single (default)" description="Only one item can be open at a time. Set collapsible to allow closing the open item." code={`<Accordion type="single" collapsible className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>Is it styled?</AccordionTrigger>\n    <AccordionContent>Yes. It comes with SprouX default styles.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-3">\n    <AccordionTrigger>Is it animated?</AccordionTrigger>\n    <AccordionContent>Yes. It's animated by default with smooth transitions.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -8897,7 +9100,7 @@ function AccordionDocs() {
           </Accordion>
         </Example>
 
-        <Example title="Multiple" code={`<Accordion type="multiple" className="w-full">\n  ...\n</Accordion>`}>
+        <Example title="Multiple" description="Multiple items can be open simultaneously. Each item toggles independently." code={`<Accordion type="multiple" className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Can I open multiple?</AccordionTrigger>\n    <AccordionContent>Yes. Set type="multiple" to allow it.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>How does it work?</AccordionTrigger>\n    <AccordionContent>Each item toggles independently.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
           <Accordion type="multiple" className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Can I open multiple?</AccordionTrigger>
@@ -8910,7 +9113,7 @@ function AccordionDocs() {
           </Accordion>
         </Example>
 
-        <Example title="Default Open" code={`<Accordion type="single" collapsible defaultValue="item-1" className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>What is your return policy?</AccordionTrigger>\n    <AccordionContent>You can return items within 30 days of purchase for a full refund.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>How long does shipping take?</AccordionTrigger>\n    <AccordionContent>Standard shipping takes 5-7 business days. Express options are available at checkout.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
+        <Example title="Default Open" description="Use defaultValue to pre-expand an item on mount." code={`<Accordion type="single" collapsible defaultValue="item-1" className="w-full">\n  <AccordionItem value="item-1">\n    <AccordionTrigger>What is your return policy?</AccordionTrigger>\n    <AccordionContent>You can return items within 30 days of purchase for a full refund.</AccordionContent>\n  </AccordionItem>\n  <AccordionItem value="item-2">\n    <AccordionTrigger>How long does shipping take?</AccordionTrigger>\n    <AccordionContent>Standard shipping takes 5-7 business days.</AccordionContent>\n  </AccordionItem>\n</Accordion>`}>
           <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>What is your return policy?</AccordionTrigger>
@@ -8924,18 +9127,64 @@ function AccordionDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="text-paragraph-sm text-muted-foreground">
+          Built on{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-accordion</code>.
+          Supports all Radix Accordion props in addition to the following:
+        </p>
+        <AccordionPropsTable />
+      </section>
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="text-paragraph-sm text-muted-foreground">
+          These tokens are defined in{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code>{" "}
+          and sourced from the Figma file{" "}
+          <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <AccordionTokensTable />
+      </section>
+
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
-        <div className="grid grid-cols-2 gap-6">
-          <DoItem text="Use Accordion for FAQ sections and collapsible settings." />
-          <DoItem text="Keep trigger labels concise and descriptive — users scan quickly." />
-          <DontItem text="Don't nest Accordions inside Accordions — keep the hierarchy flat." />
-          <DontItem text="Don't hide critical information inside collapsed sections that users must see." />
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Content</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use Accordion for FAQ sections, collapsible settings, and long lists of related content.</p>
+              <p>Keep trigger labels concise and descriptive — users scan quickly.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't hide critical information inside collapsed sections that users must see.</p>
+              <p>Don't use vague labels like "More" or "Details" — be specific about what's inside.</p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Structure</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use <strong>type="single"</strong> when items are related and one answer is expected at a time.</p>
+              <p>Use <strong>defaultValue</strong> to pre-expand the most relevant item.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't nest Accordions inside Accordions — keep the hierarchy flat.</p>
+              <p>Don't use Accordion for content that should always be visible — use a plain list instead.</p>
+            </DontItem>
+          </div>
         </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping rows={[
+      <FigmaMapping id="figma-mapping" nodeId="66:5034" rows={[
         ["State", "Default / Hover / Focus", "—", "Hover: underline label. Focus: rounded-lg + ring-focus (3px --ring)"],
         ["Type", "Open / Closed", "data-state", "Chevron rotates 180° on open, content slides down"],
         ["End Item", "True / False", "—", "last:border-b-0 removes bottom border on last item"],
@@ -8948,6 +9197,132 @@ function AccordionDocs() {
         ["Disabled", "opacity-50", "disabled", "disabled:pointer-events-none disabled:opacity-50 (Shadcn)"],
         ["Animation", "Open / Close", "—", "animate-accordion-down / animate-accordion-up"],
       ]} />
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Keyboard support</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th className="pr-6 py-2 font-semibold">Key</th>
+                    <th className="pr-6 py-2 font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the next accordion trigger</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Shift</kbd>{" + "}
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the previous accordion trigger</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Enter</kbd>{" / "}
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Space</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Toggle the focused accordion item open/closed</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Arrow Down</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the next trigger</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Arrow Up</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the previous trigger</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Home</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the first trigger</td>
+                  </tr>
+                  <tr>
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">End</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus to the last trigger</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">ARIA attributes</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                Each trigger uses{" "}
+                <code className="bg-muted px-1 rounded font-mono">aria-expanded</code>{" "}
+                to indicate open/closed state.
+              </li>
+              <li>
+                Each trigger has{" "}
+                <code className="bg-muted px-1 rounded font-mono">aria-controls</code>{" "}
+                pointing to its associated content panel.
+              </li>
+              <li>
+                Content panels use{" "}
+                <code className="bg-muted px-1 rounded font-mono">role="region"</code>{" "}
+                with{" "}
+                <code className="bg-muted px-1 rounded font-mono">aria-labelledby</code>{" "}
+                referencing the trigger.
+              </li>
+              <li>All ARIA attributes are managed automatically by Radix UI.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Focus indicator</h3>
+            <p className="text-muted-foreground">
+              Triggers display a visible <strong>3px ring</strong> on{" "}
+              <code className="bg-muted px-1 rounded font-mono">:focus-visible</code>{" "}
+              with{" "}
+              <code className="bg-muted px-1 rounded font-mono">rounded-lg</code>{" "}
+              border-radius. The ring uses{" "}
+              <code className="bg-muted px-1 rounded font-mono">--ring (#e9e9e7)</code>.
+              This meets WCAG 2.1 focus visibility requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Collapsible</p>
+              <p className="text-muted-foreground mt-0.5">
+                For toggling a single section of content. Simpler alternative when you don't need multiple items.
+              </p>
+            </div>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tabs</p>
+              <p className="text-muted-foreground mt-0.5">
+                For switching between mutually exclusive content panels. Use instead of accordion when content is equally important.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
