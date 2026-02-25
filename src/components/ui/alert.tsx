@@ -6,19 +6,48 @@ import { cn } from "@/lib/utils"
 /**
  * SprouX Alert
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component (node 58:5416)
+ * Shadcn: @shadcn/alert (native div)
  *
- * Inline message for info, warning, error, success.
- * Variants: default | destructive
+ * Inline feedback message for neutral, error, success, warning, emphasis.
+ *
+ * Variants (Figma):
+ *   Type:         Neutral | Error | Success | Warning | Emphasis
+ *   Dismissable:  False | True
+ *   In Card:      False | True
+ *   Show Title:   True | False
+ *   Show Subtitle:True | False
+ *   Show Icon:    true | false
+ *
+ * Merged specs (Shadcn structure + Figma tokens):
+ *   Container:  py-sm (12px) px-md (16px), gap-md (16px) outer
+ *               rounded-lg (8px), border 1px
+ *   Icon:       size-md (16px), absolute left-md top-sm
+ *   Title:      typo-paragraph-sm-bold (Geist 600 14/20 ls:0.07px)
+ *   Description:typo-paragraph-sm (Geist 400 14/20 ls:0.07px)
+ *   Gap:        icon-to-text gap-sm (12px), title-to-desc gap-xs (8px)
+ *
+ *   Neutral:  bg-background, border-border, text-foreground, desc: text-ghost-foreground
+ *   Error:    bg-destructive-subtle, border-destructive-border, text-destructive-subtle-foreground
+ *   Success:  bg-success-subtle, border-success-border, text-success-subtle-foreground
+ *   Warning:  bg-warning-subtle, border-warning-border, text-warning-subtle-foreground
+ *   Emphasis: bg-emphasis-subtle, border-emphasis-border, text-emphasis-subtle-foreground
  */
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-md [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-md [&>svg]:top-md [&>svg]:text-foreground",
+  "relative w-full rounded-lg border py-sm px-md [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-md [&>svg]:top-sm [&>svg]:size-md",
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
+        default:
+          "bg-background border-border text-foreground [&>svg]:text-foreground *:data-[slot=alert-description]:text-ghost-foreground",
         destructive:
-          "border-destructive-border text-destructive [&>svg]:text-destructive",
+          "bg-destructive-subtle border-destructive-border text-destructive-subtle-foreground [&>svg]:text-destructive-subtle-foreground",
+        success:
+          "bg-success-subtle border-success-border text-success-subtle-foreground [&>svg]:text-success-subtle-foreground",
+        warning:
+          "bg-warning-subtle border-warning-border text-warning-subtle-foreground [&>svg]:text-warning-subtle-foreground",
+        emphasis:
+          "bg-emphasis-subtle border-emphasis-border text-emphasis-subtle-foreground [&>svg]:text-emphasis-subtle-foreground",
       },
     },
     defaultVariants: {
@@ -42,11 +71,11 @@ function Alert({
   )
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<"h5">) {
+function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <h5
+    <div
       data-slot="alert-title"
-      className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+      className={cn("typo-paragraph-sm-bold", className)}
       {...props}
     />
   )
@@ -59,7 +88,7 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn("text-sm [&_p]:leading-relaxed", className)}
+      className={cn("typo-paragraph-sm [&_p]:leading-relaxed", className)}
       {...props}
     />
   )

@@ -199,6 +199,8 @@ import {
   AlertCircle,
   Terminal,
   Info,
+  CircleCheck,
+  TriangleAlert,
   CreditCard,
   LogOut,
   LifeBuoy,
@@ -7348,50 +7350,100 @@ function AlertDocs() {
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Alert</h1>
-        <p className="typo-paragraph text-muted-foreground max-w-3xl">Inline alert messages for info, warning, error, and success feedback.</p>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Inline alert messages for neutral, error, success, warning, and emphasis feedback.</p>
       </header>
 
       {/* Interactive playground */}
       <Playground
         controls={[
           { type: "select", label: "Variant", prop: "variant", defaultValue: "default", options: [
-            { label: "Default", value: "default" },
-            { label: "Destructive", value: "destructive" },
+            { label: "Default (Neutral)", value: "default" },
+            { label: "Destructive (Error)", value: "destructive" },
+            { label: "Success", value: "success" },
+            { label: "Warning", value: "warning" },
+            { label: "Emphasis", value: "emphasis" },
           ]},
           { type: "switch", label: "Show Icon", prop: "showIcon", defaultValue: true },
         ]}
-        render={(p) => (
-          <Alert variant={p.variant} className="max-w-lg">
-            {p.showIcon && (p.variant === "destructive" ? <AlertCircle className="size-4" /> : <Terminal className="size-4" />)}
-            <AlertTitle>{p.variant === "destructive" ? "Error" : "Heads up!"}</AlertTitle>
-            <AlertDescription>{p.variant === "destructive" ? "Your session has expired." : "You can add components using the CLI."}</AlertDescription>
-          </Alert>
-        )}
+        render={(p) => {
+          const icons: Record<string, React.ReactNode> = {
+            default: <Terminal className="size-md" />,
+            destructive: <AlertCircle className="size-md" />,
+            success: <CircleCheck className="size-md" />,
+            warning: <TriangleAlert className="size-md" />,
+            emphasis: <Info className="size-md" />,
+          }
+          const titles: Record<string, string> = {
+            default: "Heads up!",
+            destructive: "Error",
+            success: "Success",
+            warning: "Warning",
+            emphasis: "Information",
+          }
+          const descs: Record<string, string> = {
+            default: "You can add components using the CLI.",
+            destructive: "Your session has expired. Please log in again.",
+            success: "Your changes have been saved successfully.",
+            warning: "Your trial expires in 3 days. Upgrade to continue.",
+            emphasis: "A new version is available. Update to get the latest features.",
+          }
+          return (
+            <Alert variant={p.variant} className="max-w-lg">
+              {p.showIcon && icons[p.variant]}
+              <AlertTitle>{titles[p.variant]}</AlertTitle>
+              <AlertDescription>{descs[p.variant]}</AlertDescription>
+            </Alert>
+          )
+        }}
       />
 
-      <section className="space-y-4 pt-3xl">
+      <section className="space-y-6 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
-        <Example title="Default" code={`<Alert>\n  <Terminal className="size-4" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>\n</Alert>`}>
+
+        <Example title="Default (Neutral)" description="General-purpose notification with a neutral appearance." code={`<Alert>\n  <Terminal className="size-md" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>\n</Alert>`}>
           <Alert>
-            <Terminal className="size-4" />
+            <Terminal className="size-md" />
             <AlertTitle>Heads up!</AlertTitle>
             <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
           </Alert>
         </Example>
 
-        <Example title="Destructive" code={`<Alert variant="destructive">\n  <AlertCircle className="size-4" />\n  <AlertTitle>Error</AlertTitle>\n  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>\n</Alert>`}>
+        <Example title="Destructive (Error)" description="Use for error messages that require attention." code={`<Alert variant="destructive">\n  <AlertCircle className="size-md" />\n  <AlertTitle>Error</AlertTitle>\n  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>\n</Alert>`}>
           <Alert variant="destructive">
-            <AlertCircle className="size-4" />
+            <AlertCircle className="size-md" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
           </Alert>
         </Example>
 
-        <Example title="Info" code={`<Alert>\n  <Info className="size-4" />\n  <AlertTitle>Information</AlertTitle>\n  <AlertDescription>This feature is currently in beta.</AlertDescription>\n</Alert>`}>
-          <Alert>
-            <Info className="size-4" />
+        <Example title="Success" description="Confirm successful actions or operations." code={`<Alert variant="success">\n  <CircleCheck className="size-md" />\n  <AlertTitle>Success</AlertTitle>\n  <AlertDescription>Your changes have been saved successfully.</AlertDescription>\n</Alert>`}>
+          <Alert variant="success">
+            <CircleCheck className="size-md" />
+            <AlertTitle>Success</AlertTitle>
+            <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+          </Alert>
+        </Example>
+
+        <Example title="Warning" description="Warn users about potential issues or expiring resources." code={`<Alert variant="warning">\n  <TriangleAlert className="size-md" />\n  <AlertTitle>Warning</AlertTitle>\n  <AlertDescription>Your trial expires in 3 days. Upgrade to continue.</AlertDescription>\n</Alert>`}>
+          <Alert variant="warning">
+            <TriangleAlert className="size-md" />
+            <AlertTitle>Warning</AlertTitle>
+            <AlertDescription>Your trial expires in 3 days. Upgrade to continue.</AlertDescription>
+          </Alert>
+        </Example>
+
+        <Example title="Emphasis" description="Highlight important information or announcements." code={`<Alert variant="emphasis">\n  <Info className="size-md" />\n  <AlertTitle>Information</AlertTitle>\n  <AlertDescription>A new version is available. Update to get the latest features.</AlertDescription>\n</Alert>`}>
+          <Alert variant="emphasis">
+            <Info className="size-md" />
             <AlertTitle>Information</AlertTitle>
-            <AlertDescription>This feature is currently in beta.</AlertDescription>
+            <AlertDescription>A new version is available. Update to get the latest features.</AlertDescription>
+          </Alert>
+        </Example>
+
+        <Example title="Without Icon" description="Alert without a leading icon." code={`<Alert>\n  <AlertTitle>Note</AlertTitle>\n  <AlertDescription>This is a simple alert without an icon.</AlertDescription>\n</Alert>`}>
+          <Alert>
+            <AlertTitle>Note</AlertTitle>
+            <AlertDescription>This is a simple alert without an icon.</AlertDescription>
           </Alert>
         </Example>
       </section>
@@ -7400,30 +7452,44 @@ function AlertDocs() {
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
-            <thead><tr className="border-b border-border bg-muted"><th className="text-left p-3 font-semibold">Prop</th><th className="text-left p-3 font-semibold">Type</th><th className="text-left p-3 font-semibold">Default</th><th className="text-left p-3 font-semibold">Description</th></tr></thead>
+            <thead><tr className="border-b border-border bg-muted"><th className="text-left px-4 py-3 font-semibold">Prop</th><th className="text-left px-4 py-3 font-semibold">Type</th><th className="text-left px-4 py-3 font-semibold">Default</th><th className="text-left px-4 py-3 font-semibold">Description</th></tr></thead>
             <tbody className="divide-y divide-border">
-              <tr><td className="p-3 font-mono text-xs">variant</td><td className="p-3 font-mono text-xs">"default" | "destructive"</td><td className="p-3 font-mono text-xs">"default"</td><td className="p-3">Visual style of the alert.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-xs text-primary">variant</td><td className="px-4 py-3 font-mono text-xs">{'"default" | "destructive" | "success" | "warning" | "emphasis"'}</td><td className="px-4 py-3 font-mono text-xs">"default"</td><td className="px-4 py-3">Visual style matching the alert type.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-xs text-primary">className</td><td className="px-4 py-3 font-mono text-xs">string</td><td className="px-4 py-3 font-mono text-xs">—</td><td className="px-4 py-3">Additional CSS classes.</td></tr>
             </tbody>
           </table>
         </div>
+
+        <h3 className="typo-paragraph-sm-bold mt-4">AlertTitle</h3>
+        <p className="typo-paragraph-sm text-muted-foreground">Renders a <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">&lt;div&gt;</code> with <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">typo-paragraph-sm-bold</code>. Inherits text color from parent Alert variant.</p>
+
+        <h3 className="typo-paragraph-sm-bold mt-4">AlertDescription</h3>
+        <p className="typo-paragraph-sm text-muted-foreground">Renders a <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">&lt;div&gt;</code> with <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">typo-paragraph-sm</code>. Inherits text color from parent Alert variant.</p>
       </section>
 
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Alert for persistent, inline messages related to a page section." />
-          <DontItem text="Don't use Alert for transient notifications — use Toast instead." />
+          <DoItem text="Choose the correct variant to match the semantic meaning: success for confirmations, warning for cautions, destructive for errors." />
+          <DontItem text="Don't use Alert for transient notifications — use Toast/Sonner instead." />
+          <DontItem text="Don't use emphasis variant for errors — use destructive for actual errors." />
         </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
-        ["Variant", "Default", "variant", '"default"'],
-        ["Variant", "Destructive", "variant", '"destructive"'],
-        ["Sub-component", "Title", "AlertTitle", "font-medium leading-none"],
-        ["Sub-component", "Description", "AlertDescription", "text-sm"],
-        ["Icon", "Left icon slot", "children", "<Icon /> before AlertTitle"],
-        ["Icon Size", "16px", "—", "[&>svg]:size-md"],
+        ["Type", "Neutral", "variant", '"default"'],
+        ["Type", "Error", "variant", '"destructive"'],
+        ["Type", "Success", "variant", '"success"'],
+        ["Type", "Warning", "variant", '"warning"'],
+        ["Type", "Emphasis", "variant", '"emphasis"'],
+        ["Sub-component", "Title", "AlertTitle", "typo-paragraph-sm-bold"],
+        ["Sub-component", "Description", "AlertDescription", "typo-paragraph-sm"],
+        ["Show Icon", "true/false", "children", "<Icon /> before AlertTitle"],
+        ["Icon Size", "16×16px", "—", "[&>svg]:size-md"],
+        ["Padding", "py:12px px:16px", "—", "py-sm px-md"],
+        ["Border Radius", "8px", "—", "rounded-lg"],
       ]} />
     </div>
   )
