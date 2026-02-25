@@ -213,6 +213,7 @@ import {
   Sun,
   Github,
   ArrowUp,
+  X,
 } from "lucide-react"
 import { icons as lucideIcons } from "lucide-react"
 
@@ -7441,6 +7442,103 @@ function AlertTokensTable() {
   )
 }
 
+function AlertExploreBehavior() {
+  const [type, setType] = useState("default")
+  const [showIcon, setShowIcon] = useState(true)
+  const [showTitle, setShowTitle] = useState(true)
+  const [showSubtitle, setShowSubtitle] = useState(true)
+  const [dismissable, setDismissable] = useState(false)
+  const [inCard, setInCard] = useState(false)
+
+  const icons: Record<string, React.ReactNode> = {
+    default: <Terminal className="size-md" />,
+    destructive: <AlertCircle className="size-md" />,
+    success: <CircleCheck className="size-md" />,
+    warning: <TriangleAlert className="size-md" />,
+    emphasis: <Info className="size-md" />,
+  }
+  const titles: Record<string, string> = {
+    default: "Heads up!",
+    destructive: "Error",
+    success: "Success",
+    warning: "Warning",
+    emphasis: "Information",
+  }
+  const descs: Record<string, string> = {
+    default: "You can add components using the CLI.",
+    destructive: "Your session has expired. Please log in again.",
+    success: "Your changes have been saved successfully.",
+    warning: "Your trial expires in 3 days. Upgrade to continue.",
+    emphasis: "A new version is available. Update to get the latest features.",
+  }
+
+  return (
+    <div className="rounded-2xl border border-border/50 overflow-hidden">
+      <div className={["p-4xl flex items-center justify-center min-h-[160px]", inCard ? "bg-muted/50" : "bg-primary/5"].join(" ")}>
+        <div className={["w-full max-w-lg", inCard ? "rounded-xl border border-border bg-background p-lg shadow-sm" : ""].filter(Boolean).join(" ")}>
+          <Alert variant={type as "default" | "destructive" | "success" | "warning" | "emphasis"}>
+            {showIcon && icons[type]}
+            {showTitle && <AlertTitle>{titles[type]}</AlertTitle>}
+            {showSubtitle && <AlertDescription>{descs[type]}</AlertDescription>}
+            {dismissable && (
+              <button className="absolute right-md top-sm text-current opacity-70 hover:opacity-100 transition-opacity" aria-label="Dismiss">
+                <X className="size-md" />
+              </button>
+            )}
+          </Alert>
+        </div>
+      </div>
+      <div className="border-t border-border/50 bg-muted/30 p-lg">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Type</Label>
+            <Select value={type} onValueChange={setType}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="default">Neutral</SelectItem>
+                <SelectItem value="destructive">Error</SelectItem>
+                <SelectItem value="success">Success</SelectItem>
+                <SelectItem value="warning">Warning</SelectItem>
+                <SelectItem value="emphasis">Emphasis</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Dismissable</Label>
+            <div className="pt-1">
+              <Switch checked={dismissable} onCheckedChange={setDismissable} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">In Card</Label>
+            <div className="pt-1">
+              <Switch checked={inCard} onCheckedChange={setInCard} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Title</Label>
+            <div className="pt-1">
+              <Switch checked={showTitle} onCheckedChange={setShowTitle} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Subtitle</Label>
+            <div className="pt-1">
+              <Switch checked={showSubtitle} onCheckedChange={setShowSubtitle} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Icon</Label>
+            <div className="pt-1">
+              <Switch checked={showIcon} onCheckedChange={setShowIcon} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const alertSections: TocSection[] = [
   { id: "explore-behavior", label: "Explore Behavior" },
   { id: "installation", label: "Installation" },
@@ -7468,48 +7566,7 @@ function AlertDocs() {
       {/* ---- Explore Behavior ---- */}
       <section id="explore-behavior" className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
-        <Playground
-          controls={[
-            { type: "select", label: "Variant", prop: "variant", defaultValue: "default", options: [
-              { label: "Default (Neutral)", value: "default" },
-              { label: "Destructive (Error)", value: "destructive" },
-              { label: "Success", value: "success" },
-              { label: "Warning", value: "warning" },
-              { label: "Emphasis", value: "emphasis" },
-            ]},
-            { type: "switch", label: "Show Icon", prop: "showIcon", defaultValue: true },
-          ]}
-          render={(p) => {
-            const icons: Record<string, React.ReactNode> = {
-              default: <Terminal className="size-md" />,
-              destructive: <AlertCircle className="size-md" />,
-              success: <CircleCheck className="size-md" />,
-              warning: <TriangleAlert className="size-md" />,
-              emphasis: <Info className="size-md" />,
-            }
-            const titles: Record<string, string> = {
-              default: "Heads up!",
-              destructive: "Error",
-              success: "Success",
-              warning: "Warning",
-              emphasis: "Information",
-            }
-            const descs: Record<string, string> = {
-              default: "You can add components using the CLI.",
-              destructive: "Your session has expired. Please log in again.",
-              success: "Your changes have been saved successfully.",
-              warning: "Your trial expires in 3 days. Upgrade to continue.",
-              emphasis: "A new version is available. Update to get the latest features.",
-            }
-            return (
-              <Alert variant={p.variant} className="max-w-lg">
-                {p.showIcon && icons[p.variant]}
-                <AlertTitle>{titles[p.variant]}</AlertTitle>
-                <AlertDescription>{descs[p.variant]}</AlertDescription>
-              </Alert>
-            )
-          }}
-        />
+        <AlertExploreBehavior />
       </section>
 
       {/* ---- Installation ---- */}
