@@ -10176,7 +10176,14 @@ function ComponentsGrid({ onNavigate }: { onNavigate: (id: ComponentId) => void 
    ================================================================ */
 
 function App() {
-  const [active, setActive] = useState<ComponentId | null>(null)
+  const [active, setActiveRaw] = useState<ComponentId | null>(() => {
+    const hash = window.location.hash.slice(1)
+    return hash ? (hash as ComponentId) : null
+  })
+  const setActive = (id: ComponentId | null) => {
+    setActiveRaw(id)
+    window.location.hash = id ? id : ""
+  }
   const [dark, setDark] = useState<boolean>(() => {
     if (typeof window === "undefined") return false
     const stored = localStorage.getItem("sproux-dark-mode")
@@ -10190,6 +10197,15 @@ function App() {
     document.documentElement.classList.toggle("dark", dark)
     localStorage.setItem("sproux-dark-mode", String(dark))
   }, [dark])
+
+  useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash.slice(1)
+      setActiveRaw(hash ? (hash as ComponentId) : null)
+    }
+    window.addEventListener("hashchange", onHash)
+    return () => window.removeEventListener("hashchange", onHash)
+  }, [])
 
   useEffect(() => {
     const main = document.getElementById("main-content")
