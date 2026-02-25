@@ -8989,10 +8989,14 @@ function AccordionTokensTable() {
 }
 
 /**
- * Explore Behavior — single variant preview matching Figma properties:
+ * Explore Behavior — static variant preview matching Figma component 100%:
  *   State:    Default | Hover | Focus | Disable
  *   Type:     Open | Closed
  *   End Item: False | True
+ *
+ * Uses real Accordion component but with pointer-events-none to prevent
+ * interactive states (hover/focus/click) from overriding the controlled preview.
+ * Native hover:underline and focus-visible:ring are neutralized via CSS overrides.
  */
 function AccordionExploreBehavior() {
   const [state, setState] = useState("Default")
@@ -9005,30 +9009,34 @@ function AccordionExploreBehavior() {
   // Disable forces Closed per Figma (no Open variant for Disable)
   const effectiveValue = isDisable ? undefined : type === "Open" ? "preview" : undefined
 
-  // Style overrides for visual states (hover/focus can't be triggered programmatically)
-  const triggerStateClass = [
-    isHover ? "[&_[data-slot=accordion-trigger]]:underline" : "",
-    isFocus ? "[&_[data-slot=accordion-trigger]]:rounded-lg [&_[data-slot=accordion-trigger]]:ring-focus" : "",
-  ].filter(Boolean).join(" ")
-
   return (
     <div className="rounded-2xl border border-border/50 overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
-        <Accordion
-          type="single"
-          collapsible
-          value={effectiveValue}
-          onValueChange={(v) => setType(v === "preview" ? "Open" : "Closed")}
-          disabled={isDisable}
-          className={["w-full max-w-md", triggerStateClass].filter(Boolean).join(" ")}
-        >
-          <AccordionItem value="preview" className={endItem ? "border-b-0" : ""}>
-            <AccordionTrigger>Accordion trigger label</AccordionTrigger>
-            <AccordionContent>
-              This is the accordion content area. It expands when the trigger is activated.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        {/* pointer-events-none: prevent click/hover/focus on the preview
+            Neutralize native hover:underline so only controlled state applies */}
+        <div className={[
+          "w-full max-w-md pointer-events-none",
+          "[&_[data-slot=accordion-trigger]]:hover:no-underline",
+          isHover ? "[&_[data-slot=accordion-trigger]]:underline" : "",
+          isFocus ? "[&_[data-slot=accordion-trigger]]:rounded-lg [&_[data-slot=accordion-trigger]]:ring-focus" : "",
+        ].filter(Boolean).join(" ")}>
+          <Accordion
+            type="single"
+            collapsible
+            value={effectiveValue}
+            disabled={isDisable}
+          >
+            <AccordionItem
+              value="preview"
+              className={endItem ? "last:border-b-0" : "border-b"}
+            >
+              <AccordionTrigger>Accordion trigger label</AccordionTrigger>
+              <AccordionContent>
+                This is the accordion content area. It expands when the trigger is activated.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </div>
       <div className="border-t border-border/50 bg-muted/30 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
