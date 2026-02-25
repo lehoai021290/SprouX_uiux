@@ -8835,23 +8835,37 @@ function AccordionDocs() {
             { label: "Multiple", value: "multiple" },
           ]},
           { type: "switch", label: "Collapsible", prop: "collapsible", defaultValue: true },
+          { type: "select", label: "Default Open", prop: "defaultOpen", defaultValue: "none", options: [
+            { label: "None", value: "none" },
+            { label: "Item 1", value: "item-1" },
+            { label: "Item 2", value: "item-2" },
+            { label: "Item 3", value: "item-3" },
+          ]},
         ]}
-        render={(p) => (
-          <Accordion type={p.type as "single" | "multiple"} collapsible={p.collapsible} className="w-full max-w-md">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>Yes. It comes with SprouX default styles.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>Yes. Smooth open/close transitions.</AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        )}
+        render={(p) => {
+          const items = (
+            <>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Is it styled?</AccordionTrigger>
+                <AccordionContent>Yes. It comes with SprouX default styles.</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Is it animated?</AccordionTrigger>
+                <AccordionContent>Yes. Smooth open/close transitions.</AccordionContent>
+              </AccordionItem>
+            </>
+          )
+          const dv = p.defaultOpen !== "none" ? (p.defaultOpen as string) : undefined
+          return p.type === "multiple" ? (
+            <Accordion type="multiple" defaultValue={dv ? [dv] : undefined} className="w-full max-w-md">{items}</Accordion>
+          ) : (
+            <Accordion type="single" collapsible={p.collapsible} defaultValue={dv} className="w-full max-w-md">{items}</Accordion>
+          )
+        }}
       />
 
       <section className="space-y-3 pt-xl border-t border-border">
@@ -8903,12 +8917,15 @@ function AccordionDocs() {
 
       {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
-        ["Type", "Single", "type", '"single" — one item open at a time'],
-        ["Type", "Multiple", "type", '"multiple" — any number open'],
-        ["Collapsible", "true", "collapsible", "true (allows all closed)"],
-        ["Item Border", "Bottom", "—", "border-b on AccordionItem"],
-        ["Trigger Padding", "py-md", "—", "py-md, font-medium"],
-        ["Icon", "ChevronDown", "AccordionTrigger", "size-md, rotates 180° on open"],
+        ["Type (Open/Closed)", "Open / Closed", "defaultValue", "Controls which item starts open"],
+        ["Type", "Single / Multiple", "type", '"single" — one item open at a time; "multiple" — any number open'],
+        ["Collapsible", "true", "collapsible", "true (allows all items to be closed)"],
+        ["State", "Default / Hover / Focus", "—", "Hover & focus-visible handled by CSS"],
+        ["End Item", "True / False", "—", "last:border-b-0 removes border on last item"],
+        ["Item Border", "Bottom", "—", "border-b border-border on AccordionItem"],
+        ["Trigger Font", "SemiBold", "—", "font-semibold, tracking-sm"],
+        ["Icon", "ChevronDown", "AccordionTrigger", "size-md, text-ghost-foreground, rotates 180° on open"],
+        ["Focus Ring", "3px ring", "—", "focus-visible:ring-focus, rounded-lg"],
         ["Animation", "Open/Close", "—", "animate-accordion-down/up"],
       ]} />
     </div>

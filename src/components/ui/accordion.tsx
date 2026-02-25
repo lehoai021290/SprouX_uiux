@@ -24,7 +24,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("border-b border-border", className)}
+      className={cn("border-b border-border last:border-b-0", className)}
       {...props}
     />
   )
@@ -40,13 +40,13 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-center justify-between py-md text-sm font-medium transition-all hover:underline text-left [&[data-state=open]>svg]:rotate-180",
+          "flex flex-1 items-center justify-between py-md text-sm font-semibold tracking-sm transition-all text-left rounded-lg focus-visible:ring-focus focus-visible:outline-none [&[data-state=open]>svg]:rotate-180",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDown aria-hidden="true" className="size-md shrink-0 text-muted-foreground transition-transform duration-200" />
+        <ChevronDown aria-hidden="true" className="size-md shrink-0 text-ghost-foreground transition-transform duration-200" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
