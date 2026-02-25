@@ -8848,18 +8848,18 @@ function AccordionDocs() {
           return (
             <div className="w-full max-w-md">
               <div className={[
-                "relative flex items-center justify-between gap-xs py-md text-sm font-semibold tracking-sm rounded-lg transition-all",
+                "relative flex items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground rounded-lg transition-all",
                 isFocus ? "ring-focus" : "",
                 p.endItem ? "" : "border-b border-border",
               ].join(" ")}>
-                <span className="flex-1 text-left text-foreground">Accordion trigger label</span>
+                <span className="flex-1 text-left">Accordion trigger label</span>
                 <ChevronDown aria-hidden="true" className={[
                   "size-md shrink-0 text-ghost-foreground transition-transform duration-200",
                   isOpen ? "rotate-180" : "",
                 ].join(" ")} />
               </div>
               {isOpen && (
-                <div className="pb-md text-sm text-muted-foreground">
+                <div className="pb-sm text-sm tracking-sm text-foreground">
                   This is the accordion content panel. It slides down when the trigger is clicked.
                 </div>
               )}
@@ -8917,14 +8917,15 @@ function AccordionDocs() {
 
       {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
-        ["State", "Default / Hover / Focus", "—", "CSS :hover (no change), :focus-visible → ring-focus"],
+        ["State", "Default / Hover / Focus", "—", "Hover: no visual change. Focus: ring-focus (3px --ring)"],
         ["Type", "Open / Closed", "data-state", "Chevron rotates 180° on open, content slides down"],
         ["End Item", "True / False", "—", "last:border-b-0 removes bottom border on last item"],
-        ["Container", "flex, gap-xs, py-md, rounded-lg", "AccordionTrigger", "Horizontal flex, 8px gap, 16px padding-y, 8px radius"],
+        ["Trigger", "flex, gap-xs, py-sm, rounded-lg", "AccordionTrigger", "Horizontal flex, 8px gap, 12px padding-y, 8px radius"],
         ["Label", "SemiBold 14/20, tracking-sm", "children", "font-semibold text-sm tracking-sm text-foreground"],
         ["Icon", "chevron-down 16×16", "ChevronDown", "size-md text-ghost-foreground, rotates 180° on open"],
-        ["Border", "1px border-border", "AccordionItem", "border-b border-border (hidden on last item)"],
-        ["Focus Ring", "0 0 0 3px var(--ring)", "—", "focus-visible:ring-focus outline-none rounded-lg"],
+        ["Content", "pb-sm, text-sm, tracking-sm", "AccordionContent", "12px padding-bottom, 14px/20px, text-foreground"],
+        ["Border", "1px --border", "AccordionItem", "border-b border-border (hidden on last item)"],
+        ["Focus Ring", "0 0 0 3px --ring", "—", "focus-visible:ring-focus outline-none rounded-lg"],
         ["Animation", "Open / Close", "—", "animate-accordion-down / animate-accordion-up"],
       ]} />
     </div>
