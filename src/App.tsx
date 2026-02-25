@@ -8847,12 +8847,14 @@ function AccordionDocs() {
           const isFocus = p.state === "focus"
           const isHover = p.state === "hover"
           return (
-            <div className="w-full max-w-md">
+            <div className={[
+              "w-full max-w-md font-body",
+              p.endItem ? "" : "border-b border-border",
+            ].join(" ")}>
               <div className={[
-                "relative flex items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground transition-all",
+                "flex flex-1 items-center justify-between gap-xs py-sm text-sm font-semibold tracking-sm text-foreground text-left transition-all",
                 isHover ? "underline" : "",
                 isFocus ? "rounded-lg ring-focus" : "",
-                p.endItem ? "" : "border-b border-border",
               ].join(" ")}>
                 <span className="flex-1 text-left">Accordion trigger label</span>
                 <ChevronDown aria-hidden="true" className={[
@@ -8861,7 +8863,7 @@ function AccordionDocs() {
                 ].join(" ")} />
               </div>
               {isOpen && (
-                <div className="pb-sm text-sm tracking-sm text-foreground">
+                <div className="pt-0 pb-sm text-sm tracking-sm text-foreground">
                   This is the accordion content panel. It slides down when the trigger is clicked.
                 </div>
               )}
