@@ -350,7 +350,7 @@ function FigmaMapping({
       <h2 className="font-heading font-semibold text-xl">
         Figma Component Mapping
       </h2>
-      <p className="text-paragraph-sm text-muted-foreground">
+      <p className="typo-paragraph-sm text-muted-foreground">
         Reference for mapping Figma component properties to code props, based
         on the{" "}
         <strong>[SprouX - DS] Foundation & Component</strong>
@@ -626,8 +626,8 @@ function ColorsDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Colors
         </p>
-        <h1 className="text-heading-2">Colors</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Colors</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           The SprouX color system provides 20 palettes with 11 shades each,
           plus semantic tokens for light and dark themes. Click any swatch to
           copy its hex value.
@@ -657,7 +657,7 @@ function ColorsDocs() {
       {/* Semantic Colors */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Semantic Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens adapt automatically between light and dark mode.
         </p>
         <div className="overflow-x-auto rounded-xl border border-border">
@@ -744,32 +744,32 @@ function ColorsDocs() {
 
 function TypographyDocs() {
   const headings = [
-    { class: "text-heading-1", label: "Heading 1", font: "Fraunces", weight: "600", size: "48px", lineHeight: "48px", letterSpacing: "-1.5px" },
-    { class: "text-heading-2", label: "Heading 2", font: "Fraunces", weight: "600", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
-    { class: "text-heading-3", label: "Heading 3", font: "Fraunces", weight: "600", size: "24px", lineHeight: "28.8px", letterSpacing: "-1px" },
-    { class: "text-heading-4", label: "Heading 4", font: "Geist", weight: "600", size: "20px", lineHeight: "24px", letterSpacing: "0" },
+    { class: "typo-heading-1", label: "Heading 1", font: "Fraunces", weight: "600", size: "48px", lineHeight: "48px", letterSpacing: "-1.5px" },
+    { class: "typo-heading-2", label: "Heading 2", font: "Fraunces", weight: "600", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
+    { class: "typo-heading-3", label: "Heading 3", font: "Fraunces", weight: "600", size: "24px", lineHeight: "28.8px", letterSpacing: "-1px" },
+    { class: "typo-heading-4", label: "Heading 4", font: "Geist", weight: "600", size: "20px", lineHeight: "24px", letterSpacing: "0" },
   ]
 
   const bodyStyles = [
-    { class: "text-paragraph-xl", label: "Extra Large", font: "Geist", weight: "400", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
-    { class: "text-paragraph-xl-medium", label: "Extra Large Medium", font: "Geist", weight: "500", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
-    { class: "text-paragraph-xl-bold", label: "Extra Large SemiBold", font: "Geist", weight: "600", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
-    { class: "text-paragraph-lg", label: "Large", font: "Geist", weight: "400", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
-    { class: "text-paragraph-lg-medium", label: "Large Medium", font: "Geist", weight: "500", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
-    { class: "text-paragraph-lg-bold", label: "Large SemiBold", font: "Geist", weight: "600", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
-    { class: "text-paragraph", label: "Regular", font: "Geist", weight: "400", size: "16px", lineHeight: "24px", letterSpacing: "0" },
-    { class: "text-paragraph-medium", label: "Regular Medium", font: "Geist", weight: "500", size: "16px", lineHeight: "24px", letterSpacing: "0" },
-    { class: "text-paragraph-bold", label: "Regular SemiBold", font: "Geist", weight: "600", size: "16px", lineHeight: "24px", letterSpacing: "0" },
-    { class: "text-paragraph-sm", label: "Small", font: "Geist", weight: "400", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
-    { class: "text-paragraph-sm-medium", label: "Small Medium", font: "Geist", weight: "500", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
-    { class: "text-paragraph-sm-bold", label: "Small SemiBold", font: "Geist", weight: "600", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
-    { class: "text-paragraph-mini", label: "Mini", font: "Geist", weight: "400", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
-    { class: "text-paragraph-mini-medium", label: "Mini Medium", font: "Geist", weight: "500", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
-    { class: "text-paragraph-mini-bold", label: "Mini SemiBold", font: "Geist", weight: "600", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
-    { class: "text-paragraph-tiny", label: "Tiny", font: "Geist", weight: "400", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
-    { class: "text-paragraph-tiny-medium", label: "Tiny Medium", font: "Geist", weight: "500", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
-    { class: "text-paragraph-tiny-bold", label: "Tiny SemiBold", font: "Geist", weight: "600", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
-    { class: "text-monospaced", label: "Monospaced", font: "Geist Mono", weight: "400", size: "16px", lineHeight: "24px", letterSpacing: "0" },
+    { class: "typo-paragraph-xl", label: "Extra Large", font: "Geist", weight: "400", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
+    { class: "typo-paragraph-xl-medium", label: "Extra Large Medium", font: "Geist", weight: "500", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
+    { class: "typo-paragraph-xl-bold", label: "Extra Large SemiBold", font: "Geist", weight: "600", size: "30px", lineHeight: "32px", letterSpacing: "-1px" },
+    { class: "typo-paragraph-lg", label: "Large", font: "Geist", weight: "400", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
+    { class: "typo-paragraph-lg-medium", label: "Large Medium", font: "Geist", weight: "500", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
+    { class: "typo-paragraph-lg-bold", label: "Large SemiBold", font: "Geist", weight: "600", size: "20px", lineHeight: "24px", letterSpacing: "-1px" },
+    { class: "typo-paragraph", label: "Regular", font: "Geist", weight: "400", size: "16px", lineHeight: "24px", letterSpacing: "0" },
+    { class: "typo-paragraph-medium", label: "Regular Medium", font: "Geist", weight: "500", size: "16px", lineHeight: "24px", letterSpacing: "0" },
+    { class: "typo-paragraph-bold", label: "Regular SemiBold", font: "Geist", weight: "600", size: "16px", lineHeight: "24px", letterSpacing: "0" },
+    { class: "typo-paragraph-sm", label: "Small", font: "Geist", weight: "400", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
+    { class: "typo-paragraph-sm-medium", label: "Small Medium", font: "Geist", weight: "500", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
+    { class: "typo-paragraph-sm-bold", label: "Small SemiBold", font: "Geist", weight: "600", size: "14px", lineHeight: "20px", letterSpacing: "0.07px" },
+    { class: "typo-paragraph-mini", label: "Mini", font: "Geist", weight: "400", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
+    { class: "typo-paragraph-mini-medium", label: "Mini Medium", font: "Geist", weight: "500", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
+    { class: "typo-paragraph-mini-bold", label: "Mini SemiBold", font: "Geist", weight: "600", size: "12px", lineHeight: "16px", letterSpacing: "0.18px" },
+    { class: "typo-paragraph-tiny", label: "Tiny", font: "Geist", weight: "400", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
+    { class: "typo-paragraph-tiny-medium", label: "Tiny Medium", font: "Geist", weight: "500", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
+    { class: "typo-paragraph-tiny-bold", label: "Tiny SemiBold", font: "Geist", weight: "600", size: "10px", lineHeight: "12px", letterSpacing: "0.15px" },
+    { class: "typo-monospaced", label: "Monospaced", font: "Geist Mono", weight: "400", size: "16px", lineHeight: "24px", letterSpacing: "0" },
   ]
 
   const allStyles = [...headings, ...bodyStyles]
@@ -780,8 +780,8 @@ function TypographyDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Typography
         </p>
-        <h1 className="text-heading-2">Typography</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Typography</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           SprouX uses two typefaces: <strong>Fraunces</strong> for headings and
           display text, and <strong>Geist</strong> for body copy and UI elements.
           The type scale is designed for clarity and hierarchy.
@@ -896,38 +896,38 @@ function TypographyDocs() {
           <Example
             title="Page title"
             description="Use Heading 1 or 2 for page-level titles."
-            code={`<h1 className="text-heading-2">Dashboard</h1>
-<p className="text-paragraph-sm text-muted-foreground">
+            code={`<h1 className="typo-heading-2">Dashboard</h1>
+<p className="typo-paragraph-sm text-muted-foreground">
   Welcome back, here's your overview.
 </p>`}
           >
             <div>
-              <h3 className="text-heading-2">Dashboard</h3>
-              <p className="text-paragraph-sm text-muted-foreground">Welcome back, here's your overview.</p>
+              <h3 className="typo-heading-2">Dashboard</h3>
+              <p className="typo-paragraph-sm text-muted-foreground">Welcome back, here's your overview.</p>
             </div>
           </Example>
           <Example
             title="Section header"
             description="Use Heading 4 or 5 for section titles within a page."
-            code={`<h2 className="text-heading-4">Recent Activity</h2>`}
+            code={`<h2 className="typo-heading-4">Recent Activity</h2>`}
           >
-            <h3 className="text-heading-4">Recent Activity</h3>
+            <h3 className="typo-heading-4">Recent Activity</h3>
           </Example>
           <Example
             title="Card content"
             description="Combine paragraph sizes for content hierarchy."
-            code={`<p className="text-paragraph-sm-bold">Order #12345</p>
-<p className="text-paragraph-sm text-muted-foreground">
+            code={`<p className="typo-paragraph-sm-bold">Order #12345</p>
+<p className="typo-paragraph-sm text-muted-foreground">
   Shipped on Feb 10, 2026
 </p>
-<p className="text-paragraph-mini text-muted-foreground">
+<p className="typo-paragraph-mini text-muted-foreground">
   Tracking: 1Z999AA10123456784
 </p>`}
           >
             <div className="space-y-0.5">
-              <p className="text-paragraph-sm-bold">Order #12345</p>
-              <p className="text-paragraph-sm text-muted-foreground">Shipped on Feb 10, 2026</p>
-              <p className="text-paragraph-mini text-muted-foreground">Tracking: 1Z999AA10123456784</p>
+              <p className="typo-paragraph-sm-bold">Order #12345</p>
+              <p className="typo-paragraph-sm text-muted-foreground">Shipped on Feb 10, 2026</p>
+              <p className="typo-paragraph-mini text-muted-foreground">Tracking: 1Z999AA10123456784</p>
             </div>
           </Example>
         </div>
@@ -945,7 +945,7 @@ function TypographyDocs() {
           <DontItem>
             <p>Don't use Fraunces for body text or UI elements — it's designed for display sizes.</p>
             <p>Don't mix font weights arbitrarily — stick to the defined scale.</p>
-            <p>Don't use raw pixel sizes — always use the utility classes (.text-heading-*, .text-paragraph-*).</p>
+            <p>Don't use raw pixel sizes — always use the utility classes (.typo-heading-*, .typo-paragraph-*).</p>
           </DontItem>
         </div>
       </section>
@@ -977,8 +977,8 @@ function SpacingDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Spacing
         </p>
-        <h1 className="text-heading-2">Spacing</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Spacing</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A consistent spacing scale based on a 4px grid, ranging from 2px to
           48px. Used for padding, margins, gaps, and layout composition.
         </p>
@@ -1137,8 +1137,8 @@ function BorderRadiusDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Border Radius
         </p>
-        <h1 className="text-heading-2">Border Radius</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Border Radius</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A 4-step radius scale based on a base value of 8px (--radius). All
           values are derived from this base to maintain visual consistency.
         </p>
@@ -1516,15 +1516,15 @@ function IconsDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Icons
         </p>
-        <h1 className="text-heading-2">Icons</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Icons</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           SprouX uses <strong>Lucide React</strong> as the primary icon library ({allLucideIcons.length} icons),
           plus a set of custom social/brand icons exported from Figma.
         </p>
       </header>
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`// Lucide icons (primary library)\nimport { Home, Search, Plus, Check } from "lucide-react"\n\n// Custom social icons (SVG imports)\nimport tiktokIcon from "@/assets/icons/tiktok.svg"\nimport instagramIcon from "@/assets/icons/instagram.svg"`} />
       </section>
 
@@ -1680,8 +1680,8 @@ function IllustrationsDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Foundation / Illustrations
         </p>
-        <h1 className="text-heading-2">Illustrations</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Illustrations</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           {illustrations.length} illustration assets from the SprouX Figma design system.
           Used for empty states, success/error screens, onboarding, and feature highlights.
           Each illustration follows a circular safezone rule for consistent visual alignment.
@@ -1689,7 +1689,7 @@ function IllustrationsDocs() {
       </header>
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import illustSuccess from "@/assets/illustrations/success.svg"\nimport illustError from "@/assets/illustrations/error.svg"\nimport illustEmpty from "@/assets/illustrations/empty.svg"\n\n// Usage\n<img src={illustSuccess} alt="Success" className="w-48" />`} />
       </section>
 
@@ -1774,8 +1774,8 @@ function ButtonDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Actions
         </p>
-        <h1 className="text-heading-2">Button</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Button</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Buttons are used primarily for actions, such as "Add", "Close",
           "Cancel", or "Save". Plain buttons, which look similar to links, are
           used for less prominent actions or navigation.
@@ -2169,7 +2169,7 @@ const handleAsyncSave = async () => {
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Button extends all native{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             {"<button>"}
@@ -2182,7 +2182,7 @@ const handleAsyncSave = async () => {
       {/* ---- Design Tokens ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
@@ -2314,7 +2314,7 @@ const handleAsyncSave = async () => {
       {/* ---- Accessibility ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">
               Keyboard support
@@ -2702,8 +2702,8 @@ function InputDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Input</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Input</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A text input field that allows users to enter and edit a single line
           of text. Supports multiple sizes and states including focus, error,
           and disabled.
@@ -3147,7 +3147,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Input extends all native{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             {"<input>"}
@@ -3160,7 +3160,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
       {/* ---- Design Tokens ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
@@ -3285,7 +3285,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
       {/* ---- Accessibility ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">
               Keyboard support
@@ -3651,8 +3651,8 @@ function TextareaDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Textarea</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Textarea</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A multi-line text input for longer content like descriptions,
           messages, or comments. Supports the same states as Input: focus,
           error, and disabled.
@@ -3964,7 +3964,7 @@ const handleSubmit = (e: React.FormEvent) => {
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Textarea extends all native{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             {"<textarea>"}
@@ -3977,7 +3977,7 @@ const handleSubmit = (e: React.FormEvent) => {
       {/* ---- Design Tokens ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
@@ -4084,7 +4084,7 @@ const handleSubmit = (e: React.FormEvent) => {
       {/* ---- Accessibility ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">
               Keyboard support
@@ -4501,8 +4501,8 @@ function SelectDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Select</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Select</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A dropdown control for selecting a single option from a list. Built on
           Radix UI Select for full keyboard navigation, accessibility, and
           portal-based positioning.
@@ -4999,7 +4999,7 @@ const handleSubmit = (e) => {
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Select is a compound component built on{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             @radix-ui/react-select
@@ -5012,7 +5012,7 @@ const handleSubmit = (e) => {
       {/* ---- Design Tokens ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
             src/index.css
@@ -5126,7 +5126,7 @@ const handleSubmit = (e) => {
       {/* ---- Accessibility ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">
               Keyboard support
@@ -5331,8 +5331,8 @@ function CheckboxDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Checkbox</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Checkbox</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A 16×16 toggle for boolean or tri-state values. Supports checked,
           unchecked, and indeterminate states with full keyboard navigation.
         </p>
@@ -5701,7 +5701,7 @@ const someChecked = items.some(i => i.checked) && !allChecked
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Extends <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
           Radix CheckboxPrimitive.Root</code> — all native props forwarded.
         </p>
@@ -5936,8 +5936,8 @@ function SwitchDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Switch</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Switch</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A toggle control for binary on/off settings. Unlike Checkbox, the
           switch implies an immediate effect — the setting takes effect as soon
           as it is toggled.
@@ -6294,7 +6294,7 @@ pnpm add @radix-ui/react-switch
       {/* ---- Props ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Extends <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
           Radix SwitchPrimitive.Root</code> — all native props forwarded.
         </p>
@@ -6495,8 +6495,8 @@ function LabelDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Label</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Label</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Renders an accessible label associated with form controls. Supports required indicator and disabled state via peer utilities.
         </p>
       </header>
@@ -6660,8 +6660,8 @@ function SliderDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Slider</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Slider</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A range input that allows users to select a value or range by dragging a thumb along a track. Supports single and dual thumb.
         </p>
       </header>
@@ -6814,8 +6814,8 @@ function ToggleDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Toggle</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Toggle</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A two-state button that can be toggled on or off. Commonly used for formatting options like bold, italic, underline.
         </p>
       </header>
@@ -6959,8 +6959,8 @@ function ToggleGroupDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Toggle Group</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Toggle Group</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A group of toggle buttons supporting single or multiple selection. Ideal for toolbar actions, text formatting, view modes.
         </p>
       </header>
@@ -7114,8 +7114,8 @@ function CardDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Card</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Content container with composable sub-components: Header, Title, Description, Content, Footer.</p>
+        <h1 className="typo-heading-2">Card</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Content container with composable sub-components: Header, Title, Description, Content, Footer.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7205,8 +7205,8 @@ function AvatarDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Avatar</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">User avatar with image and fallback support (initials or icon).</p>
+        <h1 className="typo-heading-2">Avatar</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">User avatar with image and fallback support (initials or icon).</p>
       </header>
 
       {/* Interactive playground */}
@@ -7281,8 +7281,8 @@ function ProgressDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Progress</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Progress bar indicating completion status. Supports determinate values (0-100).</p>
+        <h1 className="typo-heading-2">Progress</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Progress bar indicating completion status. Supports determinate values (0-100).</p>
       </header>
 
       {/* Interactive playground */}
@@ -7347,8 +7347,8 @@ function AlertDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Alert</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Inline alert messages for info, warning, error, and success feedback.</p>
+        <h1 className="typo-heading-2">Alert</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Inline alert messages for info, warning, error, and success feedback.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7438,8 +7438,8 @@ function BadgeDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Badge</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Status tags, labels, and notification counts.</p>
+        <h1 className="typo-heading-2">Badge</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Status tags, labels, and notification counts.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7510,8 +7510,8 @@ function SeparatorDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Separator</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Visually separates content with a horizontal or vertical line.</p>
+        <h1 className="typo-heading-2">Separator</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Visually separates content with a horizontal or vertical line.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7590,8 +7590,8 @@ function SkeletonDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Skeleton</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Loading placeholder with a pulse animation. Use to indicate content is being loaded.</p>
+        <h1 className="typo-heading-2">Skeleton</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Loading placeholder with a pulse animation. Use to indicate content is being loaded.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7672,8 +7672,8 @@ function TableDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Table</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Data table with composable sub-components for header, body, footer, rows, and cells.</p>
+        <h1 className="typo-heading-2">Table</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Data table with composable sub-components for header, body, footer, rows, and cells.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7781,8 +7781,8 @@ function DialogDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Dialog</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Modal dialog with overlay. Interrupts the user with important content and expects a response.</p>
+        <h1 className="typo-heading-2">Dialog</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Modal dialog with overlay. Interrupts the user with important content and expects a response.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7887,8 +7887,8 @@ function AlertDialogDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Alert Dialog</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Modal for confirmations and destructive actions. Cannot be dismissed by clicking outside.</p>
+        <h1 className="typo-heading-2">Alert Dialog</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Modal for confirmations and destructive actions. Cannot be dismissed by clicking outside.</p>
       </header>
 
       {/* Interactive playground */}
@@ -7909,7 +7909,7 @@ function AlertDialogDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogFooter,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from "@/components/ui/alert-dialog"`} />
       </section>
 
@@ -7967,8 +7967,8 @@ function SheetDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Sheet</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Slide-out panel from any edge of the screen. Great for navigation, filters, or detail views.</p>
+        <h1 className="typo-heading-2">Sheet</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Slide-out panel from any edge of the screen. Great for navigation, filters, or detail views.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8087,8 +8087,8 @@ function DrawerDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Drawer</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Mobile-first bottom drawer with swipe-to-close. Built on vaul.</p>
+        <h1 className="typo-heading-2">Drawer</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Mobile-first bottom drawer with swipe-to-close. Built on vaul.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8171,8 +8171,8 @@ function PopoverDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Popover</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Floating content panel anchored to a trigger. For rich interactive content.</p>
+        <h1 className="typo-heading-2">Popover</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Floating content panel anchored to a trigger. For rich interactive content.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8184,7 +8184,7 @@ function PopoverDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n} from "@/components/ui/popover"`} />
       </section>
 
@@ -8249,8 +8249,8 @@ function TooltipDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Tooltip</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Informational popup shown on hover or focus. For brief, non-interactive hints.</p>
+        <h1 className="typo-heading-2">Tooltip</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Informational popup shown on hover or focus. For brief, non-interactive hints.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8264,7 +8264,7 @@ function TooltipDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Tooltip,\n  TooltipTrigger,\n  TooltipContent,\n  TooltipProvider,\n} from "@/components/ui/tooltip"`} />
       </section>
 
@@ -8333,8 +8333,8 @@ function ToastDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Toast (Sonner)</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Non-intrusive notification toasts. Uses the sonner library.</p>
+        <h1 className="typo-heading-2">Toast (Sonner)</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Non-intrusive notification toasts. Uses the sonner library.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8410,8 +8410,8 @@ function TabsDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Tabs</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Tabbed interface for switching between different views or content panels.</p>
+        <h1 className="typo-heading-2">Tabs</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Tabbed interface for switching between different views or content panels.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8442,7 +8442,7 @@ function TabsDocs() {
       </div>
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
       </section>
 
@@ -8526,8 +8526,8 @@ function BreadcrumbDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Breadcrumb</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Breadcrumb navigation trail showing the user's location in a hierarchy.</p>
+        <h1 className="typo-heading-2">Breadcrumb</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Breadcrumb navigation trail showing the user's location in a hierarchy.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8544,7 +8544,7 @@ function BreadcrumbDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from "@/components/ui/breadcrumb"`} />
       </section>
 
@@ -8600,8 +8600,8 @@ function PaginationDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Pagination</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Page navigation with previous/next and numbered links.</p>
+        <h1 className="typo-heading-2">Pagination</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Page navigation with previous/next and numbered links.</p>
       </header>
 
       {/* Interactive playground */}
@@ -8618,7 +8618,7 @@ function PaginationDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationPrevious,\n  PaginationNext,\n  PaginationEllipsis,\n} from "@/components/ui/pagination"`} />
       </section>
 
@@ -8680,8 +8680,8 @@ function DropdownMenuDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Dropdown Menu</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Contextual menu triggered by a button. Supports labels, separators, checkbox items, sub-menus, and keyboard shortcuts.</p>
+        <h1 className="typo-heading-2">Dropdown Menu</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Contextual menu triggered by a button. Supports labels, separators, checkbox items, sub-menus, and keyboard shortcuts.</p>
       </header>
 
       <Playground controls={[]} render={() => (
@@ -8699,7 +8699,7 @@ function DropdownMenuDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuShortcut,\n  DropdownMenuGroup,\n  DropdownMenuSub,\n  DropdownMenuSubTrigger,\n  DropdownMenuSubContent,\n} from "@/components/ui/dropdown-menu"`} />
       </section>
 
@@ -8800,8 +8800,8 @@ function CommandDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Command</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Command palette with search. Built on cmdk. Use as inline menu or as a dialog.</p>
+        <h1 className="typo-heading-2">Command</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Command palette with search. Built on cmdk. Use as inline menu or as a dialog.</p>
       </header>
 
       <Playground controls={[]} render={() => (
@@ -8819,7 +8819,7 @@ function CommandDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Command,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  CommandSeparator,\n  CommandDialog,\n} from "@/components/ui/command"`} />
       </section>
 
@@ -9107,8 +9107,8 @@ function AccordionDocs() {
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
-        <h1 className="text-heading-2">Accordion</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Vertically collapsible content sections. Single or multiple items can be open.</p>
+        <h1 className="typo-heading-2">Accordion</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Vertically collapsible content sections. Single or multiple items can be open.</p>
       </header>
 
       {/* ---- Explore Behavior ---- */}
@@ -9188,7 +9188,7 @@ pnpm add @radix-ui/react-accordion lucide-react clsx tailwind-merge
       {/* ---- Props ---- */}
       <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           Built on{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-accordion</code>.
           Supports all Radix Accordion props in addition to the following:
@@ -9199,7 +9199,7 @@ pnpm add @radix-ui/react-accordion lucide-react clsx tailwind-merge
       {/* ---- Design Tokens ---- */}
       <section id="design-tokens" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
-        <p className="text-paragraph-sm text-muted-foreground">
+        <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code>{" "}
           and sourced from the Figma file{" "}
@@ -9247,9 +9247,9 @@ pnpm add @radix-ui/react-accordion lucide-react clsx tailwind-merge
         ["Type", "Open / Closed", "data-state", "Chevron rotates 180° on open, content slides down"],
         ["End Item", "True / False", "—", "last:border-b-0 removes bottom border on last item"],
         ["Trigger", "flex, gap-xs, py-sm", "AccordionTrigger", "Horizontal flex, 8px gap, 12px py, no radius (0 default)"],
-        ["Label", "Paragraph Small SemiBold (14/20 ls:0.07)", "children", "text-paragraph-sm-bold text-foreground"],
+        ["Label", "Paragraph Small SemiBold (14/20 ls:0.07)", "children", "typo-paragraph-sm-bold text-foreground"],
         ["Icon", "chevron-down 16×16", "ChevronDown", "size-md text-ghost-foreground, rotates 180° on open"],
-        ["Content", "Paragraph Small (14/20 ls:0.07), pb-sm", "AccordionContent", "text-paragraph-sm text-foreground, pb-sm"],
+        ["Content", "Paragraph Small (14/20 ls:0.07), pb-sm", "AccordionContent", "typo-paragraph-sm text-foreground, pb-sm"],
         ["Border", "1px --border", "AccordionItem", "border-b border-border (hidden on last item)"],
         ["Focus Ring", "0 0 0 3px --ring", "—", "focus-visible:rounded-lg focus-visible:ring-focus outline-none"],
         ["Disabled", "opacity-50", "disabled", "disabled:pointer-events-none disabled:opacity-50 (Shadcn)"],
@@ -9259,7 +9259,7 @@ pnpm add @radix-ui/react-accordion lucide-react clsx tailwind-merge
       {/* ---- Accessibility ---- */}
       <section id="accessibility" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <div className="space-y-3 text-paragraph-sm text-muted-foreground">
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">Keyboard support</h3>
             <div className="overflow-x-auto">
@@ -9396,8 +9396,8 @@ function CollapsibleDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
-        <h1 className="text-heading-2">Collapsible</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Toggle visibility of a content section. Simpler than Accordion for single-item toggling.</p>
+        <h1 className="typo-heading-2">Collapsible</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Toggle visibility of a content section. Simpler than Accordion for single-item toggling.</p>
       </header>
 
       <Playground controls={[]} render={() => (
@@ -9413,7 +9413,7 @@ function CollapsibleDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  Collapsible,\n  CollapsibleTrigger,\n  CollapsibleContent,\n} from "@/components/ui/collapsible"`} />
       </section>
 
@@ -9472,8 +9472,8 @@ function ScrollAreaDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
-        <h1 className="text-heading-2">Scroll Area</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Custom scrollbar overlay for constrained regions. Cross-browser consistent.</p>
+        <h1 className="typo-heading-2">Scroll Area</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Custom scrollbar overlay for constrained regions. Cross-browser consistent.</p>
       </header>
 
       <Playground controls={[]} render={() => (
@@ -9487,7 +9487,7 @@ function ScrollAreaDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"`} />
       </section>
 
@@ -9539,14 +9539,14 @@ function CalendarDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Calendar</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Date picker calendar component built on react-day-picker v9.</p>
+        <h1 className="typo-heading-2">Calendar</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Date picker calendar component built on react-day-picker v9.</p>
       </header>
 
       <Playground controls={[]} render={() => <Calendar className="rounded-md border" />} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import { Calendar } from "@/components/ui/calendar"`} />
       </section>
 
@@ -9596,8 +9596,8 @@ function DatePickerDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Date Picker</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Date selection using a Calendar in a Popover. Compact input pattern.</p>
+        <h1 className="typo-heading-2">Date Picker</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Date selection using a Calendar in a Popover. Compact input pattern.</p>
       </header>
 
       <Playground controls={[]} render={() => <DatePicker />} />
@@ -9653,8 +9653,8 @@ function ComboboxDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Combobox</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">Searchable select dropdown. Composition of Command + Popover.</p>
+        <h1 className="typo-heading-2">Combobox</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Searchable select dropdown. Composition of Command + Popover.</p>
       </header>
 
       <Playground controls={[]} render={() => (
@@ -9748,8 +9748,8 @@ function RadioGroupDocs() {
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
           Components / Forms
         </p>
-        <h1 className="text-heading-2">Radio Group</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Radio Group</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A set of checkable buttons — known as radio buttons — where only one can be checked at a time.
         </p>
       </header>
@@ -9992,8 +9992,8 @@ function InputOTPDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
-        <h1 className="text-heading-2">Input OTP</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Input OTP</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Multi-cell one-time-password input. Built on <code className="text-xs bg-muted px-1 py-0.5 rounded">input-otp</code>.
         </p>
       </header>
@@ -10015,12 +10015,12 @@ function InputOTPDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSlot,\n  InputOTPSeparator,\n} from "@/components/ui/input-otp"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="Basic 6-digit OTP"
@@ -10081,8 +10081,8 @@ function SpinnerDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
-        <h1 className="text-heading-2">Spinner</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Spinner</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Animated loading indicator. Three sizes: sm (16px), default (24px), lg (32px).
         </p>
       </header>
@@ -10105,12 +10105,12 @@ function SpinnerDocs() {
       />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import { Spinner } from "@/components/ui/spinner"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="Sizes"
@@ -10164,8 +10164,8 @@ function HoverCardDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
-        <h1 className="text-heading-2">Hover Card</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Hover Card</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Rich preview card that appears on hover. Built on Radix HoverCard.
         </p>
       </header>
@@ -10180,12 +10180,12 @@ function HoverCardDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  HoverCard,\n  HoverCardTrigger,\n  HoverCardContent,\n} from "@/components/ui/hover-card"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="Basic hover card"
@@ -10231,8 +10231,8 @@ function AspectRatioDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
-        <h1 className="text-heading-2">Aspect Ratio</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Aspect Ratio</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Constrains child content to a specified aspect ratio. Built on Radix Aspect Ratio.
         </p>
       </header>
@@ -10246,12 +10246,12 @@ function AspectRatioDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import { AspectRatio } from "@/components/ui/aspect-ratio"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="16:9 ratio"
@@ -10316,8 +10316,8 @@ function ContextMenuDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
-        <h1 className="text-heading-2">Context Menu</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Context Menu</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Right-click context menu. Built on Radix Context Menu.
         </p>
       </header>
@@ -10337,12 +10337,12 @@ function ContextMenuDocs() {
       )} />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  ContextMenu,\n  ContextMenuTrigger,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuSub,\n  ContextMenuSubTrigger,\n  ContextMenuSubContent,\n} from "@/components/ui/context-menu"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="Basic context menu"
@@ -10399,8 +10399,8 @@ function SidebarDocs() {
     <div className="space-y-12">
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
-        <h1 className="text-heading-2">Sidebar</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">Sidebar</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Application sidebar navigation. Supports collapsible, icon-only, and mobile-responsive modes.
           The most complex layout component in the design system.
         </p>
@@ -10427,12 +10427,12 @@ function SidebarDocs() {
       />
 
       <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="text-paragraph-bold">Import</h2>
+        <h2 className="typo-paragraph-bold">Import</h2>
         <CodeBlock code={`import {\n  SidebarProvider,\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarGroupContent,\n  SidebarMenu,\n  SidebarMenuItem,\n  SidebarMenuButton,\n  SidebarHeader,\n  SidebarFooter,\n  SidebarTrigger,\n  SidebarInset,\n} from "@/components/ui/sidebar"`} />
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Examples</h2>
+        <h2 className="typo-paragraph-bold">Examples</h2>
 
         <Example
           title="Basic sidebar"
@@ -10482,7 +10482,7 @@ function SidebarDocs() {
       </section>
 
       <section className="space-y-4 pt-3xl">
-        <h2 className="text-paragraph-bold">Features</h2>
+        <h2 className="typo-paragraph-bold">Features</h2>
         <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
           <li>Collapsible modes: offcanvas, icon-only, none</li>
           <li>Variants: sidebar, floating, inset</li>
@@ -10604,20 +10604,20 @@ function ComponentsGrid({ onNavigate }: { onNavigate: (id: ComponentId) => void 
   return (
     <div className="space-y-3xl">
       <div className="space-y-sm">
-        <h1 className="text-heading-2">SprouX Design System</h1>
-        <p className="text-paragraph text-muted-foreground max-w-3xl">
+        <h1 className="typo-heading-2">SprouX Design System</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A comprehensive design system with foundations and 43 components built with
           React 19, Tailwind CSS v4, and Radix UI primitives.
         </p>
       </div>
 
       <div className="space-y-lg">
-        <h2 className="text-heading-4">Foundations</h2>
+        <h2 className="typo-heading-4">Foundations</h2>
         {renderGrid(foundations)}
       </div>
 
       <div className="space-y-lg">
-        <h2 className="text-heading-4">Components</h2>
+        <h2 className="typo-heading-4">Components</h2>
         {renderGrid(components)}
       </div>
     </div>
