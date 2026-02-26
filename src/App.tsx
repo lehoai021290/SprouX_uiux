@@ -279,13 +279,13 @@ function InstallationSection({ deps, importCode }: { deps: string; importCode: s
     <section id="installation" className="space-y-md pt-3xl">
       <h2 className="font-heading font-semibold text-xl">Installation</h2>
       <div className="rounded-xl border border-border overflow-hidden">
-        <div className="px-md py-xs border-b border-border bg-muted/40">
+        <div className="px-md py-xs border-b border-border bg-muted/50">
           <span className="text-xs font-medium text-muted-foreground">Dependencies</span>
         </div>
         <pre className="bg-slate-950 text-slate-100 p-md text-xs leading-relaxed overflow-x-auto font-mono">
           <code>{deps}</code>
         </pre>
-        <div className="px-md py-xs border-t border-border bg-muted/40">
+        <div className="px-md py-xs border-t border-border bg-muted/50">
           <span className="text-xs font-medium text-muted-foreground">Import</span>
         </div>
         <pre className="bg-slate-950 text-slate-100 p-md text-xs leading-relaxed overflow-x-auto font-mono">
@@ -310,7 +310,7 @@ function Example({
   const [showCode, setShowCode] = useState(false)
   return (
     <div className="rounded-xl border border-border overflow-hidden bg-background flex flex-col">
-      <div className="px-xl pt-md pb-2xs border-b border-border bg-muted/40 space-y-2xs">
+      <div className="px-xl pt-md pb-2xs border-b border-border bg-muted/50 space-y-2xs">
         <h3 className="font-body font-semibold text-sm">{title}</h3>
         {description && (
           <p className="text-muted-foreground text-xs leading-relaxed">
@@ -441,7 +441,7 @@ function Playground({
         {render(values)}
       </div>
       {controls.length > 0 && (
-        <div className="border-t border-border bg-muted/30 p-lg">
+        <div className="border-t border-border bg-muted/50 p-lg">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
             {controls.map((control) => (
               <div key={control.prop} className="space-y-xs">
@@ -1765,7 +1765,7 @@ function IllustrationsDocs() {
 
       <section className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Safezone Rule</h2>
-        <div className="rounded-xl border border-border p-6 bg-muted/30 max-w-lg">
+        <div className="rounded-xl border border-border p-6 bg-muted/50 max-w-lg">
           <div className="flex items-center gap-4">
             <div className="size-24 rounded-full border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
               <span className="text-[10px] text-muted-foreground text-center leading-tight">
@@ -1867,7 +1867,7 @@ function ButtonExploreBehavior() {
           </Button>
         </div>
       </div>
-      <div className="border-t border-border bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/50 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Variant</Label>
@@ -7628,7 +7628,7 @@ function AlertExploreBehavior() {
           </div>
         )}
       </div>
-      <div className="border-t border-border bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/50 p-lg">
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Type</Label>
@@ -9695,7 +9695,7 @@ function AccordionExploreBehavior() {
           </Accordion>
         </div>
       </div>
-      <div className="border-t border-border bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/50 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">State</Label>
