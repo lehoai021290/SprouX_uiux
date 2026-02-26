@@ -11489,36 +11489,124 @@ function HoverCardDocs() {
    Aspect Ratio
    ================================================================ */
 
+function AspectRatioPropsTable() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">AspectRatio</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">ratio</td><td className="px-4 py-3 font-mono text-muted-foreground">number</td><td className="px-4 py-3 font-mono text-muted-foreground">1</td><td className="px-4 py-3 text-muted-foreground">The desired width-to-height ratio (e.g., 16/9, 4/3, 1).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Content to render inside the aspect ratio container.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes applied to the container.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">asChild</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Merge props onto the child element instead of rendering a wrapper div.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AspectRatioExploreBehavior() {
+  const [ratio, setRatio] = useState("16 / 9")
+
+  const ratioMap: Record<string, number> = {
+    "16 / 9": 16 / 9,
+    "4 / 3": 4 / 3,
+    "1 / 1": 1,
+    "21 / 9": 21 / 9,
+    "3 / 4": 3 / 4,
+    "9 / 16": 9 / 16,
+  }
+
+  const ratioLabel: Record<string, string> = {
+    "16 / 9": "16:9",
+    "4 / 3": "4:3",
+    "1 / 1": "1:1",
+    "21 / 9": "21:9",
+    "3 / 4": "3:4",
+    "9 / 16": "9:16",
+  }
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden bg-background">
+      <div className="p-xl flex items-center justify-center min-h-[300px] bg-background">
+        <div className="w-[320px]">
+          <AspectRatio ratio={ratioMap[ratio]} className="bg-muted rounded-lg flex items-center justify-center border border-border">
+            <div className="text-center">
+              <p className="typo-paragraph-bold text-foreground">{ratioLabel[ratio]}</p>
+              <p className="typo-paragraph-sm text-muted-foreground">
+                {Math.round(320)}×{Math.round(320 / ratioMap[ratio])}px
+              </p>
+            </div>
+          </AspectRatio>
+        </div>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-md flex flex-wrap items-center gap-md">
+        <div className="flex items-center gap-xs">
+          <label className="text-xs font-medium text-muted-foreground whitespace-nowrap">Ratio</label>
+          <Select value={ratio} onValueChange={setRatio}>
+            <SelectTrigger className="w-[140px] h-8 text-xs"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              {Object.keys(ratioMap).map((r) => (
+                <SelectItem key={r} value={r} className="text-xs">{ratioLabel[r]} ({r})</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const aspectRatioSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function AspectRatioDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={aspectRatioSections} />
+
+      {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="typo-heading-2">Aspect Ratio</h1>
         <p className="typo-paragraph text-muted-foreground max-w-3xl">
-          Constrains child content to a specified aspect ratio. Built on Radix Aspect Ratio.
+          Constrains child content to a specified width-to-height ratio. Built on Radix Aspect Ratio primitive.
         </p>
       </header>
 
-      <Playground controls={[]} render={() => (
-        <div className="w-[300px]">
-          <AspectRatio ratio={16 / 9} className="bg-muted rounded-md flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">16:9</p>
-          </AspectRatio>
-        </div>
-      )} />
-
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import { AspectRatio } from "@/components/ui/aspect-ratio"`} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <AspectRatioExploreBehavior />
       </section>
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="typo-paragraph-bold">Examples</h2>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-aspect-ratio`}
+        importCode={`import { AspectRatio } from "@/components/ui/aspect-ratio"`}
+      />
 
+      {/* ---- Examples ---- */}
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Example
-          title="16:9 ratio"
-          description="Standard widescreen aspect ratio."
+          title="16:9 Widescreen"
+          description="Standard widescreen ratio for videos and hero images."
           code={`<div className="w-[300px]">\n  <AspectRatio ratio={16 / 9}>\n    <div className="flex size-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">\n      16:9\n    </div>\n  </AspectRatio>\n</div>`}
         >
           <div className="w-[300px]">
@@ -11531,8 +11619,8 @@ function AspectRatioDocs() {
         </Example>
 
         <Example
-          title="1:1 square"
-          description="Perfect square ratio for avatars or icons."
+          title="1:1 Square"
+          description="Perfect square for avatars, thumbnails, or profile images."
           code={`<div className="w-[150px]">\n  <AspectRatio ratio={1}>\n    <div className="flex size-full items-center justify-center rounded-md bg-primary text-primary-foreground text-sm">\n      1:1\n    </div>\n  </AspectRatio>\n</div>`}
         >
           <div className="w-[150px]">
@@ -11545,8 +11633,8 @@ function AspectRatioDocs() {
         </Example>
 
         <Example
-          title="4:3 ratio"
-          description="Classic photo/video ratio."
+          title="4:3 Classic"
+          description="Classic photo and older video format ratio."
           code={`<div className="w-[250px]">\n  <AspectRatio ratio={4 / 3}>\n    <div className="flex size-full items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">\n      4:3\n    </div>\n  </AspectRatio>\n</div>`}
         >
           <div className="w-[250px]">
@@ -11557,15 +11645,146 @@ function AspectRatioDocs() {
             </AspectRatio>
           </div>
         </Example>
+
+        <Example
+          title="With Image"
+          description="Image fills the aspect ratio container using object-cover."
+          code={`<div className="w-[300px]">\n  <AspectRatio ratio={16 / 9}>\n    <img\n      src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"\n      alt="Photo by Drew Beamer"\n      className="size-full rounded-md object-cover"\n    />\n  </AspectRatio>\n</div>`}
+        >
+          <div className="w-[300px]">
+            <AspectRatio ratio={16 / 9}>
+              <img
+                src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                alt="Photo by Drew Beamer"
+                className="size-full rounded-md object-cover"
+              />
+            </AspectRatio>
+          </div>
+        </Example>
+        </div>
+      </section>
+
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Built on{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-aspect-ratio</code>.
+          Supports all Radix AspectRatio props.
+        </p>
+        <AspectRatioPropsTable />
+      </section>
+
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Content</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use for consistent image proportions across cards, galleries, and media grids.</p>
+              <p>Use for video containers (16:9), thumbnails (1:1), and photo galleries (4:3).</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't use for fixed-dimension content where width and height are already known.</p>
+              <p>Don't use for text-only content — Aspect Ratio is designed for media.</p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Structure</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use <strong>object-cover</strong> on images inside AspectRatio to fill the container without distortion.</p>
+              <p>Set container width — AspectRatio calculates height from width and ratio.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't choose the wrong ratio for your media type (e.g., 1:1 for widescreen video).</p>
+              <p>Don't forget to set a width on the parent — without it, content may collapse to zero.</p>
+            </DontItem>
+          </div>
+        </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping rows={[
-        ["Ratio", "16:9", "ratio", "{16 / 9}"],
+      <FigmaMapping id="figma-mapping" nodeId="842:52053" rows={[
+        ["Ratio", "16:9 (Widescreen)", "ratio", "{16 / 9}"],
+        ["Ratio", "4:3 (Classic)", "ratio", "{4 / 3}"],
         ["Ratio", "1:1 (Square)", "ratio", "{1}"],
-        ["Ratio", "4:3", "ratio", "{4 / 3}"],
-        ["Container", "Radix primitive", "AspectRatio", "Constrains child to ratio"],
+        ["Ratio", "21:9 (Ultrawide)", "ratio", "{21 / 9}"],
+        ["Container", "Radix primitive", "AspectRatio", "Constrains child to width/height ratio"],
+        ["Child Content", "Image / Video / Placeholder", "children", "size-full object-cover for images"],
       ]} />
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">ARIA attributes</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                AspectRatio is a layout utility — it does not add ARIA roles or attributes.
+              </li>
+              <li>
+                Ensure images inside include descriptive{" "}
+                <code className="bg-muted px-1 rounded font-mono">alt</code>{" "}
+                text for screen readers.
+              </li>
+              <li>
+                For decorative images, use{" "}
+                <code className="bg-muted px-1 rounded font-mono">alt=""</code>{" "}
+                with{" "}
+                <code className="bg-muted px-1 rounded font-mono">aria-hidden="true"</code>.
+              </li>
+              <li>
+                Video content should include captions and a text alternative.
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Responsive behavior</h3>
+            <p className="text-muted-foreground">
+              AspectRatio maintains the specified ratio at any container width. Content scales
+              proportionally as the viewport changes, preventing layout shift and content distortion.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Avatar</p>
+              <p className="text-muted-foreground mt-0.5">
+                Uses 1:1 aspect ratio internally for profile images. Prefer Avatar for user photos.
+              </p>
+            </div>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Card</p>
+              <p className="text-muted-foreground mt-0.5">
+                Combine AspectRatio inside Card for media cards with consistent image proportions.
+              </p>
+            </div>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Skeleton</p>
+              <p className="text-muted-foreground mt-0.5">
+                Use Skeleton inside AspectRatio as a loading placeholder that maintains the correct ratio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
