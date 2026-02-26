@@ -49,7 +49,7 @@ function DrawerOverlay({
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
-      className={cn("fixed inset-0 z-50 bg-black/80", className)}
+      className={cn("fixed inset-0 z-50 bg-black/50", className)}
       {...props}
     />
   )
@@ -105,7 +105,7 @@ function DrawerTitle({
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      className={cn("typo-heading-4 text-foreground", className)}
       {...props}
     />
   )
@@ -118,7 +118,7 @@ function DrawerDescription({
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("typo-paragraph-sm text-muted-foreground", className)}
       {...props}
     />
   )

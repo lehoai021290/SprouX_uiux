@@ -34,7 +34,7 @@ import { cn } from "@/lib/utils"
  *   Disabled:  opacity-50
  */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-semibold font-body transition-colors focus-visible:outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0",
   {
     variants: {
       variant: {
@@ -54,10 +54,10 @@ const buttonVariants = cva(
           "bg-destructive-subtle text-destructive-subtle-foreground border border-destructive-border hover:bg-destructive-subtle active:bg-destructive-subtle focus-visible:ring-ring-error",
       },
       size: {
-        lg: "h-3xl px-xl gap-xs text-sm tracking-sm [&_svg:not([class*='size-'])]:size-md",
-        default: "h-9 px-md gap-xs text-sm tracking-sm [&_svg:not([class*='size-'])]:size-md",
-        sm: "h-2xl px-sm gap-2xs text-sm tracking-sm [&_svg:not([class*='size-'])]:size-md",
-        xs: "h-xl px-xs gap-2xs text-xs tracking-xs [&_svg:not([class*='size-'])]:size-md",
+        lg: "h-3xl px-xl gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        default: "h-9 px-md gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        sm: "h-2xl px-sm gap-2xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        xs: "h-xl px-xs gap-2xs typo-paragraph-mini-bold [&_svg:not([class*='size-'])]:size-md",
         icon: "size-9 [&_svg:not([class*='size-'])]:size-md",
         "icon-sm": "size-2xl [&_svg:not([class*='size-'])]:size-md",
         "icon-lg": "size-3xl [&_svg:not([class*='size-'])]:size-md",

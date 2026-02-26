@@ -43,7 +43,7 @@ function SheetOverlay({
     <DialogPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+        "fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         className
       )}
       {...props}
@@ -52,7 +52,7 @@ function SheetOverlay({
 }
 
 const sheetVariants = cva(
-  "fixed z-50 gap-md bg-background p-md shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
+  "fixed z-50 gap-md bg-card p-md shadow transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
   {
     variants: {
       side: {
@@ -125,7 +125,7 @@ function SheetTitle({
   return (
     <DialogPrimitive.Title
       data-slot="sheet-title"
-      className={cn("text-lg font-semibold text-foreground", className)}
+      className={cn("typo-heading-4 text-foreground", className)}
       {...props}
     />
   )
@@ -138,7 +138,7 @@ function SheetDescription({
   return (
     <DialogPrimitive.Description
       data-slot="sheet-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("typo-paragraph-sm text-muted-foreground", className)}
       {...props}
     />
   )
