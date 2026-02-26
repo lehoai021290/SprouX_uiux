@@ -7710,13 +7710,13 @@ function AlertExploreBehavior() {
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Show Title</Label>
             <div className="pt-1">
-              <Switch checked={showTitle} onCheckedChange={(v) => { setShowTitle(v); if (!v && !showSubtitle) setShowSubtitle(true) }} disabled={showTitle && !showSubtitle} />
+              <Switch checked={showTitle} onCheckedChange={(v) => { setShowTitle(v); if (!v && !showSubtitle) setShowSubtitle(true) }} />
             </div>
           </div>
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Show Subtitle</Label>
             <div className="pt-1">
-              <Switch checked={showSubtitle} onCheckedChange={(v) => { setShowSubtitle(v); if (!v && !showTitle) setShowTitle(true) }} disabled={showSubtitle && !showTitle} />
+              <Switch checked={showSubtitle} onCheckedChange={(v) => { setShowSubtitle(v); if (!v && !showTitle) setShowTitle(true) }} />
             </div>
           </div>
           <div className="space-y-xs">
