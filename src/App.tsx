@@ -8851,18 +8851,16 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <AlertDialog>
-              <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                  <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction>Continue</AlertDialogAction>
-                </AlertDialogFooter>
-              </div>
-            </AlertDialog>
+            <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <Button variant="outline">Cancel</Button>
+                <Button>Continue</Button>
+              </AlertDialogFooter>
+            </div>
           </Example>
 
           <Example title="Destructive Confirmation" description="Use a destructive variant for delete or dangerous operations." code={`<AlertDialog>
@@ -8882,18 +8880,16 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <AlertDialog>
-              <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>This will permanently delete your account and remove your data from our servers.</AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction variant="destructive">Delete Account</AlertDialogAction>
-                </AlertDialogFooter>
-              </div>
-            </AlertDialog>
+            <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>This will permanently delete your account and remove your data from our servers.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <Button variant="outline">Cancel</Button>
+                <Button variant="destructive">Delete Account</Button>
+              </AlertDialogFooter>
+            </div>
           </Example>
 
           <Example title="Without Description" description="Alert dialog with only a title — no additional description." code={`<AlertDialog>
@@ -8910,17 +8906,15 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <AlertDialog>
-              <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Keep Editing</AlertDialogCancel>
-                  <AlertDialogAction>Discard</AlertDialogAction>
-                </AlertDialogFooter>
-              </div>
-            </AlertDialog>
+            <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <Button variant="outline">Keep Editing</Button>
+                <Button>Discard</Button>
+              </AlertDialogFooter>
+            </div>
           </Example>
 
           <Example title="Logout Confirmation" description="Common pattern for confirming session-ending actions." code={`<AlertDialog>
@@ -8940,18 +8934,16 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <AlertDialog>
-              <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
-                  <AlertDialogDescription>You will need to sign in again to access your dashboard and settings.</AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Stay Signed In</AlertDialogCancel>
-                  <AlertDialogAction>Log Out</AlertDialogAction>
-                </AlertDialogFooter>
-              </div>
-            </AlertDialog>
+            <div className="w-full border border-border rounded-xl bg-card p-xl shadow grid gap-lg pointer-events-none">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
+                <AlertDialogDescription>You will need to sign in again to access your dashboard and settings.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <Button variant="outline">Stay Signed In</Button>
+                <Button>Log Out</Button>
+              </AlertDialogFooter>
+            </div>
           </Example>
         </div>
 
