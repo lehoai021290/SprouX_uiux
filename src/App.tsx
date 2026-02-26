@@ -255,7 +255,7 @@ function CodeBlock({ code }: { code: string }) {
   }
   return (
     <div className="relative group">
-      <pre className="bg-slate-950 text-slate-100 rounded-b-2xl p-md text-xs leading-relaxed overflow-x-auto font-mono">
+      <pre className="bg-slate-950 text-slate-100 rounded-b-xl p-md text-xs leading-relaxed overflow-x-auto font-mono">
         <code>{code}</code>
       </pre>
       <button
@@ -278,14 +278,14 @@ function InstallationSection({ deps, importCode }: { deps: string; importCode: s
   return (
     <section id="installation" className="space-y-md pt-3xl">
       <h2 className="font-heading font-semibold text-xl">Installation</h2>
-      <div className="rounded-2xl border border-border/50 overflow-hidden bg-background">
-        <div className="px-md py-xs border-b border-border/50 bg-muted/40">
+      <div className="rounded-xl border border-border overflow-hidden">
+        <div className="px-md py-xs border-b border-border bg-muted/40">
           <span className="text-xs font-medium text-muted-foreground">Dependencies</span>
         </div>
         <pre className="bg-slate-950 text-slate-100 p-md text-xs leading-relaxed overflow-x-auto font-mono">
           <code>{deps}</code>
         </pre>
-        <div className="px-md py-xs border-t border-border/50 bg-muted/40">
+        <div className="px-md py-xs border-t border-border bg-muted/40">
           <span className="text-xs font-medium text-muted-foreground">Import</span>
         </div>
         <pre className="bg-slate-950 text-slate-100 p-md text-xs leading-relaxed overflow-x-auto font-mono">
@@ -309,7 +309,7 @@ function Example({
 }) {
   const [showCode, setShowCode] = useState(false)
   return (
-    <div className="rounded-2xl border border-border/50 overflow-hidden bg-background flex flex-col">
+    <div className="rounded-xl border border-border overflow-hidden bg-background flex flex-col">
       <div className="px-xl pt-md pb-2xs border-b border-border bg-muted/40 space-y-2xs">
         <h3 className="font-body font-semibold text-sm">{title}</h3>
         {description && (
@@ -339,7 +339,7 @@ function Example({
 
 function DoItem({ children, text }: { children?: React.ReactNode; text?: string }) {
   return (
-    <div className="flex-1 rounded-2xl border-2 border-green-600 overflow-hidden">
+    <div className="flex-1 rounded-xl border-2 border-green-600 overflow-hidden">
       <div className="bg-green-600/10 px-md py-2xs text-xs font-semibold text-green-700 dark:text-green-400 flex items-center gap-2xs">
         <Check className="size-3" />
         Do
@@ -351,7 +351,7 @@ function DoItem({ children, text }: { children?: React.ReactNode; text?: string 
 
 function DontItem({ children, text }: { children?: React.ReactNode; text?: string }) {
   return (
-    <div className="flex-1 rounded-2xl border-2 border-destructive overflow-hidden">
+    <div className="flex-1 rounded-xl border-2 border-destructive overflow-hidden">
       <div className="bg-destructive/10 px-md py-2xs text-xs font-semibold text-destructive flex items-center gap-2xs">
         <span className="font-mono">&#x2715;</span>
         Don't
@@ -436,12 +436,12 @@ function Playground({
     setValues((prev) => ({ ...prev, [prop]: value }))
 
   return (
-    <div className="rounded-2xl border border-border/50 overflow-hidden">
+    <div className="rounded-xl border border-border overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
         {render(values)}
       </div>
       {controls.length > 0 && (
-        <div className="border-t border-border/50 bg-muted/30 p-lg">
+        <div className="border-t border-border bg-muted/30 p-lg">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
             {controls.map((control) => (
               <div key={control.prop} className="space-y-xs">
@@ -1839,7 +1839,7 @@ function ButtonExploreBehavior() {
   const RightIconComp = allLucideIcons.find((i) => i.name === rightIcon)?.icon ?? ArrowRight
 
   return (
-    <div className="rounded-2xl border border-border/50 overflow-hidden">
+    <div className="rounded-xl border border-border overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
         <div className={[
           "pointer-events-none",
@@ -1867,7 +1867,7 @@ function ButtonExploreBehavior() {
           </Button>
         </div>
       </div>
-      <div className="border-t border-border/50 bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/30 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Variant</Label>
@@ -7610,7 +7610,7 @@ function AlertExploreBehavior() {
   )
 
   return (
-    <div className="rounded-2xl border border-border/50 overflow-hidden">
+    <div className="rounded-xl border border-border overflow-hidden">
       <div className="p-4xl flex items-center justify-center min-h-[160px] bg-primary/5">
         {inCard ? (
           <div className="w-full max-w-lg rounded-xl border border-border bg-card p-lg shadow-sm">
@@ -7628,7 +7628,7 @@ function AlertExploreBehavior() {
           </div>
         )}
       </div>
-      <div className="border-t border-border/50 bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/30 p-lg">
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Type</Label>
@@ -9666,7 +9666,7 @@ function AccordionExploreBehavior() {
   const effectiveValue = isDisable ? undefined : type === "Open" ? "preview" : undefined
 
   return (
-    <div className="rounded-2xl border border-border/50 overflow-hidden">
+    <div className="rounded-xl border border-border overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
         {/* pointer-events-none: prevent interactive states; visual overrides for Figma states
             ring-focus is a custom CSS class (not Tailwind utility), so use shadow arbitrary for focus ring */}
@@ -9695,7 +9695,7 @@ function AccordionExploreBehavior() {
           </Accordion>
         </div>
       </div>
-      <div className="border-t border-border/50 bg-muted/30 p-lg">
+      <div className="border-t border-border bg-muted/30 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">State</Label>
