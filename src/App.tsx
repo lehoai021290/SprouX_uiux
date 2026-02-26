@@ -8785,6 +8785,7 @@ function AlertDialogDocs() {
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
+        {/* Static previews — dialog face visible without clicking */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Example title="Basic" description="Simple confirmation dialog with default action button." code={`<AlertDialog>
   <AlertDialogTrigger asChild>
@@ -8803,36 +8804,17 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <div className="flex flex-col gap-md items-center">
-              {/* Static preview */}
-              <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
-                <div className="flex flex-col gap-lg">
-                  <div className="flex flex-col gap-xs sm:text-left">
-                    <h3 className="typo-heading-4 text-foreground">Are you sure?</h3>
-                    <p className="typo-paragraph-sm text-muted-foreground">This action cannot be undone.</p>
-                  </div>
-                  <div className="flex justify-end gap-xs">
-                    <Button variant="outline" size="default" className="pointer-events-none">Cancel</Button>
-                    <Button variant="default" size="default" className="pointer-events-none">Continue</Button>
-                  </div>
+            <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
+              <div className="flex flex-col gap-lg">
+                <div className="flex flex-col gap-xs text-left">
+                  <h3 className="typo-heading-4 text-foreground">Are you sure?</h3>
+                  <p className="typo-paragraph-sm text-muted-foreground">This action cannot be undone.</p>
+                </div>
+                <div className="flex justify-end gap-xs">
+                  <Button variant="outline" size="default" className="pointer-events-none">Cancel</Button>
+                  <Button variant="default" size="default" className="pointer-events-none">Continue</Button>
                 </div>
               </div>
-              {/* Interactive trigger */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" size="sm">Try it live</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                    <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Continue</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </div>
           </Example>
 
@@ -8853,36 +8835,17 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <div className="flex flex-col gap-md items-center">
-              {/* Static preview */}
-              <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
-                <div className="flex flex-col gap-lg">
-                  <div className="flex flex-col gap-xs sm:text-left">
-                    <h3 className="typo-heading-4 text-foreground">Are you absolutely sure?</h3>
-                    <p className="typo-paragraph-sm text-muted-foreground">This will permanently delete your account and remove your data from our servers.</p>
-                  </div>
-                  <div className="flex justify-end gap-xs">
-                    <Button variant="outline" size="default" className="pointer-events-none">Cancel</Button>
-                    <Button variant="destructive" size="default" className="pointer-events-none">Delete Account</Button>
-                  </div>
+            <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
+              <div className="flex flex-col gap-lg">
+                <div className="flex flex-col gap-xs text-left">
+                  <h3 className="typo-heading-4 text-foreground">Are you absolutely sure?</h3>
+                  <p className="typo-paragraph-sm text-muted-foreground">This will permanently delete your account and remove your data from our servers.</p>
+                </div>
+                <div className="flex justify-end gap-xs">
+                  <Button variant="outline" size="default" className="pointer-events-none">Cancel</Button>
+                  <Button variant="destructive" size="default" className="pointer-events-none">Delete Account</Button>
                 </div>
               </div>
-              {/* Interactive trigger */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="destructive" size="sm">Try it live</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>This will permanently delete your account and remove your data from our servers.</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction variant="destructive">Delete Account</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </div>
           </Example>
 
@@ -8900,34 +8863,16 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <div className="flex flex-col gap-md items-center">
-              {/* Static preview */}
-              <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
-                <div className="flex flex-col gap-lg">
-                  <div className="flex flex-col gap-xs sm:text-left">
-                    <h3 className="typo-heading-4 text-foreground">Discard unsaved changes?</h3>
-                  </div>
-                  <div className="flex justify-end gap-xs">
-                    <Button variant="outline" size="default" className="pointer-events-none">Keep Editing</Button>
-                    <Button variant="default" size="default" className="pointer-events-none">Discard</Button>
-                  </div>
+            <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
+              <div className="flex flex-col gap-lg">
+                <div className="flex flex-col gap-xs text-left">
+                  <h3 className="typo-heading-4 text-foreground">Discard unsaved changes?</h3>
+                </div>
+                <div className="flex justify-end gap-xs">
+                  <Button variant="outline" size="default" className="pointer-events-none">Keep Editing</Button>
+                  <Button variant="default" size="default" className="pointer-events-none">Discard</Button>
                 </div>
               </div>
-              {/* Interactive trigger */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" size="sm">Try it live</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Keep Editing</AlertDialogCancel>
-                    <AlertDialogAction>Discard</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </div>
           </Example>
 
@@ -8948,38 +8893,87 @@ function AlertDialogDocs() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
-            <div className="flex flex-col gap-md items-center">
-              {/* Static preview */}
-              <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
-                <div className="flex flex-col gap-lg">
-                  <div className="flex flex-col gap-xs sm:text-left">
-                    <h3 className="typo-heading-4 text-foreground">Log out of your account?</h3>
-                    <p className="typo-paragraph-sm text-muted-foreground">You will need to sign in again to access your dashboard and settings.</p>
-                  </div>
-                  <div className="flex justify-end gap-xs">
-                    <Button variant="outline" size="default" className="pointer-events-none">Stay Signed In</Button>
-                    <Button variant="default" size="default" className="pointer-events-none">Log Out</Button>
-                  </div>
+            <div className="w-full bg-card border border-border rounded-lg p-xl shadow-lg">
+              <div className="flex flex-col gap-lg">
+                <div className="flex flex-col gap-xs text-left">
+                  <h3 className="typo-heading-4 text-foreground">Log out of your account?</h3>
+                  <p className="typo-paragraph-sm text-muted-foreground">You will need to sign in again to access your dashboard and settings.</p>
+                </div>
+                <div className="flex justify-end gap-xs">
+                  <Button variant="outline" size="default" className="pointer-events-none">Stay Signed In</Button>
+                  <Button variant="default" size="default" className="pointer-events-none">Log Out</Button>
                 </div>
               </div>
-              {/* Interactive trigger */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" size="sm">Try it live</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
-                    <AlertDialogDescription>You will need to sign in again to access your dashboard and settings.</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Stay Signed In</AlertDialogCancel>
-                    <AlertDialogAction>Log Out</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </div>
           </Example>
+        </div>
+
+        {/* Interactive demos — click to open real dialogs */}
+        <div className="rounded-xl border border-border overflow-hidden">
+          <div className="px-md py-xs bg-muted/50 border-b border-border">
+            <span className="text-xs font-medium text-muted-foreground">Interactive Demo</span>
+          </div>
+          <div className="p-lg flex flex-wrap gap-sm">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm">Basic</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">Destructive</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>This will permanently delete your account and remove your data from our servers.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction variant="destructive">Delete Account</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm">Without Description</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Keep Editing</AlertDialogCancel>
+                  <AlertDialogAction>Discard</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm">Logout</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
+                  <AlertDialogDescription>You will need to sign in again to access your dashboard and settings.</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Stay Signed In</AlertDialogCancel>
+                  <AlertDialogAction>Log Out</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       </section>
 
