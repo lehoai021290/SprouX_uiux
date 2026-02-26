@@ -2083,6 +2083,8 @@ pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge lucid
 <Button size="icon" aria-label="Add"><Plus /></Button>
 <Button size="icon-sm" aria-label="Add"><Plus /></Button>
 
+<span className="w-px h-6 bg-border" />
+
 <Button variant="outline" size="icon" aria-label="Settings"><Settings /></Button>
 <Button variant="ghost" size="icon" aria-label="Settings"><Settings /></Button>
 <Button variant="destructive" size="icon" aria-label="Delete"><Trash2 /></Button>`}
@@ -2171,8 +2173,7 @@ pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge lucid
         <Example
           title="Full width"
           description="Stretch to container width. Common in mobile layouts, modals, or form footers."
-          code={`<Button className="w-full">Submit form</Button>
-<Button variant="secondary" className="w-full">Cancel</Button>`}
+          code={`<div className="w-full space-y-2">\n  <Button className="w-full">Submit form</Button>\n  <Button variant="secondary" className="w-full">Cancel</Button>\n</div>`}
         >
           <div className="w-full space-y-2">
             <Button className="w-full">Submit form</Button>
@@ -7851,7 +7852,7 @@ pnpm add class-variance-authority clsx tailwind-merge lucide-react
           </Alert>
         </Example>
 
-        <Example title="Dismissable" description="Alert with a dismiss button for user-closable messages." code={`<Alert className="pr-10">\n  <Info className="size-md" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can dismiss this notification.</AlertDescription>\n  <button className="absolute right-md top-sm opacity-70 hover:opacity-100">\n    <X className="size-md" />\n  </button>\n</Alert>`}>
+        <Example title="Dismissable" description="Alert with a dismiss button for user-closable messages." code={`<Alert className="pr-10">\n  <Info className="size-md" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>You can dismiss this notification.</AlertDescription>\n  <button className="absolute right-md top-sm text-current opacity-70 hover:opacity-100 transition-opacity" aria-label="Dismiss">\n    <X className="size-md" />\n  </button>\n</Alert>`}>
           <Alert className="pr-10">
             <Info className="size-md" />
             <AlertTitle>Heads up!</AlertTitle>
@@ -7862,10 +7863,10 @@ pnpm add class-variance-authority clsx tailwind-merge lucide-react
           </Alert>
         </Example>
 
-        <Example title="In Card" description="Alert embedded inside a card — no border, muted background, compact padding." code={`{/* In Card: border-transparent, bg-muted, px-sm py-xs */}\n<div className="rounded-xl border bg-card p-lg shadow-sm">\n  <p className="typo-paragraph-sm-bold mb-sm">Payment details</p>\n  <Alert className="border-transparent bg-muted px-sm py-xs">\n    <Info className="size-md" />\n    <AlertDescription>Your card ending in 4242 will be charged.</AlertDescription>\n  </Alert>\n</div>`}>
+        <Example title="In Card" description="Alert embedded inside a card — no border, card-subtle background, compact padding." code={`<div className="rounded-xl border border-border bg-card p-lg shadow-sm">\n  <p className="typo-paragraph-sm-bold mb-sm">Payment details</p>\n  <Alert inCard>\n    <Info className="size-md" />\n    <AlertDescription>Your card ending in 4242 will be charged.</AlertDescription>\n  </Alert>\n</div>`}>
           <div className="rounded-xl border border-border bg-card p-lg shadow-sm">
             <p className="typo-paragraph-sm-bold mb-sm">Payment details</p>
-            <Alert className="border-transparent bg-muted px-sm py-xs">
+            <Alert inCard>
               <Info className="size-md" />
               <AlertDescription>Your card ending in 4242 will be charged.</AlertDescription>
             </Alert>
