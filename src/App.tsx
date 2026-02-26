@@ -8526,78 +8526,496 @@ function DialogDocs() {
    Alert Dialog Docs
    ================================================================ */
 
+function AlertDialogPropsTable() {
+  const renderTable = (title: string, props: { name: string; type: string; default: string; description: string }[]) => (
+    <div className="space-y-2">
+      <h3 className="font-body font-semibold text-sm">{title}</h3>
+      <div className="overflow-x-auto rounded-xl border border-border">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="bg-muted border-b border-border text-left">
+              <th className="px-4 py-3 font-semibold">Prop</th>
+              <th className="px-4 py-3 font-semibold">Type</th>
+              <th className="px-4 py-3 font-semibold">Default</th>
+              <th className="px-4 py-3 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.map((p) => (
+              <tr key={p.name} className="border-b border-border last:border-0">
+                <td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">{p.name}</td>
+                <td className="px-4 py-3 font-mono text-muted-foreground max-w-xs">{p.type}</td>
+                <td className="px-4 py-3 font-mono">{p.default}</td>
+                <td className="px-4 py-3 text-muted-foreground">{p.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="space-y-4">
+      {renderTable("AlertDialog (Root)", [
+        { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
+        { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Callback when open state changes." },
+        { name: "defaultOpen", type: "boolean", default: "false", description: "Initial open state (uncontrolled)." },
+      ])}
+      {renderTable("AlertDialogContent", [
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes for the content panel." },
+        { name: "onOpenAutoFocus", type: "(e: Event) => void", default: "—", description: "Called when auto-focus happens on open." },
+        { name: "onCloseAutoFocus", type: "(e: Event) => void", default: "—", description: "Called when auto-focus happens on close." },
+      ])}
+      {renderTable("AlertDialogAction", [
+        { name: "variant", type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"', default: '"default"', description: "Button visual variant." },
+        { name: "size", type: '"default" | "sm" | "lg" | "icon"', default: '"default"', description: "Button size." },
+      ])}
+      {renderTable("AlertDialogCancel", [
+        { name: "variant", type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"', default: '"outline"', description: "Button visual variant." },
+        { name: "size", type: '"default" | "sm" | "lg" | "icon"', default: '"default"', description: "Button size." },
+      ])}
+    </div>
+  )
+}
+
+function AlertDialogTokensTable() {
+  const tokens = [
+    { token: "--card", value: "#ffffff / #252522", hex: "#ffffff", usage: "Content background" },
+    { token: "--border", value: "#e9e9e7 / #4f4f4a", hex: "#e9e9e7", usage: "Content border" },
+    { token: "--foreground", value: "#252522 / #f7f7f6", hex: "#252522", usage: "Title text, icon color" },
+    { token: "--muted-foreground", value: "#6f6f6a / #c6c6c2", hex: "#6f6f6a", usage: "Description text" },
+    { token: "--spacing-xl", value: "24px", hex: "—", usage: "Content padding (all sides)" },
+    { token: "--spacing-lg", value: "20px", hex: "—", usage: "Inner content gap (between sections)" },
+    { token: "--spacing-xs", value: "8px", hex: "—", usage: "Header gap, footer button gap" },
+    { token: "--radius-lg", value: "8px", hex: "—", usage: "Content border-radius (sm+)" },
+  ]
+
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value (Light / Dark)</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function AlertDialogExploreBehavior() {
+  const [showIcon] = useState(false)
+  const [showAction, setShowAction] = useState(true)
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+        <div className="w-full max-w-lg bg-card border border-border rounded-lg p-xl shadow-lg">
+          <div className="flex flex-col gap-lg">
+            <div className="flex flex-col gap-xs">
+              {showIcon && (
+                <div className="size-[36px] rounded-full border border-border flex items-center justify-center mb-xs">
+                  <svg className="size-md text-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+              )}
+              <h3 className="typo-heading-4 text-foreground">Are you absolutely sure?</h3>
+              <p className="typo-paragraph-sm text-muted-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+            </div>
+            {showAction && (
+              <div className="flex justify-end gap-xs">
+                <Button variant="outline" size="default">Cancel</Button>
+                <Button variant="default" size="default">Continue</Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Action</Label>
+            <div className="pt-1">
+              <Switch checked={showAction} onCheckedChange={setShowAction} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const alertDialogSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function AlertDialogDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={alertDialogSections} />
+
+      {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Alert Dialog</h1>
-        <p className="typo-paragraph text-muted-foreground max-w-3xl">Modal for confirmations and destructive actions. Cannot be dismissed by clicking outside.</p>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">A modal dialog that interrupts the user with important content and expects a response. Cannot be dismissed by clicking outside.</p>
       </header>
 
-      {/* Interactive playground */}
-      <Playground controls={[]} render={() => (
-        <AlertDialog>
-          <AlertDialogTrigger asChild><Button variant="outline">Open Alert Dialog</Button></AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-              <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )} />
-
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogFooter,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from "@/components/ui/alert-dialog"`} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <AlertDialogExploreBehavior />
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-alert-dialog clsx tailwind-merge`}
+        importCode={`import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogFooter,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from "@/components/ui/alert-dialog"`}
+      />
+
+      {/* ---- Examples ---- */}
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <Example title="Destructive Confirmation" code={`<AlertDialog>\n  <AlertDialogTrigger asChild>\n    <Button variant="destructive">Delete Account</Button>\n  </AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>\n      <AlertDialogDescription>\n        This action cannot be undone.\n      </AlertDialogDescription>\n    </AlertDialogHeader>\n    <AlertDialogFooter>\n      <AlertDialogCancel>Cancel</AlertDialogCancel>\n      <AlertDialogAction>Continue</AlertDialogAction>\n    </AlertDialogFooter>\n  </AlertDialogContent>\n</AlertDialog>`}>
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete Account</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </Example>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Example title="Basic" description="Simple confirmation dialog with default action button." code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Show Dialog</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline">Show Dialog</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </Example>
+
+          <Example title="Destructive Confirmation" description="Use a destructive variant for delete or dangerous operations." code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="destructive">Delete Account</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This will permanently delete your account and remove your data from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction variant="destructive">Delete Account</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive">Delete Account</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete your account and remove your data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction variant="destructive">Delete Account</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </Example>
+
+          <Example title="Without Description" description="Alert dialog with only a title — no additional description." code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Discard Changes</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Keep Editing</AlertDialogCancel>
+      <AlertDialogAction>Discard</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline">Discard Changes</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Discard unsaved changes?</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Keep Editing</AlertDialogCancel>
+                  <AlertDialogAction>Discard</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </Example>
+
+          <Example title="Logout Confirmation" description="Common pattern for confirming session-ending actions." code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Log Out</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
+      <AlertDialogDescription>
+        You will need to sign in again to access your dashboard and settings.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Stay Signed In</AlertDialogCancel>
+      <AlertDialogAction>Log Out</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline">Log Out</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Log out of your account?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    You will need to sign in again to access your dashboard and settings.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Stay Signed In</AlertDialogCancel>
+                  <AlertDialogAction>Log Out</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </Example>
+        </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Built on{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-alert-dialog</code>.
+          Supports all Radix AlertDialog props in addition to the following:
+        </p>
+        <AlertDialogPropsTable />
+      </section>
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          These tokens are defined in{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code>{" "}
+          and sourced from the Figma file{" "}
+          <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <AlertDialogTokensTable />
+      </section>
+
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
-        <div className="grid grid-cols-2 gap-6">
-          <DoItem text="Use Alert Dialog for destructive or irreversible actions." />
-          <DontItem text="Don't use for simple info display — use Dialog or Toast instead." />
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Content</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use a clear title that states the consequence of the action (e.g., "Delete your account?").</p>
+              <p>Make the primary action the <strong>safest option</strong> — Cancel should be prominent.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't use vague titles like "Are you sure?" without context — be specific about what will happen.</p>
+              <p>Don't make the destructive action the visually dominant button.</p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Structure</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use Alert Dialog for <strong>destructive action confirmations</strong>, critical decisions, and blocking user flow.</p>
+              <p>Always provide a <strong>cancel/escape</strong> option so the user can back out safely.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't use Alert Dialog for <strong>informational messages</strong> — use Dialog or Toast instead.</p>
+              <p>Don't use for <strong>non-critical confirmations</strong> that don't require user attention.</p>
+            </DontItem>
+          </div>
         </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping rows={[
-        ["Overlay", "Black 80%", "—", "bg-black/80, fixed inset-0"],
-        ["Content Width", "max-w-lg", "—", "sm:max-w-lg"],
-        ["Sub-component", "Action", "AlertDialogAction", "Primary button"],
-        ["Sub-component", "Cancel", "AlertDialogCancel", "Outline button (mt-sm on mobile)"],
-        ["Behavior", "Non-dismissible", "—", "Cannot close by clicking overlay"],
-        ["Animation", "Open/Close", "—", "zoom-in-95 / zoom-out-95"],
+      <FigmaMapping id="figma-mapping" nodeId="139:11941" rows={[
+        ["Overlay", "Black 80%", "AlertDialogOverlay", "bg-black/80, fixed inset-0, z-50"],
+        ["Content", "bg-card, border-border, p-xl, rounded-lg", "AlertDialogContent", "max-w-lg, shadow-lg, gap-lg"],
+        ["Title", "heading 4 (Geist/600 20px/24px)", "AlertDialogTitle", "typo-heading-4 text-foreground"],
+        ["Description", "paragraph small (Geist/400 14px/20px)", "AlertDialogDescription", "typo-paragraph-sm text-muted-foreground"],
+        ["Button Group", "flex, gap-xs, justify-end", "AlertDialogFooter", "flex-col-reverse sm:flex-row sm:justify-end gap-xs"],
+        ["Action", "Button default variant", "AlertDialogAction", "Wraps Radix in Button via asChild"],
+        ["Cancel", "Button outline variant", "AlertDialogCancel", "Wraps Radix in Button via asChild"],
+        ["Behavior", "Non-dismissible", "—", "Cannot close by clicking overlay (Radix default)"],
+        ["Animation", "Open / Close", "data-state", "zoom-in-95 / zoom-out-95, fade-in / fade-out"],
+        ["Variants", "Type: Desktop/Mobile, Show Icon, Show Action", "—", "Figma-only variants for design exploration"],
       ]} />
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Keyboard support</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th className="pr-6 py-2 font-semibold">Key</th>
+                    <th className="pr-6 py-2 font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus between action and cancel buttons</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Shift</kbd>{" + "}
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus backwards between buttons</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Enter</kbd>{" / "}
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Space</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Activate the focused button (action or cancel)</td>
+                  </tr>
+                  <tr>
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Escape</kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">Close the dialog (same as cancel)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">ARIA attributes</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                The content uses{" "}
+                <code className="bg-muted px-1 rounded font-mono">role="alertdialog"</code>{" "}
+                to announce urgent content to screen readers.
+              </li>
+              <li>
+                <code className="bg-muted px-1 rounded font-mono">aria-labelledby</code>{" "}
+                references AlertDialogTitle for the dialog label.
+              </li>
+              <li>
+                <code className="bg-muted px-1 rounded font-mono">aria-describedby</code>{" "}
+                references AlertDialogDescription for additional context.
+              </li>
+              <li>Focus is trapped inside the dialog and auto-focused on the first interactive element.</li>
+              <li>Overlay cannot be clicked to dismiss — users must take an explicit action.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Focus management</h3>
+            <p className="text-muted-foreground">
+              When opened, focus moves automatically to the first focusable element (typically the Cancel button).
+              When closed, focus returns to the trigger element. Focus is <strong>trapped</strong> within the dialog
+              — Tab and Shift+Tab cycle only through dialog buttons. This prevents users from accidentally interacting
+              with the page behind the overlay.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5">
+            <p className="font-semibold text-foreground">Dialog</p>
+            <p className="text-muted-foreground mt-0.5">
+              For general-purpose modal dialogs that can be dismissed by clicking outside. Use when content is informational, not confirmational.
+            </p>
+          </div>
+          <div className="px-5 py-3.5">
+            <p className="font-semibold text-foreground">Sheet</p>
+            <p className="text-muted-foreground mt-0.5">
+              Slide-out panel from the screen edge. Use for forms, settings, or content that doesn't require confirmation.
+            </p>
+          </div>
+          <div className="px-5 py-3.5">
+            <p className="font-semibold text-foreground">Sonner (Toast)</p>
+            <p className="text-muted-foreground mt-0.5">
+              For transient, non-blocking notifications. Use for success messages and status updates that don't require user action.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
