@@ -8977,7 +8977,7 @@ function AlertDialogDocs() {
             </div>
           </Example>
 
-          <Example title="Congratulation Slot (No Title, No Action)" description="Illustration slot with hidden title and action — informational dialog with only a dismiss button." code={`<AlertDialog>
+          <Example title="Congratulation Slot (No Title, No Secondary)" description="Illustration slot with hidden title — only primary action, no secondary (Cancel cannot appear without Action)." code={`<AlertDialog>
   <AlertDialogTrigger asChild>
     <Button variant="outline">Show Congratulations</Button>
   </AlertDialogTrigger>
@@ -8989,7 +8989,7 @@ function AlertDialogDocs() {
       </AlertDialogDescription>
     </div>
     <AlertDialogFooter>
-      <AlertDialogCancel>Close</AlertDialogCancel>
+      <AlertDialogAction>Got it</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}>
@@ -8999,7 +8999,7 @@ function AlertDialogDocs() {
                 <p className="typo-paragraph-sm text-muted-foreground">Congratulations! Your account has been successfully created. Welcome aboard!</p>
               </div>
               <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
-                <Button variant="outline">Close</Button>
+                <Button>Got it</Button>
               </div>
             </div>
           </Example>
@@ -9080,7 +9080,7 @@ function AlertDialogDocs() {
                   <AlertDialogDescription>Congratulations! Your account has been successfully created. Welcome aboard!</AlertDialogDescription>
                 </div>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Close</AlertDialogCancel>
+                  <AlertDialogAction>Got it</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
