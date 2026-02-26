@@ -8658,39 +8658,83 @@ function AlertDialogTokensTable() {
   )
 }
 
+/**
+ * Explore Behavior — static variant preview matching Figma component 100%.
+ *
+ * Figma "Alert Dialog" component set properties (139:11941):
+ *   Type:                    Desktop | Mobile         → Skip (responsive, web handles via sm: breakpoints)
+ *   Responsive to:           Popup | Full Screen      → Skip (responsive variant)
+ *   Show Icon:               True | False             → Switch ✅
+ *   Show Title:              True | False             → Switch ✅
+ *   Show Action:             True | False             → Switch ✅
+ *   Show Action Secondary:   True | False             → Switch ✅
+ *   Icon:                    instance swap            → Not exposed (default circle-alert)
+ *   Slot:                    instance swap            → Not exposed (description content)
+ */
 function AlertDialogExploreBehavior() {
-  const [showIcon] = useState(false)
+  const [showIcon, setShowIcon] = useState(true)
+  const [showTitle, setShowTitle] = useState(true)
   const [showAction, setShowAction] = useState(true)
+  const [showActionSecondary, setShowActionSecondary] = useState(true)
 
   return (
     <div className="rounded-xl border border-border overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
         <div className="w-full max-w-lg bg-card border border-border rounded-lg p-xl shadow-lg">
           <div className="flex flex-col gap-lg">
-            <div className="flex flex-col gap-xs">
-              {showIcon && (
-                <div className="size-[36px] rounded-full border border-border flex items-center justify-center mb-xs">
-                  <svg className="size-md text-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                </div>
-              )}
-              <h3 className="typo-heading-4 text-foreground">Are you absolutely sure?</h3>
-              <p className="typo-paragraph-sm text-muted-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
-            </div>
-            {showAction && (
+            {/* Title area (Icon + Title text) */}
+            {(showIcon || showTitle) && (
+              <div className="flex flex-col gap-sm">
+                {showIcon && (
+                  <div className="size-[36px] rounded-full border border-border flex items-center justify-center">
+                    <svg className="size-md text-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  </div>
+                )}
+                {showTitle && (
+                  <h3 className="typo-heading-4 text-foreground">Are you absolutely sure?</h3>
+                )}
+              </div>
+            )}
+            {/* Slot / Description */}
+            <p className="typo-paragraph-sm text-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+            {/* Button group */}
+            {(showAction || showActionSecondary) && (
               <div className="flex justify-end gap-xs">
-                <Button variant="outline" size="default">Cancel</Button>
-                <Button variant="default" size="default">Continue</Button>
+                {showActionSecondary && (
+                  <Button variant="outline" size="default">Cancel</Button>
+                )}
+                {showAction && (
+                  <Button variant="default" size="default">Continue</Button>
+                )}
               </div>
             )}
           </div>
         </div>
       </div>
       <div className="border-t border-border bg-muted/50 p-lg">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-md">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Icon</Label>
+            <div className="pt-1">
+              <Switch checked={showIcon} onCheckedChange={setShowIcon} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Title</Label>
+            <div className="pt-1">
+              <Switch checked={showTitle} onCheckedChange={setShowTitle} />
+            </div>
+          </div>
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Show Action</Label>
             <div className="pt-1">
               <Switch checked={showAction} onCheckedChange={setShowAction} />
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Action Secondary</Label>
+            <div className="pt-1">
+              <Switch checked={showActionSecondary} onCheckedChange={setShowActionSecondary} />
             </div>
           </div>
         </div>
