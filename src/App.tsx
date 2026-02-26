@@ -1520,9 +1520,9 @@ function IconPicker({ value, onChange, disabled, size = "sm" }: {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" size={size} disabled={disabled} className="w-full justify-start gap-xs font-normal" role="combobox" aria-expanded={open}>
-          {SelectedIcon ? <SelectedIcon className="size-md shrink-0" /> : null}
-          <span className="truncate">{value || "Select icon"}</span>
-          <ChevronsUpDown className="ml-auto size-3 shrink-0 opacity-50" />
+          {SelectedIcon ? <SelectedIcon className="size-md shrink-0 text-muted-foreground" /> : null}
+          <span className="truncate text-muted-foreground">{value || "Select icon"}</span>
+          <ChevronsUpDown className="ml-auto size-3 shrink-0 text-muted-foreground" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[240px] p-0" align="start">
@@ -8674,19 +8674,23 @@ function AlertDialogTokensTable() {
  *   Slot:                    instance swap            → Not exposed (description content)
  */
 function AlertDialogExploreBehavior() {
+  const [type, setType] = useState<"Desktop" | "Mobile">("Desktop")
+  const [responsiveTo] = useState("Popup")
   const [showIcon, setShowIcon] = useState(true)
+  const [iconName, setIconName] = useState("CircleAlert")
   const [showTitle, setShowTitle] = useState(true)
   const [showAction, setShowAction] = useState(true)
   const [showActionSecondary, setShowActionSecondary] = useState(true)
-  const [iconName, setIconName] = useState("CircleAlert")
+  const [slotText, setSlotText] = useState("This action cannot be undone. This will permanently delete your account and remove your data from our servers.")
   /* Figma constraint: Secondary Action only available when Show Action is on */
   const handleShowActionChange = (v: boolean) => { setShowAction(v); if (!v) setShowActionSecondary(false) }
   const SelectedIcon = allLucideIcons.find((i) => i.name === iconName)?.icon ?? allLucideIcons.find((i) => i.name === "CircleAlert")!.icon
+  const isMobile = type === "Mobile"
 
   return (
     <div className="rounded-xl border border-border overflow-hidden">
       <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
-        <div className="w-full max-w-lg bg-card border border-border rounded-xl p-xl shadow">
+        <div className={["w-full bg-card border border-border rounded-xl p-xl shadow", isMobile ? "max-w-sm" : "max-w-lg"].join(" ")}>
           <div className="flex flex-col gap-lg">
             {/* Title area (Icon + Title text) */}
             {(showIcon || showTitle) && (
@@ -8702,21 +8706,41 @@ function AlertDialogExploreBehavior() {
               </div>
             )}
             {/* Slot / Description */}
-            <p className="typo-paragraph-sm text-foreground">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+            <p className="typo-paragraph-sm text-foreground">{slotText}</p>
             {/* Button group */}
             {showAction && (
-              <div className="flex justify-end gap-xs">
+              <div className={["flex gap-xs", isMobile ? "flex-col" : "justify-end"].join(" ")}>
                 {showActionSecondary && (
-                  <Button variant="outline" size="default">Cancel</Button>
+                  <Button variant="outline" size="default" className={isMobile ? "w-full" : ""}>Cancel</Button>
                 )}
-                <Button variant="default" size="default">Continue</Button>
+                <Button variant="default" size="default" className={isMobile ? "w-full" : ""}>Continue</Button>
               </div>
             )}
           </div>
         </div>
       </div>
       <div className="border-t border-border bg-muted/50 p-lg">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-md">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
+          {/* Row 1: Type, Responsive to, Show Icon, Icon */}
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Type</Label>
+            <Select value={type} onValueChange={(v) => setType(v as "Desktop" | "Mobile")}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Desktop">Desktop</SelectItem>
+                <SelectItem value="Mobile">Mobile</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Responsive to</Label>
+            <Select value={responsiveTo} disabled>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Popup">Popup</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Show Icon</Label>
             <div className="pt-1">
@@ -8727,6 +8751,7 @@ function AlertDialogExploreBehavior() {
             <Label className={["text-xs text-muted-foreground", !showIcon ? "opacity-50" : ""].join(" ")}>Icon</Label>
             <IconPicker value={iconName} onChange={setIconName} disabled={!showIcon} size="sm" />
           </div>
+          {/* Row 2: Show Title, Show Action, Show Action Secondary, Slot */}
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Show Title</Label>
             <div className="pt-1">
@@ -8744,6 +8769,10 @@ function AlertDialogExploreBehavior() {
             <div className="pt-1">
               <Switch checked={showActionSecondary} onCheckedChange={setShowActionSecondary} disabled={!showAction} />
             </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Slot (Content)</Label>
+            <Input size="sm" value={slotText} onChange={(e) => setSlotText(e.target.value)} placeholder="Description text..." />
           </div>
         </div>
       </div>
