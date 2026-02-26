@@ -103,7 +103,7 @@
       "ring":                        { "hex": "#4f4f4a", "raw": "slate/800" },
       "ghost":                       { "hex": "transparent", "raw": null },
       "ghost-foreground":            { "hex": "#8f8f8a", "raw": "slate/600" },
-      "ghost-hover":                 { "hex": "rgba(255,255,255,0.08)", "raw": null },
+      "ghost-hover":                 { "hex": "rgba(255,255,255,0.098)", "raw": null },
       "outline-bg":                  { "hex": "rgba(255,255,255,0.047)", "raw": null },
       "outline-hover":               { "hex": "rgba(255,255,255,0.098)", "raw": null },
       "chart-1":                     { "hex": "#2662d9", "raw": null },

@@ -530,7 +530,7 @@
 
     --ghost: transparent;
     --ghost-foreground: #8f8f8a;      /* slate600 */
-    --ghost-hover: rgba(255,255,255,0.08);
+    --ghost-hover: rgba(255,255,255,0.098); /* Figma VariableID:625:31108 dark */
 
     --outline-bg: rgba(255,255,255,0.047);   /* Figma VariableID:644:37106 dark */
     --outline-hover: rgba(255,255,255,0.098); /* Figma VariableID:644:37107 dark */
