@@ -8704,12 +8704,14 @@ function AlertDialogExploreBehavior() {
   const [showTitle, setShowTitle] = useState(true)
   const [showAction, setShowAction] = useState(true)
   const [showActionSecondary, setShowActionSecondary] = useState(true)
-  const [slotVariant, setSlotVariant] = useState<"delete-account" | "discard-changes" | "reset-settings">("delete-account")
+  const [slotVariant, setSlotVariant] = useState<"delete-account" | "discard-changes" | "reset-settings" | "congratulation">("delete-account")
   const slotContent: Record<string, string> = {
     "delete-account": "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
     "discard-changes": "You have unsaved changes that will be lost. Are you sure you want to discard them?",
     "reset-settings": "This will reset all your preferences to default values. You can reconfigure them later.",
+    "congratulation": "Congratulations! Your account has been successfully created. Welcome aboard!",
   }
+  const isSlotIllustration = slotVariant === "congratulation"
   /* Figma constraint: Secondary Action only available when Show Action is on */
   const handleShowActionChange = (v: boolean) => { setShowAction(v); if (!v) setShowActionSecondary(false) }
   const SelectedIcon = allLucideIcons.find((i) => i.name === iconName)?.icon ?? allLucideIcons.find((i) => i.name === "CircleAlert")!.icon
@@ -8734,7 +8736,12 @@ function AlertDialogExploreBehavior() {
               </div>
             )}
             {/* Slot / Description */}
-            <p className="typo-paragraph-sm text-foreground">{slotContent[slotVariant]}</p>
+            {isSlotIllustration && (
+              <div className="flex justify-center">
+                <img src={illustSuccess} alt="Congratulations" className="w-48" />
+              </div>
+            )}
+            <p className={["typo-paragraph-sm", isSlotIllustration ? "text-muted-foreground text-center" : "text-foreground"].join(" ")}>{slotContent[slotVariant]}</p>
             {/* Button group */}
             {showAction && (
               <div className={["flex gap-xs", isMobile ? "flex-col" : "justify-end"].join(" ")}>
@@ -8806,6 +8813,7 @@ function AlertDialogExploreBehavior() {
                 <SelectItem value="delete-account">Delete Account</SelectItem>
                 <SelectItem value="discard-changes">Discard Changes</SelectItem>
                 <SelectItem value="reset-settings">Reset Settings</SelectItem>
+                <SelectItem value="congratulation">Congratulation</SelectItem>
               </SelectContent>
             </Select>
           </div>
