@@ -28,7 +28,8 @@ import { cn } from "@/lib/utils"
  *   Gap:        icon-to-text gap-sm (12px), title-to-desc gap-xs (8px)
  *
  *   Neutral:        bg-card, border-border, text-foreground, desc: text-ghost-foreground
- *   Neutral inCard: bg-card-subtle (same border/text)
+ *   Neutral inCard: bg-card-subtle, border-transparent, py-xs px-sm (same text)
+ *   Other inCard:   border-transparent, py-xs px-sm (keep variant bg)
  *   Error:    bg-destructive-subtle, border-destructive-border, text-destructive-subtle-foreground
  *   Success:  bg-success-subtle, border-success-border, text-success-subtle-foreground
  *   Warning:  bg-warning-subtle, border-warning-border, text-warning-subtle-foreground
@@ -64,7 +65,7 @@ function Alert({
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof alertVariants> & {
-    /** Use when Alert is placed inside a Card — switches neutral bg to card-subtle */
+    /** Use when Alert sits inside a Card — removes border, tightens padding, neutral uses card-subtle bg */
     inCard?: boolean
   }) {
   return (
@@ -73,7 +74,10 @@ function Alert({
       role="alert"
       className={cn(
         alertVariants({ variant }),
-        inCard && (!variant || variant === "default") && "bg-card-subtle",
+        inCard && [
+          "border-transparent py-xs px-sm [&>svg]:left-sm [&>svg]:top-xs",
+          (!variant || variant === "default") && "bg-card-subtle",
+        ],
         className
       )}
       {...props}

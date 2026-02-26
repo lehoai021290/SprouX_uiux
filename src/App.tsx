@@ -7619,17 +7619,8 @@ function AlertExploreBehavior() {
     emphasis: "A new version is available. Update to get the latest features.",
   }
 
-  /* Figma In Card spec:
-     - No border stroke (border-transparent)
-     - Neutral BG: #f7f7f6 → bg-muted (closest), other types keep variant BG
-     - Padding: px-sm py-xs (12×8) instead of px-md py-sm (16×12)
-     - Sits inside a card container (white bg, border, shadow) */
-  const inCardAlertClass = inCard
-    ? [
-        "border-transparent px-sm py-xs",
-        type === "default" ? "bg-muted" : "",
-      ].filter(Boolean).join(" ")
-    : ""
+  /* Figma In Card spec handled by Alert inCard prop:
+     - border-transparent, py-xs px-sm, neutral: bg-card-subtle */
 
   const alertContent = (
     <>
@@ -7657,7 +7648,7 @@ function AlertExploreBehavior() {
           <div className="w-full max-w-lg rounded-xl border border-border bg-card p-lg shadow-sm">
             <p className="typo-paragraph-sm-bold mb-sm">Card title</p>
             <p className="typo-paragraph-sm text-ghost-foreground mb-md">Some card content that provides context for the alert below.</p>
-            <Alert variant={type as "default" | "destructive" | "success" | "warning" | "emphasis"} className={inCardAlertClass}>
+            <Alert variant={type as "default" | "destructive" | "success" | "warning" | "emphasis"} inCard>
               {alertContent}
             </Alert>
           </div>
