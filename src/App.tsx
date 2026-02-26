@@ -7575,6 +7575,8 @@ function AlertTokensTable() {
 function AlertExploreBehavior() {
   const [type, setType] = useState("default")
   const [icon, setIcon] = useState("auto")
+  /* Figma: only Neutral type allows icon swap; others use fixed icon */
+  const handleTypeChange = (v: string) => { setType(v); if (v !== "default") setIcon("auto") }
   const [showIcon, setShowIcon] = useState(true)
   const [showTitle, setShowTitle] = useState(true)
   const [showSubtitle, setShowSubtitle] = useState(true)
@@ -7665,7 +7667,7 @@ function AlertExploreBehavior() {
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-md">
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Type</Label>
-            <Select value={type} onValueChange={setType}>
+            <Select value={type} onValueChange={handleTypeChange}>
               <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="default">Neutral</SelectItem>
@@ -7678,7 +7680,7 @@ function AlertExploreBehavior() {
           </div>
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Icon</Label>
-            <Select value={icon} onValueChange={setIcon}>
+            <Select value={icon} onValueChange={setIcon} disabled={type !== "default"}>
               <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="auto">Auto (per type)</SelectItem>
