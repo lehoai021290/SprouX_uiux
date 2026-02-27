@@ -2687,6 +2687,18 @@ function ButtonDocs() {
    Component: Input Docs
    ================================================================ */
 
+const inputSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function InputPropsTable() {
   const props = [
     {
@@ -2912,6 +2924,8 @@ function InputDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={inputSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -3649,6 +3663,18 @@ const handleFormSubmit = (e: React.FormEvent) => {
    Component: Textarea Docs
    ================================================================ */
 
+const textareaSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function TextareaPropsTable() {
   const props = [
     {
@@ -3852,6 +3878,8 @@ function TextareaDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={textareaSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -4449,6 +4477,18 @@ const handleSubmit = (e: React.FormEvent) => {
    Component: Select Docs
    ================================================================ */
 
+const selectSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SelectPropsTable() {
   const props = [
     {
@@ -4693,6 +4733,8 @@ function SelectDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={selectSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -5463,6 +5505,18 @@ const handleSubmit = (e) => {
    Checkbox Docs
    ================================================================ */
 
+const checkboxSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function CheckboxDocs() {
   const [checked1, setChecked1] = useState<boolean | "indeterminate">(false)
   const [items, setItems] = useState([
@@ -5505,6 +5559,8 @@ function CheckboxDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={checkboxSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -6004,7 +6060,7 @@ const someChecked = items.some(i => i.checked) && !allChecked
       </section>
 
       {/* ---- Best Practices ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Always pair with a visible <label> linked via id/htmlFor for accessibility." />
@@ -6089,6 +6145,18 @@ const someChecked = items.some(i => i.checked) && !allChecked
    Switch Docs
    ================================================================ */
 
+const switchSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SwitchDocs() {
   const [checked, setChecked] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
@@ -6101,6 +6169,8 @@ function SwitchDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={switchSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -6562,7 +6632,7 @@ function SwitchDocs() {
       </section>
 
       {/* ---- Best Practices ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Switch for settings that take immediate effect (e.g. dark mode, notifications)." />
@@ -6648,9 +6718,23 @@ function SwitchDocs() {
    Label Docs
    ================================================================ */
 
+const labelSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function LabelDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={labelSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -6665,21 +6749,14 @@ function LabelDocs() {
       {/* Interactive playground */}
       <Playground controls={[]} render={() => <Label>Email address</Label>} />
 
-      {/* ---- Import ---- */}
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example
-          title="Import"
-          code={`import { Label } from "@/components/ui/label"`}
-        >
-          <p className="text-xs text-muted-foreground italic">
-            Import statement only — see examples below.
-          </p>
-        </Example>
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-label`}
+        importCode={`import { Label } from "@/components/ui/label"`}
+      />
 
       {/* ---- Examples ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Label htmlFor="email">Email address</Label>\n<Input id="email" type="email" placeholder="you@example.com" />`}>
@@ -6712,7 +6789,7 @@ function LabelDocs() {
       </section>
 
       {/* ---- API Reference ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -6748,8 +6825,32 @@ function LabelDocs() {
         </div>
       </section>
 
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens used by the Label component, sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border"><td className="px-4 py-3 font-mono font-semibold">typo-paragraph-sm-medium</td><td className="px-4 py-3 font-mono text-muted-foreground">Geist 500 14/20</td><td className="px-4 py-3 text-muted-foreground">Label text style</td></tr>
+              <tr className="border-b border-border"><td className="px-4 py-3 font-mono font-semibold">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Label text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold">peer-disabled:opacity-50</td><td className="px-4 py-3 font-mono text-muted-foreground">50%</td><td className="px-4 py-3 text-muted-foreground">Disabled state opacity</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       {/* ---- Best Practices ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Always pair every form control with a visible Label linked via htmlFor/id." />
@@ -6759,12 +6860,27 @@ function LabelDocs() {
         </div>
       </section>
 
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Labeling</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Label renders as a native <code className="bg-muted px-1 rounded font-mono">{"<label>"}</code> element with <code className="bg-muted px-1 rounded font-mono">htmlFor</code> linking to the control.</li>
+              <li>Clicking the label focuses the associated control — no extra JS needed.</li>
+              <li>When a control is disabled, the label automatically reduces opacity via <code className="bg-muted px-1 rounded font-mono">peer-disabled</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ---- Related Components ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="related" className="space-y-4 pb-12">
         <h2 className="font-heading font-semibold text-xl">
           Related Components
         </h2>
-        <div className="rounded-lg border border-border divide-y divide-border">
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
           <div className="px-5 py-3.5 flex justify-between items-center">
             <div>
               <p className="font-semibold text-foreground">Input</p>
@@ -6772,7 +6888,7 @@ function LabelDocs() {
                 Text input field — pair with Label for accessibility.
               </p>
             </div>
-            <span className="text-muted-foreground text-[10px] font-mono bg-teal-50 text-teal-700 px-2 py-0.5 rounded">
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
               Available
             </span>
           </div>
@@ -6816,9 +6932,23 @@ function LabelDocs() {
    Slider Docs
    ================================================================ */
 
+const sliderSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SliderDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={sliderSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Slider</h1>
@@ -6835,14 +6965,15 @@ function SliderDocs() {
         render={(p) => <Slider defaultValue={[50]} max={100} step={1} disabled={p.disabled} className="w-60" />}
       />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { Slider } from "@/components/ui/slider"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-slider`}
+        importCode={`import { Slider } from "@/components/ui/slider"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Slider defaultValue={[50]} max={100} step={1} />`}>
@@ -6862,7 +6993,7 @@ function SliderDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -6922,7 +7053,34 @@ function SliderDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Track filled range color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Track background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--background</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Thumb fill color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Thumb border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Slider for numeric ranges like volume, price, or brightness." />
@@ -6932,7 +7090,23 @@ function SliderDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Slider — fully keyboard accessible with arrow keys.</li>
+              <li>Tab to focus the thumb, then use Arrow Left/Right (horizontal) or Up/Down (vertical) to adjust.</li>
+              <li>Home/End keys jump to min/max values.</li>
+              <li>Always provide an accessible label via <code className="bg-muted px-1 rounded font-mono">aria-label</code> or a visible Label.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Related Components</h2>
         <div className="rounded-lg border border-border divide-y divide-border">
           <div className="px-5 py-3.5 flex justify-between items-center">
@@ -6970,9 +7144,23 @@ function SliderDocs() {
    Toggle Docs
    ================================================================ */
 
+const toggleSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ToggleDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={toggleSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Toggle</h1>
@@ -7009,14 +7197,15 @@ function ToggleDocs() {
         )}
       />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { Toggle } from "@/components/ui/toggle"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-toggle`}
+        importCode={`import { Toggle } from "@/components/ui/toggle"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Toggle aria-label="Toggle bold">\n  <Bold className="size-4" />\n</Toggle>`}>
@@ -7044,7 +7233,7 @@ function ToggleDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -7086,7 +7275,34 @@ function ToggleDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Hover & pressed background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Pressed text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Default text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Outline variant border</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Always provide an aria-label when using icon-only toggles." />
@@ -7094,7 +7310,22 @@ function ToggleDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Uses <code className="bg-muted px-1 rounded font-mono">aria-pressed</code> to communicate state to assistive technology.</li>
+              <li>Tab to focus, Space or Enter to toggle.</li>
+              <li>Icon-only toggles <strong>must</strong> have <code className="bg-muted px-1 rounded font-mono">aria-label</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Variant", "Default", "variant", '"default"'],
         ["Variant", "Outline", "variant", '"outline"'],
@@ -7107,6 +7338,27 @@ function ToggleDocs() {
         ["State", "Focus", "—", "CSS :focus-visible (3px ring)"],
         ["State", "Disabled", "disabled", "true (opacity-50)"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">ToggleGroup</p>
+              <p className="text-muted-foreground mt-0.5">Groups multiple toggles with single/multiple selection mode.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Button</p>
+              <p className="text-muted-foreground mt-0.5">Use when the action is not a toggle between two states.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -7115,9 +7367,23 @@ function ToggleDocs() {
    Toggle Group Docs
    ================================================================ */
 
+const toggleGroupSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ToggleGroupDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={toggleGroupSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Toggle Group</h1>
@@ -7159,14 +7425,15 @@ function ToggleGroupDocs() {
         }}
       />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-toggle-group`}
+        importCode={`import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Single selection" code={`<ToggleGroup type="single" defaultValue="center">\n  <ToggleGroupItem value="left" aria-label="Align left"><AlignLeft className="size-4" /></ToggleGroupItem>\n  <ToggleGroupItem value="center" aria-label="Align center"><AlignCenter className="size-4" /></ToggleGroupItem>\n  <ToggleGroupItem value="right" aria-label="Align right"><AlignRight className="size-4" /></ToggleGroupItem>\n</ToggleGroup>`}>
@@ -7202,7 +7469,7 @@ function ToggleGroupDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <h3 className="font-heading font-semibold text-lg">ToggleGroup</h3>
         <div className="overflow-x-auto rounded-lg border border-border">
@@ -7239,7 +7506,33 @@ function ToggleGroupDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Hover & pressed background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Pressed text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Outline variant border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use type='single' for mutually exclusive options like text alignment." />
@@ -7249,7 +7542,23 @@ function ToggleGroupDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Renders as a roving tabindex group — Tab moves focus to the group, Arrow keys navigate between items.</li>
+              <li>Space or Enter toggles the focused item.</li>
+              <li>type="single" enforces one selection; type="multiple" allows any combination.</li>
+              <li>Always provide <code className="bg-muted px-1 rounded font-mono">aria-label</code> on each ToggleGroupItem.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Type", "Single", "type", '"single" — one at a time'],
         ["Type", "Multiple", "type", '"multiple" — any number'],
@@ -7262,6 +7571,27 @@ function ToggleGroupDocs() {
         ["State", "Pressed / On", "—", "data-[state=on]"],
         ["State", "Disabled", "disabled", "true"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Toggle</p>
+              <p className="text-muted-foreground mt-0.5">Single standalone toggle button.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tabs</p>
+              <p className="text-muted-foreground mt-0.5">For navigating between content panels (not toggling state).</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -7270,9 +7600,23 @@ function ToggleGroupDocs() {
    Card Docs
    ================================================================ */
 
+const cardSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function CardDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={cardSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Card</h1>
@@ -7303,7 +7647,14 @@ function CardDocs() {
         </Card>
       </div>
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge`}
+        importCode={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
         <Example title="Default" code={`<Card className="w-[350px]">\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card description goes here.</CardDescription>\n  </CardHeader>\n  <CardContent>\n    <p>Card content area.</p>\n  </CardContent>\n  <CardFooter>\n    <Button>Action</Button>\n  </CardFooter>\n</Card>`}>
           <Card className="w-[350px]">
@@ -7344,7 +7695,49 @@ function CardDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Card background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Card text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Card border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-sm</td><td className="px-4 py-3 font-mono text-muted-foreground">0 1px 2px rgba(0,0,0,0.05)</td><td className="px-4 py-3 text-muted-foreground">Card shadow</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--radius-xl</td><td className="px-4 py-3 font-mono text-muted-foreground">12px</td><td className="px-4 py-3 text-muted-foreground">Card border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Card is a purely presentational container — no ARIA roles required.</li>
+              <li>Use semantic heading levels inside CardTitle (renders as h3 by default).</li>
+              <li>If the card is interactive (clickable), wrap it with a link or button and add appropriate keyboard handling.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Container", "Card", "—", "rounded-xl border shadow-sm"],
         ["Sub-component", "Header", "CardHeader", "gap-2xs p-md"],
@@ -7353,6 +7746,27 @@ function CardDocs() {
         ["Sub-component", "Content", "CardContent", "p-md pt-0"],
         ["Sub-component", "Footer", "CardFooter", "flex items-center p-md pt-0"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Dialog</p>
+              <p className="text-muted-foreground mt-0.5">Overlay card for focused interactions that require attention.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Sheet</p>
+              <p className="text-muted-foreground mt-0.5">Slide-in panel for supplementary content.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -7802,9 +8216,23 @@ function AvatarDocs() {
    Progress Docs
    ================================================================ */
 
+const progressSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ProgressDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={progressSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Progress</h1>
@@ -7824,7 +8252,14 @@ function ProgressDocs() {
         render={(p) => <Progress value={Number(p.value)} className="w-60" />}
       />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-progress`}
+        importCode={`import { Progress } from "@/components/ui/progress"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
         <Example title="25%" code={`<Progress value={25} />`}>
           <Progress value={25} className="w-60" />
@@ -7840,7 +8275,7 @@ function ProgressDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -7852,7 +8287,47 @@ function ProgressDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Filled indicator color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Track background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--radius-full</td><td className="px-4 py-3 font-mono text-muted-foreground">9999px</td><td className="px-4 py-3 text-muted-foreground">Track border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Progress — renders with <code className="bg-muted px-1 rounded font-mono">role="progressbar"</code>.</li>
+              <li>Automatically sets <code className="bg-muted px-1 rounded font-mono">aria-valuenow</code>, <code className="bg-muted px-1 rounded font-mono">aria-valuemin</code>, and <code className="bg-muted px-1 rounded font-mono">aria-valuemax</code>.</li>
+              <li>Add <code className="bg-muted px-1 rounded font-mono">aria-label</code> for non-obvious progress bars.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Track Height", "6px", "—", "h-1.5"],
         ["Track Color", "Muted", "—", "bg-muted"],
@@ -7860,6 +8335,27 @@ function ProgressDocs() {
         ["Value", "0–100", "value", "number (0–100)"],
         ["Radius", "Full (pill)", "—", "rounded-full"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Slider</p>
+              <p className="text-muted-foreground mt-0.5">User-controlled range input — use when value is adjustable.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Spinner</p>
+              <p className="text-muted-foreground mt-0.5">Indeterminate loading indicator for unknown progress.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -9091,9 +9587,23 @@ function BadgeDocs() {
    Separator Docs
    ================================================================ */
 
+const separatorSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SeparatorDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={separatorSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Separator</h1>
@@ -9125,7 +9635,14 @@ function SeparatorDocs() {
         )}
       />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-separator`}
+        importCode={`import { Separator } from "@/components/ui/separator"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
         <Example title="Horizontal" code={`<Separator />`}>
           <div className="space-y-4 w-60">
@@ -9143,7 +9660,7 @@ function SeparatorDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -9156,13 +9673,64 @@ function SeparatorDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Separator color</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Separator — renders as <code className="bg-muted px-1 rounded font-mono">role="separator"</code> or <code className="bg-muted px-1 rounded font-mono">role="none"</code> when decorative.</li>
+              <li>Set <code className="bg-muted px-1 rounded font-mono">decorative={false}</code> when the separator has semantic meaning for screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Orientation", "Horizontal", "orientation", '"horizontal" — h-px w-full'],
         ["Orientation", "Vertical", "orientation", '"vertical" — h-full w-px'],
         ["Color", "Border", "—", "bg-border"],
         ["Decorative", "true", "decorative", "true (hidden from screen readers)"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Card</p>
+              <p className="text-muted-foreground mt-0.5">Content container — separators are often used within cards.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -9171,9 +9739,23 @@ function SeparatorDocs() {
    Skeleton Docs
    ================================================================ */
 
+const skeletonSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SkeletonDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={skeletonSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Skeleton</h1>
@@ -9210,7 +9792,14 @@ function SkeletonDocs() {
         }
       />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge`}
+        importCode={`import { Skeleton } from "@/components/ui/skeleton"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
         <Example title="Card skeleton" code={`<div className="flex items-center gap-4">\n  <Skeleton className="size-12 rounded-full" />\n  <div className="space-y-2">\n    <Skeleton className="h-4 w-[200px]" />\n    <Skeleton className="h-4 w-[160px]" />\n  </div>\n</div>`}>
           <div className="flex items-center gap-4">
@@ -9230,7 +9819,32 @@ function SkeletonDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Skeleton background color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">animate-pulse</td><td className="px-4 py-3 font-mono text-muted-foreground">CSS keyframe</td><td className="px-4 py-3 text-muted-foreground">Pulse animation</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">rounded-lg</td><td className="px-4 py-3 font-mono text-muted-foreground">8px</td><td className="px-4 py-3 text-muted-foreground">Default border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Match the skeleton shape and size to the actual content it replaces." />
@@ -9238,13 +9852,49 @@ function SkeletonDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Skeleton is purely visual — hidden from assistive technology.</li>
+              <li>Use <code className="bg-muted px-1 rounded font-mono">aria-busy="true"</code> on the parent container while loading.</li>
+              <li>Add <code className="bg-muted px-1 rounded font-mono">aria-live="polite"</code> on the region to announce when content loads.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Animation", "Pulse", "—", "animate-pulse"],
         ["Shape", "Rounded", "—", "rounded-lg"],
         ["Color", "Muted", "—", "bg-muted"],
         ["Sizing", "Custom via className", "className", "h-4 w-[200px]"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Spinner</p>
+              <p className="text-muted-foreground mt-0.5">Small inline loading indicator for buttons and actions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Progress</p>
+              <p className="text-muted-foreground mt-0.5">Determinate progress bar when percentage is known.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -9253,9 +9903,23 @@ function SkeletonDocs() {
    Table Docs
    ================================================================ */
 
+const tableSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function TableDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={tableSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Table</h1>
@@ -9278,7 +9942,14 @@ function TableDocs() {
         </Table>
       )} />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge`}
+        importCode={`import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "@/components/ui/table"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
         <Example title="Default" code={`<Table>\n  <TableCaption>A list of recent invoices.</TableCaption>\n  <TableHeader>\n    <TableRow>\n      <TableHead className="w-[100px]">Invoice</TableHead>\n      <TableHead>Status</TableHead>\n      <TableHead>Method</TableHead>\n      <TableHead className="text-right">Amount</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell className="font-medium">INV001</TableCell>\n      <TableCell>Paid</TableCell>\n      <TableCell>Credit Card</TableCell>\n      <TableCell className="text-right">$250.00</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>`}>
           <Table>
@@ -9334,7 +10005,34 @@ function TableDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Table background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Row borders</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Header & hover row background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Cell text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Caption text color</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use TableCaption to describe the table content for accessibility." />
@@ -9342,7 +10040,22 @@ function TableDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Renders native HTML table elements — inherits built-in semantics.</li>
+              <li>Always include <code className="bg-muted px-1 rounded font-mono">TableCaption</code> for screen reader context.</li>
+              <li>Use <code className="bg-muted px-1 rounded font-mono">scope="col"</code> on header cells (default via TableHead).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Sub-component", "Table", "Table", "table root with overflow wrapper"],
         ["Sub-component", "Header", "TableHeader", "thead element"],
@@ -9354,6 +10067,27 @@ function TableDocs() {
         ["Row State", "Hover", "—", "hover:bg-muted/50"],
         ["Row State", "Selected", "—", "data-[state=selected]:bg-muted"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Card</p>
+              <p className="text-muted-foreground mt-0.5">Container for table with padding and border.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Pagination</p>
+              <p className="text-muted-foreground mt-0.5">Page navigation for large datasets.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -9362,9 +10096,23 @@ function TableDocs() {
    Dialog Docs
    ================================================================ */
 
+const dialogSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function DialogDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={dialogSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Dialog</h1>
@@ -9402,14 +10150,15 @@ function DialogDocs() {
         </Dialog>
       </div>
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import {\n  Dialog, DialogTrigger, DialogContent,\n  DialogHeader, DialogFooter,\n  DialogTitle, DialogDescription,\n} from "@/components/ui/dialog"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-dialog`}
+        importCode={`import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent className="sm:max-w-[425px]">\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Make changes to your profile here.</DialogDescription>\n    </DialogHeader>\n    <div className="grid gap-4 py-4">\n      <div className="grid grid-cols-4 items-center gap-4">\n        <Label htmlFor="name" className="text-right">Name</Label>\n        <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />\n      </div>\n    </div>\n    <DialogFooter>\n      <Button type="submit">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}>
@@ -9440,7 +10189,34 @@ function DialogDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Dialog content background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Dialog text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Dialog border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-lg</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation shadow</td><td className="px-4 py-3 text-muted-foreground">Dialog elevation</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--radius-xl</td><td className="px-4 py-3 font-mono text-muted-foreground">12px</td><td className="px-4 py-3 text-muted-foreground">Dialog border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Dialog for forms and complex interactions that need user focus." />
@@ -9448,7 +10224,23 @@ function DialogDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Dialog — traps focus inside when open.</li>
+              <li>Escape key closes the dialog.</li>
+              <li>Always include <code className="bg-muted px-1 rounded font-mono">DialogTitle</code> and <code className="bg-muted px-1 rounded font-mono">DialogDescription</code> for screen readers.</li>
+              <li>Focus returns to trigger element when closed.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Overlay", "Black 80%", "—", "bg-black/80, fixed inset-0"],
         ["Content Width", "max-w-lg", "—", "sm:max-w-lg"],
@@ -9460,6 +10252,34 @@ function DialogDocs() {
         ["Sub-component", "Description", "DialogDescription", "text-sm text-muted-foreground"],
         ["Close Button", "X icon", "DialogClose", "top-right corner, size-md icon"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">AlertDialog</p>
+              <p className="text-muted-foreground mt-0.5">Requires explicit confirmation — cannot be dismissed by clicking overlay.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Sheet</p>
+              <p className="text-muted-foreground mt-0.5">Slide-in panel for larger content areas.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Drawer</p>
+              <p className="text-muted-foreground mt-0.5">Bottom sheet for mobile-friendly interactions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10203,9 +11023,23 @@ function AlertDialogDocs() {
    Sheet Docs
    ================================================================ */
 
+const sheetSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SheetDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={sheetSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Sheet</h1>
@@ -10237,7 +11071,14 @@ function SheetDocs() {
         )}
       />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-dialog`}
+        importCode={`import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Right (Default)" code={`<Sheet>\n  <SheetTrigger asChild>\n    <Button variant="outline">Open Sheet</Button>\n  </SheetTrigger>\n  <SheetContent>\n    <SheetHeader>\n      <SheetTitle>Edit profile</SheetTitle>\n      <SheetDescription>Make changes to your profile.</SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n</Sheet>`}>
@@ -10296,7 +11137,32 @@ function SheetDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Sheet background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Sheet border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-lg</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation shadow</td><td className="px-4 py-3 text-muted-foreground">Sheet elevation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Sheet for supplementary content that doesn't need a full page." />
@@ -10304,7 +11170,22 @@ function SheetDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Dialog — traps focus, Escape to close.</li>
+              <li>Always include SheetTitle and SheetDescription for screen readers.</li>
+              <li>Overlay click closes the sheet by default.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Side", "Right (default)", "side", '"right" — inset-y-0 right-0'],
         ["Side", "Left", "side", '"left" — inset-y-0 left-0'],
@@ -10315,6 +11196,27 @@ function SheetDocs() {
         ["Animation", "Slide in/out", "—", "slide-in-from-{side}"],
         ["Close Button", "X icon", "SheetClose", "focus-visible:ring-[3px]"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Dialog</p>
+              <p className="text-muted-foreground mt-0.5">Centered modal for focused interactions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Drawer</p>
+              <p className="text-muted-foreground mt-0.5">Bottom sheet alternative for mobile.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10323,9 +11225,23 @@ function SheetDocs() {
    Drawer Docs
    ================================================================ */
 
+const drawerSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function DrawerDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={drawerSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Drawer</h1>
@@ -10348,7 +11264,14 @@ function DrawerDocs() {
         </Drawer>
       )} />
 
-      <section className="space-y-4 pt-3xl">
+      
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add vaul`}
+        importCode={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "@/components/ui/drawer"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant="outline">Open Drawer</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader className="text-left">\n      <DrawerTitle>Move Goal</DrawerTitle>\n      <DrawerDescription>Set your daily activity goal.</DrawerDescription>\n    </DrawerHeader>\n    <div className="p-4">\n      <p>Drawer body content goes here.</p>\n    </div>\n    <DrawerFooter>\n      <Button>Submit</Button>\n      <DrawerClose asChild>\n        <Button variant="outline">Cancel</Button>\n      </DrawerClose>\n    </DrawerFooter>\n  </DrawerContent>\n</Drawer>`}>
@@ -10382,7 +11305,32 @@ function DrawerDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Drawer background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Drawer border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Handle indicator color</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Drawer on mobile for actions and confirmations." />
@@ -10390,7 +11338,22 @@ function DrawerDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Vaul — swipe-to-dismiss for touch devices.</li>
+              <li>Focus is trapped inside when open.</li>
+              <li>Always provide DrawerTitle for screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Position", "Bottom", "—", "fixed inset-x-0 bottom-0"],
         ["Handle Bar", "100×4px", "—", "w-[100px] h-2xs rounded-full bg-muted"],
@@ -10399,6 +11362,27 @@ function DrawerDocs() {
         ["Gesture", "Swipe to close", "—", "vaul library built-in"],
         ["Scale Background", "true", "shouldScaleBackground", "true (default)"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Sheet</p>
+              <p className="text-muted-foreground mt-0.5">Side panel for desktop layouts.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Dialog</p>
+              <p className="text-muted-foreground mt-0.5">Centered modal alternative.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10407,9 +11391,23 @@ function DrawerDocs() {
    Popover Docs
    ================================================================ */
 
+const popoverSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function PopoverDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={popoverSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Popover</h1>
@@ -10424,12 +11422,13 @@ function PopoverDocs() {
         </Popover>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n} from "@/components/ui/popover"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-popover`}
+        importCode={`import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Popover>\n  <PopoverTrigger asChild>\n    <Button variant="outline">Open Popover</Button>\n  </PopoverTrigger>\n  <PopoverContent className="w-80">\n    <div className="grid gap-4">\n      <div className="space-y-2">\n        <h4 className="font-medium leading-none">Dimensions</h4>\n        <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>\n      </div>\n      <div className="grid gap-2">\n        <div className="grid grid-cols-3 items-center gap-4">\n          <Label htmlFor="width">Width</Label>\n          <Input id="width" defaultValue="100%" className="col-span-2 h-8" />\n        </div>\n      </div>\n    </div>\n  </PopoverContent>\n</Popover>`}>
@@ -10459,7 +11458,33 @@ function PopoverDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Popover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Popover border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation shadow</td><td className="px-4 py-3 text-muted-foreground">Popover shadow</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--radius-lg</td><td className="px-4 py-3 font-mono text-muted-foreground">8px</td><td className="px-4 py-3 text-muted-foreground">Popover border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Popover for interactive floating content like forms or settings." />
@@ -10467,7 +11492,22 @@ function PopoverDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Popover — focus is managed automatically.</li>
+              <li>Escape closes the popover; focus returns to trigger.</li>
+              <li>Content is portaled to avoid clipping issues.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Content Width", "288px", "—", "w-72"],
         ["Alignment", "Center (default)", "align", '"center"'],
@@ -10477,6 +11517,34 @@ function PopoverDocs() {
         ["Border", "Border", "—", "border border-border"],
         ["Shadow", "Medium", "—", "shadow-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tooltip</p>
+              <p className="text-muted-foreground mt-0.5">Non-interactive hover content — use for brief descriptions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">DropdownMenu</p>
+              <p className="text-muted-foreground mt-0.5">Menu of actions — use when popover contains a list of commands.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">HoverCard</p>
+              <p className="text-muted-foreground mt-0.5">Hover-triggered preview card.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10485,9 +11553,23 @@ function PopoverDocs() {
    Tooltip Docs
    ================================================================ */
 
+const tooltipSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function TooltipDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={tooltipSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Tooltip</h1>
@@ -10504,12 +11586,13 @@ function TooltipDocs() {
         </TooltipProvider>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Tooltip,\n  TooltipTrigger,\n  TooltipContent,\n  TooltipProvider,\n} from "@/components/ui/tooltip"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-tooltip`}
+        importCode={`import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild>\n      <Button variant="outline">Hover me</Button>\n    </TooltipTrigger>\n    <TooltipContent>\n      <p>Add to library</p>\n    </TooltipContent>\n  </Tooltip>\n</TooltipProvider>`}>
@@ -10544,7 +11627,32 @@ function TooltipDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Tooltip background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Tooltip text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--radius-md</td><td className="px-4 py-3 font-mono text-muted-foreground">6px</td><td className="px-4 py-3 text-muted-foreground">Tooltip border radius</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Tooltip for icon-only buttons to provide accessible labels." />
@@ -10552,7 +11660,23 @@ function TooltipDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Tooltip is hover/focus triggered — not for essential information.</li>
+              <li>Built on Radix Tooltip — manages <code className="bg-muted px-1 rounded font-mono">aria-describedby</code> automatically.</li>
+              <li>Content is announced to screen readers when trigger receives focus.</li>
+              <li>Wrap your app in <code className="bg-muted px-1 rounded font-mono">TooltipProvider</code> for shared delay configuration.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Background", "Primary", "—", "bg-primary text-primary-foreground"],
         ["Padding", "px-sm py-2xs", "—", "px-sm py-2xs"],
@@ -10561,6 +11685,27 @@ function TooltipDocs() {
         ["Side Offset", "4px", "sideOffset", "4"],
         ["Animation", "Fade + zoom", "—", "fade-in-0, zoom-in-95"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Popover</p>
+              <p className="text-muted-foreground mt-0.5">Interactive floating content — use when content includes form controls.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">HoverCard</p>
+              <p className="text-muted-foreground mt-0.5">Rich preview card on hover.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10569,9 +11714,23 @@ function TooltipDocs() {
    Toast (Sonner) Docs
    ================================================================ */
 
+const toastSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ToastDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={toastSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Toast (Sonner)</h1>
@@ -10585,14 +11744,15 @@ function ToastDocs() {
         </Button>
       )} />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { toast } from "sonner"\nimport { Toaster } from "@/components/ui/sonner"\n\n// Place <Toaster /> at app root`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add sonner`}
+        importCode={`import { Toaster } from "@/components/ui/sonner"\nimport { toast } from "sonner"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Variants" code={`toast("Default notification")\ntoast.success("Success!")\ntoast.error("Something went wrong")\ntoast.warning("Careful!")\ntoast.info("FYI...")`}>
@@ -10618,7 +11778,33 @@ function ToastDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Toast background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Toast text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Toast border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-lg</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation shadow</td><td className="px-4 py-3 text-muted-foreground">Toast shadow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use toast for non-blocking feedback (saved, deleted, sent, etc.)." />
@@ -10626,7 +11812,22 @@ function ToastDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Uses <code className="bg-muted px-1 rounded font-mono">role="status"</code> — screen readers announce toast content.</li>
+              <li>Action buttons in toasts are keyboard-focusable.</li>
+              <li>Toasts auto-dismiss after a timeout — ensure content is not critical.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Style", "Background", "—", "bg-background text-foreground"],
         ["Style", "Border", "—", "border-border"],
@@ -10638,6 +11839,27 @@ function ToastDocs() {
         ["Action Button", "Primary", "action", "bg-primary text-primary-foreground"],
         ["Cancel Button", "Muted", "cancel", "bg-muted text-muted-foreground"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Alert</p>
+              <p className="text-muted-foreground mt-0.5">Persistent inline message — use when dismissal is not appropriate.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Dialog</p>
+              <p className="text-muted-foreground mt-0.5">Blocking modal — use when user confirmation is required.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10646,9 +11868,23 @@ function ToastDocs() {
    Tabs Docs
    ================================================================ */
 
+const tabsSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function TabsDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={tabsSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Tabs</h1>
@@ -10682,12 +11918,13 @@ function TabsDocs() {
         </Tabs>
       </div>
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-tabs`}
+        importCode={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Tabs defaultValue="account" className="w-[400px]">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="password">Password</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">\n    <Card>\n      <CardHeader>\n        <CardTitle>Account</CardTitle>\n        <CardDescription>Make changes to your account.</CardDescription>\n      </CardHeader>\n      <CardContent className="space-y-2">\n        <div className="space-y-1">\n          <Label htmlFor="tab-name">Name</Label>\n          <Input id="tab-name" defaultValue="Pedro Duarte" />\n        </div>\n      </CardContent>\n    </Card>\n  </TabsContent>\n</Tabs>`}>
@@ -10736,7 +11973,34 @@ function TabsDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">TabsList background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--background</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Active tab background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Active tab text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Inactive tab text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Tabs for content that is related but independent." />
@@ -10744,7 +12008,22 @@ function TabsDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Tabs — full keyboard support with Arrow keys for tab navigation.</li>
+              <li>Tab panels are associated via <code className="bg-muted px-1 rounded font-mono">aria-controls</code> and <code className="bg-muted px-1 rounded font-mono">aria-labelledby</code>.</li>
+              <li>Only the active panel is in the tab order.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["List Height", "36px", "—", "h-9"],
         ["List Background", "Muted", "—", "bg-muted, rounded-lg"],
@@ -10754,6 +12033,27 @@ function TabsDocs() {
         ["Trigger State", "Disabled", "disabled", "true (opacity-50)"],
         ["Content Spacing", "Top margin", "—", "mt-xs"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">ToggleGroup</p>
+              <p className="text-muted-foreground mt-0.5">For toggling options without content panels.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Accordion</p>
+              <p className="text-muted-foreground mt-0.5">Vertically stacked collapsible sections.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10762,9 +12062,23 @@ function TabsDocs() {
    Breadcrumb Docs
    ================================================================ */
 
+const breadcrumbSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function BreadcrumbDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={breadcrumbSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Breadcrumb</h1>
@@ -10784,12 +12098,13 @@ function BreadcrumbDocs() {
         </Breadcrumb>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from "@/components/ui/breadcrumb"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge lucide-react`}
+        importCode={`import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/components">Components</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
@@ -10811,7 +12126,31 @@ function BreadcrumbDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Link and separator color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Current page text</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Always include the current page as the last non-linked item." />
@@ -10819,7 +12158,22 @@ function BreadcrumbDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Renders inside a <code className="bg-muted px-1 rounded font-mono">nav</code> element with <code className="bg-muted px-1 rounded font-mono">aria-label="breadcrumb"</code>.</li>
+              <li>Current page uses <code className="bg-muted px-1 rounded font-mono">aria-current="page"</code>.</li>
+              <li>Separators are decorative and hidden from screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Separator", "ChevronRight", "BreadcrumbSeparator", "size-3.5 icon"],
         ["Link State", "Default", "BreadcrumbLink", "text-muted-foreground hover:text-foreground"],
@@ -10828,6 +12182,27 @@ function BreadcrumbDocs() {
         ["Gap", "Between items", "—", "gap-2xs"],
         ["Ellipsis", "Overflow", "BreadcrumbEllipsis", "MoreHorizontal icon"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">NavigationMenu</p>
+              <p className="text-muted-foreground mt-0.5">Top-level site navigation.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Pagination</p>
+              <p className="text-muted-foreground mt-0.5">Page-level navigation for lists.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10836,9 +12211,23 @@ function BreadcrumbDocs() {
    Pagination Docs
    ================================================================ */
 
+const paginationSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function PaginationDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={paginationSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Pagination</h1>
@@ -10858,12 +12247,13 @@ function PaginationDocs() {
         </Pagination>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationPrevious,\n  PaginationNext,\n  PaginationEllipsis,\n} from "@/components/ui/pagination"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge lucide-react`}
+        importCode={`import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@/components/ui/pagination"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Pagination>\n  <PaginationContent>\n    <PaginationItem>\n      <PaginationPrevious href="#" />\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#">1</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#" isActive>2</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationLink href="#">3</PaginationLink>\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationEllipsis />\n    </PaginationItem>\n    <PaginationItem>\n      <PaginationNext href="#" />\n    </PaginationItem>\n  </PaginationContent>\n</Pagination>`}>
@@ -10892,7 +12282,32 @@ function PaginationDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Active page text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Inactive page text</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Highlight the current page for clear context." />
@@ -10900,7 +12315,22 @@ function PaginationDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Renders inside a <code className="bg-muted px-1 rounded font-mono">nav</code> element with <code className="bg-muted px-1 rounded font-mono">aria-label="pagination"</code>.</li>
+              <li>Current page link has <code className="bg-muted px-1 rounded font-mono">aria-current="page"</code>.</li>
+              <li>Previous/Next buttons include screen reader text.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Active Page", "Outline variant", "isActive", "true (outline button style)"],
         ["Inactive Page", "Ghost variant", "isActive", "false (ghost button style)"],
@@ -10908,6 +12338,27 @@ function PaginationDocs() {
         ["Ellipsis", "Overflow", "PaginationEllipsis", "MoreHorizontal icon"],
         ["Icon Size", "16px", "—", "size-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Table</p>
+              <p className="text-muted-foreground mt-0.5">Data table often paired with pagination.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Breadcrumb</p>
+              <p className="text-muted-foreground mt-0.5">Hierarchical navigation.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -10916,9 +12367,23 @@ function PaginationDocs() {
    Dropdown Menu Docs
    ================================================================ */
 
+const dropdownMenuSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function DropdownMenuDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={dropdownMenuSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Dropdown Menu</h1>
@@ -10939,12 +12404,13 @@ function DropdownMenuDocs() {
         </DropdownMenu>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuShortcut,\n  DropdownMenuGroup,\n  DropdownMenuSub,\n  DropdownMenuSubTrigger,\n  DropdownMenuSubContent,\n} from "@/components/ui/dropdown-menu"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-dropdown-menu`}
+        importCode={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button variant="outline">Open</Button>\n  </DropdownMenuTrigger>\n  <DropdownMenuContent className="w-56">\n    <DropdownMenuLabel>My Account</DropdownMenuLabel>\n    <DropdownMenuSeparator />\n    <DropdownMenuGroup>\n      <DropdownMenuItem>\n        <User className="mr-2 size-4" /> Profile\n        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>\n      </DropdownMenuItem>\n      <DropdownMenuItem>\n        <Settings className="mr-2 size-4" /> Settings\n        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>\n      </DropdownMenuItem>\n    </DropdownMenuGroup>\n    <DropdownMenuSeparator />\n    <DropdownMenuItem>\n      <LogOut className="mr-2 size-4" /> Log out\n    </DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>`}>
@@ -10995,7 +12461,34 @@ function DropdownMenuDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Menu background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Menu border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Item text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3 text-muted-foreground">Menu shadow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Group related items and use separators for clarity." />
@@ -11003,7 +12496,23 @@ function DropdownMenuDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix DropdownMenu — full keyboard navigation.</li>
+              <li>Arrow keys navigate items, Enter/Space activates, Escape closes.</li>
+              <li>Type-ahead: typing a letter jumps to matching items.</li>
+              <li>Checkbox and radio items communicate state via ARIA.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Content Min Width", "8rem", "—", "min-w-[8rem]"],
         ["Item Padding", "px-xs py-2xs", "—", "px-xs py-2xs text-sm"],
@@ -11015,6 +12524,34 @@ function DropdownMenuDocs() {
         ["Shortcut", "Right-aligned", "DropdownMenuShortcut", "ml-auto text-xs opacity-60"],
         ["Icon Size", "16px", "—", "[&_svg]:size-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">ContextMenu</p>
+              <p className="text-muted-foreground mt-0.5">Right-click context menu — same item pattern.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Menubar</p>
+              <p className="text-muted-foreground mt-0.5">Horizontal menu bar with multiple dropdown menus.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Command</p>
+              <p className="text-muted-foreground mt-0.5">Searchable command palette.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11022,6 +12559,18 @@ function DropdownMenuDocs() {
 /* ================================================================
    Command Docs
    ================================================================ */
+
+const commandSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
 
 function CommandDocs() {
   const [open, setOpen] = useState(false)
@@ -11039,6 +12588,8 @@ function CommandDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={commandSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Command</h1>
@@ -11059,12 +12610,13 @@ function CommandDocs() {
         </Command>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Command,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  CommandSeparator,\n  CommandDialog,\n} from "@/components/ui/command"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add cmdk@1.1.1`}
+        importCode={`import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from "@/components/ui/command"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Inline" code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>\n      <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
@@ -11115,7 +12667,34 @@ function CommandDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Command background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Command border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Item text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Placeholder text</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Command for searchable lists and keyboard-first interactions." />
@@ -11123,7 +12702,23 @@ function CommandDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on cmdk — uses <code className="bg-muted px-1 rounded font-mono">role="listbox"</code> for the list.</li>
+              <li>Type to search filters items in real-time.</li>
+              <li>Arrow keys navigate, Enter activates the selected item.</li>
+              <li>CommandDialog combines Command with Dialog for Cmd+K patterns.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Input Height", "40px", "—", "h-3xl, bg-transparent"],
         ["Input Icon", "Search", "CommandInput", "Search icon, size-md"],
@@ -11134,6 +12729,27 @@ function CommandDocs() {
         ["Empty State", "Centered", "CommandEmpty", "py-lg text-center text-sm"],
         ["Icon Size", "16px", "—", "[&_svg]:size-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">DropdownMenu</p>
+              <p className="text-muted-foreground mt-0.5">Simple action menu without search.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Combobox</p>
+              <p className="text-muted-foreground mt-0.5">Searchable select for form fields.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11635,11 +13251,25 @@ function AccordionDocs() {
    Collapsible Docs
    ================================================================ */
 
+const collapsibleSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function CollapsibleDocs() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={collapsibleSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="typo-heading-2">Collapsible</h1>
@@ -11658,12 +13288,13 @@ function CollapsibleDocs() {
         </Collapsible>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Collapsible,\n  CollapsibleTrigger,\n  CollapsibleContent,\n} from "@/components/ui/collapsible"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-collapsible`}
+        importCode={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2">\n  <div className="flex items-center justify-between space-x-4 px-4">\n    <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>\n    <CollapsibleTrigger asChild>\n      <Button variant="ghost" size="sm">\n        <ChevronsUpDown className="size-4" />\n        <span className="sr-only">Toggle</span>\n      </Button>\n    </CollapsibleTrigger>\n  </div>\n  <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/primitives</div>\n  <CollapsibleContent className="space-y-2">\n    <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@radix-ui/colors</div>\n    <div className="rounded-md border border-border px-4 py-2 font-mono text-sm">@stitches/react</div>\n  </CollapsibleContent>\n</Collapsible>`}>
@@ -11686,7 +13317,30 @@ function CollapsibleDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Content border (when styled)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Collapsible for toggling a single section of content." />
@@ -11694,13 +13348,42 @@ function CollapsibleDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Collapsible — manages <code className="bg-muted px-1 rounded font-mono">aria-expanded</code> on trigger.</li>
+              <li>Enter/Space toggles the collapsible content.</li>
+              <li>Content animates in/out — hidden from DOM when collapsed.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["State", "Open", "open", "true — content visible"],
         ["State", "Closed", "open", "false — content hidden"],
         ["Sub-component", "Trigger", "CollapsibleTrigger", "Toggle button"],
         ["Sub-component", "Content", "CollapsibleContent", "Animated visibility"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Accordion</p>
+              <p className="text-muted-foreground mt-0.5">Multiple collapsible sections in a group with exclusive opening.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11709,6 +13392,18 @@ function CollapsibleDocs() {
    Scroll Area Docs
    ================================================================ */
 
+const scrollAreaSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ScrollAreaDocs() {
   const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -11716,6 +13411,8 @@ function ScrollAreaDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={scrollAreaSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="typo-heading-2">Scroll Area</h1>
@@ -11732,12 +13429,13 @@ function ScrollAreaDocs() {
         </ScrollArea>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-scroll-area`}
+        importCode={`import { ScrollArea } from "@/components/ui/scroll-area"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Vertical" code={`<ScrollArea className="h-72 w-48 rounded-md border">\n  <div className="p-4">\n    <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>\n    {tags.map((tag) => (\n      <div key={tag} className="text-sm">{tag}</div>\n    ))}\n  </div>\n</ScrollArea>`}>
@@ -11755,7 +13453,31 @@ function ScrollAreaDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Scrollbar track border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Scrollbar thumb (hover)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use ScrollArea for constrained containers with lots of content." />
@@ -11763,13 +13485,41 @@ function ScrollAreaDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix ScrollArea — provides custom scrollbar styling while maintaining keyboard scrolling.</li>
+              <li>Content remains natively scrollable via keyboard (Tab, Arrow keys, Page Up/Down).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Orientation", "Vertical (default)", "orientation", '"vertical" — w-2.5 scrollbar'],
         ["Orientation", "Horizontal", "orientation", '"horizontal" — h-2.5 scrollbar'],
         ["Thumb", "Rounded pill", "—", "rounded-full bg-border"],
         ["Viewport", "Full coverage", "—", "overflow-hidden rounded-[inherit]"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Table</p>
+              <p className="text-muted-foreground mt-0.5">Wrap tables in ScrollArea for horizontal overflow.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11778,11 +13528,25 @@ function ScrollAreaDocs() {
    Calendar Docs
    ================================================================ */
 
+const calendarSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function CalendarDocs() {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={calendarSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Calendar</h1>
@@ -11791,12 +13555,13 @@ function CalendarDocs() {
 
       <Playground controls={[]} render={() => <Calendar className="rounded-md border" />} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import { Calendar } from "@/components/ui/calendar"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add react-day-picker`}
+        importCode={`import { Calendar } from "@/components/ui/calendar"`}
+      />
 
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Single Date" code={`<Calendar\n  mode="single"\n  selected={date}\n  onSelect={setDate}\n  className="rounded-md border"\n/>`}>
@@ -11809,7 +13574,33 @@ function CalendarDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Selected day background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Selected day text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Today highlight background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Outside month days text</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Calendar for date range selection and scheduling UIs." />
@@ -11817,7 +13608,22 @@ function CalendarDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on react-day-picker — full keyboard navigation.</li>
+              <li>Arrow keys move between days, Page Up/Down changes months.</li>
+              <li>Selected dates are announced via screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Mode", "Single", "mode", '"single" — pick one date'],
         ["Mode", "Range", "mode", '"range" — pick start/end'],
@@ -11829,6 +13635,20 @@ function CalendarDocs() {
         ["State", "Range Middle", "—", "bg-muted rounded-none"],
         ["Navigation", "Prev/Next", "—", "ChevronLeft/Right buttons"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">DatePicker</p>
+              <p className="text-muted-foreground mt-0.5">Calendar inside a popover with input trigger.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11837,9 +13657,23 @@ function CalendarDocs() {
    Date Picker Docs
    ================================================================ */
 
+const datePickerSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function DatePickerDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={datePickerSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Date Picker</h1>
@@ -11848,14 +13682,15 @@ function DatePickerDocs() {
 
       <Playground controls={[]} render={() => <DatePicker />} />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { DatePicker } from "@/components/ui/date-picker"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add react-day-picker @radix-ui/react-popover date-fns`}
+        importCode={`import { DatePicker } from "@/components/ui/date-picker"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<DatePicker />`}>
@@ -11863,7 +13698,32 @@ function DatePickerDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Popover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Input & popover border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Selected day background</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use DatePicker for form fields where a single date is needed." />
@@ -11871,13 +13731,49 @@ function DatePickerDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Combines Button trigger + Popover + Calendar — all Radix-managed accessibility.</li>
+              <li>Trigger announces selected date to screen readers.</li>
+              <li>Calendar keyboard navigation works within the popover.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Trigger", "Outline button", "—", "Button variant=outline, w-[280px]"],
         ["Icon", "Calendar", "—", "CalendarIcon, size-md"],
         ["Popover", "Calendar inside", "—", "Popover + Calendar composition"],
         ["Callback", "Date selected", "onDateChange", "(date: Date) => void"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Calendar</p>
+              <p className="text-muted-foreground mt-0.5">Standalone calendar without popover.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Input</p>
+              <p className="text-muted-foreground mt-0.5">Manual date text input.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11885,6 +13781,18 @@ function DatePickerDocs() {
 /* ================================================================
    Combobox Docs
    ================================================================ */
+
+const comboboxSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
 
 function ComboboxDocs() {
   const frameworks = [
@@ -11897,6 +13805,8 @@ function ComboboxDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={comboboxSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Combobox</h1>
@@ -11917,14 +13827,15 @@ function ComboboxDocs() {
         />
       )} />
 
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example title="Import" code={`import { Combobox } from "@/components/ui/combobox"`}>
-          <p className="text-xs text-muted-foreground italic">Import statement only — see examples below.</p>
-        </Example>
-      </section>
+      
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add cmdk@1.1.1 @radix-ui/react-popover`}
+        importCode={`import { Combobox } from "@/components/ui/combobox"`}
+      />
+
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`const frameworks = [\n  { value: "next", label: "Next.js" },\n  { value: "sveltekit", label: "SvelteKit" },\n  { value: "nuxt", label: "Nuxt.js" },\n  { value: "remix", label: "Remix" },\n  { value: "astro", label: "Astro" },\n]\n\n<Combobox\n  options={frameworks}\n  placeholder="Select framework..."\n  searchPlaceholder="Search framework..."\n/>`}>
@@ -11936,7 +13847,7 @@ function ComboboxDocs() {
         </Example>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -11960,7 +13871,33 @@ function ComboboxDocs() {
         </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Popover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Text color</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Combobox when you have more than 7 options to search through." />
@@ -11968,7 +13905,22 @@ function ComboboxDocs() {
         </div>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Combines Popover + Command — searchable dropdown with keyboard navigation.</li>
+              <li>Type to filter options, Arrow keys to navigate, Enter to select.</li>
+              <li>Selected value is announced to screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Trigger", "Outline button", "—", "Button variant=outline, w-[200px]"],
         ["Icon", "ChevronsUpDown", "—", "ChevronsUpDown icon, size-md"],
@@ -11978,6 +13930,27 @@ function ComboboxDocs() {
         ["Empty State", "Text", "emptyText", '"No results found."'],
         ["Options", "Array", "options", "{ value, label }[]"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Select</p>
+              <p className="text-muted-foreground mt-0.5">Simple dropdown without search.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Command</p>
+              <p className="text-muted-foreground mt-0.5">Full command palette with groups.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -11986,9 +13959,23 @@ function ComboboxDocs() {
    Radio Group Docs
    ================================================================ */
 
+const radioGroupSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function RadioGroupDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={radioGroupSections} />
+
       {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">
@@ -12023,21 +14010,14 @@ function RadioGroupDocs() {
         )}
       />
 
-      {/* ---- Import ---- */}
-      <section className="space-y-4 pt-3xl">
-        <h2 className="font-heading font-semibold text-xl">Import</h2>
-        <Example
-          title="Import"
-          code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"\nimport { Label } from "@/components/ui/label"`}
-        >
-          <p className="text-xs text-muted-foreground italic">
-            Import statement only — see examples below.
-          </p>
-        </Example>
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-radio-group`}
+        importCode={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`}
+      />
 
       {/* ---- Examples ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="examples" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <Example title="Default" code={`<RadioGroup defaultValue="option-1">\n  <div className="flex items-center gap-2">\n    <RadioGroupItem value="option-1" id="r1" />\n    <Label htmlFor="r1">Option One</Label>\n  </div>\n  <div className="flex items-center gap-2">\n    <RadioGroupItem value="option-2" id="r2" />\n    <Label htmlFor="r2">Option Two</Label>\n  </div>\n  <div className="flex items-center gap-2">\n    <RadioGroupItem value="option-3" id="r3" />\n    <Label htmlFor="r3">Option Three</Label>\n  </div>\n</RadioGroup>`}>
@@ -12089,7 +14069,7 @@ function RadioGroupDocs() {
       </section>
 
       {/* ---- API Reference ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">API Reference</h2>
 
         <h3 className="font-heading font-semibold text-lg">RadioGroup</h3>
@@ -12161,8 +14141,33 @@ function RadioGroupDocs() {
         </div>
       </section>
 
-      {/* ---- Best Practices ---- */}
-      <section className="space-y-4 pt-3xl">
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Selected indicator fill</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Radio border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="grid grid-cols-2 gap-6">
           <DoItem text="Use Radio Group for mutually exclusive choices (e.g. size, plan, payment method)." />
@@ -12172,7 +14177,23 @@ function RadioGroupDocs() {
         </div>
       </section>
 
-      {/* ---- Related Components ---- */}
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix RadioGroup — renders with <code className="bg-muted px-1 rounded font-mono">role="radiogroup"</code>.</li>
+              <li>Arrow keys move selection between items (roving focus).</li>
+              <li>Each item has <code className="bg-muted px-1 rounded font-mono">role="radio"</code> with <code className="bg-muted px-1 rounded font-mono">aria-checked</code>.</li>
+              <li>Always pair with Label for each option.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Related Components ---- */}
       <section className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">
           Related Components
@@ -12233,9 +14254,23 @@ function RadioGroupDocs() {
    Input OTP
    ================================================================ */
 
+const inputOTPSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function InputOTPDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={inputOTPSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Forms</p>
         <h1 className="typo-heading-2">Input OTP</h1>
@@ -12260,10 +14295,11 @@ function InputOTPDocs() {
         </InputOTP>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSlot,\n  InputOTPSeparator,\n} from "@/components/ui/input-otp"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add input-otp`}
+        importCode={`import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -12304,7 +14340,47 @@ function InputOTPDocs() {
         </Example>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Slot border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Input text color</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on input-otp — renders as a single <code className="bg-muted px-1 rounded font-mono">input</code> element for screen readers.</li>
+              <li>Paste support for OTP codes from clipboard.</li>
+              <li>Arrow keys move between slots.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Cell Size", "32×32px", "—", "size-3xl"],
         ["Cell Border", "Shared borders", "—", "border-y border-r, first:border-l"],
@@ -12314,6 +14390,20 @@ function InputOTPDocs() {
         ["Separator", "Minus icon", "InputOTPSeparator", "Minus icon between groups"],
         ["Gap", "Between cells", "—", "gap-xs"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Input</p>
+              <p className="text-muted-foreground mt-0.5">Standard text input for general purpose.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -12322,9 +14412,23 @@ function InputOTPDocs() {
    Spinner
    ================================================================ */
 
+const spinnerSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SpinnerDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={spinnerSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Spinner</h1>
@@ -12350,10 +14454,11 @@ function SpinnerDocs() {
         render={(p) => <Spinner size={p.size} className={p.color || undefined} />}
       />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import { Spinner } from "@/components/ui/spinner"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge`}
+        importCode={`import { Spinner } from "@/components/ui/spinner"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -12389,7 +14494,45 @@ function SpinnerDocs() {
         </Example>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Spinner color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">animate-spin</td><td className="px-4 py-3 font-mono text-muted-foreground">CSS keyframe</td><td className="px-4 py-3 text-muted-foreground">Rotation animation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Renders with <code className="bg-muted px-1 rounded font-mono">role="status"</code> and <code className="bg-muted px-1 rounded font-mono">aria-label="Loading"</code>.</li>
+              <li>Screen readers announce "Loading" when the spinner appears.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Size", "Small (16px)", "size", '"sm" — size-md'],
         ["Size", "Default (24px)", "size", '"default" — size-xl'],
@@ -12397,6 +14540,27 @@ function SpinnerDocs() {
         ["Animation", "Spin", "—", "animate-spin"],
         ["Color", "Muted foreground", "—", "text-muted-foreground"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Skeleton</p>
+              <p className="text-muted-foreground mt-0.5">Content placeholder with pulse animation.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Progress</p>
+              <p className="text-muted-foreground mt-0.5">Determinate progress bar.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -12405,9 +14569,23 @@ function SpinnerDocs() {
    Hover Card
    ================================================================ */
 
+const hoverCardSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function HoverCardDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={hoverCardSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Hover Card</h1>
@@ -12425,10 +14603,11 @@ function HoverCardDocs() {
         </HoverCard>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  HoverCard,\n  HoverCardTrigger,\n  HoverCardContent,\n} from "@/components/ui/hover-card"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-hover-card`}
+        importCode={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -12454,7 +14633,47 @@ function HoverCardDocs() {
         </Example>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Card background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Card border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3 text-muted-foreground">Card shadow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Content appears on hover/focus — not for essential information.</li>
+              <li>Touch devices may not trigger hover — provide alternative access.</li>
+              <li>Content is portaled to avoid clipping.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Content Width", "256px", "—", "w-64"],
         ["Alignment", "Center (default)", "align", '"center"'],
@@ -12464,6 +14683,27 @@ function HoverCardDocs() {
         ["Border", "Border", "—", "border border-border"],
         ["Shadow", "Medium", "—", "shadow-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tooltip</p>
+              <p className="text-muted-foreground mt-0.5">Simple text tooltip — use for brief descriptions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Popover</p>
+              <p className="text-muted-foreground mt-0.5">Click-triggered interactive floating content.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -12794,9 +15034,23 @@ function AspectRatioDocs() {
    Context Menu
    ================================================================ */
 
+const contextMenuSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ContextMenuDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={contextMenuSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Context Menu</h1>
@@ -12819,10 +15073,11 @@ function ContextMenuDocs() {
         </ContextMenu>
       )} />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  ContextMenu,\n  ContextMenuTrigger,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuSub,\n  ContextMenuSubTrigger,\n  ContextMenuSubContent,\n} from "@/components/ui/context-menu"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-context-menu`}
+        importCode={`import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from "@/components/ui/context-menu"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -12856,7 +15111,48 @@ function ContextMenuDocs() {
         </Example>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Menu background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Menu border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3 text-muted-foreground">Menu shadow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix ContextMenu — triggered by right-click or long-press.</li>
+              <li>Arrow keys navigate items, Enter/Space activates.</li>
+              <li>Always provide alternative access to context menu actions (e.g., toolbar buttons).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Trigger", "Right-click area", "ContextMenuTrigger", "Any element as trigger"],
         ["Content Min Width", "8rem", "—", "min-w-[8rem]"],
@@ -12869,6 +15165,27 @@ function ContextMenuDocs() {
         ["Shortcut", "Right-aligned", "ContextMenuShortcut", "ml-auto text-xs"],
         ["Icon Size", "16px", "—", "[&_svg]:size-md"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">DropdownMenu</p>
+              <p className="text-muted-foreground mt-0.5">Click-triggered dropdown menu.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Menubar</p>
+              <p className="text-muted-foreground mt-0.5">Horizontal menu bar.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -12877,9 +15194,23 @@ function ContextMenuDocs() {
    Sidebar
    ================================================================ */
 
+const navigationMenuSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function NavigationMenuDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={navigationMenuSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Navigation Menu</h1>
@@ -12962,10 +15293,11 @@ function NavigationMenuDocs() {
         )}
       />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuLink,\n  NavigationMenuIndicator,\n  NavigationMenuViewport,\n  navigationMenuTriggerStyle,\n} from "@/components/ui/navigation-menu"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-navigation-menu`}
+        importCode={`import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from "@/components/ui/navigation-menu"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -13013,16 +15345,101 @@ function NavigationMenuDocs() {
         </Example>
       </section>
 
-      <FigmaMapping rows={[
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix NavigationMenu — full keyboard support.</li>
+              <li>Tab moves between trigger items, Enter/Space opens content.</li>
+              <li>Arrow keys navigate within open content panel.</li>
+              <li>Escape closes the open panel.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--background</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Trigger background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3 text-muted-foreground">Active text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3 text-muted-foreground">Default trigger text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Viewport/content background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Viewport border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Focus ring (3px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <FigmaMapping rows={[
         ["—", "—", "viewport", "true | false (controls viewport rendering)"],
         ["Trigger", "Ghost Button", "NavigationMenuTrigger", "Button with ChevronDown icon"],
         ["Content", "Dropdown Panel", "NavigationMenuContent", "Animated dropdown content"],
         ["Link", "Text Link", "NavigationMenuLink", "Navigation link with hover states"],
         ["Indicator", "Arrow", "NavigationMenuIndicator", "Visual arrow pointing to active item"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Menubar</p>
+              <p className="text-muted-foreground mt-0.5">Horizontal bar with dropdown menus for app-level actions.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Breadcrumb</p>
+              <p className="text-muted-foreground mt-0.5">Hierarchical path navigation.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tabs</p>
+              <p className="text-muted-foreground mt-0.5">Content panel switching.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
+
+const menubarSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
 
 function MenubarDocs() {
   const [showBookmarks, setShowBookmarks] = useState(true)
@@ -13031,6 +15448,8 @@ function MenubarDocs() {
 
   return (
     <div className="space-y-12">
+      <TableOfContents sections={menubarSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
         <h1 className="typo-heading-2">Menubar</h1>
@@ -13102,10 +15521,11 @@ function MenubarDocs() {
         )}
       />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarItem,\n  MenubarSeparator,\n  MenubarShortcut,\n  MenubarCheckboxItem,\n  MenubarRadioGroup,\n  MenubarRadioItem,\n  MenubarSub,\n  MenubarSubTrigger,\n  MenubarSubContent,\n  MenubarLabel,\n  MenubarGroup,\n} from "@/components/ui/menubar"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-menubar`}
+        importCode={`import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarShortcut } from "@/components/ui/menubar"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -13137,7 +15557,51 @@ function MenubarDocs() {
         </Example>
       </section>
 
-      <FigmaMapping rows={[
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Built on Radix Menubar — full keyboard navigation.</li>
+              <li>Arrow Left/Right moves between menus, Up/Down navigates items.</li>
+              <li>Enter/Space activates items, Escape closes menus.</li>
+              <li>Shortcuts are announced by screen readers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--background</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Bar background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Bar & menu border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3 text-muted-foreground">Dropdown background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-xs</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3 text-muted-foreground">Bar shadow</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3 text-muted-foreground">Dropdown shadow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <FigmaMapping rows={[
         ["—", "—", "—", "No Figma component — code-only, follows DropdownMenu pattern"],
         ["Root", "Bar container", "Menubar", "h-9, border, rounded-md, shadow-xs"],
         ["Trigger", "Menu name", "MenubarTrigger", "Font-semibold, rounded-sm"],
@@ -13149,13 +15613,48 @@ function MenubarDocs() {
         ["RadioItem", "Radio item", "MenubarRadioItem", "Circle icon indicator"],
         ["Sub", "Sub-menu", "MenubarSub + SubTrigger + SubContent", "Nested dropdown"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">NavigationMenu</p>
+              <p className="text-muted-foreground mt-0.5">Site-level navigation with content panels.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">DropdownMenu</p>
+              <p className="text-muted-foreground mt-0.5">Single dropdown menu.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
 
+const resizableSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function ResizableDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={resizableSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="typo-heading-2">Resizable</h1>
@@ -13195,10 +15694,11 @@ function ResizableDocs() {
         )}
       />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  ResizablePanelGroup,\n  ResizablePanel,\n  ResizableHandle,\n} from "@/components/ui/resizable"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add react-resizable-panels`}
+        importCode={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -13270,20 +15770,86 @@ function ResizableDocs() {
         </Example>
       </section>
 
-      <FigmaMapping rows={[
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>Handles are keyboard focusable — Tab to focus, Arrow keys to resize.</li>
+              <li>Use <code className="bg-muted px-1 rounded font-mono">withHandle</code> prop for a visible drag indicator.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+            {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Handle line color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--ring</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3 text-muted-foreground">Handle focus ring</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+            <FigmaMapping rows={[
         ["Orientation", "Vertical", "direction", '"vertical"'],
         ["Orientation", "Horizontal", "direction", '"horizontal"'],
         ["Handle", "Divider line", "ResizableHandle", "bg-border, 1px"],
         ["Handle", "Grip dots", "withHandle", "true — shows GripVertical icon"],
         ["Panel", "Content area", "ResizablePanel", "defaultSize (percentage)"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Separator</p>
+              <p className="text-muted-foreground mt-0.5">Static divider when resize is not needed.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
 
+const sidebarSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function SidebarDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={sidebarSections} />
+
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
         <h1 className="typo-heading-2">Sidebar</h1>
@@ -13313,10 +15879,11 @@ function SidebarDocs() {
         )}
       />
 
-      <section className="space-y-3 pt-xl border-t border-border">
-        <h2 className="typo-paragraph-bold">Import</h2>
-        <CodeBlock code={`import {\n  SidebarProvider,\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarGroupContent,\n  SidebarMenu,\n  SidebarMenuItem,\n  SidebarMenuButton,\n  SidebarHeader,\n  SidebarFooter,\n  SidebarTrigger,\n  SidebarInset,\n} from "@/components/ui/sidebar"`} />
-      </section>
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add clsx tailwind-merge lucide-react`}
+        importCode={`import { SidebarProvider, Sidebar, SidebarContent, SidebarGroup, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"`}
+      />
 
       <section className="space-y-4 pt-3xl">
         <h2 className="typo-paragraph-bold">Examples</h2>
@@ -13381,7 +15948,49 @@ function SidebarDocs() {
         </ul>
       </section>
 
-      {/* ---- Figma Mapping ---- */}
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Tokens sourced from <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--sidebar</td><td className="px-4 py-3 font-mono text-muted-foreground">var(--background)</td><td className="px-4 py-3 text-muted-foreground">Sidebar background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--sidebar-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">var(--foreground)</td><td className="px-4 py-3 text-muted-foreground">Sidebar text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--sidebar-border</td><td className="px-4 py-3 font-mono text-muted-foreground">var(--border)</td><td className="px-4 py-3 text-muted-foreground">Sidebar border</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--sidebar-ring</td><td className="px-4 py-3 font-mono text-muted-foreground">var(--ring)</td><td className="px-4 py-3 text-muted-foreground">Focus ring</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--sidebar-muted</td><td className="px-4 py-3 font-mono text-muted-foreground">var(--muted)</td><td className="px-4 py-3 text-muted-foreground">Hover background</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>SidebarTrigger toggles sidebar visibility.</li>
+              <li>Menu items are keyboard navigable — Tab moves between items.</li>
+              <li>Collapsible sidebar uses <code className="bg-muted px-1 rounded font-mono">aria-expanded</code> on the trigger.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+                  {/* ---- Figma Mapping ---- */}
       <FigmaMapping rows={[
         ["Width", "Expanded", "—", "16rem (256px)"],
         ["Width", "Icon only", "—", "3rem (48px)"],
@@ -13397,6 +16006,27 @@ function SidebarDocs() {
         ["Keyboard", "Toggle", "—", "⌘B / Ctrl+B"],
         ["Mobile", "Sheet overlay", "—", "Sheet on < 768px"],
       ]} />
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">NavigationMenu</p>
+              <p className="text-muted-foreground mt-0.5">Top-level horizontal navigation.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Sheet</p>
+              <p className="text-muted-foreground mt-0.5">Overlay panel for mobile sidebar.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
