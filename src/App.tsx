@@ -170,6 +170,35 @@ import {
   SidebarTrigger,
   SidebarInset,
 } from "@/components/ui/sidebar"
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+} from "@/components/ui/menubar"
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable"
 import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -12848,6 +12877,410 @@ function ContextMenuDocs() {
    Sidebar
    ================================================================ */
 
+function NavigationMenuDocs() {
+  return (
+    <div className="space-y-12">
+      <header className="space-y-md pb-3xl">
+        <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
+        <h1 className="typo-heading-2">Navigation Menu</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
+          Top-level site navigation with animated dropdown content panels.
+          Built on Radix Navigation Menu for full keyboard and screen reader support.
+        </p>
+      </header>
+
+      <Playground
+        controls={[
+          { type: "select", label: "Viewport", prop: "viewport", defaultValue: "true", options: [
+            { label: "With viewport", value: "true" },
+            { label: "Without viewport", value: "false" },
+          ]},
+        ]}
+        render={() => (
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md" href="#">
+                          <div className="mb-2 mt-4 typo-paragraph-bold">SprouX DS</div>
+                          <p className="typo-paragraph-mini text-muted-foreground">Beautifully designed components built with Radix UI and Tailwind CSS.</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted" href="#">
+                          <div className="typo-paragraph-sm-bold">Introduction</div>
+                          <p className="typo-paragraph-mini text-muted-foreground">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted" href="#">
+                          <div className="typo-paragraph-sm-bold">Installation</div>
+                          <p className="typo-paragraph-mini text-muted-foreground">How to install dependencies and structure your app.</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                    {[
+                      { title: "Alert Dialog", desc: "A modal dialog that interrupts the user." },
+                      { title: "Hover Card", desc: "For sighted users to preview content." },
+                      { title: "Progress", desc: "Displays an indicator of completion." },
+                      { title: "Tabs", desc: "Organize content into tabbed panels." },
+                    ].map(({ title, desc }) => (
+                      <li key={title}>
+                        <NavigationMenuLink asChild>
+                          <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted" href="#">
+                            <div className="typo-paragraph-sm-bold">{title}</div>
+                            <p className="typo-paragraph-mini text-muted-foreground">{desc}</p>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()} href="#">
+                  Documentation
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+      />
+
+      <section className="space-y-3 pt-xl border-t border-border">
+        <h2 className="typo-paragraph-bold">Import</h2>
+        <CodeBlock code={`import {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuLink,\n  NavigationMenuIndicator,\n  NavigationMenuViewport,\n  navigationMenuTriggerStyle,\n} from "@/components/ui/navigation-menu"`} />
+      </section>
+
+      <section className="space-y-4 pt-3xl">
+        <h2 className="typo-paragraph-bold">Examples</h2>
+
+        <Example
+          title="With dropdown content"
+          description="Navigation items with rich dropdown panels containing links."
+          code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <ul className="grid gap-3 p-4 w-[400px]">\n          <li>\n            <NavigationMenuLink asChild>\n              <a href="/docs">Introduction</a>\n            </NavigationMenuLink>\n          </li>\n        </ul>\n      </NavigationMenuContent>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}
+        >
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 w-[400px]">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted" href="#">
+                          <div className="typo-paragraph-sm-bold">Introduction</div>
+                          <p className="typo-paragraph-mini text-muted-foreground">Re-usable components for your applications.</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </Example>
+
+        <Example
+          title="Simple link"
+          description="A plain link styled as a navigation trigger using navigationMenuTriggerStyle."
+          code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuLink className={navigationMenuTriggerStyle()} href="/docs">\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}
+        >
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()} href="#">
+                  Documentation
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </Example>
+      </section>
+
+      <FigmaMapping rows={[
+        ["—", "—", "viewport", "true | false (controls viewport rendering)"],
+        ["Trigger", "Ghost Button", "NavigationMenuTrigger", "Button with ChevronDown icon"],
+        ["Content", "Dropdown Panel", "NavigationMenuContent", "Animated dropdown content"],
+        ["Link", "Text Link", "NavigationMenuLink", "Navigation link with hover states"],
+        ["Indicator", "Arrow", "NavigationMenuIndicator", "Visual arrow pointing to active item"],
+      ]} />
+    </div>
+  )
+}
+
+function MenubarDocs() {
+  const [showBookmarks, setShowBookmarks] = useState(true)
+  const [showFullUrls, setShowFullUrls] = useState(false)
+  const [person, setPerson] = useState("pedro")
+
+  return (
+    <div className="space-y-12">
+      <header className="space-y-md pb-3xl">
+        <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Navigation</p>
+        <h1 className="typo-heading-2">Menubar</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
+          A horizontal menu bar with dropdown menus, checkbox items, radio groups, and sub-menus.
+          Follows desktop application menu patterns (File, Edit, View).
+        </p>
+      </header>
+
+      <Playground
+        controls={[]}
+        render={() => (
+          <Menubar>
+            <MenubarMenu>
+              <MenubarTrigger>File</MenubarTrigger>
+              <MenubarContent>
+                <MenubarItem>New Tab <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>
+                <MenubarItem>New Window <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+                <MenubarItem disabled>New Incognito Window</MenubarItem>
+                <MenubarSeparator />
+                <MenubarSub>
+                  <MenubarSubTrigger>Share</MenubarSubTrigger>
+                  <MenubarSubContent>
+                    <MenubarItem>Email link</MenubarItem>
+                    <MenubarItem>Messages</MenubarItem>
+                    <MenubarItem>Notes</MenubarItem>
+                  </MenubarSubContent>
+                </MenubarSub>
+                <MenubarSeparator />
+                <MenubarItem>Print... <MenubarShortcut>⌘P</MenubarShortcut></MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+            <MenubarMenu>
+              <MenubarTrigger>Edit</MenubarTrigger>
+              <MenubarContent>
+                <MenubarItem>Undo <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
+                <MenubarItem>Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
+                <MenubarSeparator />
+                <MenubarItem>Cut</MenubarItem>
+                <MenubarItem>Copy</MenubarItem>
+                <MenubarItem>Paste</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+            <MenubarMenu>
+              <MenubarTrigger>View</MenubarTrigger>
+              <MenubarContent>
+                <MenubarCheckboxItem checked={showBookmarks} onCheckedChange={setShowBookmarks}>Show Bookmarks <MenubarShortcut>⌘⇧B</MenubarShortcut></MenubarCheckboxItem>
+                <MenubarCheckboxItem checked={showFullUrls} onCheckedChange={setShowFullUrls}>Show Full URLs</MenubarCheckboxItem>
+                <MenubarSeparator />
+                <MenubarItem inset>Reload <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
+                <MenubarItem inset disabled>Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut></MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+            <MenubarMenu>
+              <MenubarTrigger>Profiles</MenubarTrigger>
+              <MenubarContent>
+                <MenubarRadioGroup value={person} onValueChange={setPerson}>
+                  <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+                  <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+                  <MenubarRadioItem value="pedro">Pedro</MenubarRadioItem>
+                </MenubarRadioGroup>
+                <MenubarSeparator />
+                <MenubarItem inset>Edit...</MenubarItem>
+                <MenubarSeparator />
+                <MenubarItem inset>Add Profile...</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
+        )}
+      />
+
+      <section className="space-y-3 pt-xl border-t border-border">
+        <h2 className="typo-paragraph-bold">Import</h2>
+        <CodeBlock code={`import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarItem,\n  MenubarSeparator,\n  MenubarShortcut,\n  MenubarCheckboxItem,\n  MenubarRadioGroup,\n  MenubarRadioItem,\n  MenubarSub,\n  MenubarSubTrigger,\n  MenubarSubContent,\n  MenubarLabel,\n  MenubarGroup,\n} from "@/components/ui/menubar"`} />
+      </section>
+
+      <section className="space-y-4 pt-3xl">
+        <h2 className="typo-paragraph-bold">Examples</h2>
+
+        <Example
+          title="Basic menubar"
+          description="A standard menubar with File, Edit, View menus featuring shortcuts, sub-menus, checkbox and radio items."
+          code={`<Menubar>\n  <MenubarMenu>\n    <MenubarTrigger>File</MenubarTrigger>\n    <MenubarContent>\n      <MenubarItem>\n        New Tab <MenubarShortcut>⌘T</MenubarShortcut>\n      </MenubarItem>\n      <MenubarItem>\n        New Window <MenubarShortcut>⌘N</MenubarShortcut>\n      </MenubarItem>\n      <MenubarSeparator />\n      <MenubarSub>\n        <MenubarSubTrigger>Share</MenubarSubTrigger>\n        <MenubarSubContent>\n          <MenubarItem>Email link</MenubarItem>\n          <MenubarItem>Messages</MenubarItem>\n        </MenubarSubContent>\n      </MenubarSub>\n      <MenubarSeparator />\n      <MenubarItem>\n        Print... <MenubarShortcut>⌘P</MenubarShortcut>\n      </MenubarItem>\n    </MenubarContent>\n  </MenubarMenu>\n</Menubar>`}
+        >
+          <Menubar>
+            <MenubarMenu>
+              <MenubarTrigger>File</MenubarTrigger>
+              <MenubarContent>
+                <MenubarItem>New Tab <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>
+                <MenubarItem>New Window <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+                <MenubarSeparator />
+                <MenubarSub>
+                  <MenubarSubTrigger>Share</MenubarSubTrigger>
+                  <MenubarSubContent>
+                    <MenubarItem>Email link</MenubarItem>
+                    <MenubarItem>Messages</MenubarItem>
+                  </MenubarSubContent>
+                </MenubarSub>
+                <MenubarSeparator />
+                <MenubarItem>Print... <MenubarShortcut>⌘P</MenubarShortcut></MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
+        </Example>
+      </section>
+
+      <FigmaMapping rows={[
+        ["—", "—", "—", "No Figma component — code-only, follows DropdownMenu pattern"],
+        ["Root", "Bar container", "Menubar", "h-9, border, rounded-md, shadow-xs"],
+        ["Trigger", "Menu name", "MenubarTrigger", "Font-semibold, rounded-sm"],
+        ["Content", "Dropdown", "MenubarContent", "border, bg-card, shadow-md, animated"],
+        ["Item", "Menu item", "MenubarItem", "inset prop for indentation"],
+        ["Shortcut", "Kbd hint", "MenubarShortcut", "Right-aligned muted text"],
+        ["Separator", "Divider", "MenubarSeparator", "h-px bg-border"],
+        ["CheckboxItem", "Toggle item", "MenubarCheckboxItem", "Check icon indicator"],
+        ["RadioItem", "Radio item", "MenubarRadioItem", "Circle icon indicator"],
+        ["Sub", "Sub-menu", "MenubarSub + SubTrigger + SubContent", "Nested dropdown"],
+      ]} />
+    </div>
+  )
+}
+
+function ResizableDocs() {
+  return (
+    <div className="space-y-12">
+      <header className="space-y-md pb-3xl">
+        <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Layout</p>
+        <h1 className="typo-heading-2">Resizable</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">
+          Resizable panel groups with draggable handles. Supports horizontal and vertical layouts
+          with optional grip indicators. Built on react-resizable-panels.
+        </p>
+      </header>
+
+      <Playground
+        controls={[
+          { type: "select", label: "Orientation", prop: "orientation", defaultValue: "horizontal", options: [
+            { label: "Horizontal", value: "horizontal" },
+            { label: "Vertical", value: "vertical" },
+          ]},
+          { type: "switch", label: "With handle", prop: "withHandle", defaultValue: true },
+        ]}
+        render={(p) => (
+          <div className="w-full max-w-md">
+            <ResizablePanelGroup
+              orientation={p.orientation as "horizontal" | "vertical"}
+              className={`rounded-lg border border-border ${p.orientation === "vertical" ? "min-h-[200px]" : ""}`}
+            >
+              <ResizablePanel defaultSize={50}>
+                <div className="flex h-[200px] items-center justify-center p-6">
+                  <span className="typo-paragraph-sm-bold">One</span>
+                </div>
+              </ResizablePanel>
+              <ResizableHandle withHandle={p.withHandle as boolean} />
+              <ResizablePanel defaultSize={50}>
+                <div className="flex h-[200px] items-center justify-center p-6">
+                  <span className="typo-paragraph-sm-bold">Two</span>
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </div>
+        )}
+      />
+
+      <section className="space-y-3 pt-xl border-t border-border">
+        <h2 className="typo-paragraph-bold">Import</h2>
+        <CodeBlock code={`import {\n  ResizablePanelGroup,\n  ResizablePanel,\n  ResizableHandle,\n} from "@/components/ui/resizable"`} />
+      </section>
+
+      <section className="space-y-4 pt-3xl">
+        <h2 className="typo-paragraph-bold">Examples</h2>
+
+        <Example
+          title="Horizontal"
+          description="Two resizable panels side by side with a drag handle."
+          code={`<ResizablePanelGroup orientation="horizontal" className="rounded-lg border">\n  <ResizablePanel defaultSize={50}>\n    <div className="flex h-[200px] items-center justify-center p-6">\n      <span className="font-semibold">One</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle withHandle />\n  <ResizablePanel defaultSize={50}>\n    <div className="flex h-[200px] items-center justify-center p-6">\n      <span className="font-semibold">Two</span>\n    </div>\n  </ResizablePanel>\n</ResizablePanelGroup>`}
+        >
+          <ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border border-border">
+            <ResizablePanel defaultSize={50}>
+              <div className="flex h-[200px] items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">One</span>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={50}>
+              <div className="flex h-[200px] items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Two</span>
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </Example>
+
+        <Example
+          title="Vertical"
+          description="Stacked panels with vertical resizing."
+          code={`<ResizablePanelGroup orientation="vertical" className="min-h-[200px] rounded-lg border">\n  <ResizablePanel defaultSize={25}>\n    <div className="flex h-full items-center justify-center p-6">\n      <span className="font-semibold">Header</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle withHandle />\n  <ResizablePanel defaultSize={75}>\n    <div className="flex h-full items-center justify-center p-6">\n      <span className="font-semibold">Content</span>\n    </div>\n  </ResizablePanel>\n</ResizablePanelGroup>`}
+        >
+          <ResizablePanelGroup orientation="vertical" className="max-w-md min-h-[200px] rounded-lg border border-border">
+            <ResizablePanel defaultSize={25}>
+              <div className="flex h-full items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Header</span>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={75}>
+              <div className="flex h-full items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Content</span>
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </Example>
+
+        <Example
+          title="Three panels"
+          description="Three panels with handles between each."
+          code={`<ResizablePanelGroup orientation="horizontal" className="rounded-lg border">\n  <ResizablePanel defaultSize={25}>\n    <div className="flex h-[200px] items-center justify-center p-6">\n      <span className="font-semibold">Sidebar</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel defaultSize={50}>\n    <div className="flex h-[200px] items-center justify-center p-6">\n      <span className="font-semibold">Content</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel defaultSize={25}>\n    <div className="flex h-[200px] items-center justify-center p-6">\n      <span className="font-semibold">Details</span>\n    </div>\n  </ResizablePanel>\n</ResizablePanelGroup>`}
+        >
+          <ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border border-border">
+            <ResizablePanel defaultSize={25}>
+              <div className="flex h-[200px] items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Sidebar</span>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle />
+            <ResizablePanel defaultSize={50}>
+              <div className="flex h-[200px] items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Content</span>
+              </div>
+            </ResizablePanel>
+            <ResizableHandle />
+            <ResizablePanel defaultSize={25}>
+              <div className="flex h-[200px] items-center justify-center p-6">
+                <span className="typo-paragraph-sm-bold">Details</span>
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </Example>
+      </section>
+
+      <FigmaMapping rows={[
+        ["Orientation", "Vertical", "direction", '"vertical"'],
+        ["Orientation", "Horizontal", "direction", '"horizontal"'],
+        ["Handle", "Divider line", "ResizableHandle", "bg-border, 1px"],
+        ["Handle", "Grip dots", "withHandle", "true — shows GripVertical icon"],
+        ["Panel", "Content area", "ResizablePanel", "defaultSize (percentage)"],
+      ]} />
+    </div>
+  )
+}
+
 function SidebarDocs() {
   return (
     <div className="space-y-12">
@@ -12998,6 +13431,8 @@ const components = [
   { id: "command", label: "Command" },
   { id: "context-menu", label: "Context Menu" },
   { id: "date-picker", label: "Date Picker" },
+  { id: "menubar", label: "Menubar" },
+  { id: "navigation-menu", label: "Navigation Menu" },
   { id: "dialog", label: "Dialog" },
   { id: "drawer", label: "Drawer" },
   { id: "dropdown-menu", label: "Dropdown Menu" },
@@ -13009,6 +13444,7 @@ const components = [
   { id: "popover", label: "Popover" },
   { id: "progress", label: "Progress" },
   { id: "radio-group", label: "Radio Group" },
+  { id: "resizable", label: "Resizable" },
   { id: "scroll-area", label: "Scroll Area" },
   { id: "select", label: "Select" },
   { id: "separator", label: "Separator" },
@@ -13061,7 +13497,7 @@ function ComponentsGrid({ onNavigate }: { onNavigate: (id: ComponentId) => void 
         <h1 className="typo-heading-2">SprouX Design System</h1>
         <p className="typo-paragraph text-muted-foreground max-w-3xl">
           A comprehensive design system with foundations and 43 components built with
-          React 19, Tailwind CSS v4, and Radix UI primitives.
+          React 19, Tailwind CSS v4, Radix UI primitives, and more.
         </p>
       </div>
 
@@ -13264,6 +13700,9 @@ function App() {
           {active === "hover-card" && <HoverCardDocs />}
           {active === "aspect-ratio" && <AspectRatioDocs />}
           {active === "context-menu" && <ContextMenuDocs />}
+          {active === "navigation-menu" && <NavigationMenuDocs />}
+          {active === "menubar" && <MenubarDocs />}
+          {active === "resizable" && <ResizableDocs />}
           {active === "sidebar" && <SidebarDocs />}
         </div>
       </main>
