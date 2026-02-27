@@ -7331,43 +7331,222 @@ function CardDocs() {
    Avatar Docs
    ================================================================ */
 
+function AvatarPropsTable() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">Avatar</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Override size (size-8, size-10, size-xl) or shape (rounded-lg for roundrect).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">AvatarImage + AvatarFallback.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">AvatarImage</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">src</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Image URL. Falls back to AvatarFallback on error.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">alt</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Alt text for the image (required for accessibility).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">AvatarFallback</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">delayMs</td><td className="px-4 py-3 font-mono text-muted-foreground">number</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Delay in ms before showing fallback (gives image time to load).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Initials text or icon element.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AvatarTokensTable() {
+  const tokens = [
+    { token: "--muted", value: "#f3f3f2", hex: "#f3f3f2", usage: "Fallback background" },
+    { token: "--foreground", value: "#252522", hex: "#252522", usage: "Fallback text color" },
+    { token: "typo-paragraph-sm-bold", value: "Geist 600 14/20", hex: "—", usage: "Fallback initials text style" },
+    { token: "--size-10 (40px)", value: "40px", hex: "—", usage: "Regular size" },
+    { token: "--size-8 (32px)", value: "32px", hex: "—", usage: "Small size" },
+    { token: "--size-xl (24px)", value: "24px", hex: "—", usage: "Tiny size" },
+    { token: "--size-lg (20px)", value: "20px", hex: "—", usage: "Extra Tiny size" },
+    { token: "--radius-lg (8px)", value: "8px", hex: "—", usage: "Roundrect corner radius" },
+    { token: "rounded-full", value: "9999px", hex: "—", usage: "Round (circle) shape" },
+  ]
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function AvatarExploreBehavior() {
+  const [value, setValue] = useState("Picture")
+  const [size, setSize] = useState("Regular")
+  const [roundness, setRoundness] = useState("Round")
+  const [iconName, setIconName] = useState("User")
+
+  const sizeClass: Record<string, string> = {
+    "Regular": "size-10",
+    "Small": "size-8",
+    "Tiny": "size-xl",
+    "Extra Tiny": "size-lg",
+  }
+  const textSizeClass: Record<string, string> = {
+    "Regular": "",
+    "Small": "text-xs",
+    "Tiny": "text-[10px]",
+    "Extra Tiny": "text-[8px]",
+  }
+  const iconSizeClass: Record<string, string> = {
+    "Regular": "size-xl",
+    "Small": "size-md",
+    "Tiny": "size-sm",
+    "Extra Tiny": "size-xs",
+  }
+  const shapeClass = roundness === "Round" ? "rounded-full" : "rounded-lg"
+  const SelectedIcon = allLucideIcons.find((i) => i.name === iconName)?.icon ?? allLucideIcons.find((i) => i.name === "User")!.icon
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden bg-background">
+      <div className="p-4xl flex items-center justify-center min-h-[200px] bg-background">
+        <Avatar className={[sizeClass[size], shapeClass].join(" ")}>
+          {value === "Picture" && <AvatarImage src="https://github.com/shadcn.png" alt="User" />}
+          <AvatarFallback className={[shapeClass, value === "Icon" ? "" : textSizeClass[size]].join(" ")}>
+            {value === "Text" && "TN"}
+            {value === "Icon" && <SelectedIcon className={iconSizeClass[size]} />}
+            {value === "Picture" && "TN"}
+          </AvatarFallback>
+        </Avatar>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-md flex flex-wrap items-center gap-md">
+        <div className="flex items-center gap-xs">
+          <label className="text-xs font-medium text-muted-foreground whitespace-nowrap">Value</label>
+          <Select value={value} onValueChange={setValue}>
+            <SelectTrigger className="w-[120px] h-8 text-xs"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Picture" className="text-xs">Picture</SelectItem>
+              <SelectItem value="Text" className="text-xs">Text</SelectItem>
+              <SelectItem value="Icon" className="text-xs">Icon</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center gap-xs">
+          <label className="text-xs font-medium text-muted-foreground whitespace-nowrap">Size</label>
+          <Select value={size} onValueChange={setSize}>
+            <SelectTrigger className="w-[130px] h-8 text-xs"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Regular" className="text-xs">Regular (40px)</SelectItem>
+              <SelectItem value="Small" className="text-xs">Small (32px)</SelectItem>
+              <SelectItem value="Tiny" className="text-xs">Tiny (24px)</SelectItem>
+              <SelectItem value="Extra Tiny" className="text-xs">Extra Tiny (20px)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center gap-xs">
+          <label className="text-xs font-medium text-muted-foreground whitespace-nowrap">Roundness</label>
+          <Select value={roundness} onValueChange={setRoundness}>
+            <SelectTrigger className="w-[130px] h-8 text-xs"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Round" className="text-xs">Round</SelectItem>
+              <SelectItem value="Roundrect" className="text-xs">Roundrect</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center gap-xs">
+          <label className={["text-xs font-medium text-muted-foreground whitespace-nowrap", value !== "Icon" ? "opacity-50" : ""].join(" ")}>Icon</label>
+          <IconPicker value={iconName} onChange={setIconName} disabled={value !== "Icon"} size="sm" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const avatarSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "design-tokens", label: "Design Tokens" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
 function AvatarDocs() {
   return (
     <div className="space-y-12">
+      <TableOfContents sections={avatarSections} />
+
+      {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Avatar</h1>
-        <p className="typo-paragraph text-muted-foreground max-w-3xl">User avatar with image and fallback support (initials or icon).</p>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">User avatar with image and fallback support (initials or icon). Supports multiple sizes and round/roundrect shapes.</p>
       </header>
 
-      {/* Interactive playground */}
-      <Playground
-        controls={[
-          { type: "switch", label: "Show Image", prop: "showImage", defaultValue: true },
-          { type: "select", label: "Size", prop: "size", defaultValue: "size-10", options: [
-            { label: "Small (32px)", value: "size-8" },
-            { label: "Default (40px)", value: "size-10" },
-            { label: "Large (56px)", value: "size-14" },
-          ]},
-        ]}
-        render={(p) => (
-          <Avatar className={p.size}>
-            {p.showImage && <AvatarImage src="https://github.com/shadcn.png" alt="User" />}
-            <AvatarFallback>TN</AvatarFallback>
-          </Avatar>
-        )}
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <AvatarExploreBehavior />
+      </section>
+
+      {/* ---- Installation ---- */}
+      <InstallationSection
+        deps={`pnpm add @radix-ui/react-avatar clsx tailwind-merge`}
+        importCode={`import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"`}
       />
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Examples ---- */}
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
-        <Example title="With image" code={`<Avatar>\n  <AvatarImage src="https://github.com/shadcn.png" alt="User" />\n  <AvatarFallback>CN</AvatarFallback>\n</Avatar>`}>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Example title="With Image" description="Image loads with fallback initials shown while loading." code={`<Avatar>\n  <AvatarImage src="https://github.com/shadcn.png" alt="User" />\n  <AvatarFallback>CN</AvatarFallback>\n</Avatar>`}>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="User" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </Example>
 
-        <Example title="Fallback initials" code={`<Avatar>\n  <AvatarFallback>TN</AvatarFallback>\n</Avatar>`}>
+        <Example title="Fallback Initials & Icon" description="Text initials or icon when no image is available." code={`<div className="flex gap-3">\n  <Avatar>\n    <AvatarFallback>TN</AvatarFallback>\n  </Avatar>\n  <Avatar>\n    <AvatarFallback>AB</AvatarFallback>\n  </Avatar>\n  <Avatar>\n    <AvatarFallback>\n      <User className="size-4" />\n    </AvatarFallback>\n  </Avatar>\n</div>`}>
           <div className="flex gap-3">
             <Avatar><AvatarFallback>TN</AvatarFallback></Avatar>
             <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
@@ -7375,30 +7554,170 @@ function AvatarDocs() {
           </div>
         </Example>
 
-        <Example title="Sizes" code={`<Avatar className="size-8">...</Avatar>\n<Avatar className="size-10">...</Avatar>\n<Avatar className="size-14">...</Avatar>`}>
+        <Example title="Sizes" description="Regular (40px), Small (32px), Tiny (24px), Extra Tiny (20px)." code={`<div className="flex items-center gap-3">\n  <Avatar className="size-lg">\n    <AvatarFallback className="text-[8px]">XT</AvatarFallback>\n  </Avatar>\n  <Avatar className="size-xl">\n    <AvatarFallback className="text-[10px]">TN</AvatarFallback>\n  </Avatar>\n  <Avatar className="size-8">\n    <AvatarFallback className="text-xs">SM</AvatarFallback>\n  </Avatar>\n  <Avatar>\n    <AvatarFallback>RG</AvatarFallback>\n  </Avatar>\n</div>`}>
           <div className="flex items-center gap-3">
-            <Avatar className="size-8"><AvatarFallback className="text-xs">S</AvatarFallback></Avatar>
-            <Avatar className="size-10"><AvatarFallback>MD</AvatarFallback></Avatar>
-            <Avatar className="size-14"><AvatarFallback className="text-lg">LG</AvatarFallback></Avatar>
+            <Avatar className="size-lg"><AvatarFallback className="text-[8px]">XT</AvatarFallback></Avatar>
+            <Avatar className="size-xl"><AvatarFallback className="text-[10px]">TN</AvatarFallback></Avatar>
+            <Avatar className="size-8"><AvatarFallback className="text-xs">SM</AvatarFallback></Avatar>
+            <Avatar><AvatarFallback>RG</AvatarFallback></Avatar>
           </div>
         </Example>
+
+        <Example title="Roundrect Shape" description="Use rounded-lg for organization or team avatars." code={`<div className="flex items-center gap-3">\n  <Avatar className="rounded-lg">\n    <AvatarImage src="https://github.com/shadcn.png" alt="Team" />\n    <AvatarFallback className="rounded-lg">TM</AvatarFallback>\n  </Avatar>\n  <Avatar className="rounded-lg">\n    <AvatarFallback className="rounded-lg">ORG</AvatarFallback>\n  </Avatar>\n</div>`}>
+          <div className="flex items-center gap-3">
+            <Avatar className="rounded-lg">
+              <AvatarImage src="https://github.com/shadcn.png" alt="Team" />
+              <AvatarFallback className="rounded-lg">TM</AvatarFallback>
+            </Avatar>
+            <Avatar className="rounded-lg">
+              <AvatarFallback className="rounded-lg">ORG</AvatarFallback>
+            </Avatar>
+          </div>
+        </Example>
+        </div>
       </section>
 
-      <section className="space-y-4 pt-3xl">
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Built on{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-avatar</code>.
+          Supports all Radix Avatar props.
+        </p>
+        <AvatarPropsTable />
+      </section>
+
+      {/* ---- Design Tokens ---- */}
+      <section id="design-tokens" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          These tokens are defined in{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code>{" "}
+          and sourced from the Figma file{" "}
+          <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
+        <AvatarTokensTable />
+      </section>
+
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
-        <div className="grid grid-cols-2 gap-6">
-          <DoItem text="Always provide a fallback (initials or icon) for when the image fails to load." />
-          <DontItem text="Don't use Avatar for decorative images — use a regular img tag." />
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Content</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Use for user profile representation, author attribution, and contact identification.</p>
+              <p>Use <strong>Picture</strong> when image available, <strong>Text</strong> (initials) as fallback, <strong>Icon</strong> as generic placeholder.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't use Avatar for decorative images — use a regular img tag instead.</p>
+              <p>Don't use Avatar for logo display — logos are not user identifiers.</p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Structure</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Always provide <strong>AvatarFallback</strong> with initials or icon for when images fail to load.</p>
+              <p>Use <strong>Round</strong> for user avatars (default), <strong>Roundrect</strong> for organization/team avatars.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't use inconsistent sizes in the same context — keep all avatars in a group the same size.</p>
+              <p>Don't omit the fallback — a broken image with no fallback looks unprofessional.</p>
+            </DontItem>
+          </div>
         </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping rows={[
-        ["Shape", "Circle", "—", "rounded-full"],
-        ["Size", "40×40px", "—", "size-10"],
-        ["Sub-component", "Image", "AvatarImage", "aspect-square, object-cover"],
-        ["Sub-component", "Fallback", "AvatarFallback", "bg-muted, initials or icon"],
+      <FigmaMapping id="figma-mapping" nodeId="18:1398" rows={[
+        ["Value", "Picture", "AvatarImage", "Image fills container with aspect-square"],
+        ["Value", "Text", "AvatarFallback", "Initials (typo-paragraph-sm-bold)"],
+        ["Value", "Icon", "AvatarFallback", "Lucide icon inside fallback"],
+        ["Size", "Regular (40px)", "—", "size-10 (default)"],
+        ["Size", "Small (32px)", "className", "size-8"],
+        ["Size", "Tiny (24px)", "className", "size-xl"],
+        ["Size", "Extra Tiny (20px)", "className", "size-lg"],
+        ["Roundness", "Round (circle)", "—", "rounded-full (default)"],
+        ["Roundness", "Roundrect (8px)", "className", "rounded-lg on Avatar + AvatarFallback"],
+        ["Fallback BG", "#f3f3f2", "—", "bg-muted"],
+        ["Fallback Text", "#252522", "—", "text-foreground (inherited)"],
+        ["Icon Size (Regular)", "24px", "—", "size-xl inside AvatarFallback"],
       ]} />
+
+      {/* ---- Accessibility ---- */}
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">ARIA attributes</h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                The image element uses{" "}
+                <code className="bg-muted px-1 rounded font-mono">role="img"</code>{" "}
+                automatically via Radix UI.
+              </li>
+              <li>
+                Always provide a descriptive{" "}
+                <code className="bg-muted px-1 rounded font-mono">alt</code>{" "}
+                attribute on AvatarImage for screen readers.
+              </li>
+              <li>
+                AvatarFallback is rendered as a{" "}
+                <code className="bg-muted px-1 rounded font-mono">span</code>{" "}
+                — initials are read by screen readers as text content.
+              </li>
+              <li>All ARIA attributes are managed automatically by Radix UI.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Image loading</h3>
+            <p className="text-muted-foreground">
+              Radix Avatar handles image loading states automatically. The fallback is shown
+              immediately and replaced when the image loads. If the image fails,
+              the fallback remains visible. Use{" "}
+              <code className="bg-muted px-1 rounded font-mono">delayMs</code>{" "}
+              on AvatarFallback to delay showing the fallback (useful for fast connections).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Related Components ---- */}
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Tooltip</p>
+              <p className="text-muted-foreground mt-0.5">
+                Wrap Avatar in Tooltip to show user name on hover.
+              </p>
+            </div>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Card</p>
+              <p className="text-muted-foreground mt-0.5">
+                Use Avatar inside Card headers for user-related content cards.
+              </p>
+            </div>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Hover Card</p>
+              <p className="text-muted-foreground mt-0.5">
+                Combine Avatar with HoverCard to show rich user profile preview on hover.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
