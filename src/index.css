@@ -37,6 +37,8 @@
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent-hover: var(--sidebar-accent-hover);
+  --color-sidebar-muted: var(--sidebar-muted);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-chart-1: var(--chart-1);
@@ -44,6 +46,73 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* --- Data Visualization: Area Chart Colors --- */
+  --color-area-orange-fill: var(--area-orange-fill);
+  --color-area-orange-fill-2: var(--area-orange-fill-2);
+  --color-area-orange-stroke: var(--area-orange-stroke);
+  --color-area-orange-stroke-2: var(--area-orange-stroke-2);
+  --color-area-blue-fill: var(--area-blue-fill);
+  --color-area-blue-fill-2: var(--area-blue-fill-2);
+  --color-area-blue-stroke: var(--area-blue-stroke);
+  --color-area-blue-stroke-2: var(--area-blue-stroke-2);
+  --color-area-green-fill: var(--area-green-fill);
+  --color-area-green-fill-2: var(--area-green-fill-2);
+  --color-area-green-stroke: var(--area-green-stroke);
+  --color-area-green-stroke-2: var(--area-green-stroke-2);
+  --color-area-rose-fill: var(--area-rose-fill);
+  --color-area-rose-fill-2: var(--area-rose-fill-2);
+  --color-area-rose-stroke: var(--area-rose-stroke);
+  --color-area-rose-stroke-2: var(--area-rose-stroke-2);
+  --color-area-teal-fill: var(--area-teal-fill);
+  --color-area-teal-fill-2: var(--area-teal-fill-2);
+  --color-area-teal-stroke: var(--area-teal-stroke);
+  --color-area-teal-stroke-2: var(--area-teal-stroke-2);
+  --color-area-purple-fill: var(--area-purple-fill);
+  --color-area-purple-fill-2: var(--area-purple-fill-2);
+  --color-area-purple-stroke: var(--area-purple-stroke);
+  --color-area-purple-stroke-2: var(--area-purple-stroke-2);
+  --color-area-amber-fill: var(--area-amber-fill);
+  --color-area-amber-fill-2: var(--area-amber-fill-2);
+  --color-area-amber-stroke: var(--area-amber-stroke);
+  --color-area-amber-stroke-2: var(--area-amber-stroke-2);
+
+  /* --- Data Visualization: Static Colors (same in light/dark) --- */
+  --color-static-blue-1: var(--static-blue-1);
+  --color-static-blue-2: var(--static-blue-2);
+  --color-static-blue-3: var(--static-blue-3);
+  --color-static-blue-4: var(--static-blue-4);
+  --color-static-blue-5: var(--static-blue-5);
+  --color-static-rose-1: var(--static-rose-1);
+  --color-static-rose-2: var(--static-rose-2);
+  --color-static-rose-3: var(--static-rose-3);
+  --color-static-rose-4: var(--static-rose-4);
+  --color-static-rose-5: var(--static-rose-5);
+  --color-static-purple-1: var(--static-purple-1);
+  --color-static-purple-2: var(--static-purple-2);
+  --color-static-purple-3: var(--static-purple-3);
+  --color-static-purple-4: var(--static-purple-4);
+  --color-static-purple-5: var(--static-purple-5);
+  --color-static-orange-1: var(--static-orange-1);
+  --color-static-orange-2: var(--static-orange-2);
+  --color-static-orange-3: var(--static-orange-3);
+  --color-static-orange-4: var(--static-orange-4);
+  --color-static-orange-5: var(--static-orange-5);
+  --color-static-teal-1: var(--static-teal-1);
+  --color-static-teal-2: var(--static-teal-2);
+  --color-static-teal-3: var(--static-teal-3);
+  --color-static-teal-4: var(--static-teal-4);
+  --color-static-teal-5: var(--static-teal-5);
+  --color-static-amber-1: var(--static-amber-1);
+  --color-static-amber-2: var(--static-amber-2);
+  --color-static-amber-3: var(--static-amber-3);
+  --color-static-amber-4: var(--static-amber-4);
+  --color-static-amber-5: var(--static-amber-5);
+  --color-static-green-1: var(--static-green-1);
+  --color-static-green-2: var(--static-green-2);
+  --color-static-green-3: var(--static-green-3);
+  --color-static-green-4: var(--static-green-4);
+  --color-static-green-5: var(--static-green-5);
 
   /* --- SprouX Figma Semantic Colors --- */
   --color-primary-hover: var(--primary-hover);
@@ -60,8 +129,22 @@
   --color-ring-success: var(--ring-success);
   --color-ring-warning: var(--ring-warning);
   --color-ring-emphasis: var(--ring-emphasis);
-  --color-outline-bg: var(--outline-bg);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-accent-selected: var(--accent-selected);
+  --color-outline: var(--outline);
   --color-outline-hover: var(--outline-hover);
+  --color-backdrop: var(--backdrop);
+  --color-border-subtle: var(--border-subtle);
+  --color-input-readonly: var(--input-readonly);
+
+  /* --- Brand colors (Teal-based brand identity) --- */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-subtle: var(--brand-subtle);
+  --color-brand-subtle-foreground: var(--brand-subtle-foreground);
+  --color-brand-subtle-foreground-hover: var(--brand-subtle-foreground-hover);
+  --color-brand-border: var(--brand-border);
 
   /* --- Semantic status colors (Primary/Secondary levels) --- */
   --color-primary-subtle: var(--primary-subtle);
@@ -434,6 +517,7 @@
   :root {
     --background: #f7f7f6;             /* Slate 50 */
     --foreground: #252522;             /* Slate 950 */
+    --foreground-subtle: #6f6f6a;     /* Slate 700 */
 
     --card: #ffffff;
     --card-foreground: #252522;
@@ -456,6 +540,7 @@
 
     --accent: #f3f3f2;                /* Slate 100 */
     --accent-foreground: #2f2f2b;     /* Slate 900 */
+    --accent-selected: #dadad7;       /* Slate 300 */
 
     --destructive: #dc2626;            /* Red 600 */
     --destructive-foreground: #ffffff;
@@ -489,9 +574,19 @@
     --emphasis-subtle-foreground: #2563eb; /* Blue 600  — Figma VariableID:2201:2795 */
     --emphasis-border: #3b82f6;            /* Blue 500  — Figma VariableID:2201:2796 */
 
+    --brand: #0f766e;                  /* Teal 700 */
+    --brand-hover: #115e59;            /* Teal 800 */
+    --brand-foreground: #ffffff;
+    --brand-subtle: #f0fdfa;           /* Teal 50 */
+    --brand-subtle-foreground: #0f766e; /* Teal 700 */
+    --brand-subtle-foreground-hover: #115e59; /* Teal 800 */
+    --brand-border: #0d9488;           /* Teal 600 */
+
     --border: #e9e9e7;                 /* Slate 200 */
+    --border-subtle: #f3f3f2;          /* Slate 100 */
     --border-strong: #afafab;          /* Slate 500 */
     --input: #ffffff;
+    --input-readonly: #f3f3f2;         /* Slate 100 */
     --ring: #e9e9e7;                   /* Slate 200 */
     --radius: 0.5rem;
 
@@ -499,14 +594,82 @@
     --ghost-foreground: #6f6f6a;       /* Slate 700 */
     --ghost-hover: rgba(0,0,0,0.05);
 
-    --outline-bg: rgba(255,255,255,0.1);       /* Figma VariableID:644:37106 */
-    --outline-hover: rgba(51,65,85,0.033);     /* Figma VariableID:644:37107 */
+    --outline: rgba(255,255,255,0.1);          /* Figma: outline (was outline-bg) */
+    --outline-hover: rgba(51,65,85,0.033);     /* Figma: outline-hover */
+    --backdrop: rgba(51,65,85,0.6);            /* Figma: #33415599 */
 
-    --chart-1: #e8613c;
-    --chart-2: #2a9d8f;
-    --chart-3: #264653;
-    --chart-4: #e9c46a;
-    --chart-5: #f4a261;
+    --chart-1: #1f77b4;
+    --chart-2: #ff7f0e;
+    --chart-3: #2ca02c;
+    --chart-4: #d62728;
+    --chart-5: #9467bd;
+
+    /* --- Area Chart Colors (Light) --- */
+    --area-orange-fill: #fdd09cb2;
+    --area-orange-fill-2: #f8b07eb2;
+    --area-orange-stroke: #ffb86a;
+    --area-orange-stroke-2: #ff6900;
+    --area-blue-fill: #bfdeffb2;
+    --area-blue-fill-2: #aaccffb2;
+    --area-blue-stroke: #8ec5ff;
+    --area-blue-stroke-2: #3f8dff;
+    --area-green-fill: #b9fbd2b2;
+    --area-green-fill-2: #82e2a9b2;
+    --area-green-stroke: #7bf1ab;
+    --area-green-stroke-2: #19d163;
+    --area-rose-fill: #ffd9deb2;
+    --area-rose-fill-2: #f491a8b2;
+    --area-rose-stroke: #ffa1ad;
+    --area-rose-stroke-2: #ff4f79;
+    --area-teal-fill: #a9f4e8b2;
+    --area-teal-fill-2: #7ce7dcb2;
+    --area-teal-stroke: #46edd5;
+    --area-teal-stroke-2: #07c0ac;
+    --area-purple-fill: #f0e0ffb2;
+    --area-purple-fill-2: #deb5ffb2;
+    --area-purple-stroke: #dab2ff;
+    --area-purple-stroke-2: #c67eff;
+    --area-amber-fill: #ffedacb2;
+    --area-amber-fill-2: #fed699b2;
+    --area-amber-stroke: #ffd230;
+    --area-amber-stroke-2: #fe9a00;
+
+    /* --- Static Colors (same light/dark — Data Viz) --- */
+    --static-blue-1: #8ec5ff;
+    --static-blue-2: #2b7fff;
+    --static-blue-3: #155dfc;
+    --static-blue-4: #1447e6;
+    --static-blue-5: #193cb8;
+    --static-rose-1: #ffa1ad;
+    --static-rose-2: #ff2056;
+    --static-rose-3: #ec003f;
+    --static-rose-4: #c70036;
+    --static-rose-5: #a50036;
+    --static-purple-1: #dab2ff;
+    --static-purple-2: #ad46ff;
+    --static-purple-3: #9810fa;
+    --static-purple-4: #8200db;
+    --static-purple-5: #6e11b0;
+    --static-orange-1: #ffb86a;
+    --static-orange-2: #ff6900;
+    --static-orange-3: #f54a00;
+    --static-orange-4: #ca3500;
+    --static-orange-5: #9f2d00;
+    --static-teal-1: #46edd5;
+    --static-teal-2: #00bba7;
+    --static-teal-3: #009689;
+    --static-teal-4: #00786f;
+    --static-teal-5: #005f5a;
+    --static-amber-1: #ffd230;
+    --static-amber-2: #fe9a00;
+    --static-amber-3: #e17100;
+    --static-amber-4: #bb4d00;
+    --static-amber-5: #973c00;
+    --static-green-1: #7bf1a8;
+    --static-green-2: #00c951;
+    --static-green-3: #00a63e;
+    --static-green-4: #008236;
+    --static-green-5: #016630;
 
     --sidebar-background: #ffffff;     /* White (Figma) */
     --sidebar-foreground: #252522;     /* Slate 950 (Figma) */
@@ -514,6 +677,8 @@
     --sidebar-primary-foreground: #ffffff;
     --sidebar-accent: #f3f3f2;
     --sidebar-accent-foreground: #6f6f6a; /* Slate 700 (Figma) */
+    --sidebar-accent-hover: #f7f7f6;  /* Slate 50 */
+    --sidebar-muted: #afafab;          /* Slate 500 */
     --sidebar-border: #e9e9e7;
     --sidebar-ring: #e9e9e7;           /* Slate 200 (Figma) */
   }
@@ -525,6 +690,7 @@
   .dark {
     --background: #252522;             /* slate950 */
     --foreground: #f7f7f6;             /* slate50 */
+    --foreground-subtle: #c6c6c2;     /* slate400 */
 
     --card: #252522;                   /* slate950 */
     --card-foreground: #f7f7f6;        /* slate50 */
@@ -547,6 +713,7 @@
 
     --accent: #4f4f4a;                /* slate800 */
     --accent-foreground: #f7f7f6;     /* slate50 */
+    --accent-selected: #6f6f6a;       /* slate700 */
 
     --destructive: #7f1d1d;           /* red900 */
     --destructive-foreground: #fafafa; /* neutral50 */
@@ -562,41 +729,82 @@
     --primary-subtle: #042f2e;        /* teal950 */
     --primary-subtle-foreground: #2dd4bf; /* teal400 */
 
-    --success: #166534;               /* green800 */
+    --success: #22c55e;               /* green500 (was green800) */
     --success-foreground: #ffffff;
     --success-subtle: #052e16;        /* green950 */
     --success-subtle-foreground: #22c55e; /* green500 */
     --success-border: #22c55e;        /* green500 */
 
-    --warning: #92400e;               /* amber800 */
+    --warning: #f59e0b;               /* amber500 (was amber800) */
     --warning-foreground: #ffffff;
     --warning-subtle: #451a03;        /* amber950 */
     --warning-subtle-foreground: #f59e0b; /* amber500 */
     --warning-border: #f59e0b;        /* amber500 */
 
-    --emphasis: #1e40af;              /* blue800 */
+    --emphasis: #60a5fa;              /* blue400 (was blue800) */
     --emphasis-foreground: #ffffff;
     --emphasis-subtle: #172554;       /* blue950 */
     --emphasis-subtle-foreground: #60a5fa; /* blue400 */
     --emphasis-border: #3b82f6;       /* blue500 */
 
+    --brand: #0d9488;                  /* teal600 */
+    --brand-hover: #0f766e;            /* teal700 */
+    --brand-foreground: #ffffff;
+    --brand-subtle: #042f2e;           /* teal950 */
+    --brand-subtle-foreground: #2dd4bf; /* teal400 */
+    --brand-subtle-foreground-hover: #5eead4; /* teal300 */
+    --brand-border: #0d9488;           /* teal600 */
+
     --border: #4f4f4a;                /* slate800 */
+    --border-subtle: #2f2f2b;         /* slate900 */
     --border-strong: #8f8f8a;         /* slate600 */
     --input: #2f2f2b;                 /* slate900 */
+    --input-readonly: #4f4f4a;        /* slate800 */
     --ring: #4f4f4a;                  /* slate800 */
 
     --ghost: transparent;
     --ghost-foreground: #8f8f8a;      /* slate600 */
-    --ghost-hover: rgba(255,255,255,0.098); /* Figma VariableID:625:31108 dark */
+    --ghost-hover: #ffffff19;         /* rgba(255,255,255,0.098) */
 
-    --outline-bg: rgba(255,255,255,0.047);   /* Figma VariableID:644:37106 dark */
-    --outline-hover: rgba(255,255,255,0.098); /* Figma VariableID:644:37107 dark */
+    --outline: #ffffff0c;             /* rgba(255,255,255,0.047) - was outline-bg */
+    --outline-hover: #ffffff19;       /* rgba(255,255,255,0.098) */
+    --backdrop: #00000099;            /* rgba(0,0,0,0.6) */
 
-    --chart-1: #2662d9;
-    --chart-2: #2eb88a;
-    --chart-3: #e69533;
-    --chart-4: #a84de6;
-    --chart-5: #d92f6e;
+    --chart-1: #1447e6;
+    --chart-2: #00bc7d;
+    --chart-3: #fd9a00;
+    --chart-4: #ad46ff;
+    --chart-5: #ff2056;
+
+    /* --- Area Chart Colors (Dark) --- */
+    --area-orange-fill: #755738b2;
+    --area-orange-fill-2: #76380eb2;
+    --area-orange-stroke: #ffb86a;
+    --area-orange-stroke-2: #ff7915;
+    --area-blue-fill: #475d75b2;
+    --area-blue-fill-2: #1f4176b2;
+    --area-blue-stroke: #8ec5ff;
+    --area-blue-stroke-2: #539bff;
+    --area-green-fill: #3f6e51b2;
+    --area-green-fill-2: #0e5e2eb2;
+    --area-green-stroke: #7bf1a8;
+    --area-green-stroke-2: #19d163;
+    --area-rose-fill: #754e53b2;
+    --area-rose-fill-2: #741b30b2;
+    --area-rose-stroke: #ffa1ad;
+    --area-rose-stroke-2: #ff4670;
+    --area-teal-fill: #409388b2;
+    --area-teal-fill-2: #0e5951b2;
+    --area-teal-stroke: #46edd5;
+    --area-teal-stroke-2: #1ccfb9;
+    --area-purple-fill: #655576b2;
+    --area-purple-fill-2: #532a77b2;
+    --area-purple-stroke: #dab2ff;
+    --area-purple-stroke-2: #a96add;
+    --area-amber-fill: #746221b2;
+    --area-amber-fill-2: #734b0eb2;
+    --area-amber-stroke: #ffd230;
+    --area-amber-stroke-2: #ffa50a;
 
     --sidebar-background: #2f2f2b;    /* slate900 */
     --sidebar-foreground: #f3f3f2;    /* slate100 */
@@ -604,6 +812,8 @@
     --sidebar-primary-foreground: #ffffff; /* white */
     --sidebar-accent: #4f4f4a;        /* slate800 */
     --sidebar-accent-foreground: #f3f3f2; /* slate100 */
+    --sidebar-accent-hover: #252522;  /* slate950 */
+    --sidebar-muted: #8f8f8a;         /* slate600 */
     --sidebar-border: #4f4f4a;        /* slate800 */
     --sidebar-ring: #252522;          /* slate950 */
   }
