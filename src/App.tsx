@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
+import { Badge, BadgeRound, BadgeDot } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
@@ -197,6 +197,7 @@ import {
   AlignCenter,
   AlignRight,
   AlertCircle,
+  Bell,
   Info,
   CircleCheck,
   TriangleAlert,
@@ -8468,6 +8469,7 @@ function AlertDocs() {
    ================================================================ */
 
 function BadgeExploreBehavior() {
+  const [component, setComponent] = useState<"label" | "round" | "dot">("label")
   const [variant, setVariant] = useState("default")
   const [level, setLevel] = useState("primary")
   const [size, setSize] = useState("default")
@@ -8476,31 +8478,70 @@ function BadgeExploreBehavior() {
   const [showIconRight, setShowIconRight] = useState(false)
   const [iconLeftName, setIconLeftName] = useState("Circle")
   const [iconRightName, setIconRightName] = useState("X")
+  const [roundType, setRoundType] = useState<"numeric" | "icon">("numeric")
+  const [roundIconName, setRoundIconName] = useState("Bell")
+  const [roundNumber, setRoundNumber] = useState("3")
   const [label, setLabel] = useState("Badge")
 
   const IconLeft = allLucideIcons.find((i) => i.name === iconLeftName)?.icon ?? allLucideIcons.find((i) => i.name === "Circle")!.icon
   const IconRight = allLucideIcons.find((i) => i.name === iconRightName)?.icon ?? allLucideIcons.find((i) => i.name === "X")!.icon
+  const RoundIcon = allLucideIcons.find((i) => i.name === roundIconName)?.icon ?? allLucideIcons.find((i) => i.name === "Bell")!.icon
+
+  // Badge/Dot only supports 6 variants (no outline/ghost)
+  const dotVariants = ["default", "secondary", "destructive", "emphasis", "success", "warning"]
+  const effectiveVariant = component === "dot" && !dotVariants.includes(variant) ? "default" : variant
+
+  // Dot sizes: sm=4px, default=8px, lg=12px
+  const dotSizeLabels: Record<string, string> = { sm: "Small (4px)", default: "Regular (8px)", lg: "Large (12px)" }
+  const roundSizeLabels: Record<string, string> = { sm: "Small (20px)", default: "Regular (24px)", lg: "Large (28px)" }
+  const labelSizeLabels: Record<string, string> = { sm: "Small (20px)", default: "Regular (24px)", lg: "Large (28px)" }
+  const sizeLabels = component === "dot" ? dotSizeLabels : component === "round" ? roundSizeLabels : labelSizeLabels
 
   return (
     <div className="rounded-xl border border-border overflow-hidden bg-background">
       <div className="p-4xl flex items-center justify-center min-h-[200px] bg-background">
-        <Badge variant={variant as any} level={level as any} size={size as any} className={state === "Focus" ? "ring-[3px] ring-ring" : ""}>
-          {showIconLeft && <IconLeft />}
-          {label}
-          {showIconRight && <IconRight />}
-        </Badge>
+        {component === "label" && (
+          <Badge variant={effectiveVariant as any} level={level as any} size={size as any} className={state === "Focus" ? "ring-[3px] ring-ring" : ""}>
+            {showIconLeft && <IconLeft />}
+            {label}
+            {showIconRight && <IconRight />}
+          </Badge>
+        )}
+        {component === "round" && (
+          <BadgeRound variant={effectiveVariant as any} size={size as any} className={state === "Focus" ? "ring-[3px] ring-ring" : ""}>
+            {roundType === "numeric" ? roundNumber : <RoundIcon />}
+          </BadgeRound>
+        )}
+        {component === "dot" && (
+          <BadgeDot variant={effectiveVariant as any} size={size as any} />
+        )}
       </div>
       <div className="border-t border-border bg-muted/50 p-lg">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
           <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Component</Label>
+            <Select value={component} onValueChange={(v) => {
+              setComponent(v as any)
+              // Reset variant if switching to dot and current variant is invalid
+              if (v === "dot" && !dotVariants.includes(variant)) setVariant("default")
+            }}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="label">Badge/Label</SelectItem>
+                <SelectItem value="round">Badge/Round</SelectItem>
+                <SelectItem value="dot">Badge/Dot</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Variant</Label>
-            <Select value={variant} onValueChange={setVariant}>
+            <Select value={effectiveVariant} onValueChange={setVariant}>
               <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="default">Primary</SelectItem>
                 <SelectItem value="secondary">Secondary</SelectItem>
-                <SelectItem value="outline">Outline</SelectItem>
-                <SelectItem value="ghost">Ghost</SelectItem>
+                {component !== "dot" && <SelectItem value="outline">Outline</SelectItem>}
+                {component !== "dot" && <SelectItem value="ghost">Ghost</SelectItem>}
                 <SelectItem value="destructive">Destructive</SelectItem>
                 <SelectItem value="emphasis">Emphasis</SelectItem>
                 <SelectItem value="success">Success</SelectItem>
@@ -8508,57 +8549,90 @@ function BadgeExploreBehavior() {
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Level</Label>
-            <Select value={level} onValueChange={setLevel}>
-              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="primary">Primary</SelectItem>
-                <SelectItem value="secondary">Secondary</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          {component === "label" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Level</Label>
+              <Select value={level} onValueChange={setLevel}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="primary">Primary</SelectItem>
+                  <SelectItem value="secondary">Secondary</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           <div className="space-y-xs">
             <Label className="text-xs text-muted-foreground">Size</Label>
             <Select value={size} onValueChange={setSize}>
               <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="sm">Small (20px)</SelectItem>
-                <SelectItem value="default">Regular (24px)</SelectItem>
-                <SelectItem value="lg">Large (28px)</SelectItem>
+                <SelectItem value="sm">{sizeLabels.sm}</SelectItem>
+                <SelectItem value="default">{sizeLabels.default}</SelectItem>
+                <SelectItem value="lg">{sizeLabels.lg}</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">State</Label>
-            <Select value={state} onValueChange={setState}>
-              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Default">Default</SelectItem>
-                <SelectItem value="Focus">Focus</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Label</Label>
-            <Input value={label} onChange={(e) => setLabel(e.target.value)} className="h-8 text-xs" />
-          </div>
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Show Icon Left</Label>
-            <div className="pt-1"><Switch checked={showIconLeft} onCheckedChange={setShowIconLeft} /></div>
-          </div>
-          <div className="space-y-xs">
-            <Label className={["text-xs text-muted-foreground", !showIconLeft ? "opacity-50" : ""].join(" ")}>Icon Left</Label>
-            <IconPicker value={iconLeftName} onChange={setIconLeftName} disabled={!showIconLeft} size="sm" />
-          </div>
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Show Icon Right</Label>
-            <div className="pt-1"><Switch checked={showIconRight} onCheckedChange={setShowIconRight} /></div>
-          </div>
-          <div className="space-y-xs">
-            <Label className={["text-xs text-muted-foreground", !showIconRight ? "opacity-50" : ""].join(" ")}>Icon Right</Label>
-            <IconPicker value={iconRightName} onChange={setIconRightName} disabled={!showIconRight} size="sm" />
-          </div>
+          {component !== "dot" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">State</Label>
+              <Select value={state} onValueChange={setState}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Default">Default</SelectItem>
+                  <SelectItem value="Focus">Focus</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+          {component === "round" && (
+            <>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Type</Label>
+                <Select value={roundType} onValueChange={(v) => setRoundType(v as any)}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="numeric">Numeric</SelectItem>
+                    <SelectItem value="icon">Icon</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              {roundType === "numeric" ? (
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Number</Label>
+                  <Input value={roundNumber} onChange={(e) => setRoundNumber(e.target.value)} className="h-8 text-xs" />
+                </div>
+              ) : (
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Icon</Label>
+                  <IconPicker value={roundIconName} onChange={setRoundIconName} size="sm" />
+                </div>
+              )}
+            </>
+          )}
+          {component === "label" && (
+            <>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Label</Label>
+                <Input value={label} onChange={(e) => setLabel(e.target.value)} className="h-8 text-xs" />
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Show Icon Left</Label>
+                <div className="pt-1"><Switch checked={showIconLeft} onCheckedChange={setShowIconLeft} /></div>
+              </div>
+              <div className="space-y-xs">
+                <Label className={["text-xs text-muted-foreground", !showIconLeft ? "opacity-50" : ""].join(" ")}>Icon Left</Label>
+                <IconPicker value={iconLeftName} onChange={setIconLeftName} disabled={!showIconLeft} size="sm" />
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Show Icon Right</Label>
+                <div className="pt-1"><Switch checked={showIconRight} onCheckedChange={setShowIconRight} /></div>
+              </div>
+              <div className="space-y-xs">
+                <Label className={["text-xs text-muted-foreground", !showIconRight ? "opacity-50" : ""].join(" ")}>Icon Right</Label>
+                <IconPicker value={iconRightName} onChange={setIconRightName} disabled={!showIconRight} size="sm" />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -8567,17 +8641,50 @@ function BadgeExploreBehavior() {
 
 function BadgePropsTable() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
-      <table className="w-full text-xs">
-        <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
-        <tbody className="divide-y divide-border">
-          <tr><td className="px-4 py-3 font-mono text-primary">variant</td><td className="px-4 py-3 font-mono text-muted-foreground">"default" | "secondary" | "outline" | "ghost" | "destructive" | "emphasis" | "success" | "warning"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Color variant matching Figma Variant property.</td></tr>
-          <tr><td className="px-4 py-3 font-mono text-primary">level</td><td className="px-4 py-3 font-mono text-muted-foreground">"primary" | "secondary"</td><td className="px-4 py-3 font-mono text-muted-foreground">"primary"</td><td className="px-4 py-3 text-muted-foreground">Primary = solid fill (strong emphasis), Secondary = subtle fill.</td></tr>
-          <tr><td className="px-4 py-3 font-mono text-primary">size</td><td className="px-4 py-3 font-mono text-muted-foreground">"sm" | "default" | "lg"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Small (20px), Regular (24px), Large (28px).</td></tr>
-          <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">{"Label text + optional SVG icons (auto-sized via [&>svg])."}</td></tr>
-          <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes.</td></tr>
-        </tbody>
-      </table>
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">Badge (Label)</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">variant</td><td className="px-4 py-3 font-mono text-muted-foreground">"default" | "secondary" | "outline" | "ghost" | "destructive" | "emphasis" | "success" | "warning"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Color variant matching Figma Variant property.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">level</td><td className="px-4 py-3 font-mono text-muted-foreground">"primary" | "secondary"</td><td className="px-4 py-3 font-mono text-muted-foreground">"primary"</td><td className="px-4 py-3 text-muted-foreground">Primary = solid fill (strong emphasis), Secondary = subtle fill.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">size</td><td className="px-4 py-3 font-mono text-muted-foreground">"sm" | "default" | "lg"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Small (20px), Regular (24px), Large (28px).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">{"Label text + optional SVG icons (auto-sized via [&>svg])."}</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">BadgeRound</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">variant</td><td className="px-4 py-3 font-mono text-muted-foreground">"default" | "secondary" | "outline" | "ghost" | "destructive" | "emphasis" | "success" | "warning"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Color variant. Primary level only (no secondary level).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">size</td><td className="px-4 py-3 font-mono text-muted-foreground">"sm" | "default" | "lg"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Small (20×20), Regular (24×24), Large (28×28).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">{"Numeric text (\"3\", \"99+\") or SVG icon."}</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">BadgeDot</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">variant</td><td className="px-4 py-3 font-mono text-muted-foreground">"default" | "secondary" | "destructive" | "emphasis" | "success" | "warning"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Color variant. 6 options (no outline/ghost).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">size</td><td className="px-4 py-3 font-mono text-muted-foreground">"sm" | "default" | "lg"</td><td className="px-4 py-3 font-mono text-muted-foreground">"default"</td><td className="px-4 py-3 text-muted-foreground">Small (4px), Regular (8px), Large (12px).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">aria-label</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">"status indicator"</td><td className="px-4 py-3 text-muted-foreground">Accessible label since dot has no visible text.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
@@ -8598,9 +8705,15 @@ function BadgeTokensTable() {
     { token: "--background / --border", value: "#ffffff / #e9e9e7", hex: "#ffffff", usage: "Outline & Ghost background + border" },
     { token: "--ghost-foreground", value: "#6f6f6a", hex: "#6f6f6a", usage: "Outline/Ghost secondary text" },
     { token: "rounded-full", value: "9999px", hex: "—", usage: "Pill shape (all badges)" },
-    { token: "h-lg (20px)", value: "20px", hex: "—", usage: "Small size height" },
-    { token: "h-xl (24px)", value: "24px", hex: "—", usage: "Regular size height" },
-    { token: "h-[28px]", value: "28px", hex: "—", usage: "Large size height" },
+    { token: "h-lg (20px)", value: "20px", hex: "—", usage: "Label/Round small size height" },
+    { token: "h-xl (24px)", value: "24px", hex: "—", usage: "Label/Round regular size height" },
+    { token: "h-[28px]", value: "28px", hex: "—", usage: "Label/Round large size height" },
+    { token: "size-lg (20px)", value: "20×20px", hex: "—", usage: "Round small (fixed square)" },
+    { token: "size-xl (24px)", value: "24×24px", hex: "—", usage: "Round regular (fixed square)" },
+    { token: "size-[28px]", value: "28×28px", hex: "—", usage: "Round large (fixed square)" },
+    { token: "size-3xs (4px)", value: "4×4px", hex: "—", usage: "Dot small" },
+    { token: "size-xs (8px)", value: "8×8px", hex: "—", usage: "Dot regular" },
+    { token: "size-sm (12px)", value: "12×12px", hex: "—", usage: "Dot large" },
   ]
   return (
     <div className="overflow-x-auto rounded-xl border border-border">
@@ -8653,7 +8766,7 @@ function BadgeDocs() {
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
         <h1 className="typo-heading-2">Badge</h1>
-        <p className="typo-paragraph text-muted-foreground max-w-3xl">Status tags, notification counts, and category labels. Supports 8 color variants × 2 emphasis levels × 3 sizes.</p>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Status tags, notification counts, and category labels. Three shapes: Label (pill with text), Round (circular with number/icon), and Dot (minimal indicator). Supports up to 8 color variants × 3 sizes.</p>
       </header>
 
       {/* ---- Explore Behavior ---- */}
@@ -8665,7 +8778,7 @@ function BadgeDocs() {
       {/* ---- Installation ---- */}
       <InstallationSection
         deps={`pnpm add class-variance-authority clsx tailwind-merge`}
-        importCode={`import { Badge } from "@/components/ui/badge"`}
+        importCode={`import { Badge, BadgeRound, BadgeDot } from "@/components/ui/badge"`}
       />
 
       {/* ---- Examples ---- */}
@@ -8714,6 +8827,45 @@ function BadgeDocs() {
             <Badge variant="success" level="secondary"><CircleCheck /> Done</Badge>
           </div>
         </Example>
+
+        <Example title="Round — Numeric" description="Circular badges for notification counts." code={`<div className="flex items-center gap-2">\n  <BadgeRound size="sm">1</BadgeRound>\n  <BadgeRound>3</BadgeRound>\n  <BadgeRound size="lg">99</BadgeRound>\n  <BadgeRound variant="destructive">5</BadgeRound>\n  <BadgeRound variant="emphasis">12</BadgeRound>\n</div>`}>
+          <div className="flex items-center gap-2">
+            <BadgeRound size="sm">1</BadgeRound>
+            <BadgeRound>3</BadgeRound>
+            <BadgeRound size="lg">99</BadgeRound>
+            <BadgeRound variant="destructive">5</BadgeRound>
+            <BadgeRound variant="emphasis">12</BadgeRound>
+          </div>
+        </Example>
+
+        <Example title="Round — Icon" description="Circular badges with icon content." code={`<div className="flex items-center gap-2">\n  <BadgeRound size="sm"><Bell /></BadgeRound>\n  <BadgeRound><Bell /></BadgeRound>\n  <BadgeRound size="lg"><Bell /></BadgeRound>\n  <BadgeRound variant="success"><CircleCheck /></BadgeRound>\n  <BadgeRound variant="warning"><AlertCircle /></BadgeRound>\n</div>`}>
+          <div className="flex items-center gap-2">
+            <BadgeRound size="sm"><Bell /></BadgeRound>
+            <BadgeRound><Bell /></BadgeRound>
+            <BadgeRound size="lg"><Bell /></BadgeRound>
+            <BadgeRound variant="success"><CircleCheck /></BadgeRound>
+            <BadgeRound variant="warning"><AlertCircle /></BadgeRound>
+          </div>
+        </Example>
+
+        <Example title="Dot — All Variants" description="Small dot indicators for status." code={`<div className="flex items-center gap-2">\n  <BadgeDot />\n  <BadgeDot variant="secondary" />\n  <BadgeDot variant="destructive" />\n  <BadgeDot variant="emphasis" />\n  <BadgeDot variant="success" />\n  <BadgeDot variant="warning" />\n</div>`}>
+          <div className="flex items-center gap-2">
+            <BadgeDot />
+            <BadgeDot variant="secondary" />
+            <BadgeDot variant="destructive" />
+            <BadgeDot variant="emphasis" />
+            <BadgeDot variant="success" />
+            <BadgeDot variant="warning" />
+          </div>
+        </Example>
+
+        <Example title="Dot — Sizes" description="Small (4px), Regular (8px), Large (12px)." code={`<div className="flex items-center gap-2">\n  <BadgeDot size="sm" />\n  <BadgeDot />\n  <BadgeDot size="lg" />\n</div>`}>
+          <div className="flex items-center gap-2">
+            <BadgeDot size="sm" />
+            <BadgeDot />
+            <BadgeDot size="lg" />
+          </div>
+        </Example>
         </div>
       </section>
 
@@ -8748,13 +8900,14 @@ function BadgeDocs() {
           <h3 className="font-body font-semibold text-sm">Content</h3>
           <div className="flex gap-4">
             <DoItem>
-              <p>Use Badge for status indicators, counts, and category labels.</p>
-              <p>Keep text short — 1-2 words maximum.</p>
+              <p>Use <strong>Badge</strong> (label) for status indicators and category labels.</p>
+              <p>Use <strong>BadgeRound</strong> for notification counts (numeric) or icon indicators.</p>
+              <p>Use <strong>BadgeDot</strong> as a minimal status dot when text is unnecessary.</p>
               <p>Use semantic variants consistently: <strong>Success</strong> for positive, <strong>Warning</strong> for caution, <strong>Destructive</strong> for errors.</p>
             </DoItem>
             <DontItem>
               <p>Don't use Badge for interactive actions — use Button instead.</p>
-              <p>Don't use long text content inside badges.</p>
+              <p>Don't use long text content inside badges — keep to 1-2 words.</p>
               <p>Don't use inconsistent color meanings across the same interface.</p>
             </DontItem>
           </div>
@@ -8764,13 +8917,14 @@ function BadgeDocs() {
           <h3 className="font-body font-semibold text-sm">Structure</h3>
           <div className="flex gap-4">
             <DoItem>
-              <p>Use <strong>Primary level</strong> for strong emphasis and key status.</p>
-              <p>Use <strong>Secondary level</strong> for subtle, supplementary information.</p>
-              <p>Use <strong>Ghost</strong> variant for muted emphasis in dense layouts.</p>
+              <p>Use <strong>Primary level</strong> for strong emphasis and key status (Badge label only).</p>
+              <p>Use <strong>Secondary level</strong> for subtle, supplementary information (Badge label only).</p>
+              <p>Use <strong>BadgeDot</strong> next to text labels or icons to indicate new/unread state.</p>
             </DoItem>
             <DontItem>
               <p>Don't mix too many badge variants in a single view — limit to 2-3.</p>
-              <p>Don't use Primary level for every badge — reserve for important status.</p>
+              <p>Don't use BadgeDot without a nearby text label for accessibility.</p>
+              <p>Don't use BadgeRound for text content — use Badge (label) instead.</p>
             </DontItem>
           </div>
         </div>
@@ -8802,6 +8956,34 @@ function BadgeDocs() {
         ["Gap Lg", "6px", "—", "gap-2xs"],
       ]} />
 
+      <FigmaMapping nodeId="4428:6150" rows={[
+        ["Type", "Numberic / Icon", "children", "Number text or SVG icon"],
+        ["Variant", "Primary…Warning", "variant", "Same 8 variants as Badge/Label (primary level only)"],
+        ["Size", "Small (20×20)", "size", "\"sm\" — size-lg"],
+        ["Size", "Regular (24×24)", "size", "\"default\" — size-xl"],
+        ["Size", "Large (28×28)", "size", "\"lg\" — size-[28px]"],
+        ["Shape", "Circle (9999px)", "—", "rounded-full"],
+        ["Icon Sm/Reg", "12×12", "—", "[&>svg]:size-sm"],
+        ["Icon Lg", "16×16", "—", "[&>svg]:size-md"],
+        ["Text Sm/Reg", "Geist 600 12/16", "—", "typo-paragraph-mini-bold"],
+        ["Text Lg", "Geist 500 14/20", "—", "typo-paragraph-sm-medium"],
+        ["State", "Default / Focus", "—", "focus:ring-[3px] focus:ring-ring"],
+        ["Icon Swap", "Instance Swap", "children", "SVG icon via children prop"],
+      ]} />
+
+      <FigmaMapping nodeId="4428:7546" rows={[
+        ["Variant", "Primary", "variant", "\"default\" — bg-primary"],
+        ["Variant", "Secondary", "variant", "\"secondary\" — bg-secondary"],
+        ["Variant", "Destructive", "variant", "\"destructive\" — bg-destructive"],
+        ["Variant", "Emphasis", "variant", "\"emphasis\" — bg-emphasis"],
+        ["Variant", "Success", "variant", "\"success\" — bg-success"],
+        ["Variant", "Warning", "variant", "\"warning\" — bg-warning"],
+        ["Size", "Small (4px)", "size", "\"sm\" — size-3xs"],
+        ["Size", "Regular (8px)", "size", "\"default\" — size-xs"],
+        ["Size", "Large (12px)", "size", "\"lg\" — size-sm"],
+        ["Shape", "Circle (9999px)", "—", "rounded-full"],
+      ]} />
+
       {/* ---- Accessibility ---- */}
       <section id="accessibility" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
@@ -8810,12 +8992,18 @@ function BadgeDocs() {
             <h3 className="font-body font-semibold text-sm text-foreground">Semantic HTML</h3>
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
               <li>
-                Badge renders as{" "}
+                Badge and BadgeRound render as{" "}
                 <code className="bg-muted px-1 rounded font-mono">{"<span>"}</code>{" "}
                 — purely decorative, not interactive.
               </li>
-              <li>Screen readers will read the badge text content naturally.</li>
-              <li>For notification counts, consider adding{" "}
+              <li>
+                BadgeDot renders with{" "}
+                <code className="bg-muted px-1 rounded font-mono">role="status"</code>{" "}
+                and a default{" "}
+                <code className="bg-muted px-1 rounded font-mono">aria-label="status indicator"</code>.
+                Always provide a descriptive aria-label.
+              </li>
+              <li>For notification counts (BadgeRound), add{" "}
                 <code className="bg-muted px-1 rounded font-mono">aria-label</code>{" "}
                 for context (e.g. "3 new notifications").
               </li>

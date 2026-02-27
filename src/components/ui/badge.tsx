@@ -87,4 +87,122 @@ function Badge({
   )
 }
 
-export { Badge, badgeVariants }
+/**
+ * SprouX Badge/Round
+ *
+ * Figma: Badge/Round (4428:6150)
+ *
+ * Circular badge for notification counts and icon indicators.
+ * Type: numeric (number text) | icon (SVG icon inside)
+ * Variants: same 8 color variants as Badge (primary level only — no secondary level)
+ * Sizes: sm (20×20) | default (24×24) | lg (28×28)
+ */
+const badgeRoundVariants = cva(
+  "inline-flex items-center justify-center rounded-full shrink-0 transition-colors focus:outline-none focus:ring-[3px] focus:ring-ring",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground",
+        outline:
+          "bg-background border border-border text-foreground",
+        ghost:
+          "bg-background text-foreground",
+        destructive:
+          "bg-destructive text-destructive-foreground",
+        emphasis:
+          "bg-emphasis text-emphasis-foreground",
+        success:
+          "bg-success text-success-foreground",
+        warning:
+          "bg-warning text-warning-foreground",
+      },
+      size: {
+        sm: "size-lg typo-paragraph-mini-bold [&>svg]:size-sm",
+        default: "size-xl typo-paragraph-mini-bold [&>svg]:size-sm",
+        lg: "size-[28px] typo-paragraph-sm-medium [&>svg]:size-md",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function BadgeRound({
+  className,
+  variant,
+  size,
+  ...props
+}: React.ComponentProps<"span"> & VariantProps<typeof badgeRoundVariants>) {
+  return (
+    <span
+      data-slot="badge-round"
+      className={cn(badgeRoundVariants({ variant, size }), className)}
+      {...props}
+    />
+  )
+}
+
+/**
+ * SprouX Badge/Dot
+ *
+ * Figma: Badge/Dot (4428:7546)
+ *
+ * Small colored dot indicator — no text content.
+ * Variants: 6 color variants (no outline/ghost)
+ * Sizes: sm (4×4) | default (8×8) | lg (12×12)
+ */
+const badgeDotVariants = cva(
+  "inline-block rounded-full shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary",
+        secondary:
+          "bg-secondary",
+        destructive:
+          "bg-destructive",
+        emphasis:
+          "bg-emphasis",
+        success:
+          "bg-success",
+        warning:
+          "bg-warning",
+      },
+      size: {
+        sm: "size-3xs",
+        default: "size-xs",
+        lg: "size-sm",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function BadgeDot({
+  className,
+  variant,
+  size,
+  ...props
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeDotVariants>) {
+  return (
+    <span
+      data-slot="badge-dot"
+      role="status"
+      aria-label={props["aria-label"] ?? "status indicator"}
+      className={cn(badgeDotVariants({ variant, size }), className)}
+      {...props}
+    />
+  )
+}
+
+export { Badge, badgeVariants, BadgeRound, badgeRoundVariants, BadgeDot, badgeDotVariants }
