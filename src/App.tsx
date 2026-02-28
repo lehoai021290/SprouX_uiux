@@ -243,6 +243,7 @@ import {
   Github,
   ArrowUp,
   X,
+  Bug,
 } from "lucide-react"
 import { icons as lucideIcons } from "lucide-react"
 
@@ -5528,8 +5529,8 @@ function CheckboxExploreBehavior() {
   const [grpChecked, setGrpChecked] = useState("False")
   const [grpState, setGrpState] = useState("Default")
   // --- Rich ---
-  const [richChecked, setRichChecked] = useState("False")
-  const [richFlipped, setRichFlipped] = useState("False")
+  const [richChecked, setRichChecked] = useState(false)
+  const [richFlipped, setRichFlipped] = useState(false)
   const [richShowLine2, setRichShowLine2] = useState(false)
   // --- Rich Advanced ---
   const [raState, setRaState] = useState("Default")
@@ -5543,8 +5544,8 @@ function CheckboxExploreBehavior() {
 
   const RaIconComp = allLucideIcons.find((i) => i.name === raIconName)?.icon ?? Mail
   const raIsDisabled = raState === "Disabale" || raState === "Disabale Checked"
-  const raIsSelected = raState === "Selected" || raState === "Selected - Hover" || raState === "Disabale Checked"
-  const raIsHover = raState === "Hover" || raState === "Active" || raState === "Selected - Hover"
+  const raIsSelected = raState === "Active" || raState === "Selected" || raState === "Selected - Hover" || raState === "Disabale Checked"
+  const raIsHover = raState === "Hover" || raState === "Selected - Hover"
 
   return (
     <Tabs defaultValue="checkbox">
@@ -5634,34 +5635,26 @@ function CheckboxExploreBehavior() {
               disabled={grpState === "Disable"}
               aria-invalid={grpState === "Error" || undefined}
             />
-            <Label>Label</Label>
+            <Label className="typo-paragraph-sm text-muted-foreground">Label</Label>
           </div>
         </CheckboxExploreTab>
       </TabsContent>
 
-      {/* ---- Tab: Rich ---- */}
+      {/* ---- Tab: Rich (Figma 19:6351) ---- */}
       <TabsContent value="rich" className="mt-md">
         <CheckboxExploreTab
           controls={<>
             <div className="space-y-xs">
               <Label className="text-xs text-muted-foreground">Checked?</Label>
-              <Select value={richChecked} onValueChange={setRichChecked}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="False">False</SelectItem>
-                  <SelectItem value="True">True</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="pt-1">
+                <Switch checked={richChecked} onCheckedChange={setRichChecked} />
+              </div>
             </div>
             <div className="space-y-xs">
               <Label className="text-xs text-muted-foreground">Flipped</Label>
-              <Select value={richFlipped} onValueChange={setRichFlipped}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="False">False</SelectItem>
-                  <SelectItem value="True">True</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="pt-1">
+                <Switch checked={richFlipped} onCheckedChange={setRichFlipped} />
+              </div>
             </div>
             <div className="space-y-xs">
               <Label className="text-xs text-muted-foreground">Show Line 2</Label>
@@ -5671,24 +5664,25 @@ function CheckboxExploreBehavior() {
             </div>
           </>}
         >
+          {/* Figma: horizontal, gap=8, padding=12h/8v, checkbox in Aligner + text block */}
           <div className={[
-            "flex gap-xs",
-            richFlipped === "True" ? "flex-row-reverse" : "",
+            "flex items-start gap-xs px-sm py-xs",
+            richFlipped ? "flex-row-reverse" : "",
           ].filter(Boolean).join(" ")}>
-            <div className="pt-0.5">
-              <Checkbox checked={richChecked === "True"} />
+            <div className="pt-[3px]">
+              <Checkbox checked={richChecked} />
             </div>
-            <div className="space-y-0.5">
-              <Label className="text-sm font-medium">Label</Label>
+            <div>
+              <span className="typo-paragraph-sm text-muted-foreground">Label</span>
               {richShowLine2 && (
-                <p className="text-xs text-muted-foreground">Secondary text</p>
+                <p className="text-xs leading-[16px] text-muted-foreground">Secondary text</p>
               )}
             </div>
           </div>
         </CheckboxExploreTab>
       </TabsContent>
 
-      {/* ---- Tab: Rich Advanced ---- */}
+      {/* ---- Tab: Rich Advanced (Figma 2748:542) ---- */}
       <TabsContent value="richAdvanced" className="mt-md">
         <CheckboxExploreTab
           controls={<>
@@ -5721,76 +5715,88 @@ function CheckboxExploreBehavior() {
               <Label className="text-xs text-muted-foreground">Icon</Label>
               <IconPicker value={raIconName} onChange={setRaIconName} size="sm" />
             </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Recommended</Label>
-              <div className="pt-1">
-                <Switch checked={raRecommended} onCheckedChange={setRaRecommended} />
+            {raIconSize === "Regular" && (<>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Recommended</Label>
+                <div className="pt-1">
+                  <Switch checked={raRecommended} onCheckedChange={setRaRecommended} />
+                </div>
               </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Sub-Title</Label>
-              <div className="pt-1">
-                <Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} />
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Sub-Title</Label>
+                <div className="pt-1">
+                  <Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} />
+                </div>
               </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
-              <div className="pt-1">
-                <Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} />
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
+                <div className="pt-1">
+                  <Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} />
+                </div>
               </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
-              <div className="pt-1">
-                <Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} />
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
+                <div className="pt-1">
+                  <Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} />
+                </div>
               </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Description</Label>
-              <div className="pt-1">
-                <Switch checked={raDescription} onCheckedChange={setRaDescription} />
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Description</Label>
+                <div className="pt-1">
+                  <Switch checked={raDescription} onCheckedChange={setRaDescription} />
+                </div>
               </div>
-            </div>
+            </>)}
           </>}
         >
-          <div className={[
-            "flex gap-md p-lg rounded-xl border w-full max-w-[720px]",
-            raIsSelected ? "border-primary bg-primary/5" : "border-border",
-            raIsDisabled ? "opacity-50" : "",
-            raIsHover && !raIsSelected ? "bg-muted/50" : "",
-          ].filter(Boolean).join(" ")}>
+          {/* Figma Regular: 720w, gap=12, pad=16, corner=12, stroke=1 */}
+          {/* Figma Small: 720w, gap=8, pad=16h/12v, corner=12, stroke=1 */}
+          {raIconSize === "Regular" ? (
             <div className={[
-              "shrink-0 flex items-center justify-center rounded-lg bg-muted",
-              raIconSize === "Regular" ? "size-3xl" : "size-2xl",
-            ].join(" ")}>
-              <RaIconComp className={raIconSize === "Regular" ? "size-xl" : "size-md"} />
-            </div>
-            <div className="flex-1 space-y-xs min-w-0">
-              <div className="flex items-center gap-xs">
-                <span className="font-semibold text-sm">Landing Page</span>
-                {raRecommended && (
-                  <span className="text-[10px] font-mono bg-primary/10 text-primary px-1.5 py-0.5 rounded">
-                    Recommended
-                  </span>
+              "flex gap-sm p-md rounded-xl border w-full max-w-[720px] transition-all",
+              raIsSelected ? "border-border-strong" : "border-border",
+              raIsDisabled ? "bg-muted" : "bg-card",
+              raIsHover ? "shadow" : "",
+            ].filter(Boolean).join(" ")}>
+              <RaIconComp className="size-3xl shrink-0 text-foreground" />
+              <div className="flex-1 min-w-0 space-y-xs">
+                <div className="space-y-3xs">
+                  <div className="flex items-center gap-sm">
+                    <span className="font-semibold text-base leading-6 text-foreground flex-1">Landing Page</span>
+                    {raRecommended && (
+                      <span className="text-xs bg-[#eff6ff] text-[#2563eb] px-xs py-3xs rounded-full shrink-0">
+                        Recommended
+                      </span>
+                    )}
+                    <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
+                  </div>
+                  {(raSubTitle || raSubTitle2 || raSubTitle3) && (
+                    <div className="flex items-center gap-xs flex-wrap typo-paragraph-sm text-card-foreground">
+                      {raSubTitle && <span>Auto-tracked landing page</span>}
+                      {raSubTitle && raSubTitle2 && <span className="text-muted-foreground">•</span>}
+                      {raSubTitle2 && <span>1-2 days</span>}
+                      {(raSubTitle || raSubTitle2) && raSubTitle3 && <span className="text-muted-foreground">•</span>}
+                      {raSubTitle3 && <span>22% audience interest</span>}
+                    </div>
+                  )}
+                </div>
+                {raDescription && (
+                  <p className="typo-paragraph-sm text-muted-foreground">Includes SEO optimization, custom domain support, and integration with marketing tools.</p>
                 )}
               </div>
-              {raSubTitle && (
-                <p className="text-xs text-muted-foreground">Auto-tracked landing page with email capture.</p>
-              )}
-              {raSubTitle2 && (
-                <p className="text-xs text-muted-foreground">Real-time analytics and A/B testing built-in.</p>
-              )}
-              {raSubTitle3 && (
-                <p className="text-xs text-muted-foreground">Optimized for mobile and desktop.</p>
-              )}
-              {raDescription && (
-                <p className="text-[11px] text-muted-foreground/70">Includes SEO optimization, custom domain support, and integration with marketing tools.</p>
-              )}
             </div>
-            <div className="shrink-0 pt-1">
-              <Checkbox checked={raIsSelected} disabled={raIsDisabled} />
+          ) : (
+            <div className={[
+              "flex items-center gap-xs px-md py-sm rounded-xl border w-full max-w-[720px] transition-all",
+              raIsSelected ? "border-border-strong" : "border-border",
+              raIsDisabled ? "bg-muted" : "bg-card",
+              raIsHover ? "shadow" : "",
+            ].filter(Boolean).join(" ")}>
+              <RaIconComp className="size-lg shrink-0 text-muted-foreground" />
+              <span className="typo-paragraph-sm text-foreground flex-1 min-w-0 truncate">Landing Page</span>
+              <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
             </div>
-          </div>
+          )}
         </CheckboxExploreTab>
       </TabsContent>
     </Tabs>
@@ -6172,6 +6178,128 @@ const someChecked = items.some(i => i.checked) && !allChecked
                 {formSubmitted ? "Submitted!" : "Submit"}
               </Button>
             </form>
+          </Example>
+
+          {/* Rich checkbox */}
+          <Example
+            title="Rich checkbox"
+            description="Checkbox with label and secondary text — matches Figma Checkbox Group/Rich."
+            code={`<div className="flex items-start gap-xs px-sm py-xs">
+  <div className="pt-[3px]">
+    <Checkbox id="rich" defaultChecked />
+  </div>
+  <div>
+    <label htmlFor="rich" className="typo-paragraph-sm text-muted-foreground cursor-pointer">
+      Marketing emails
+    </label>
+    <p className="text-xs leading-[16px] text-muted-foreground">
+      Receive emails about new products, features, and more.
+    </p>
+  </div>
+</div>`}
+          >
+            <div className="flex items-start gap-xs px-sm py-xs">
+              <div className="pt-[3px]">
+                <Checkbox id="rich-demo" defaultChecked />
+              </div>
+              <div>
+                <label htmlFor="rich-demo" className="typo-paragraph-sm text-muted-foreground cursor-pointer select-none">
+                  Marketing emails
+                </label>
+                <p className="text-xs leading-[16px] text-muted-foreground">
+                  Receive emails about new products, features, and more.
+                </p>
+              </div>
+            </div>
+          </Example>
+
+          {/* Rich flipped */}
+          <Example
+            title="Rich flipped"
+            description="Rich checkbox with flipped layout — text on left, checkbox on right."
+            code={`<div className="flex items-start gap-xs px-sm py-xs flex-row-reverse">
+  <div className="pt-[3px]">
+    <Checkbox id="flipped" />
+  </div>
+  <div>
+    <label htmlFor="flipped" className="typo-paragraph-sm text-muted-foreground cursor-pointer">
+      Push notifications
+    </label>
+    <p className="text-xs leading-[16px] text-muted-foreground">
+      Get notified on your device.
+    </p>
+  </div>
+</div>`}
+          >
+            <div className="flex items-start gap-xs px-sm py-xs flex-row-reverse">
+              <div className="pt-[3px]">
+                <Checkbox id="flipped-demo" />
+              </div>
+              <div>
+                <label htmlFor="flipped-demo" className="typo-paragraph-sm text-muted-foreground cursor-pointer select-none">
+                  Push notifications
+                </label>
+                <p className="text-xs leading-[16px] text-muted-foreground">
+                  Get notified on your device.
+                </p>
+              </div>
+            </div>
+          </Example>
+
+          {/* Rich Advanced card */}
+          <Example
+            title="Rich Advanced card"
+            description="Card-style checkbox — matches Figma Checkbox Group/Rich Advanced (Regular)."
+            code={`<div className="flex gap-sm p-md rounded-xl border border-border bg-card w-full">
+  <Mail className="size-3xl shrink-0 text-foreground" />
+  <div className="flex-1 min-w-0 space-y-xs">
+    <div className="flex items-center gap-sm">
+      <span className="font-semibold text-base leading-6 text-foreground flex-1">Landing Page</span>
+      <span className="text-xs bg-[#eff6ff] text-[#2563eb] px-xs py-3xs rounded-full">Recommended</span>
+      <Checkbox defaultChecked />
+    </div>
+    <div className="flex items-center gap-xs typo-paragraph-sm text-card-foreground">
+      <span>Auto-tracked</span>
+      <span className="text-muted-foreground">•</span>
+      <span>1-2 days</span>
+    </div>
+    <p className="typo-paragraph-sm text-muted-foreground">SEO optimization and custom domain support.</p>
+  </div>
+</div>`}
+          >
+            <div className="flex gap-sm p-md rounded-xl border border-border bg-card w-full max-w-[480px]">
+              <Mail className="size-3xl shrink-0 text-foreground" />
+              <div className="flex-1 min-w-0 space-y-xs">
+                <div className="flex items-center gap-sm">
+                  <span className="font-semibold text-base leading-6 text-foreground flex-1">Landing Page</span>
+                  <span className="text-xs bg-[#eff6ff] text-[#2563eb] px-xs py-3xs rounded-full shrink-0">Recommended</span>
+                  <Checkbox defaultChecked className="shrink-0" />
+                </div>
+                <div className="flex items-center gap-xs typo-paragraph-sm text-card-foreground">
+                  <span>Auto-tracked</span>
+                  <span className="text-muted-foreground">•</span>
+                  <span>1-2 days</span>
+                </div>
+                <p className="typo-paragraph-sm text-muted-foreground">SEO optimization and custom domain support.</p>
+              </div>
+            </div>
+          </Example>
+
+          {/* Rich Advanced small */}
+          <Example
+            title="Rich Advanced (small)"
+            description="Compact card checkbox — matches Figma Checkbox Group/Rich Advanced (Small)."
+            code={`<div className="flex items-center gap-xs px-md py-sm rounded-xl border border-border bg-card w-full">
+  <Bug className="size-lg shrink-0 text-muted-foreground" />
+  <span className="typo-paragraph-sm text-foreground flex-1">Bug Report</span>
+  <Checkbox />
+</div>`}
+          >
+            <div className="flex items-center gap-xs px-md py-sm rounded-xl border border-border bg-card w-full max-w-[480px]">
+              <Bug className="size-lg shrink-0 text-muted-foreground" />
+              <span className="typo-paragraph-sm text-foreground flex-1">Bug Report</span>
+              <Checkbox className="shrink-0" />
+            </div>
           </Example>
 
           {/* Custom styling */}
