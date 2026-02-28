@@ -5573,32 +5573,35 @@ function CheckboxDocs() {
         </p>
       </header>
 
-      {/* Interactive playground */}
-      <Playground
-        controls={[
-          { type: "select", label: "Checked", prop: "checked", defaultValue: "false", options: [
-            { label: "Unchecked", value: "false" },
-            { label: "Checked", value: "true" },
-            { label: "Indeterminate", value: "indeterminate" },
-          ]},
-          { type: "switch", label: "Disabled", prop: "disabled", defaultValue: false },
-          { type: "switch", label: "Error", prop: "error", defaultValue: false },
-        ]}
-        render={(p) => {
-          const checkedVal = p.checked === "true" ? true : p.checked === "indeterminate" ? "indeterminate" as const : false
-          return (
-            <div className="flex items-center gap-xs">
-              <Checkbox
-                id="playground-checkbox"
-                checked={checkedVal}
-                disabled={p.disabled}
-                aria-invalid={p.error || undefined}
-              />
-              <Label htmlFor="playground-checkbox">Label</Label>
-            </div>
-          )
-        }}
-      />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <Playground
+          controls={[
+            { type: "select", label: "Checked", prop: "checked", defaultValue: "false", options: [
+              { label: "Unchecked", value: "false" },
+              { label: "Checked", value: "true" },
+              { label: "Indeterminate", value: "indeterminate" },
+            ]},
+            { type: "switch", label: "Disabled", prop: "disabled", defaultValue: false },
+            { type: "switch", label: "Error", prop: "error", defaultValue: false },
+          ]}
+          render={(p) => {
+            const checkedVal = p.checked === "true" ? true : p.checked === "indeterminate" ? "indeterminate" as const : false
+            return (
+              <div className="flex items-center gap-xs">
+                <Checkbox
+                  id="playground-checkbox"
+                  checked={checkedVal}
+                  disabled={p.disabled}
+                  aria-invalid={p.error || undefined}
+                />
+                <Label htmlFor="playground-checkbox">Label</Label>
+              </div>
+            )
+          }}
+        />
+      </section>
 
       {/* ---- Installation ---- */}
       <InstallationSection
@@ -5607,10 +5610,10 @@ function CheckboxDocs() {
       />
 
       {/* ---- Examples ---- */}
-      <section className="space-y-6 pt-xl border-t border-border">
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Default */}
           <Example
             title="Default checkbox"
@@ -5925,76 +5928,79 @@ const someChecked = items.some(i => i.checked) && !allChecked
       </section>
 
       {/* ---- Props ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
-          Extends <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
-          Radix CheckboxPrimitive.Root</code> — all native props forwarded.
+          Extends{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
+            Radix CheckboxPrimitive.Root
+          </code>{" "}
+          — all native props forwarded.
         </p>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border bg-muted/50">
-                <th className="text-left px-4 py-2 font-medium">Prop</th>
-                <th className="text-left px-4 py-2 font-medium">Type</th>
-                <th className="text-left px-4 py-2 font-medium">Default</th>
-                <th className="text-left px-4 py-2 font-medium">Description</th>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Prop</th>
+                <th className="px-4 py-3 font-semibold">Type</th>
+                <th className="px-4 py-3 font-semibold">Default</th>
+                <th className="px-4 py-3 font-semibold">Description</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">checked</td>
-                <td className="px-4 py-2 font-mono text-xs">boolean | "indeterminate"</td>
-                <td className="px-4 py-2 text-muted-foreground">—</td>
-                <td className="px-4 py-2 text-muted-foreground">Controlled checked state</td>
+                <td className="px-4 py-3 font-mono text-primary">checked</td>
+                <td className="px-4 py-3 font-mono">boolean | "indeterminate"</td>
+                <td className="px-4 py-3 text-muted-foreground">—</td>
+                <td className="px-4 py-3 text-muted-foreground">Controlled checked state</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">defaultChecked</td>
-                <td className="px-4 py-2 font-mono text-xs">boolean</td>
-                <td className="px-4 py-2 text-muted-foreground">false</td>
-                <td className="px-4 py-2 text-muted-foreground">Initial checked state (uncontrolled)</td>
+                <td className="px-4 py-3 font-mono text-primary">defaultChecked</td>
+                <td className="px-4 py-3 font-mono">boolean</td>
+                <td className="px-4 py-3 text-muted-foreground">false</td>
+                <td className="px-4 py-3 text-muted-foreground">Initial checked state (uncontrolled)</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">onCheckedChange</td>
-                <td className="px-4 py-2 font-mono text-xs">{"(checked: boolean | \"indeterminate\") => void"}</td>
-                <td className="px-4 py-2 text-muted-foreground">—</td>
-                <td className="px-4 py-2 text-muted-foreground">Called when checked state changes</td>
+                <td className="px-4 py-3 font-mono text-primary">onCheckedChange</td>
+                <td className="px-4 py-3 font-mono">{"(checked: boolean | \"indeterminate\") => void"}</td>
+                <td className="px-4 py-3 text-muted-foreground">—</td>
+                <td className="px-4 py-3 text-muted-foreground">Called when checked state changes</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">disabled</td>
-                <td className="px-4 py-2 font-mono text-xs">boolean</td>
-                <td className="px-4 py-2 text-muted-foreground">false</td>
-                <td className="px-4 py-2 text-muted-foreground">Disables the checkbox</td>
+                <td className="px-4 py-3 font-mono text-primary">disabled</td>
+                <td className="px-4 py-3 font-mono">boolean</td>
+                <td className="px-4 py-3 text-muted-foreground">false</td>
+                <td className="px-4 py-3 text-muted-foreground">Disables the checkbox</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">name</td>
-                <td className="px-4 py-2 font-mono text-xs">string</td>
-                <td className="px-4 py-2 text-muted-foreground">—</td>
-                <td className="px-4 py-2 text-muted-foreground">Form field name</td>
+                <td className="px-4 py-3 font-mono text-primary">name</td>
+                <td className="px-4 py-3 font-mono">string</td>
+                <td className="px-4 py-3 text-muted-foreground">—</td>
+                <td className="px-4 py-3 text-muted-foreground">Form field name</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">value</td>
-                <td className="px-4 py-2 font-mono text-xs">string</td>
-                <td className="px-4 py-2 text-muted-foreground">"on"</td>
-                <td className="px-4 py-2 text-muted-foreground">Value submitted with forms</td>
+                <td className="px-4 py-3 font-mono text-primary">value</td>
+                <td className="px-4 py-3 font-mono">string</td>
+                <td className="px-4 py-3 text-muted-foreground">"on"</td>
+                <td className="px-4 py-3 text-muted-foreground">Value submitted with forms</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">required</td>
-                <td className="px-4 py-2 font-mono text-xs">boolean</td>
-                <td className="px-4 py-2 text-muted-foreground">false</td>
-                <td className="px-4 py-2 text-muted-foreground">Marks the checkbox as required</td>
+                <td className="px-4 py-3 font-mono text-primary">required</td>
+                <td className="px-4 py-3 font-mono">boolean</td>
+                <td className="px-4 py-3 text-muted-foreground">false</td>
+                <td className="px-4 py-3 text-muted-foreground">Marks the checkbox as required</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">aria-invalid</td>
-                <td className="px-4 py-2 font-mono text-xs">boolean</td>
-                <td className="px-4 py-2 text-muted-foreground">—</td>
-                <td className="px-4 py-2 text-muted-foreground">Triggers error styling (destructive border & fill)</td>
+                <td className="px-4 py-3 font-mono text-primary">aria-invalid</td>
+                <td className="px-4 py-3 font-mono">boolean</td>
+                <td className="px-4 py-3 text-muted-foreground">—</td>
+                <td className="px-4 py-3 text-muted-foreground">Triggers error styling (destructive border & fill)</td>
               </tr>
               <tr>
-                <td className="px-4 py-2 font-mono text-xs">className</td>
-                <td className="px-4 py-2 font-mono text-xs">string</td>
-                <td className="px-4 py-2 text-muted-foreground">—</td>
-                <td className="px-4 py-2 text-muted-foreground">Additional CSS classes merged via cn()</td>
+                <td className="px-4 py-3 font-mono text-primary">className</td>
+                <td className="px-4 py-3 font-mono">string</td>
+                <td className="px-4 py-3 text-muted-foreground">—</td>
+                <td className="px-4 py-3 text-muted-foreground">Additional CSS classes merged via cn()</td>
               </tr>
             </tbody>
           </table>
@@ -6002,58 +6008,56 @@ const someChecked = items.some(i => i.checked) && !allChecked
       </section>
 
       {/* ---- Design Tokens ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="design-tokens" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          These tokens are defined in{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">
+            src/index.css
+          </code>{" "}
+          and sourced from the Figma file{" "}
+          <strong>[SprouX - DS] Foundation & Component</strong>.
+        </p>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border bg-muted/50">
-                <th className="text-left px-4 py-2 font-medium">Token</th>
-                <th className="text-left px-4 py-2 font-medium">Role</th>
-                <th className="text-left px-4 py-2 font-medium">CSS Variable</th>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Token</th>
+                <th className="px-4 py-3 font-semibold">Value</th>
+                <th className="px-4 py-3 font-semibold">Swatch</th>
+                <th className="px-4 py-3 font-semibold">Usage</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">border</td>
-                <td className="px-4 py-2 text-muted-foreground">Unchecked border</td>
-                <td className="px-4 py-2 font-mono text-xs">--border</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">input</td>
-                <td className="px-4 py-2 text-muted-foreground">Unchecked background</td>
-                <td className="px-4 py-2 font-mono text-xs">--input</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">primary</td>
-                <td className="px-4 py-2 text-muted-foreground">Checked background & border</td>
-                <td className="px-4 py-2 font-mono text-xs">--primary</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">primary-foreground</td>
-                <td className="px-4 py-2 text-muted-foreground">Check icon color</td>
-                <td className="px-4 py-2 font-mono text-xs">--primary-foreground</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">ring</td>
-                <td className="px-4 py-2 text-muted-foreground">Focus ring</td>
-                <td className="px-4 py-2 font-mono text-xs">--ring</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">destructive</td>
-                <td className="px-4 py-2 text-muted-foreground">Error checked fill</td>
-                <td className="px-4 py-2 font-mono text-xs">--destructive</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">destructive-border</td>
-                <td className="px-4 py-2 text-muted-foreground">Error unchecked border</td>
-                <td className="px-4 py-2 font-mono text-xs">--destructive-border</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 font-mono text-xs">ring-error</td>
-                <td className="px-4 py-2 text-muted-foreground">Error focus ring</td>
-                <td className="px-4 py-2 font-mono text-xs">--ring-error</td>
-              </tr>
+            <tbody>
+              {[
+                { token: "--border", value: "var(--color-slate-200)", hex: "#e2e2e0", usage: "Unchecked border" },
+                { token: "--input", value: "#ffffff", hex: "#ffffff", usage: "Unchecked background" },
+                { token: "--primary", value: "var(--color-teal-700)", hex: "#0f766e", usage: "Checked background & border" },
+                { token: "--primary-foreground", value: "#ffffff", hex: "#ffffff", usage: "Check icon color" },
+                { token: "--ring", value: "var(--color-slate-200)", hex: "#e2e2e0", usage: "Focus ring" },
+                { token: "--destructive", value: "var(--color-red-600)", hex: "#dc2626", usage: "Error checked fill" },
+                { token: "--destructive-border", value: "var(--color-red-500)", hex: "#ef4444", usage: "Error unchecked border" },
+                { token: "--ring-error", value: "var(--color-red-200)", hex: "#fecaca", usage: "Error focus ring" },
+                { token: "--radius-sm", value: "4px", hex: "—", usage: "Checkbox border radius" },
+              ].map((t) => (
+                <tr key={t.token} className="border-b border-border last:border-0">
+                  <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">
+                    {t.token}
+                  </td>
+                  <td className="px-4 py-3 font-mono text-muted-foreground">
+                    {t.value}
+                  </td>
+                  <td className="px-4 py-3">
+                    {t.hex !== "—" && (
+                      <div
+                        className="size-5 rounded border border-border"
+                        style={{ backgroundColor: t.hex }}
+                      />
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -6062,18 +6066,69 @@ const someChecked = items.some(i => i.checked) && !allChecked
       {/* ---- Best Practices ---- */}
       <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
-        <div className="grid grid-cols-2 gap-6">
-          <DoItem text="Always pair with a visible <label> linked via id/htmlFor for accessibility." />
-          <DontItem text="Don't use a checkbox for actions — use a Switch or Button instead." />
-          <DoItem text="Use indeterminate for 'select all' when some but not all children are checked." />
-          <DontItem text="Don't use indeterminate to mean 'no value' — leave it unchecked instead." />
-          <DoItem text="Group related checkboxes in a <fieldset> with a <legend>." />
-          <DontItem text="Don't use checkboxes for mutually exclusive options — use Radio Group." />
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Labeling & Semantics</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>
+                Always pair with a visible{" "}
+                <code className="bg-muted px-1 rounded font-mono">{"<label>"}</code>{" "}
+                linked via <code className="bg-muted px-1 rounded font-mono">id</code> / <code className="bg-muted px-1 rounded font-mono">htmlFor</code>{" "}
+                for accessibility.
+              </p>
+              <p>
+                Group related checkboxes in a{" "}
+                <code className="bg-muted px-1 rounded font-mono">{"<fieldset>"}</code>{" "}
+                with a{" "}
+                <code className="bg-muted px-1 rounded font-mono">{"<legend>"}</code>.
+              </p>
+              <p>
+                Use clear, positive labels: <strong>"Enable notifications"</strong> not <strong>"Disable notifications"</strong>.
+              </p>
+            </DoItem>
+            <DontItem>
+              <p>
+                Don't use a checkbox for actions — use a <strong>Switch</strong> or{" "}
+                <strong>Button</strong> instead.
+              </p>
+              <p>
+                Don't use checkboxes for mutually exclusive options — use{" "}
+                <strong>Radio Group</strong>.
+              </p>
+              <p>
+                Don't nest checkboxes more than two levels deep — it creates confusing hierarchy.
+              </p>
+            </DontItem>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Indeterminate State</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>
+                Use <strong>indeterminate</strong> for "select all" when some but not
+                all children are checked.
+              </p>
+              <p>
+                Clicking an indeterminate checkbox should check all children (not uncheck them).
+              </p>
+            </DoItem>
+            <DontItem>
+              <p>
+                Don't use indeterminate to mean "no value" — leave it unchecked instead.
+              </p>
+              <p>
+                Don't use indeterminate on standalone checkboxes — it only makes sense with a parent–child relationship.
+              </p>
+            </DontItem>
+          </div>
         </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping nodeId="16:1790" rows={[
+      <FigmaMapping id="figma-mapping" nodeId="16:1790" rows={[
         ["Checked", "False", "checked", "{false}"],
         ["Checked", "True", "checked", "{true}"],
         ["Checked", "Indeterminate", "checked", '"indeterminate"'],
@@ -6084,24 +6139,118 @@ const someChecked = items.some(i => i.checked) && !allChecked
       ]} />
 
       {/* ---- Accessibility ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="accessibility" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
-        <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-5">
-          <li>Built on Radix Checkbox — renders a native <code className="text-xs bg-muted px-1.5 py-0.5 rounded">button</code> with <code className="text-xs bg-muted px-1.5 py-0.5 rounded">role="checkbox"</code>.</li>
-          <li>Supports <code className="text-xs bg-muted px-1.5 py-0.5 rounded">aria-checked="true" | "false" | "mixed"</code> automatically.</li>
-          <li><code className="text-xs bg-muted px-1.5 py-0.5 rounded">Space</code> key toggles the checkbox (native button behavior).</li>
-          <li>Always pair with a visible <code className="text-xs bg-muted px-1.5 py-0.5 rounded">{"<label>"}</code> or <code className="text-xs bg-muted px-1.5 py-0.5 rounded">aria-label</code>.</li>
-          <li>Error state uses <code className="text-xs bg-muted px-1.5 py-0.5 rounded">aria-invalid</code> for screen reader announcements.</li>
-          <li>Focus ring is 3px with <code className="text-xs bg-muted px-1.5 py-0.5 rounded">--ring</code> token, meeting WCAG 2.4.7.</li>
-        </ul>
+        <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Keyboard support
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th className="pr-6 py-2 font-semibold">Key</th>
+                    <th className="pr-6 py-2 font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                        Tab
+                      </kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">
+                      Move focus to the checkbox
+                    </td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2">
+                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">
+                        Space
+                      </kbd>
+                    </td>
+                    <td className="pr-6 py-2 text-muted-foreground">
+                      Toggle the checkbox state
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Labeling
+            </h3>
+            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+              <li>
+                Built on Radix Checkbox — renders a native{" "}
+                <code className="bg-muted px-1 rounded font-mono">button</code>{" "}
+                with{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  role="checkbox"
+                </code>.
+              </li>
+              <li>
+                Supports{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-checked="true" | "false" | "mixed"
+                </code>{" "}
+                automatically.
+              </li>
+              <li>
+                Always pair with a visible{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  {"<label>"}
+                </code>{" "}
+                or{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-label
+                </code>{" "}
+                for screen readers.
+              </li>
+              <li>
+                Error state uses{" "}
+                <code className="bg-muted px-1 rounded font-mono">
+                  aria-invalid
+                </code>{" "}
+                for screen reader announcements.
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">
+              Focus indicator
+            </h3>
+            <p className="text-muted-foreground">
+              The checkbox displays a visible <strong>3px ring</strong> on{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                :focus-visible
+              </code>
+              . The ring uses{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                --ring (#e2e2e0)
+              </code>{" "}
+              for standard state and{" "}
+              <code className="bg-muted px-1 rounded font-mono">
+                --ring-error (#fecaca)
+              </code>{" "}
+              for error state. This meets WCAG 2.1 focus visibility
+              requirements.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* ---- Related Components ---- */}
-      <section className="space-y-4 pt-3xl">
+      <section id="related" className="space-y-4 pb-12">
         <h2 className="font-heading font-semibold text-xl">
           Related Components
         </h2>
-        <div className="rounded-lg border border-border divide-y divide-border">
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
           <div className="px-5 py-3.5 flex justify-between items-center">
             <div>
               <p className="font-semibold text-foreground">Switch</p>
@@ -6110,7 +6259,7 @@ const someChecked = items.some(i => i.checked) && !allChecked
               </p>
             </div>
             <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
-              Planned
+              Available
             </span>
           </div>
           <div className="px-5 py-3.5 flex justify-between items-center">
@@ -6121,7 +6270,7 @@ const someChecked = items.some(i => i.checked) && !allChecked
               </p>
             </div>
             <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
-              Planned
+              Available
             </span>
           </div>
           <div className="px-5 py-3.5 flex justify-between items-center">
@@ -6132,7 +6281,7 @@ const someChecked = items.some(i => i.checked) && !allChecked
               </p>
             </div>
             <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">
-              Planned
+              Available
             </span>
           </div>
         </div>
