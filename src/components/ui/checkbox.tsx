@@ -21,7 +21,7 @@ function Checkbox({
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        "group peer size-md shrink-0 rounded-sm border border-border-strong bg-input transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error aria-invalid:data-[state=checked]:bg-destructive aria-invalid:data-[state=checked]:border-destructive aria-invalid:data-[state=indeterminate]:bg-destructive aria-invalid:data-[state=indeterminate]:border-destructive",
+        "group peer size-md shrink-0 rounded-sm border border-border-strong bg-input transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-foreground aria-invalid:border-destructive-border aria-invalid:focus-visible:ring-ring-error aria-invalid:data-[state=checked]:bg-destructive aria-invalid:data-[state=checked]:border-destructive aria-invalid:data-[state=checked]:text-destructive-foreground aria-invalid:data-[state=indeterminate]:bg-destructive aria-invalid:data-[state=indeterminate]:border-destructive aria-invalid:data-[state=indeterminate]:text-destructive-foreground",
         className
       )}
       {...props}
@@ -30,8 +30,8 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current"
       >
-        <Check className="size-sm group-data-[state=indeterminate]:hidden" />
-        <Minus className="size-sm hidden group-data-[state=indeterminate]:block" />
+        <Check className="size-3.5 group-data-[state=indeterminate]:hidden" />
+        <Minus className="size-3.5 hidden group-data-[state=indeterminate]:block" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
