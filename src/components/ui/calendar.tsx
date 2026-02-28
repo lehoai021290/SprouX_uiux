@@ -11,8 +11,9 @@ import { buttonVariants } from "@/components/ui/button"
  * Figma: [SprouX - DS] Foundation & Component (node 288:119954)
  *
  * Date picker calendar built on react-day-picker v9.
- * Figma specs: Day cell 48×48 r=4 p=8, nav buttons 32×32 r=8 with border,
- * header title Geist 600 14px, weekday 12px/16px, row gap 1px.
+ * Figma variants: Type=Basic (1 month) | Type=Range (2 months side-by-side).
+ * Day cell 48×48 r=4 p=8, nav buttons 32×32 r=8 with border,
+ * header title Geist 600 14px, weekday 12px/16px, row gap 1px, multi-month gap 16px.
  */
 function Calendar({
   className,
@@ -26,7 +27,7 @@ function Calendar({
       showOutsideDays={showOutsideDays}
       className={cn("p-sm", className)}
       classNames={{
-        months: "flex flex-col sm:flex-row gap-xs",
+        months: "flex flex-col sm:flex-row gap-md",
         month: "flex flex-col gap-md",
         month_caption: "flex justify-center relative items-center w-full",
         caption_label: "typo-paragraph-sm font-semibold",

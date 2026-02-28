@@ -17,7 +17,7 @@ import {
  *
  * Date selection using Calendar in a Popover.
  * Trigger is an Input-style field (not a Button) matching the Figma "Date Picker Input" component.
- * Input size sm (32px height), radius-lg (8px), bg-input, border-border.
+ * Input size default (36px height), radius-lg (8px), bg-input, border-border, px-sm (12px).
  */
 function DatePicker({
   date,
@@ -41,7 +41,7 @@ function DatePicker({
         <button
           data-slot="date-picker-trigger"
           className={cn(
-            "flex h-2xl w-[280px] items-center gap-2xs rounded-lg border border-border bg-input px-xs typo-paragraph-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+            "flex h-9 w-[280px] items-center gap-xs rounded-lg border border-border bg-input px-sm typo-paragraph-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
             !selected && "text-muted-foreground",
             className
           )}

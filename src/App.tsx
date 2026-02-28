@@ -15257,7 +15257,7 @@ const datePickerSections: TocSection[] = [
 
 function DatePickerExploreBehavior() {
   const [inputState, setInputState] = useState<"Placeholder" | "Value" | "Focus">("Placeholder")
-  const [months, setMonths] = useState("1")
+  const [calendarType, setCalendarType] = useState<"Basic" | "Range">("Basic")
   const [selectedDate] = useState(new Date())
 
   return (
@@ -15267,7 +15267,7 @@ function DatePickerExploreBehavior() {
         {/* Date Picker Input preview */}
         <div
           className={cn(
-            "flex h-2xl w-[280px] items-center gap-2xs rounded-lg border bg-input px-xs typo-paragraph-sm transition-colors",
+            "flex h-9 w-[280px] items-center gap-xs rounded-lg border bg-input px-sm typo-paragraph-sm transition-colors",
             inputState === "Focus"
               ? "border-border ring-[3px] ring-ring"
               : "border-border",
@@ -15282,13 +15282,22 @@ function DatePickerExploreBehavior() {
 
         {/* Calendar preview */}
         <div className="mt-xs overflow-x-auto">
-          <Calendar
-            mode="single"
-            selected={inputState === "Value" ? selectedDate : undefined}
-            numberOfMonths={parseInt(months)}
-            showOutsideDays
-            className="rounded-xl border border-border bg-card shadow"
-          />
+          {calendarType === "Range" ? (
+            <Calendar
+              mode="range"
+              numberOfMonths={2}
+              showOutsideDays
+              className="rounded-xl border border-border bg-card shadow"
+            />
+          ) : (
+            <Calendar
+              mode="single"
+              selected={inputState === "Value" ? selectedDate : undefined}
+              numberOfMonths={1}
+              showOutsideDays
+              className="rounded-xl border border-border bg-card shadow"
+            />
+          )}
         </div>
       </div>
 
@@ -15307,13 +15316,12 @@ function DatePickerExploreBehavior() {
             </Select>
           </div>
           <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Months</Label>
-            <Select value={months} onValueChange={setMonths}>
+            <Label className="text-xs text-muted-foreground">Type</Label>
+            <Select value={calendarType} onValueChange={(v) => setCalendarType(v as "Basic" | "Range")}>
               <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">1 Month</SelectItem>
-                <SelectItem value="2">2 Months</SelectItem>
-                <SelectItem value="3">3 Months</SelectItem>
+                <SelectItem value="Basic">Basic</SelectItem>
+                <SelectItem value="Range">Range</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -15334,7 +15342,7 @@ function DatePickerPropsTable() {
             <tbody className="divide-y divide-border">
               <tr><td className="px-4 py-3 font-mono text-primary">date</td><td className="px-4 py-3 font-mono text-muted-foreground">Date</td><td className="px-4 py-3 font-mono text-muted-foreground">undefined</td><td className="px-4 py-3 text-muted-foreground">Controlled selected date.</td></tr>
               <tr><td className="px-4 py-3 font-mono text-primary">onDateChange</td><td className="px-4 py-3 font-mono text-muted-foreground">{"(date: Date | undefined) => void"}</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Callback when a date is selected or cleared.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes for the trigger button.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes for the input trigger.</td></tr>
             </tbody>
           </table>
         </div>
@@ -15354,7 +15362,7 @@ function DatePickerTokensTable() {
     { token: "--input", value: "var(--color-slate-50)", hex: "#f7f7f6", usage: "Input trigger background" },
     { token: "--ring", value: "var(--color-teal-300)", hex: "#5eead4", usage: "Focus ring on input trigger" },
     { token: "w-[280px]", value: "280px", hex: "—", usage: "Input trigger width" },
-    { token: "h-2xl (32px)", value: "32px", hex: "—", usage: "Input trigger height (sm)" },
+    { token: "h-9 (36px)", value: "36px", hex: "—", usage: "Input trigger height (default)" },
     { token: "size-md (16px)", value: "16×16px", hex: "—", usage: "Calendar icon size" },
     { token: "size-[48px]", value: "48×48px", hex: "—", usage: "Day cell size" },
     { token: "size-2xl (32px)", value: "32×32px", hex: "—", usage: "Nav button size" },
@@ -15475,15 +15483,14 @@ function DatePickerDocs() {
         ["State", "Placeholder", "—", "text-muted-foreground, 'Pick a date' text"],
         ["State", "Value", "—", "text-foreground, formatted date (PPP)"],
         ["State", "Focus", "—", "ring-[3px] ring-ring, border-border"],
-        ["Trigger", "Input-style field", "button", "h-2xl, bg-input, border-border, rounded-lg, w-[280px]"],
-        ["Icon", "Calendar (16×16)", "CalendarIcon", "size-md, gap-2xs from text"],
+        ["Trigger", "Input-style field", "button", "h-9 (36px), bg-input, border-border, rounded-lg, w-[280px], px-sm"],
+        ["Icon", "Calendar (16×16)", "CalendarIcon", "size-md, gap-xs from text"],
       ]} />
 
       <h3 className="font-body font-semibold text-sm mt-6">Date Picker (Calendar)</h3>
       <FigmaMapping nodeId="288:119954" rows={[
-        ["Months", "1 Month", "Calendar", "numberOfMonths={1} (default)"],
-        ["Months", "2 Months", "Calendar", "numberOfMonths={2}"],
-        ["Months", "3 Months", "Calendar", "numberOfMonths={3}"],
+        ["Type", "Basic", "Calendar", "numberOfMonths={1}, mode='single' (default)"],
+        ["Type", "Range", "Calendar", "numberOfMonths={2}, mode='range', gap-md between months"],
         ["Popover", "Card container", "PopoverContent", "w-auto p-0, rounded border"],
       ]} />
 
