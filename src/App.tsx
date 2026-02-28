@@ -6300,24 +6300,6 @@ const someChecked = items.some(i => i.checked) && !allChecked
             </div>
           </Example>
 
-          {/* Custom styling */}
-          <Example
-            title="Custom size"
-            description="Override size with className. The checkbox base is 16px (size-4)."
-            code={`<Checkbox className="size-5 rounded" />
-<Checkbox className="size-6 rounded-md" />`}
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Checkbox className="size-5 rounded" defaultChecked id="sz-md" />
-                <label htmlFor="sz-md" className="text-sm">20px</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox className="size-6 rounded-md" defaultChecked id="sz-lg" />
-                <label htmlFor="sz-lg" className="text-sm">24px</label>
-              </div>
-            </div>
-          </Example>
         </div>
       </section>
 
