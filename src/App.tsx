@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react"
+import { format } from "date-fns"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -15253,6 +15255,158 @@ const datePickerSections: TocSection[] = [
   { id: "related", label: "Related Components" },
 ]
 
+function DatePickerExploreBehavior() {
+  // Input tab state
+  const [inputState, setInputState] = useState("Placeholder")
+
+  // Calendar tab state
+  const [months, setMonths] = useState("1")
+
+  // Shared date for input preview
+  const [date, setDate] = useState<Date | undefined>(undefined)
+
+  React.useEffect(() => {
+    if (inputState === "Value") setDate(new Date())
+    else setDate(undefined)
+  }, [inputState])
+
+  return (
+    <Tabs defaultValue="input">
+      <TabsList>
+        <TabsTrigger value="input">Input</TabsTrigger>
+        <TabsTrigger value="calendar">Calendar</TabsTrigger>
+      </TabsList>
+
+      {/* ── Date Picker Input ── */}
+      <TabsContent value="input" className="mt-md">
+        <div className="rounded-xl border border-border overflow-hidden bg-background">
+          <div className="p-4xl flex items-center justify-center min-h-[200px]">
+            <Button
+              variant="outline"
+              className={cn(
+                "w-[280px] justify-start text-left font-normal",
+                inputState === "Placeholder" && "text-muted-foreground",
+                inputState === "Focus" && "ring-[3px] ring-ring"
+              )}
+            >
+              <CalendarIcon className="mr-xs size-md" />
+              {inputState === "Value" && date
+                ? format(date, "PPP")
+                : <span>Pick a date</span>}
+            </Button>
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">State</Label>
+                <Select value={inputState} onValueChange={setInputState}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Placeholder">Placeholder</SelectItem>
+                    <SelectItem value="Value">Value</SelectItem>
+                    <SelectItem value="Focus">Focus</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </TabsContent>
+
+      {/* ── Date Picker (Calendar) ── */}
+      <TabsContent value="calendar" className="mt-md">
+        <div className="rounded-xl border border-border overflow-hidden bg-background">
+          <div className="p-4xl flex items-center justify-center min-h-[200px] overflow-x-auto">
+            <Calendar
+              mode="single"
+              numberOfMonths={parseInt(months)}
+              showOutsideDays
+              className="rounded-xl border border-border"
+            />
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Months</Label>
+                <Select value={months} onValueChange={setMonths}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">1 Month</SelectItem>
+                    <SelectItem value="2">2 Months</SelectItem>
+                    <SelectItem value="3">3 Months</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </TabsContent>
+    </Tabs>
+  )
+}
+
+function DatePickerPropsTable() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">DatePicker</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">date</td><td className="px-4 py-3 font-mono text-muted-foreground">Date</td><td className="px-4 py-3 font-mono text-muted-foreground">undefined</td><td className="px-4 py-3 text-muted-foreground">Controlled selected date.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">onDateChange</td><td className="px-4 py-3 font-mono text-muted-foreground">{"(date: Date | undefined) => void"}</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Callback when a date is selected or cleared.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes for the trigger button.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DatePickerTokensTable() {
+  const tokens = [
+    { token: "--card", value: "#ffffff", hex: "#ffffff", usage: "Popover background" },
+    { token: "--border", value: "#e9e9e7", hex: "#e9e9e7", usage: "Input and popover border" },
+    { token: "--primary", value: "#0f766e", hex: "#0f766e", usage: "Selected day background" },
+    { token: "--primary-foreground", value: "#ffffff", hex: "#ffffff", usage: "Selected day text" },
+    { token: "--muted-foreground", value: "#6f6f6a", hex: "#6f6f6a", usage: "Placeholder text and calendar nav icons" },
+    { token: "--accent", value: "#e9e9e7", hex: "#e9e9e7", usage: "Hovered day background" },
+    { token: "--ring", value: "var(--color-teal-300)", hex: "#5eead4", usage: "Focus ring on trigger button" },
+    { token: "w-[280px]", value: "280px", hex: "—", usage: "Trigger button width" },
+    { token: "size-md (16px)", value: "16×16px", hex: "—", usage: "Calendar icon size" },
+  ]
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function DatePickerDocs() {
   return (
     <div className="space-y-12">
@@ -15264,9 +15418,11 @@ function DatePickerDocs() {
         <p className="typo-paragraph text-muted-foreground max-w-3xl">Date selection using a Calendar in a Popover. Compact input pattern.</p>
       </header>
 
-      <Playground controls={[]} render={() => <DatePicker />} />
-
-      
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <DatePickerExploreBehavior />
+      </section>
 
       {/* ---- Installation ---- */}
       <InstallationSection
@@ -15274,16 +15430,33 @@ function DatePickerDocs() {
         importCode={`import { DatePicker } from "@/components/ui/date-picker"`}
       />
 
+      {/* ---- Examples ---- */}
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Example title="Default" description="A date picker with button trigger that opens a calendar popover." code={`<DatePicker />`}>
-          <DatePicker />
-        </Example>
+          <Example title="Default" description="Click the button to open a calendar popover." code={`<DatePicker />`}>
+            <DatePicker />
+          </Example>
+
+          <Example title="With pre-selected date" description="Pass an initial date value." code={`<DatePicker date={new Date()} />`}>
+            <DatePicker date={new Date()} />
+          </Example>
+
+          <Example title="With callback" description="Handle date selection with onDateChange." code={`<DatePicker\n  onDateChange={(date) => console.log(date)}\n/>`}>
+            <DatePicker onDateChange={(d) => console.log(d)} />
+          </Example>
         </div>
       </section>
 
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          DatePicker composes Button (trigger) + Popover + Calendar internally.
+        </p>
+        <DatePickerPropsTable />
+      </section>
 
       {/* ---- Design Tokens ---- */}
       <section id="design-tokens" className="space-y-4 pt-3xl">
@@ -15291,42 +15464,46 @@ function DatePickerDocs() {
         <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code> and sourced from the Figma file <strong>[SprouX - DS] Foundation & Component</strong>.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-border">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-muted border-b border-border text-left">
-                <th className="px-4 py-3 font-semibold">Token</th>
-                <th className="px-4 py-3 font-semibold">Value</th>
-                <th className="px-4 py-3 font-semibold">Swatch</th>
-                <th className="px-4 py-3 font-semibold">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#ffffff" }} /></td><td className="px-4 py-3 text-muted-foreground">Popover background</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Input & popover border</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#252522" }} /></td><td className="px-4 py-3 text-muted-foreground">Selected day background</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <DatePickerTokensTable />
       </section>
 
-            <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="space-y-4">
           <h3 className="font-body font-semibold text-sm">Usage</h3>
           <div className="flex gap-4">
             <DoItem>
-              <p>Use DatePicker when users need to select a date with both text input and calendar views.</p>
-              <p>Format the displayed date clearly using locale-appropriate format.</p>
+              <p>Use DatePicker when users need to select a date with both visual calendar and text display.</p>
+              <p>Format the displayed date clearly using locale-appropriate format (e.g. PPP from date-fns).</p>
+              <p>Provide a clear placeholder label like "Pick a date" when no date is selected.</p>
             </DoItem>
             <DontItem>
               <p>Don't use DatePicker for time-only selection — use a time picker instead.</p>
-              <p>Don't use DatePicker for dates far in the past/future — allow direct text entry.</p>
+              <p>Don't use DatePicker for date range selection — use a dedicated range picker pattern.</p>
+              <p>Don't place multiple DatePickers side-by-side without clear labels.</p>
             </DontItem>
           </div>
         </div>
       </section>
 
+      {/* ---- Figma Mapping ---- */}
+      <h3 className="font-body font-semibold text-sm mt-6">Date Picker Input</h3>
+      <FigmaMapping id="figma-mapping" nodeId="60:9340" rows={[
+        ["State", "Placeholder", "—", "text-muted-foreground, 'Pick a date' text"],
+        ["State", "Value", "—", "text-foreground, formatted date (PPP)"],
+        ["State", "Focus", "—", "ring-[3px] ring-ring focus state"],
+        ["Trigger", "Outline button", "Button", "variant=outline, w-[280px]"],
+        ["Icon", "Calendar (16×16)", "CalendarIcon", "size-md, mr-xs"],
+      ]} />
+
+      <h3 className="font-body font-semibold text-sm mt-6">Date Picker (Calendar)</h3>
+      <FigmaMapping nodeId="288:119954" rows={[
+        ["Months", "1 Month", "Calendar", "numberOfMonths={1} (default)"],
+        ["Months", "2 Months", "Calendar", "numberOfMonths={2}"],
+        ["Months", "3 Months", "Calendar", "numberOfMonths={3}"],
+        ["Popover", "Card container", "PopoverContent", "w-auto p-0, rounded border"],
+      ]} />
 
       {/* ---- Accessibility ---- */}
       <section id="accessibility" className="space-y-4 pt-3xl">
@@ -15355,6 +15532,10 @@ function DatePickerDocs() {
                     <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Arrow Keys</kbd></td>
                     <td className="pr-6 py-2 text-muted-foreground">Navigate between days when calendar is open</td>
                   </tr>
+                  <tr>
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd></td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus between month navigation and day grid</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -15364,19 +15545,11 @@ function DatePickerDocs() {
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
               <li>Combines Button trigger + Popover + Calendar — all Radix-managed accessibility.</li>
               <li>Trigger announces selected date to screen readers.</li>
-              <li>Calendar keyboard navigation works within the popover.</li>
+              <li>Calendar grid uses proper ARIA roles for dates and navigation.</li>
             </ul>
           </div>
         </div>
       </section>
-
-            {/* ---- Figma Mapping ---- */}
-      <FigmaMapping id="figma-mapping" rows={[
-        ["Trigger", "Outline button", "—", "Button variant=outline, w-[280px]"],
-        ["Icon", "Calendar", "—", "CalendarIcon, size-md"],
-        ["Popover", "Calendar inside", "—", "Popover + Calendar composition"],
-        ["Callback", "Date selected", "onDateChange", "(date: Date) => void"],
-      ]} />
 
       {/* ---- Related Components ---- */}
       <section id="related" className="space-y-4 pb-12">
@@ -15393,6 +15566,13 @@ function DatePickerDocs() {
             <div>
               <p className="font-semibold text-foreground">Input</p>
               <p className="text-muted-foreground mt-0.5">Manual date text input.</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Popover</p>
+              <p className="text-muted-foreground mt-0.5">Floating container for the calendar.</p>
             </div>
             <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
           </div>
