@@ -5505,6 +5505,299 @@ const handleSubmit = (e) => {
    Checkbox Docs
    ================================================================ */
 
+function CheckboxExploreBehavior() {
+  const [component, setComponent] = useState<"checkbox" | "group" | "rich" | "richAdvanced">("checkbox")
+  // Checkbox properties
+  const [checked, setChecked] = useState("False")
+  const [state, setState] = useState("Default")
+  // Group Rich properties
+  const [showLine2, setShowLine2] = useState(false)
+  const [flipped, setFlipped] = useState("False")
+  // Rich Advanced properties
+  const [iconSize, setIconSize] = useState("Regular")
+  const [iconName, setIconName] = useState("Mail")
+  const [showRecommended, setShowRecommended] = useState(true)
+  const [showSubTitle, setShowSubTitle] = useState(true)
+  const [showSubTitle2, setShowSubTitle2] = useState(true)
+  const [showSubTitle3, setShowSubTitle3] = useState(true)
+  const [showDescription, setShowDescription] = useState(true)
+
+  const isDisabled = state === "Disabled" || state === "Disable" || state === "Disabale" || state === "Disabale Checked"
+  const isError = state === "Error"
+  const isFocus = state === "Focus" || state === "Error Focus"
+  const isSelected = state === "Selected" || state === "Selected - Hover" || state === "Disabale Checked"
+  const isHover = state === "Hover" || state === "Active" || state === "Selected - Hover"
+
+  const checkedVal = checked === "True" || isSelected ? true : checked === "Indeterminate" ? "indeterminate" as const : false
+
+  const IconComp = allLucideIcons.find((i) => i.name === iconName)?.icon ?? Mail
+
+  // State options per component
+  const stateOptions: Record<string, string[]> = {
+    checkbox: ["Default", "Focus", "Error", "Error Focus", "Disabled"],
+    group: ["Default", "Error", "Disable"],
+    rich: ["Default"],
+    richAdvanced: ["Default", "Active", "Hover", "Disabale", "Disabale Checked", "Selected", "Selected - Hover"],
+  }
+
+  // Checked options per component
+  const checkedOptions: Record<string, string[]> = {
+    checkbox: ["False", "True", "Indeterminate"],
+    group: ["False", "True", "Indeterminate"],
+    rich: ["False", "True"],
+    richAdvanced: [],
+  }
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden bg-background">
+      <div className="p-4xl flex items-center justify-center min-h-[200px] bg-background">
+        {/* Checkbox (basic) */}
+        {component === "checkbox" && (
+          <div className={[
+            "flex items-center gap-xs",
+            isHover ? "pointer-events-none" : "",
+          ].filter(Boolean).join(" ")}>
+            <Checkbox
+              checked={checkedVal}
+              disabled={isDisabled}
+              aria-invalid={isError || state === "Error Focus" || undefined}
+              className={[
+                isFocus ? "ring-[3px] ring-ring" : "",
+                isFocus && (isError || state === "Error Focus") ? "!ring-ring-error" : "",
+              ].filter(Boolean).join(" ")}
+            />
+            <Label className={isDisabled ? "opacity-50" : ""}>Label</Label>
+          </div>
+        )}
+
+        {/* Checkbox Group */}
+        {component === "group" && (
+          <div className={[
+            "flex items-center gap-xs",
+            isDisabled ? "opacity-50" : "",
+          ].filter(Boolean).join(" ")}>
+            <Checkbox
+              checked={checkedVal}
+              disabled={isDisabled}
+              aria-invalid={isError || undefined}
+            />
+            <Label className={isDisabled ? "cursor-default" : ""}>Label</Label>
+          </div>
+        )}
+
+        {/* Checkbox Group/Rich */}
+        {component === "rich" && (
+          <div className={[
+            "flex gap-xs",
+            flipped === "True" ? "flex-row-reverse" : "",
+          ].filter(Boolean).join(" ")}>
+            <div className="pt-0.5">
+              <Checkbox checked={checkedVal} />
+            </div>
+            <div className="space-y-0.5">
+              <Label className="text-sm font-medium">Label</Label>
+              {showLine2 && (
+                <p className="text-xs text-muted-foreground">Secondary text</p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Checkbox Group/Rich Advanced */}
+        {component === "richAdvanced" && (
+          <div className={[
+            "flex gap-md p-lg rounded-xl border w-full max-w-[720px]",
+            isSelected ? "border-primary bg-primary/5" : "border-border",
+            isDisabled ? "opacity-50" : "",
+            isHover && !isSelected ? "bg-muted/50" : "",
+          ].filter(Boolean).join(" ")}>
+            <div className={[
+              "shrink-0 flex items-center justify-center rounded-lg bg-muted",
+              iconSize === "Regular" ? "size-3xl" : "size-2xl",
+            ].join(" ")}>
+              <IconComp className={iconSize === "Regular" ? "size-xl" : "size-md"} />
+            </div>
+            <div className="flex-1 space-y-xs min-w-0">
+              <div className="flex items-center gap-xs">
+                <span className="font-semibold text-sm">Landing Page</span>
+                {showRecommended && (
+                  <span className="text-[10px] font-mono bg-primary/10 text-primary px-1.5 py-0.5 rounded">
+                    Recommended
+                  </span>
+                )}
+              </div>
+              {showSubTitle && (
+                <p className="text-xs text-muted-foreground">Auto-tracked landing page with email capture.</p>
+              )}
+              {showSubTitle2 && (
+                <p className="text-xs text-muted-foreground">Real-time analytics and A/B testing built-in.</p>
+              )}
+              {showSubTitle3 && (
+                <p className="text-xs text-muted-foreground">Optimized for mobile and desktop.</p>
+              )}
+              {showDescription && (
+                <p className="text-[11px] text-muted-foreground/70">Includes SEO optimization, custom domain support, and integration with marketing tools.</p>
+              )}
+            </div>
+            <div className="shrink-0 pt-1">
+              <Checkbox checked={isSelected} disabled={isDisabled} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Controls panel */}
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+          {/* Component selector */}
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Component</Label>
+            <Select value={component} onValueChange={(v) => {
+              setComponent(v as typeof component)
+              setState("Default")
+              setChecked("False")
+            }}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="checkbox">Checkbox</SelectItem>
+                <SelectItem value="group">Checkbox Group</SelectItem>
+                <SelectItem value="rich">Group / Rich</SelectItem>
+                <SelectItem value="richAdvanced">Group / Rich Advanced</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Checked — all except richAdvanced */}
+          {checkedOptions[component].length > 0 && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Checked?</Label>
+              <Select value={checked} onValueChange={setChecked}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {checkedOptions[component].map((opt) => (
+                    <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* State — all except rich (only Default) */}
+          {stateOptions[component].length > 1 && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">State</Label>
+              <Select value={state} onValueChange={setState}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {stateOptions[component].map((opt) => (
+                    <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Flipped — Rich only */}
+          {component === "rich" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Flipped</Label>
+              <Select value={flipped} onValueChange={setFlipped}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="False">False</SelectItem>
+                  <SelectItem value="True">True</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Show Line 2 — Rich only */}
+          {component === "rich" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Line 2</Label>
+              <div className="pt-1">
+                <Switch checked={showLine2} onCheckedChange={setShowLine2} />
+              </div>
+            </div>
+          )}
+
+          {/* Icon Size — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Icon Size</Label>
+              <Select value={iconSize} onValueChange={setIconSize}>
+                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Regular">Regular</SelectItem>
+                  <SelectItem value="Small">Small</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Icon — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Icon</Label>
+              <IconPicker value={iconName} onChange={setIconName} size="sm" />
+            </div>
+          )}
+
+          {/* Recommended — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Recommended</Label>
+              <div className="pt-1">
+                <Switch checked={showRecommended} onCheckedChange={setShowRecommended} />
+              </div>
+            </div>
+          )}
+
+          {/* Sub-Title — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Sub-Title</Label>
+              <div className="pt-1">
+                <Switch checked={showSubTitle} onCheckedChange={setShowSubTitle} />
+              </div>
+            </div>
+          )}
+
+          {/* Sub-Title 2 — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
+              <div className="pt-1">
+                <Switch checked={showSubTitle2} onCheckedChange={setShowSubTitle2} />
+              </div>
+            </div>
+          )}
+
+          {/* Sub-Title 3 — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
+              <div className="pt-1">
+                <Switch checked={showSubTitle3} onCheckedChange={setShowSubTitle3} />
+              </div>
+            </div>
+          )}
+
+          {/* Description — Rich Advanced only */}
+          {component === "richAdvanced" && (
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Description</Label>
+              <div className="pt-1">
+                <Switch checked={showDescription} onCheckedChange={setShowDescription} />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const checkboxSections: TocSection[] = [
   { id: "explore-behavior", label: "Explore Behavior" },
   { id: "installation", label: "Installation" },
@@ -5576,31 +5869,7 @@ function CheckboxDocs() {
       {/* ---- Explore Behavior ---- */}
       <section id="explore-behavior" className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
-        <Playground
-          controls={[
-            { type: "select", label: "Checked", prop: "checked", defaultValue: "false", options: [
-              { label: "Unchecked", value: "false" },
-              { label: "Checked", value: "true" },
-              { label: "Indeterminate", value: "indeterminate" },
-            ]},
-            { type: "switch", label: "Disabled", prop: "disabled", defaultValue: false },
-            { type: "switch", label: "Error", prop: "error", defaultValue: false },
-          ]}
-          render={(p) => {
-            const checkedVal = p.checked === "true" ? true : p.checked === "indeterminate" ? "indeterminate" as const : false
-            return (
-              <div className="flex items-center gap-xs">
-                <Checkbox
-                  id="playground-checkbox"
-                  checked={checkedVal}
-                  disabled={p.disabled}
-                  aria-invalid={p.error || undefined}
-                />
-                <Label htmlFor="playground-checkbox">Label</Label>
-              </div>
-            )
-          }}
-        />
+        <CheckboxExploreBehavior />
       </section>
 
       {/* ---- Installation ---- */}
@@ -6135,7 +6404,35 @@ const someChecked = items.some(i => i.checked) && !allChecked
         ["State", "Default", "—", "default"],
         ["State", "Focus", "—", "CSS :focus-visible (3px ring)"],
         ["State", "Error", "aria-invalid", "true (destructive colors)"],
+        ["State", "Error Focus", "aria-invalid + focus", "ring-error + destructive"],
         ["State", "Disabled", "disabled", "true (50% opacity)"],
+      ]} />
+
+      <h3 className="font-body font-semibold text-sm pt-md">Checkbox Group</h3>
+      <FigmaMapping nodeId="19:6040" rows={[
+        ["Checked?", "False / True / Indeterminate", "checked", "boolean | \"indeterminate\""],
+        ["State", "Default", "—", "default"],
+        ["State", "Error", "aria-invalid", "true"],
+        ["State", "Disable", "disabled", "true"],
+      ]} />
+
+      <h3 className="font-body font-semibold text-sm pt-md">Checkbox Group / Rich</h3>
+      <FigmaMapping nodeId="19:6351" rows={[
+        ["Checked?", "False / True", "checked", "boolean"],
+        ["Flipped", "False / True", "className", "flex-row-reverse"],
+        ["Show Line 2", "True / False", "children", "Secondary text visibility"],
+      ]} />
+
+      <h3 className="font-body font-semibold text-sm pt-md">Checkbox Group / Rich Advanced</h3>
+      <FigmaMapping nodeId="2748:542" rows={[
+        ["State", "Default / Active / Hover / ...", "—", "CSS states + selected"],
+        ["Icon Size", "Regular / Small", "className", "size-3xl / size-2xl"],
+        ["Icon", "Instance swap", "children", "Lucide icon component"],
+        ["Recommended", "True / False", "children", "Badge visibility"],
+        ["Sub-Title", "True / False", "children", "Line visibility"],
+        ["Sub-Title 2", "True / False", "children", "Line visibility"],
+        ["Sub-Title 3", "True / False", "children", "Line visibility"],
+        ["Description", "True / False", "children", "Description visibility"],
       ]} />
 
       {/* ---- Accessibility ---- */}
