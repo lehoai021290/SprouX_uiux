@@ -3,7 +3,6 @@ import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
@@ -14,9 +13,11 @@ import {
 /**
  * SprouX Date Picker
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component (node 60:9340)
  *
  * Date selection using Calendar in a Popover.
+ * Trigger is an Input-style field (not a Button) matching the Figma "Date Picker Input" component.
+ * Input size sm (32px height), radius-lg (8px), bg-input, border-border.
  */
 function DatePicker({
   date,
@@ -37,17 +38,19 @@ function DatePicker({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant="outline"
+        <button
+          data-slot="date-picker-trigger"
           className={cn(
-            "w-[280px] justify-start text-left font-normal",
+            "flex h-2xl w-[280px] items-center gap-2xs rounded-lg border border-border bg-input px-xs typo-paragraph-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
             !selected && "text-muted-foreground",
             className
           )}
         >
-          <CalendarIcon className="mr-xs size-md" />
-          {selected ? format(selected, "PPP") : <span>Pick a date</span>}
-        </Button>
+          <CalendarIcon className="size-md shrink-0" />
+          <span className="flex-1 text-left">
+            {selected ? format(selected, "PPP") : "Pick a date"}
+          </span>
+        </button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar

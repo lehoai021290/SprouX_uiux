@@ -8,9 +8,11 @@ import { buttonVariants } from "@/components/ui/button"
 /**
  * SprouX Calendar
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component (node 288:119954)
  *
  * Date picker calendar built on react-day-picker v9.
+ * Figma specs: Day cell 48×48 r=4 p=8, nav buttons 32×32 r=8 with border,
+ * header title Geist 600 14px, weekday 12px/16px, row gap 1px.
  */
 function Calendar({
   className,
@@ -26,34 +28,34 @@ function Calendar({
       classNames={{
         months: "flex flex-col sm:flex-row gap-xs",
         month: "flex flex-col gap-md",
-        month_caption: "flex justify-center pt-1 relative items-center w-full",
-        caption_label: "typo-paragraph-sm-medium",
+        month_caption: "flex justify-center relative items-center w-full",
+        caption_label: "typo-paragraph-sm font-semibold",
         nav: "flex items-center gap-1",
         button_previous: cn(
           buttonVariants({ variant: "outline" }),
-          "size-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute left-1"
+          "size-2xl rounded-lg p-[7px] absolute left-1"
         ),
         button_next: cn(
           buttonVariants({ variant: "outline" }),
-          "size-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute right-1"
+          "size-2xl rounded-lg p-[7px] absolute right-1"
         ),
-        month_grid: "w-full border-collapse space-x-1",
+        month_grid: "w-full border-collapse",
         weekdays: "flex",
         weekday:
-          "text-muted-foreground rounded-md w-2xl font-normal text-[0.8rem]",
-        week: "flex w-full mt-xs",
+          "text-muted-foreground rounded-sm w-[48px] font-normal text-[12px] leading-[16px]",
+        week: "flex w-full mt-[1px]",
         day: cn(
-          "relative p-0 text-center typo-paragraph-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-muted [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-muted/50",
+          "relative p-0 text-center typo-paragraph-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-muted [&:has([aria-selected].day-range-end)]:rounded-r-sm [&:has([aria-selected].day-outside)]:bg-muted/50",
           props.mode === "range"
-            ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
-            : "[&:has([aria-selected])]:rounded-md"
+            ? "[&:has(>.day-range-end)]:rounded-r-sm [&:has(>.day-range-start)]:rounded-l-sm first:[&:has([aria-selected])]:rounded-l-sm last:[&:has([aria-selected])]:rounded-r-sm"
+            : "[&:has([aria-selected])]:rounded-sm"
         ),
         day_button: cn(
           buttonVariants({ variant: "ghost" }),
-          "size-2xl p-0 font-normal aria-selected:opacity-100"
+          "size-[48px] rounded-sm p-xs font-normal aria-selected:opacity-100"
         ),
-        range_start: "day-range-start rounded-l-md",
-        range_end: "day-range-end rounded-r-md",
+        range_start: "day-range-start rounded-l-sm",
+        range_end: "day-range-end rounded-r-sm",
         selected:
           "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
         today: "bg-muted text-foreground",
@@ -68,7 +70,7 @@ function Calendar({
       components={{
         Chevron: ({ orientation }) => {
           const Icon = orientation === "left" ? ChevronLeft : ChevronRight
-          return <Icon aria-hidden="true" className="size-md" />
+          return <Icon aria-hidden="true" className="size-[18px]" />
         },
       }}
       {...props}

@@ -15256,92 +15256,70 @@ const datePickerSections: TocSection[] = [
 ]
 
 function DatePickerExploreBehavior() {
-  // Input tab state
-  const [inputState, setInputState] = useState("Placeholder")
-
-  // Calendar tab state
+  const [inputState, setInputState] = useState<"Placeholder" | "Value" | "Focus">("Placeholder")
   const [months, setMonths] = useState("1")
-
-  // Shared date for input preview
-  const [date, setDate] = useState<Date | undefined>(undefined)
-
-  React.useEffect(() => {
-    if (inputState === "Value") setDate(new Date())
-    else setDate(undefined)
-  }, [inputState])
+  const [selectedDate] = useState(new Date())
 
   return (
-    <Tabs defaultValue="input">
-      <TabsList>
-        <TabsTrigger value="input">Input</TabsTrigger>
-        <TabsTrigger value="calendar">Calendar</TabsTrigger>
-      </TabsList>
+    <div className="rounded-xl border border-border overflow-hidden">
+      {/* ── Static preview: Input + Calendar rendered inline (modal pattern) ── */}
+      <div className="bg-primary/5 p-4xl flex flex-col items-center justify-center gap-xs min-h-[200px]">
+        {/* Date Picker Input preview */}
+        <div
+          className={cn(
+            "flex h-2xl w-[280px] items-center gap-2xs rounded-lg border bg-input px-xs typo-paragraph-sm transition-colors",
+            inputState === "Focus"
+              ? "border-border ring-[3px] ring-ring"
+              : "border-border",
+            inputState === "Value" ? "text-foreground" : "text-muted-foreground"
+          )}
+        >
+          <CalendarIcon className="size-md shrink-0" />
+          <span className="flex-1 text-left">
+            {inputState === "Value" ? format(selectedDate, "PPP") : "Pick a date"}
+          </span>
+        </div>
 
-      {/* ── Date Picker Input ── */}
-      <TabsContent value="input" className="mt-md">
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px]">
-            <Button
-              variant="outline"
-              className={cn(
-                "w-[280px] justify-start text-left font-normal",
-                inputState === "Placeholder" && "text-muted-foreground",
-                inputState === "Focus" && "ring-[3px] ring-ring"
-              )}
-            >
-              <CalendarIcon className="mr-xs size-md" />
-              {inputState === "Value" && date
-                ? format(date, "PPP")
-                : <span>Pick a date</span>}
-            </Button>
+        {/* Calendar preview */}
+        <div className="mt-xs overflow-x-auto">
+          <Calendar
+            mode="single"
+            selected={inputState === "Value" ? selectedDate : undefined}
+            numberOfMonths={parseInt(months)}
+            showOutsideDays
+            className="rounded-xl border border-border bg-card shadow"
+          />
+        </div>
+      </div>
+
+      {/* ── Controls panel ── */}
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">State</Label>
+            <Select value={inputState} onValueChange={(v) => setInputState(v as "Placeholder" | "Value" | "Focus")}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Placeholder">Placeholder</SelectItem>
+                <SelectItem value="Value">Value</SelectItem>
+                <SelectItem value="Focus">Focus</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">State</Label>
-                <Select value={inputState} onValueChange={setInputState}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Placeholder">Placeholder</SelectItem>
-                    <SelectItem value="Value">Value</SelectItem>
-                    <SelectItem value="Focus">Focus</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Months</Label>
+            <Select value={months} onValueChange={setMonths}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">1 Month</SelectItem>
+                <SelectItem value="2">2 Months</SelectItem>
+                <SelectItem value="3">3 Months</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
-      </TabsContent>
-
-      {/* ── Date Picker (Calendar) ── */}
-      <TabsContent value="calendar" className="mt-md">
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px] overflow-x-auto">
-            <Calendar
-              mode="single"
-              numberOfMonths={parseInt(months)}
-              showOutsideDays
-              className="rounded-xl border border-border"
-            />
-          </div>
-          <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Months</Label>
-                <Select value={months} onValueChange={setMonths}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1">1 Month</SelectItem>
-                    <SelectItem value="2">2 Months</SelectItem>
-                    <SelectItem value="3">3 Months</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </TabsContent>
-    </Tabs>
+      </div>
+    </div>
   )
 }
 
@@ -15373,9 +15351,13 @@ function DatePickerTokensTable() {
     { token: "--primary-foreground", value: "#ffffff", hex: "#ffffff", usage: "Selected day text" },
     { token: "--muted-foreground", value: "#6f6f6a", hex: "#6f6f6a", usage: "Placeholder text and calendar nav icons" },
     { token: "--accent", value: "#e9e9e7", hex: "#e9e9e7", usage: "Hovered day background" },
-    { token: "--ring", value: "var(--color-teal-300)", hex: "#5eead4", usage: "Focus ring on trigger button" },
-    { token: "w-[280px]", value: "280px", hex: "—", usage: "Trigger button width" },
+    { token: "--input", value: "var(--color-slate-50)", hex: "#f7f7f6", usage: "Input trigger background" },
+    { token: "--ring", value: "var(--color-teal-300)", hex: "#5eead4", usage: "Focus ring on input trigger" },
+    { token: "w-[280px]", value: "280px", hex: "—", usage: "Input trigger width" },
+    { token: "h-2xl (32px)", value: "32px", hex: "—", usage: "Input trigger height (sm)" },
     { token: "size-md (16px)", value: "16×16px", hex: "—", usage: "Calendar icon size" },
+    { token: "size-[48px]", value: "48×48px", hex: "—", usage: "Day cell size" },
+    { token: "size-2xl (32px)", value: "32×32px", hex: "—", usage: "Nav button size" },
   ]
   return (
     <div className="overflow-x-auto rounded-xl border border-border">
@@ -15435,7 +15417,7 @@ function DatePickerDocs() {
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Example title="Default" description="Click the button to open a calendar popover." code={`<DatePicker />`}>
+          <Example title="Default" description="Click the input to open a calendar popover." code={`<DatePicker />`}>
             <DatePicker />
           </Example>
 
@@ -15453,7 +15435,7 @@ function DatePickerDocs() {
       <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
-          DatePicker composes Button (trigger) + Popover + Calendar internally.
+          DatePicker composes an Input-style trigger + Popover + Calendar internally.
         </p>
         <DatePickerPropsTable />
       </section>
@@ -15492,9 +15474,9 @@ function DatePickerDocs() {
       <FigmaMapping id="figma-mapping" nodeId="60:9340" rows={[
         ["State", "Placeholder", "—", "text-muted-foreground, 'Pick a date' text"],
         ["State", "Value", "—", "text-foreground, formatted date (PPP)"],
-        ["State", "Focus", "—", "ring-[3px] ring-ring focus state"],
-        ["Trigger", "Outline button", "Button", "variant=outline, w-[280px]"],
-        ["Icon", "Calendar (16×16)", "CalendarIcon", "size-md, mr-xs"],
+        ["State", "Focus", "—", "ring-[3px] ring-ring, border-border"],
+        ["Trigger", "Input-style field", "button", "h-2xl, bg-input, border-border, rounded-lg, w-[280px]"],
+        ["Icon", "Calendar (16×16)", "CalendarIcon", "size-md, gap-2xs from text"],
       ]} />
 
       <h3 className="font-body font-semibold text-sm mt-6">Date Picker (Calendar)</h3>
@@ -15543,8 +15525,8 @@ function DatePickerDocs() {
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">Labeling</h3>
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
-              <li>Combines Button trigger + Popover + Calendar — all Radix-managed accessibility.</li>
-              <li>Trigger announces selected date to screen readers.</li>
+              <li>Combines Input-style trigger + Popover + Calendar — all Radix-managed accessibility.</li>
+              <li>Trigger announces selected date to screen readers via button semantics.</li>
               <li>Calendar grid uses proper ARIA roles for dates and navigation.</li>
             </ul>
           </div>
