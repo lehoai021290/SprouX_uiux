@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react"
+import React, { useState, useEffect, useMemo, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -91,6 +91,7 @@ import {
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb"
 import {
   Pagination,
@@ -13181,6 +13182,173 @@ const breadcrumbSections: TocSection[] = [
   { id: "related", label: "Related Components" },
 ]
 
+function BreadcrumbExploreBehavior() {
+  const [items, setItems] = useState("3")
+  const [showEllipsis, setShowEllipsis] = useState(false)
+  const [separator, setSeparator] = useState("chevron")
+
+  const allItems = ["Home", "Dashboard", "Settings", "Account", "Profile"]
+  const count = Math.min(parseInt(items) || 3, 5)
+
+  const SepIcon = separator === "slash" ? () => <span>/</span> : ChevronRight
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden bg-background">
+      <div className="p-4xl flex items-center justify-center min-h-[200px]">
+        <Breadcrumb>
+          <BreadcrumbList>
+            {showEllipsis && count > 2 ? (
+              <>
+                <BreadcrumbItem><BreadcrumbLink href="#">{allItems[0]}</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator><SepIcon /></BreadcrumbSeparator>
+                <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+                <BreadcrumbSeparator><SepIcon /></BreadcrumbSeparator>
+                <BreadcrumbItem><BreadcrumbPage>{allItems[count - 1]}</BreadcrumbPage></BreadcrumbItem>
+              </>
+            ) : (
+              allItems.slice(0, count).map((item, i) => (
+                <React.Fragment key={item}>
+                  {i > 0 && <BreadcrumbSeparator><SepIcon /></BreadcrumbSeparator>}
+                  <BreadcrumbItem>
+                    {i === count - 1
+                      ? <BreadcrumbPage>{item}</BreadcrumbPage>
+                      : <BreadcrumbLink href="#">{item}</BreadcrumbLink>}
+                  </BreadcrumbItem>
+                </React.Fragment>
+              ))
+            )}
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Items</Label>
+            <Select value={items} onValueChange={setItems}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="3">3</SelectItem>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="5">5</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Separator</Label>
+            <Select value={separator} onValueChange={setSeparator}>
+              <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="chevron">ChevronRight</SelectItem>
+                <SelectItem value="slash">Slash (/)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Ellipsis</Label>
+            <div className="pt-1"><Switch checked={showEllipsis} onCheckedChange={setShowEllipsis} /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BreadcrumbPropsTable() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">Breadcrumb</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">BreadcrumbList content.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">...props</td><td className="px-4 py-3 font-mono text-muted-foreground">{"nav attributes"}</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">{"Renders <nav aria-label=\"breadcrumb\">."}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">BreadcrumbLink</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">asChild</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">{"Render as child element (Radix Slot) for router Links."}</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">href</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Navigation target URL.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">BreadcrumbPage</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Current page label text.</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">{"Renders <span aria-current=\"page\"> with font-semibold text-foreground."}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 className="font-body font-semibold text-sm mb-2">BreadcrumbSeparator</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary">children</td><td className="px-4 py-3 font-mono text-muted-foreground">ReactNode</td><td className="px-4 py-3 font-mono text-muted-foreground">ChevronRight</td><td className="px-4 py-3 text-muted-foreground">Custom separator icon or text (e.g. "/" or custom SVG).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BreadcrumbTokensTable() {
+  const tokens = [
+    { token: "--muted-foreground", value: "#6f6f6a", hex: "#6f6f6a", usage: "Link text and separator icon color" },
+    { token: "--foreground", value: "#252522", hex: "#252522", usage: "Current page text (BreadcrumbPage)" },
+    { token: "gap-xs (8px)", value: "8px", hex: "—", usage: "Gap between breadcrumb items and separators" },
+    { token: "typo-paragraph-sm", value: "Geist 400 14px/20px", hex: "—", usage: "Link and page text style" },
+    { token: "font-semibold (600)", value: "600", hex: "—", usage: "Current page font weight" },
+    { token: "[&>svg]:size-3.5", value: "14×14px", hex: "—", usage: "Separator icon size" },
+    { token: "size-md (16px)", value: "16×16px", hex: "—", usage: "Ellipsis (MoreHorizontal) icon size" },
+  ]
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function BreadcrumbDocs() {
   return (
     <div className="space-y-12">
@@ -13192,49 +13360,71 @@ function BreadcrumbDocs() {
         <p className="typo-paragraph text-muted-foreground max-w-3xl">Breadcrumb navigation trail showing the user's location in a hierarchy.</p>
       </header>
 
-      {/* Interactive playground */}
-      <Playground controls={[]} render={() => (
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem><BreadcrumbLink href="#">Components</BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      )} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <BreadcrumbExploreBehavior />
+      </section>
 
       {/* ---- Installation ---- */}
       <InstallationSection
-        deps={`pnpm add clsx tailwind-merge lucide-react`}
-        importCode={`import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"`}
+        deps={`pnpm add @radix-ui/react-slot clsx tailwind-merge lucide-react`}
+        importCode={`import {\n  Breadcrumb, BreadcrumbList, BreadcrumbItem,\n  BreadcrumbLink, BreadcrumbPage,\n  BreadcrumbSeparator, BreadcrumbEllipsis\n} from "@/components/ui/breadcrumb"`}
       />
 
+      {/* ---- Examples ---- */}
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Example title="Default" description="Standard breadcrumb trail showing the user's location in a hierarchy." code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/components">Components</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="#">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="#">Components</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </Example>
+          <Example title="Default" description="Standard breadcrumb trail." code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/components">Components</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbLink href="#">Components</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </Example>
+
+          <Example title="With ellipsis" description="Collapsed middle items for deep hierarchies." code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbEllipsis />\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem>\n      <BreadcrumbPage>Profile</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbLink href="#">Settings</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem><BreadcrumbPage>Profile</BreadcrumbPage></BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </Example>
+
+          <Example title="Custom separator" description="Use a slash instead of ChevronRight." code={`<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/">Home</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator>/</BreadcrumbSeparator>\n    <BreadcrumbItem>\n      <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>\n    </BreadcrumbItem>\n    <BreadcrumbSeparator>/</BreadcrumbSeparator>\n    <BreadcrumbItem>\n      <BreadcrumbPage>Guide</BreadcrumbPage>\n    </BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>`}>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator>/</BreadcrumbSeparator>
+                <BreadcrumbItem><BreadcrumbLink href="#">Docs</BreadcrumbLink></BreadcrumbItem>
+                <BreadcrumbSeparator>/</BreadcrumbSeparator>
+                <BreadcrumbItem><BreadcrumbPage>Guide</BreadcrumbPage></BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </Example>
         </div>
       </section>
 
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Breadcrumb is composed of multiple sub-components. Each extends its native HTML element props.
+        </p>
+        <BreadcrumbPropsTable />
+      </section>
 
       {/* ---- Design Tokens ---- */}
       <section id="design-tokens" className="space-y-4 pt-3xl">
@@ -13242,41 +13432,38 @@ function BreadcrumbDocs() {
         <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code> and sourced from the Figma file <strong>[SprouX - DS] Foundation & Component</strong>.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-border">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-muted border-b border-border text-left">
-                <th className="px-4 py-3 font-semibold">Token</th>
-                <th className="px-4 py-3 font-semibold">Value</th>
-                <th className="px-4 py-3 font-semibold">Swatch</th>
-                <th className="px-4 py-3 font-semibold">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#afafab" }} /></td><td className="px-4 py-3 text-muted-foreground">Link and separator color</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#252522" }} /></td><td className="px-4 py-3 text-muted-foreground">Current page text</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <BreadcrumbTokensTable />
       </section>
 
-            <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
+      {/* ---- Best Practices ---- */}
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
         <div className="space-y-4">
           <h3 className="font-body font-semibold text-sm">Navigation</h3>
           <div className="flex gap-4">
             <DoItem>
               <p>Start with a "Home" link and show the full path hierarchy.</p>
-              <p>Use the last item as non-interactive to indicate the current page.</p>
+              <p>Use the last item as non-interactive (BreadcrumbPage) to indicate the current page.</p>
+              <p>Use BreadcrumbEllipsis to collapse middle items when hierarchy exceeds 4-5 levels.</p>
             </DoItem>
             <DontItem>
-              <p>Don't use more than 4-5 levels — truncate middle items with an ellipsis if needed.</p>
               <p>Don't use Breadcrumb as the sole navigation — it supplements primary navigation.</p>
+              <p>Don't include the current page as a clickable link.</p>
+              <p>Don't display more than 5 levels without truncation.</p>
             </DontItem>
           </div>
         </div>
       </section>
 
+      {/* ---- Figma Mapping ---- */}
+      <FigmaMapping id="figma-mapping" nodeId="68:7354" rows={[
+        ["Separator", "ChevronRight (16×16)", "BreadcrumbSeparator", "[&>svg]:size-3.5 icon, customizable via children"],
+        ["Link", "Geist 400 14px/20px", "BreadcrumbLink", "text-muted-foreground hover:text-foreground transition-colors"],
+        ["Current Page", "Geist 600 14px/20px", "BreadcrumbPage", "font-semibold text-foreground, aria-current=page"],
+        ["Gap", "8px", "BreadcrumbList", "gap-xs"],
+        ["Ellipsis", "MoreHorizontal 16×16", "BreadcrumbEllipsis", "size-md icon, hidden from screen readers"],
+        ["Layout", "Horizontal center", "BreadcrumbList", "flex flex-wrap items-center"],
+      ]} />
 
       {/* ---- Accessibility ---- */}
       <section id="accessibility" className="space-y-4 pt-3xl">
@@ -13294,22 +13481,15 @@ function BreadcrumbDocs() {
                 </thead>
                 <tbody>
                   <tr className="border-b border-border">
-                    <td className="pr-6 py-2">
-                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
-                    </td>
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd></td>
                     <td className="pr-6 py-2 text-muted-foreground">Move focus to the next breadcrumb link</td>
                   </tr>
                   <tr className="border-b border-border">
-                    <td className="pr-6 py-2">
-                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Shift</kbd>{" + "}
-                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd>
-                    </td>
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Shift</kbd>{" + "}<kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd></td>
                     <td className="pr-6 py-2 text-muted-foreground">Move focus to the previous breadcrumb link</td>
                   </tr>
                   <tr>
-                    <td className="pr-6 py-2">
-                      <kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Enter</kbd>
-                    </td>
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Enter</kbd></td>
                     <td className="pr-6 py-2 text-muted-foreground">Navigate to the focused breadcrumb link</td>
                   </tr>
                 </tbody>
@@ -13319,23 +13499,13 @@ function BreadcrumbDocs() {
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
             <h3 className="font-body font-semibold text-sm text-foreground">Labeling</h3>
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
-              <li>Renders inside a <code className="bg-muted px-1 rounded font-mono">nav</code> element with <code className="bg-muted px-1 rounded font-mono">aria-label="breadcrumb"</code>.</li>
+              <li>Renders inside a <code className="bg-muted px-1 rounded font-mono">{"<nav>"}</code> element with <code className="bg-muted px-1 rounded font-mono">aria-label="breadcrumb"</code>.</li>
               <li>Current page uses <code className="bg-muted px-1 rounded font-mono">aria-current="page"</code>.</li>
-              <li>Separators are decorative and hidden from screen readers.</li>
+              <li>Separators use <code className="bg-muted px-1 rounded font-mono">role="presentation" aria-hidden="true"</code>.</li>
             </ul>
           </div>
         </div>
       </section>
-
-            {/* ---- Figma Mapping ---- */}
-      <FigmaMapping id="figma-mapping" rows={[
-        ["Separator", "ChevronRight", "BreadcrumbSeparator", "size-3.5 icon"],
-        ["Link State", "Default", "BreadcrumbLink", "text-muted-foreground hover:text-foreground"],
-        ["Current Page", "Non-interactive", "BreadcrumbPage", "text-foreground, aria-current=page"],
-        ["Font", "Geist 14px", "—", "text-sm"],
-        ["Gap", "Between items", "—", "gap-2xs"],
-        ["Ellipsis", "Overflow", "BreadcrumbEllipsis", "MoreHorizontal icon"],
-      ]} />
 
       {/* ---- Related Components ---- */}
       <section id="related" className="space-y-4 pb-12">
