@@ -11932,7 +11932,7 @@ function DataTableExploreBehavior() {
                 </button>
               )}
               {hContent === "checkbox" && <Checkbox />}
-              {hContent === "empty" && <span className="text-muted-foreground typo-paragraph-sm">—</span>}
+              {hContent === "empty" && null}
             </div>
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
@@ -11941,7 +11941,7 @@ function DataTableExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Content</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["text","Text"],["sortable","Sortable"],["checkbox","Checkbox"],["empty","Empty"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setHContent(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", hContent === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => { setHContent(v); if (v === "checkbox" || v === "empty") setHTooltip(false); }} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", hContent === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -11966,10 +11966,12 @@ function DataTableExploreBehavior() {
                   <Label className="text-xs text-muted-foreground">Show Border</Label>
                   <div className="pt-1"><Switch checked={hBorder} onCheckedChange={setHBorder} /></div>
                 </div>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Show Tooltip</Label>
-                  <div className="pt-1"><Switch checked={hTooltip} onCheckedChange={setHTooltip} /></div>
-                </div>
+                {(hContent === "text" || hContent === "sortable") && (
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Show Tooltip</Label>
+                    <div className="pt-1"><Switch checked={hTooltip} onCheckedChange={setHTooltip} /></div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
