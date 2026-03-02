@@ -15120,19 +15120,25 @@ function CommandDocs() {
         <p className="typo-paragraph text-muted-foreground max-w-3xl">Command palette with search. Built on cmdk. Use as inline menu or as a dialog.</p>
       </header>
 
-      <Playground controls={[]} render={() => (
-        <Command className="rounded-lg border shadow-md w-[300px]">
-          <CommandInput placeholder="Type a command..." />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
-              <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
-              <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      )} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <div className="rounded-xl border border-border overflow-hidden">
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+            <Command className="w-[350px]">
+              <CommandInput placeholder="Type a command..." />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Suggestions">
+                  <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
+                  <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
+                  <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
+        </div>
+      </section>
 
       {/* ---- Installation ---- */}
       <InstallationSection
