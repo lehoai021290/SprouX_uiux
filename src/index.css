@@ -791,7 +791,7 @@
     --brand-subtle-foreground-hover: var(--color-teal-300);
     --brand-border: var(--color-teal-600);
 
-    --border: var(--color-slate-800);
+    --border: var(--color-slate-700);          /* was slate-800 — same as accent, invisible on accent surfaces */
     --border-subtle: var(--color-slate-900);
     --border-strong: var(--color-slate-600);
     --input: var(--color-slate-900);
