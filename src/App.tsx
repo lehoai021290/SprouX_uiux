@@ -8952,12 +8952,10 @@ function CardExploreBehavior() {
 
       <div className="border-t border-border bg-muted/50 p-lg">
         <div className="flex flex-col gap-md">
-          <div className="space-y-xs">
-            <Label className="text-xs text-muted-foreground">Show Title</Label>
-            <div className="flex flex-wrap gap-xs">
-              {["True", "False"].map(v => (
-                <button key={v} onClick={() => setShowTitle(v === "True")} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", String(showTitle) === v.toLowerCase() ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
-              ))}
+          <div className="flex flex-wrap gap-lg">
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Title</Label>
+              <div className="pt-1"><Switch checked={showTitle} onCheckedChange={setShowTitle} /></div>
             </div>
           </div>
           <div className="space-y-xs">
