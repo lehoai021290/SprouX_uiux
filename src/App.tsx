@@ -248,6 +248,10 @@ import {
   ArrowUp,
   X,
   Bug,
+  Heart,
+  Share2,
+  MoreHorizontal,
+  ChevronLeft,
 } from "lucide-react"
 import { icons as lucideIcons } from "lucide-react"
 
@@ -1957,7 +1961,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Variant</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["default","Primary"],["secondary","Secondary"],["outline","Outline"],["ghost","Ghost"],["ghost-muted","Ghost Muted"],["destructive","Destructive"],["destructive-secondary","Destructive Secondary"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setVariant(v)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", variant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setVariant(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", variant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -1965,7 +1969,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Size</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["lg","Large (40px)"],["default","Regular (36px)"],["sm","Small (32px)"],["xs","Mini (24px)"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setSize(v)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", size === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setSize(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", size === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -1973,7 +1977,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">State</Label>
                 <div className="flex flex-wrap gap-xs">
                   {["Default","Hover & Active","Focus","Disabled"].map(v => (
-                    <button key={v} onClick={() => setState(v)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", state === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                    <button key={v} onClick={() => setState(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", state === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
                   ))}
                 </div>
               </div>
@@ -2036,7 +2040,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Variant</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["default","Primary"],["secondary","Secondary"],["outline","Outline"],["ghost","Ghost"],["ghost-muted","Ghost Muted"],["destructive","Destructive"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setIbVariant(v)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", ibVariant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbVariant(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibVariant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2044,7 +2048,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Size</Label>
                 <div className="flex flex-wrap gap-xs">
                   {([["lg","Large (40px)"],["default","Regular (36px)"],["sm","Small (32px)"],["xs","Mini (24px)"]] as const).map(([v,l]) => (
-                    <button key={v} onClick={() => setIbSize(v as any)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", ibSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbSize(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2052,7 +2056,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Roundness</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["false","Default (r=8)"],["true","Round (full)"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setIbRound(v === "true")} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", String(ibRound) === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbRound(v === "true")} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", String(ibRound) === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2060,7 +2064,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">State</Label>
                 <div className="flex flex-wrap gap-xs">
                   {["Default","Hover & Active","Focus","Disabled"].map(v => (
-                    <button key={v} onClick={() => setIbState(v)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", ibState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                    <button key={v} onClick={() => setIbState(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
                   ))}
                 </div>
               </div>
@@ -2440,6 +2444,70 @@ function ButtonDocs() {
               </Button>
             </div>
           )}
+        </Example>
+
+        {/* ── Icon Button Examples ── */}
+        <div className="col-span-full pt-md">
+          <h3 className="font-body font-semibold text-base">Icon Button</h3>
+          <p className="typo-paragraph-sm text-muted-foreground mt-1">Icon-only buttons with proper padding and icon sizing per Figma (4838:17100).</p>
+        </div>
+
+        <Example
+          title="Icon Button — All variants"
+          description="6 variants matching Button variants, each with a single icon child."
+          code={`<IconButton variant="default"><Plus /></IconButton>
+<IconButton variant="secondary"><Settings /></IconButton>
+<IconButton variant="outline"><ChevronLeft /></IconButton>
+<IconButton variant="ghost"><Search /></IconButton>
+<IconButton variant="ghost-muted"><MoreHorizontal /></IconButton>
+<IconButton variant="destructive"><Trash2 /></IconButton>`}
+        >
+          <IconButton variant="default" aria-label="Add"><Plus /></IconButton>
+          <IconButton variant="secondary" aria-label="Settings"><Settings /></IconButton>
+          <IconButton variant="outline" aria-label="Back"><ChevronLeft /></IconButton>
+          <IconButton variant="ghost" aria-label="Search"><Search /></IconButton>
+          <IconButton variant="ghost-muted" aria-label="More"><MoreHorizontal /></IconButton>
+          <IconButton variant="destructive" aria-label="Delete"><Trash2 /></IconButton>
+        </Example>
+
+        <Example
+          title="Icon Button — Sizes"
+          description="Large (40px), Regular (36px), Small (32px), Mini (24px). Icon scales per size."
+          code={`<IconButton size="lg"><Plus /></IconButton>
+<IconButton size="default"><Plus /></IconButton>
+<IconButton size="sm"><Plus /></IconButton>
+<IconButton size="xs"><Plus /></IconButton>`}
+        >
+          <IconButton size="lg" aria-label="Add"><Plus /></IconButton>
+          <IconButton aria-label="Add"><Plus /></IconButton>
+          <IconButton size="sm" aria-label="Add"><Plus /></IconButton>
+          <IconButton size="xs" aria-label="Add"><Plus /></IconButton>
+        </Example>
+
+        <Example
+          title="Icon Button — Round"
+          description="Roundness=Round (r=9999). Useful for floating actions or circular UI patterns."
+          code={`<IconButton round><Plus /></IconButton>
+<IconButton variant="secondary" round><Heart /></IconButton>
+<IconButton variant="outline" round><Share2 /></IconButton>
+<IconButton variant="ghost" round size="sm"><X /></IconButton>`}
+        >
+          <IconButton round aria-label="Add"><Plus /></IconButton>
+          <IconButton variant="secondary" round aria-label="Favorite"><Heart /></IconButton>
+          <IconButton variant="outline" round aria-label="Share"><Share2 /></IconButton>
+          <IconButton variant="ghost" round size="sm" aria-label="Close"><X /></IconButton>
+        </Example>
+
+        <Example
+          title="Icon Button — Disabled"
+          description="Disabled state with 50% opacity. Always provide aria-label."
+          code={`<IconButton disabled><Plus /></IconButton>
+<IconButton variant="outline" disabled><Settings /></IconButton>
+<IconButton variant="destructive" disabled><Trash2 /></IconButton>`}
+        >
+          <IconButton disabled aria-label="Add"><Plus /></IconButton>
+          <IconButton variant="outline" disabled aria-label="Settings"><Settings /></IconButton>
+          <IconButton variant="destructive" disabled aria-label="Delete"><Trash2 /></IconButton>
         </Example>
         </div>
       </section>
@@ -15960,7 +16028,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Type</Label>
             <div className="flex flex-wrap gap-xs">
               {["Basic", "Range"].map(v => (
-                <button key={v} onClick={() => setCalendarType(v as any)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", calendarType === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarType(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarType === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -15968,7 +16036,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Style</Label>
             <div className="flex flex-wrap gap-xs">
               {["1 Month", "2 Month", "Year and Month", "Only Month", "Only Year"].map(v => (
-                <button key={v} onClick={() => setCalendarStyle(v as any)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", calendarStyle === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarStyle(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarStyle === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -15976,7 +16044,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Size</Label>
             <div className="flex flex-wrap gap-xs">
               {["Small", "Large", "Custom days"].map(v => (
-                <button key={v} onClick={() => setCalendarSize(v as any)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", calendarSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarSize(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -15984,7 +16052,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">State</Label>
             <div className="flex flex-wrap gap-xs">
               {["Placeholder", "Value", "Focus"].map(v => (
-                <button key={v} onClick={() => setInputState(v as any)} className={cn("px-sm py-[2px] rounded-md text-xs border transition-colors", inputState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setInputState(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", inputState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
