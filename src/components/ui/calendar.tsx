@@ -47,7 +47,7 @@ function Calendar({
         week: "flex w-full mt-[1px]",
 
         /* ── Header (Figma: Date Picker / Header 264:29273) ── */
-        month_caption: "flex justify-center items-center h-2xl",
+        month_caption: "flex justify-center items-center h-2xl px-[42px]",
         caption_label: "typo-paragraph-sm font-semibold",
         nav: "absolute top-0 inset-x-0 flex items-center justify-between z-10 h-2xl",
         button_previous: cn(
