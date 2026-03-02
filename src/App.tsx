@@ -2064,7 +2064,7 @@ function ButtonExploreBehavior() {
                   ))}
                 </div>
               </div>
-              <div className="space-y-xs">
+              <div className="space-y-xs max-w-[200px]">
                 <Label className="text-xs text-muted-foreground">Icon</Label>
                 <IconPicker value={ibIcon} onChange={setIbIcon} size="sm" />
               </div>
