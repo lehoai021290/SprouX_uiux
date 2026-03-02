@@ -8913,6 +8913,69 @@ const cardSections: TocSection[] = [
   { id: "related", label: "Related Components" },
 ]
 
+function CardExploreBehavior() {
+  const [showTitle, setShowTitle] = useState(true)
+  const [spacing, setSpacing] = useState<"16px" | "24px">("16px")
+  const [showDescription, setShowDescription] = useState(true)
+  const [showFooter, setShowFooter] = useState(false)
+
+  const padClass = spacing === "24px" ? "p-xl" : "p-md"
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+        <Card className="w-[320px]">
+          {showTitle && (
+            <CardHeader className={cn(spacing === "24px" ? "p-xl pb-0" : "p-md pb-0")}>
+              <CardTitle>Card Title</CardTitle>
+              {showDescription && <CardDescription>Description text for this card.</CardDescription>}
+            </CardHeader>
+          )}
+          <CardContent className={cn(padClass, showTitle && "pt-0")}>
+            <p className="text-sm text-muted-foreground">Card content area. Any element can go here — forms, lists, images, or custom layouts.</p>
+          </CardContent>
+          {showFooter && (
+            <CardFooter className={cn(spacing === "24px" ? "p-xl pt-0" : "p-md pt-0")}>
+              <Button size="sm">Action</Button>
+              <Button size="sm" variant="ghost" className="ml-auto">Cancel</Button>
+            </CardFooter>
+          )}
+        </Card>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="flex flex-col gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Show Title</Label>
+            <div className="flex flex-wrap gap-xs">
+              {["True", "False"].map(v => (
+                <button key={v} onClick={() => setShowTitle(v === "True")} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", String(showTitle) === v.toLowerCase() ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Spacing</Label>
+            <div className="flex flex-wrap gap-xs">
+              {(["16px", "24px"] as const).map(v => (
+                <button key={v} onClick={() => setSpacing(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", spacing === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-lg">
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Description</Label>
+              <div className="pt-1"><Switch checked={showDescription} onCheckedChange={setShowDescription} /></div>
+            </div>
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Footer</Label>
+              <div className="pt-1"><Switch checked={showFooter} onCheckedChange={setShowFooter} /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function CardDocs() {
   return (
     <div className="space-y-12">
@@ -8924,20 +8987,12 @@ function CardDocs() {
         <p className="typo-paragraph text-muted-foreground max-w-3xl">Content container with composable sub-components: Header, Title, Description, Content, Footer.</p>
       </header>
 
-      {/* Interactive playground */}
-      <Playground controls={[]} render={() => (
-        <Card className="w-[300px]">
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card description text.</CardDescription>
-          </CardHeader>
-          <CardContent><p className="text-sm">Card content goes here.</p></CardContent>
-        </Card>
-      )} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <CardExploreBehavior />
+      </section>
 
-
-
-      
       {/* ---- Installation ---- */}
       <InstallationSection
         deps={`pnpm add clsx tailwind-merge`}

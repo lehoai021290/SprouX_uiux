@@ -5,16 +5,27 @@ import { cn } from "@/lib/utils"
 /**
  * SprouX Card
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component (node 179:29234)
  *
- * Content container with Header, Title, Description, Content, Footer sub-components.
+ * Component sets:
+ *   - Card (179:29234): Show Title (True/False), Spacing (16px/24px)
+ *   - Card inner (2108:2660): nested card variant
+ *   - Title/Card (2575:5379): Back, Badge, Description, Decoration right, Spacing
+ *
+ * Figma specs:
+ *   Container: r=8 (rounded-lg), border=--border, bg=--background, no shadow
+ *   Spacing=16px: pad=16 all sides → p-md
+ *   Spacing=24px: pad=24 all sides → p-xl
+ *   Title/Card: pad=[16,16,16,0] or [24,24,24,0], gap=4
+ *   Title text: heading-4 (18px/600)
+ *   Description: paragraph-sm (14px/400) muted-foreground
  */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
       className={cn(
-        "rounded-xl border border-border bg-card text-card-foreground shadow-sm",
+        "rounded-lg border border-border bg-background text-card-foreground",
         className
       )}
       {...props}
@@ -26,7 +37,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
-      className={cn("flex flex-col gap-2xs p-md", className)}
+      className={cn("flex flex-col gap-2xs p-md pb-0", className)}
       {...props}
     />
   )
