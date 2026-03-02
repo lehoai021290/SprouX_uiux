@@ -2999,8 +2999,11 @@ function ButtonGroupDocs() {
         </p>
       </header>
 
-      {/* EXPLORE BEHAVIOR */}
-      <ButtonGroupExploreBehavior />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <ButtonGroupExploreBehavior />
+      </section>
 
       {/* INSTALLATION */}
       <InstallationSection
@@ -6202,30 +6205,22 @@ function CheckboxExploreBehavior() {
             />
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+            <div className="flex flex-col gap-md">
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Checked?</Label>
-                <Select value={cbChecked} onValueChange={setCbChecked}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="False">False</SelectItem>
-                    <SelectItem value="True">True</SelectItem>
-                    <SelectItem value="Indeterminate">Indeterminate</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {["False", "True", "Indeterminate"].map(v => (
+                    <button key={v} onClick={() => setCbChecked(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cbChecked === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                  ))}
+                </div>
               </div>
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">State</Label>
-                <Select value={cbState} onValueChange={setCbState}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Default">Default</SelectItem>
-                    <SelectItem value="Focus">Focus</SelectItem>
-                    <SelectItem value="Error">Error</SelectItem>
-                    <SelectItem value="Error Focus">Error Focus</SelectItem>
-                    <SelectItem value="Disabled">Disabled</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {["Default", "Focus", "Error", "Error Focus", "Disabled"].map(v => (
+                    <button key={v} onClick={() => setCbState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cbState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -6249,28 +6244,22 @@ function CheckboxExploreBehavior() {
             </div>
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+            <div className="flex flex-col gap-md">
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Checked?</Label>
-                <Select value={grpChecked} onValueChange={setGrpChecked}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="False">False</SelectItem>
-                    <SelectItem value="True">True</SelectItem>
-                    <SelectItem value="Indeterminate">Indeterminate</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {["False", "True", "Indeterminate"].map(v => (
+                    <button key={v} onClick={() => setGrpChecked(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", grpChecked === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                  ))}
+                </div>
               </div>
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">State</Label>
-                <Select value={grpState} onValueChange={setGrpState}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Default">Default</SelectItem>
-                    <SelectItem value="Error">Error</SelectItem>
-                    <SelectItem value="Disable">Disable</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {["Default", "Error", "Disable"].map(v => (
+                    <button key={v} onClick={() => setGrpState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", grpState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -6300,24 +6289,18 @@ function CheckboxExploreBehavior() {
             </div>
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+            <div className="flex flex-wrap gap-lg">
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Checked?</Label>
-                <div className="pt-1">
-                  <Switch checked={richChecked} onCheckedChange={setRichChecked} />
-                </div>
+                <div className="pt-1"><Switch checked={richChecked} onCheckedChange={setRichChecked} /></div>
               </div>
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Flipped</Label>
-                <div className="pt-1">
-                  <Switch checked={richFlipped} onCheckedChange={setRichFlipped} />
-                </div>
+                <div className="pt-1"><Switch checked={richFlipped} onCheckedChange={setRichFlipped} /></div>
               </div>
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Show Line 2</Label>
-                <div className="pt-1">
-                  <Switch checked={richShowLine2} onCheckedChange={setRichShowLine2} />
-                </div>
+                <div className="pt-1"><Switch checked={richShowLine2} onCheckedChange={setRichShowLine2} /></div>
               </div>
             </div>
           </div>
@@ -6378,68 +6361,51 @@ function CheckboxExploreBehavior() {
             )}
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+            <div className="flex flex-col gap-md">
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">State</Label>
-                <Select value={raState} onValueChange={setRaState}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Default">Default</SelectItem>
-                    <SelectItem value="Active">Active</SelectItem>
-                    <SelectItem value="Hover">Hover</SelectItem>
-                    <SelectItem value="Disabale">Disable</SelectItem>
-                    <SelectItem value="Disabale Checked">Disable Checked</SelectItem>
-                    <SelectItem value="Selected">Selected</SelectItem>
-                    <SelectItem value="Selected - Hover">Selected - Hover</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {[["Default","Default"],["Active","Active"],["Hover","Hover"],["Disabale","Disable"],["Disabale Checked","Disable Checked"],["Selected","Selected"],["Selected - Hover","Selected - Hover"]].map(([v,l]) => (
+                    <button key={v} onClick={() => setRaState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", raState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                  ))}
+                </div>
               </div>
               <div className="space-y-xs">
                 <Label className="text-xs text-muted-foreground">Icon Size</Label>
-                <Select value={raIconSize} onValueChange={setRaIconSize}>
-                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Regular">Regular</SelectItem>
-                    <SelectItem value="Small">Small</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex flex-wrap gap-xs">
+                  {["Regular", "Small"].map(v => (
+                    <button key={v} onClick={() => setRaIconSize(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", raIconSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-xs">
+              <div className="space-y-xs max-w-[200px]">
                 <Label className="text-xs text-muted-foreground">Icon</Label>
                 <IconPicker value={raIconName} onChange={setRaIconName} size="sm" />
               </div>
-              {raIconSize === "Regular" && (<>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Recommended</Label>
-                  <div className="pt-1">
-                    <Switch checked={raRecommended} onCheckedChange={setRaRecommended} />
+              {raIconSize === "Regular" && (
+                <div className="flex flex-wrap gap-lg">
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Recommended</Label>
+                    <div className="pt-1"><Switch checked={raRecommended} onCheckedChange={setRaRecommended} /></div>
+                  </div>
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Sub-Title</Label>
+                    <div className="pt-1"><Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} /></div>
+                  </div>
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
+                    <div className="pt-1"><Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} /></div>
+                  </div>
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
+                    <div className="pt-1"><Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} /></div>
+                  </div>
+                  <div className="space-y-xs">
+                    <Label className="text-xs text-muted-foreground">Description</Label>
+                    <div className="pt-1"><Switch checked={raDescription} onCheckedChange={setRaDescription} /></div>
                   </div>
                 </div>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Sub-Title</Label>
-                  <div className="pt-1">
-                    <Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} />
-                  </div>
-                </div>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
-                  <div className="pt-1">
-                    <Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} />
-                  </div>
-                </div>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
-                  <div className="pt-1">
-                    <Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} />
-                  </div>
-                </div>
-                <div className="space-y-xs">
-                  <Label className="text-xs text-muted-foreground">Description</Label>
-                  <div className="pt-1">
-                    <Switch checked={raDescription} onCheckedChange={setRaDescription} />
-                  </div>
-                </div>
-              </>)}
+              )}
             </div>
           </div>
         </>
