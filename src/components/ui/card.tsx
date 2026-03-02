@@ -5,20 +5,17 @@ import { cn } from "@/lib/utils"
 /**
  * SprouX Card
  *
- * Figma: [SprouX - DS] Foundation & Component (node 179:29234)
+ * Figma: [SprouX - DS] Foundation & Component
  *
  * Component sets:
  *   - Card (179:29234): Show Title (True/False), Spacing (16px/24px)
- *   - Card inner (2108:2660): nested card variant
+ *     Container: r=8, border=--border, bg=--background
+ *   - Card inner (2108:2660): Show Title (True/False), Spacing (16px/24px)
+ *     Container: r=8, NO border, bg=--card-subtle
  *   - Title/Card (2575:5379): Back, Badge, Description, Decoration right, Spacing
  *
- * Figma specs:
- *   Container: r=8 (rounded-lg), border=--border, bg=--background, no shadow
- *   Spacing=16px: pad=16 all sides → p-md
- *   Spacing=24px: pad=24 all sides → p-xl
- *   Title/Card: pad=[16,16,16,0] or [24,24,24,0], gap=4
- *   Title text: heading-4 (18px/600)
- *   Description: paragraph-sm (14px/400) muted-foreground
+ * Spacing=16px: pad=16 → p-md  |  Spacing=24px: pad=24 → p-xl
+ * Title/Card: pad=[16,16,16,0], gap=4
  */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -26,6 +23,19 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card"
       className={cn(
         "rounded-lg border border-border bg-background text-card-foreground",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardInner({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-inner"
+      className={cn(
+        "rounded-lg bg-card-subtle text-card-subtle-foreground",
         className
       )}
       {...props}
@@ -67,7 +77,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("p-md pt-0", className)}
+      className={cn("p-md", className)}
       {...props}
     />
   )
@@ -83,4 +93,4 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+export { Card, CardInner, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }

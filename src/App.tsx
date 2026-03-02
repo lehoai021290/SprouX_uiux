@@ -21,7 +21,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge, BadgeRound, BadgeDot } from "@/components/ui/badge"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardInner, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -8914,34 +8914,42 @@ const cardSections: TocSection[] = [
 ]
 
 function CardExploreBehavior() {
+  const [cardTab, setCardTab] = useState<"card" | "card-inner">("card")
   const [showTitle, setShowTitle] = useState(true)
   const [spacing, setSpacing] = useState<"16px" | "24px">("16px")
-  const [showDescription, setShowDescription] = useState(true)
-  const [showFooter, setShowFooter] = useState(false)
 
   const padClass = spacing === "24px" ? "p-xl" : "p-md"
+  const headerPadClass = spacing === "24px" ? "p-xl pb-0" : "p-md pb-0"
+
+  const cardPreview = (Wrapper: typeof Card) => (
+    <Wrapper className="w-[320px]">
+      {showTitle && (
+        <CardHeader className={headerPadClass}>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Description text for this card.</CardDescription>
+        </CardHeader>
+      )}
+      <CardContent className={cn(padClass, showTitle && "pt-0")}>
+        <p className="text-sm text-muted-foreground">Card content area. Any element can go here.</p>
+      </CardContent>
+    </Wrapper>
+  )
 
   return (
     <div className="rounded-xl border border-border overflow-hidden">
-      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
-        <Card className="w-[320px]">
-          {showTitle && (
-            <CardHeader className={cn(spacing === "24px" ? "p-xl pb-0" : "p-md pb-0")}>
-              <CardTitle>Card Title</CardTitle>
-              {showDescription && <CardDescription>Description text for this card.</CardDescription>}
-            </CardHeader>
-          )}
-          <CardContent className={cn(padClass, showTitle && "pt-0")}>
-            <p className="text-sm text-muted-foreground">Card content area. Any element can go here — forms, lists, images, or custom layouts.</p>
-          </CardContent>
-          {showFooter && (
-            <CardFooter className={cn(spacing === "24px" ? "p-xl pt-0" : "p-md pt-0")}>
-              <Button size="sm">Action</Button>
-              <Button size="sm" variant="ghost" className="ml-auto">Cancel</Button>
-            </CardFooter>
-          )}
-        </Card>
+      {/* ── Tabs ── */}
+      <div className="flex border-b border-border bg-muted/30">
+        {(["card", "card-inner"] as const).map(t => (
+          <button key={t} onClick={() => setCardTab(t)} className={cn("px-lg py-xs typo-paragraph-sm font-medium transition-colors border-b-2 -mb-px", cardTab === t ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground")}>
+            {t === "card" ? "Card" : "Card Inner"}
+          </button>
+        ))}
       </div>
+
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+        {cardTab === "card" ? cardPreview(Card) : cardPreview(CardInner)}
+      </div>
+
       <div className="border-t border-border bg-muted/50 p-lg">
         <div className="flex flex-col gap-md">
           <div className="space-y-xs">
@@ -8958,16 +8966,6 @@ function CardExploreBehavior() {
               {(["16px", "24px"] as const).map(v => (
                 <button key={v} onClick={() => setSpacing(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", spacing === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-lg">
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Show Description</Label>
-              <div className="pt-1"><Switch checked={showDescription} onCheckedChange={setShowDescription} /></div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Show Footer</Label>
-              <div className="pt-1"><Switch checked={showFooter} onCheckedChange={setShowFooter} /></div>
             </div>
           </div>
         </div>
@@ -8996,7 +8994,7 @@ function CardDocs() {
       {/* ---- Installation ---- */}
       <InstallationSection
         deps={`pnpm add clsx tailwind-merge`}
-        importCode={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"`}
+        importCode={`import { Card, CardInner, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"`}
       />
 
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
