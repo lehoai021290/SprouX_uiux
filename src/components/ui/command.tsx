@@ -12,9 +12,19 @@ import {
 /**
  * SprouX Command
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component (node 66:5046)
+ *   - Command Item (66:5600): State (Regular | Hover)
  *
  * Command palette / searchable menu. Built on cmdk.
+ *
+ * Figma specs:
+ *   Container: r=12 (rounded-xl), border=--border, bg=--background, py=8 (py-xs)
+ *   Input: r=8, bg=--input, h=32, Search icon + X close, pad=[8,0,8,0]
+ *   Separator: 1px --border
+ *   List: pad=[4,0,4,0]
+ *   Group label: 12px/400 --muted-foreground, pad=[8,5.5,8,5.5]
+ *   Item (Regular): r=6 (rounded-md), pad=[8,6,8,6], gap=8, text 14px/400 --foreground
+ *   Item (Hover): fills=--accent
  */
 function Command({
   className,
@@ -24,7 +34,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-md bg-card text-foreground",
+        "flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-background py-xs text-foreground",
         className
       )}
       {...props}
@@ -53,12 +63,12 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="flex items-center border-b border-border px-sm" cmdk-input-wrapper="">
+    <div data-slot="command-input-wrapper" className="flex items-center border-b border-border px-xs" cmdk-input-wrapper="">
       <Search className="mr-xs size-md shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-3xl w-full rounded-md bg-transparent py-sm typo-paragraph-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-2xl w-full rounded-lg bg-transparent typo-paragraph-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...props}
@@ -100,7 +110,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-xs [&_[cmdk-group-heading]]:py-2xs [&_[cmdk-group-heading]]:typo-paragraph-mini-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden px-[4px] py-0 text-foreground [&_[cmdk-group-heading]]:px-xs [&_[cmdk-group-heading]]:py-[5.5px] [&_[cmdk-group-heading]]:typo-paragraph-mini [&_[cmdk-group-heading]]:text-muted-foreground",
         className
       )}
       {...props}
@@ -129,7 +139,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "relative flex cursor-default select-none items-center gap-2 rounded-sm px-xs py-2xs typo-paragraph-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-md [&_svg]:shrink-0",
+        "relative flex cursor-default select-none items-center gap-xs rounded-md px-xs py-[6px] typo-paragraph-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-md [&_svg]:shrink-0",
         className
       )}
       {...props}
