@@ -12003,7 +12003,7 @@ function DataTableExploreBehavior() {
                 <div className="flex items-center gap-xs"><Button size="xs">Approve</Button><Button size="xs" variant="outline">Reject</Button></div>
               )}
               {cContent === "actions" && (
-                <div className="flex items-center gap-xs"><IconButton variant="ghost" size="sm"><Eye /></IconButton><IconButton variant="ghost" size="sm"><MoreHorizontal /></IconButton></div>
+                <div className="flex items-center gap-xs justify-end w-full"><IconButton variant="ghost" size="sm"><Eye /></IconButton><IconButton variant="ghost" size="sm"><MoreHorizontal /></IconButton></div>
               )}
               {cContent === "input" && <input className="h-2xl w-full rounded-lg border border-border bg-input px-xs typo-paragraph-sm" defaultValue="Editable" />}
               {cContent === "blank" && null}
@@ -12020,10 +12020,10 @@ function DataTableExploreBehavior() {
                 </div>
               </div>
               <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Alignment</Label>
+                <Label className="text-xs text-muted-foreground">Alignment{cContent === "actions" && " (Actions = Right only)"}</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["left","Left"],["right","Right"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setCAlign(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cAlign === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => { if (cContent === "actions" && v === "left") return; setCAlign(v); }} disabled={cContent === "actions" && v === "left"} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cAlign === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent", cContent === "actions" && v === "left" && "opacity-30 cursor-not-allowed")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -12136,7 +12136,7 @@ function DataTableDocs() {
       <TableCell><Badge variant="secondary">Verified</Badge></TableCell>
       <TableCell className="text-right">
         <IconButton variant="ghost" size="sm">
-          <MoreHorizontal className="size-4" />
+          <MoreHorizontal />
         </IconButton>
       </TableCell>
     </TableRow>
@@ -12150,9 +12150,9 @@ function DataTableDocs() {
                       <Checkbox checked={selectAll} onCheckedChange={toggleAll} />
                     </TableHead>
                     <TableHead>
-                      <button className="inline-flex items-center gap-xs font-medium">
+                      <button className="inline-flex items-center gap-xs font-semibold">
                         Backer
-                        <ArrowUpDown className="size-3.5 text-muted-foreground" />
+                        <ArrowUpDown className="size-md text-muted-foreground" />
                       </button>
                     </TableHead>
                     <TableHead>Pre-order</TableHead>
@@ -12186,8 +12186,8 @@ function DataTableDocs() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-xs">
-                          <IconButton variant="ghost" size="sm"><Eye className="size-3.5" /></IconButton>
-                          <IconButton variant="ghost" size="sm"><MoreHorizontal className="size-3.5" /></IconButton>
+                          <IconButton variant="ghost" size="sm"><Eye /></IconButton>
+                          <IconButton variant="ghost" size="sm"><MoreHorizontal /></IconButton>
                         </div>
                       </TableCell>
                     </TableRow>
