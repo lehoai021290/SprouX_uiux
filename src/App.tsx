@@ -11924,15 +11924,15 @@ function DataTableExploreBehavior() {
         <>
           <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
             <div className={cn("h-[48px] p-xs flex items-center gap-xs w-[260px]", headerBg, hBorder && "border-b border-border", hAlign === "right" && "justify-end")}>
-              {hContent === "text" && <span className="font-semibold typo-paragraph-sm">Table heading</span>}
+              {hContent === "text" && <span className={cn("font-semibold typo-paragraph-sm", hTooltip && "decoration-dashed underline underline-offset-4 decoration-muted-foreground")}>Table heading</span>}
               {hContent === "sortable" && (
                 <button className="inline-flex items-center gap-xs font-semibold typo-paragraph-sm">
-                  Table heading <ArrowUpDown className="size-md text-muted-foreground" />
+                  <span className={cn(hTooltip && "decoration-dashed underline underline-offset-4 decoration-muted-foreground")}>Table heading</span>
+                  <ArrowUpDown className="size-md text-muted-foreground" />
                 </button>
               )}
               {hContent === "checkbox" && <Checkbox />}
               {hContent === "empty" && <span className="text-muted-foreground typo-paragraph-sm">—</span>}
-              {hTooltip && <Info className="size-md text-muted-foreground" />}
             </div>
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
@@ -12013,7 +12013,7 @@ function DataTableExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Content</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["text-1","Text (1 Line)"],["text-2","Text (2 Lines)"],["text-label","Text (with Label)"],["text-thumb","Text with thumbnail"],["checkbox","Checkbox"],["badge","Badge"],["buttons","Buttons"],["avatar","Avatar"],["avatar-name","Avatar + Name"],["actions","Actions"],["input","Input"],["blank","Blank"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setCContent(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cContent === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => { setCContent(v); if (v === "actions" || v === "buttons") setCAlign("right"); }} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", cContent === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
