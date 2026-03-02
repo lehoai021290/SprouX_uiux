@@ -2836,6 +2836,8 @@ function ButtonGroupExploreBehavior() {
   const RightIconComp = (lucideIcons as any)[rightIcon]
   const IbIconComp = (lucideIcons as any)[ibIcon]
 
+  const [bgTab, setBgTab] = useState<"button-group" | "icon-button">("button-group")
+
   const variantMap: Record<string, string> = { outlined: "outline", ghost: "ghost" }
   const sizeMap: Record<string, string> = { large: "lg", regular: "default", small: "sm", default: "default" }
   const isDisabled = state === "disabled" || ibState === "disabled"
@@ -2843,16 +2845,20 @@ function ButtonGroupExploreBehavior() {
   return (
     <section id="explore-behavior" className="space-y-6">
       <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
-      <Tabs defaultValue="button-group">
-        <TabsList>
-          <TabsTrigger value="button-group">Button Group</TabsTrigger>
-          <TabsTrigger value="icon-button">Icon Button</TabsTrigger>
-        </TabsList>
+      <div className="rounded-xl border border-border overflow-hidden">
+        {/* ── Tabs ── */}
+        <div className="flex border-b border-border bg-muted/30">
+          {(["button-group", "icon-button"] as const).map(t => (
+            <button key={t} onClick={() => setBgTab(t)} className={cn("px-lg py-xs typo-paragraph-sm font-medium transition-colors border-b-2 -mb-px", bgTab === t ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground")}>
+              {t === "button-group" ? "Button Group" : "Icon Button"}
+            </button>
+          ))}
+        </div>
 
         {/* Tab 1: Button Group (784:82792) — 8 properties */}
-        <TabsContent value="button-group" className="mt-md">
-          <div className="rounded-xl border border-border overflow-hidden bg-background">
-            <div className="p-4xl flex items-center justify-center min-h-[200px]">
+        {bgTab === "button-group" && (
+          <>
+            <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
               <ButtonGroup variant={variantMap[skin] as any} size={sizeMap[size] as any}>
                 <ButtonGroupItem disabled={isDisabled}>
                   {showLeftIcon && LeftIconComp && <LeftIconComp className="size-4" />}
@@ -2921,13 +2927,13 @@ function ButtonGroupExploreBehavior() {
                 </div>
               </div>
             </div>
-          </div>
-        </TabsContent>
+          </>
+        )}
 
         {/* Tab 2: Button Group Icon Button (784:87178) — 5 properties */}
-        <TabsContent value="icon-button" className="mt-md">
-          <div className="rounded-xl border border-border overflow-hidden bg-background">
-            <div className="p-4xl flex items-center justify-center min-h-[200px]">
+        {bgTab === "icon-button" && (
+          <>
+            <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
               <ButtonGroup variant={variantMap[ibSkin] as any} size={sizeMap[ibSize] as any}>
                 <ButtonGroupItem size="icon" disabled={ibState === "disabled"} aria-label="Align left">
                   {IbIconComp ? <IbIconComp className="size-4" /> : <AlignLeft className="size-4" />}
@@ -2972,9 +2978,9 @@ function ButtonGroupExploreBehavior() {
                 </div>
               </div>
             </div>
-          </div>
-        </TabsContent>
-      </Tabs>
+          </>
+        )}
+      </div>
     </section>
   )
 }
@@ -6140,20 +6146,7 @@ const handleSubmit = (e) => {
    Checkbox Docs
    ================================================================ */
 
-function CheckboxExploreTab({ children, controls }: { children: React.ReactNode; controls: React.ReactNode }) {
-  return (
-    <div className="rounded-xl border border-border overflow-hidden bg-background">
-      <div className="p-4xl flex items-center justify-center min-h-[200px] bg-background">
-        {children}
-      </div>
-      <div className="border-t border-border bg-muted/50 p-lg">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
-          {controls}
-        </div>
-      </div>
-    </div>
-  )
-}
+
 
 function CheckboxExploreBehavior() {
   // --- Checkbox ---
@@ -6181,261 +6174,277 @@ function CheckboxExploreBehavior() {
   const raIsSelected = raState === "Active" || raState === "Selected" || raState === "Selected - Hover" || raState === "Disabale Checked"
   const raIsHover = raState === "Hover" || raState === "Selected - Hover"
 
+  const [cbTab, setCbTab] = useState<"checkbox" | "group" | "rich" | "richAdvanced">("checkbox")
+
   return (
-    <Tabs defaultValue="checkbox">
-      <TabsList>
-        <TabsTrigger value="checkbox">Checkbox</TabsTrigger>
-        <TabsTrigger value="group">Group</TabsTrigger>
-        <TabsTrigger value="rich">Rich</TabsTrigger>
-        <TabsTrigger value="richAdvanced">Rich Advanced</TabsTrigger>
-      </TabsList>
+    <div className="rounded-xl border border-border overflow-hidden">
+      {/* ── Tabs ── */}
+      <div className="flex border-b border-border bg-muted/30">
+        {(["checkbox", "group", "rich", "richAdvanced"] as const).map(t => (
+          <button key={t} onClick={() => setCbTab(t)} className={cn("px-lg py-xs typo-paragraph-sm font-medium transition-colors border-b-2 -mb-px", cbTab === t ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground")}>
+            {t === "checkbox" ? "Checkbox" : t === "group" ? "Group" : t === "rich" ? "Rich" : "Rich Advanced"}
+          </button>
+        ))}
+      </div>
 
       {/* ---- Tab: Checkbox ---- */}
-      <TabsContent value="checkbox" className="mt-md">
-        <CheckboxExploreTab
-          controls={<>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Checked?</Label>
-              <Select value={cbChecked} onValueChange={setCbChecked}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="False">False</SelectItem>
-                  <SelectItem value="True">True</SelectItem>
-                  <SelectItem value="Indeterminate">Indeterminate</SelectItem>
-                </SelectContent>
-              </Select>
+      {cbTab === "checkbox" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+            <Checkbox
+              checked={cbChecked === "True" ? true : cbChecked === "Indeterminate" ? "indeterminate" as const : false}
+              disabled={cbState === "Disabled"}
+              aria-invalid={cbState === "Error" || cbState === "Error Focus" || undefined}
+              className={[
+                cbState === "Focus" ? "ring-[3px] ring-ring" : "",
+                cbState === "Error Focus" ? "ring-[3px] ring-ring-error" : "",
+              ].filter(Boolean).join(" ")}
+            />
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Checked?</Label>
+                <Select value={cbChecked} onValueChange={setCbChecked}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="False">False</SelectItem>
+                    <SelectItem value="True">True</SelectItem>
+                    <SelectItem value="Indeterminate">Indeterminate</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">State</Label>
+                <Select value={cbState} onValueChange={setCbState}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Default">Default</SelectItem>
+                    <SelectItem value="Focus">Focus</SelectItem>
+                    <SelectItem value="Error">Error</SelectItem>
+                    <SelectItem value="Error Focus">Error Focus</SelectItem>
+                    <SelectItem value="Disabled">Disabled</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">State</Label>
-              <Select value={cbState} onValueChange={setCbState}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Default">Default</SelectItem>
-                  <SelectItem value="Focus">Focus</SelectItem>
-                  <SelectItem value="Error">Error</SelectItem>
-                  <SelectItem value="Error Focus">Error Focus</SelectItem>
-                  <SelectItem value="Disabled">Disabled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </>}
-        >
-          <Checkbox
-            checked={cbChecked === "True" ? true : cbChecked === "Indeterminate" ? "indeterminate" as const : false}
-            disabled={cbState === "Disabled"}
-            aria-invalid={cbState === "Error" || cbState === "Error Focus" || undefined}
-            className={[
-              cbState === "Focus" ? "ring-[3px] ring-ring" : "",
-              cbState === "Error Focus" ? "ring-[3px] ring-ring-error" : "",
-            ].filter(Boolean).join(" ")}
-          />
-        </CheckboxExploreTab>
-      </TabsContent>
+          </div>
+        </>
+      )}
 
       {/* ---- Tab: Checkbox Group ---- */}
-      <TabsContent value="group" className="mt-md">
-        <CheckboxExploreTab
-          controls={<>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Checked?</Label>
-              <Select value={grpChecked} onValueChange={setGrpChecked}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="False">False</SelectItem>
-                  <SelectItem value="True">True</SelectItem>
-                  <SelectItem value="Indeterminate">Indeterminate</SelectItem>
-                </SelectContent>
-              </Select>
+      {cbTab === "group" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+            <div className={[
+              "flex items-center gap-xs",
+              grpState === "Disable" ? "opacity-50" : "",
+            ].filter(Boolean).join(" ")}>
+              <Checkbox
+                checked={grpChecked === "True" ? true : grpChecked === "Indeterminate" ? "indeterminate" as const : false}
+                disabled={grpState === "Disable"}
+                aria-invalid={grpState === "Error" || undefined}
+              />
+              <Label className="typo-paragraph-sm text-muted-foreground">Label</Label>
             </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">State</Label>
-              <Select value={grpState} onValueChange={setGrpState}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Default">Default</SelectItem>
-                  <SelectItem value="Error">Error</SelectItem>
-                  <SelectItem value="Disable">Disable</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </>}
-        >
-          <div className={[
-            "flex items-center gap-xs",
-            grpState === "Disable" ? "opacity-50" : "",
-          ].filter(Boolean).join(" ")}>
-            <Checkbox
-              checked={grpChecked === "True" ? true : grpChecked === "Indeterminate" ? "indeterminate" as const : false}
-              disabled={grpState === "Disable"}
-              aria-invalid={grpState === "Error" || undefined}
-            />
-            <Label className="typo-paragraph-sm text-muted-foreground">Label</Label>
           </div>
-        </CheckboxExploreTab>
-      </TabsContent>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Checked?</Label>
+                <Select value={grpChecked} onValueChange={setGrpChecked}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="False">False</SelectItem>
+                    <SelectItem value="True">True</SelectItem>
+                    <SelectItem value="Indeterminate">Indeterminate</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">State</Label>
+                <Select value={grpState} onValueChange={setGrpState}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Default">Default</SelectItem>
+                    <SelectItem value="Error">Error</SelectItem>
+                    <SelectItem value="Disable">Disable</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* ---- Tab: Rich (Figma 19:6351) ---- */}
-      <TabsContent value="rich" className="mt-md">
-        <CheckboxExploreTab
-          controls={<>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Checked?</Label>
-              <div className="pt-1">
-                <Switch checked={richChecked} onCheckedChange={setRichChecked} />
-              </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Flipped</Label>
-              <div className="pt-1">
-                <Switch checked={richFlipped} onCheckedChange={setRichFlipped} />
-              </div>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Show Line 2</Label>
-              <div className="pt-1">
-                <Switch checked={richShowLine2} onCheckedChange={setRichShowLine2} />
-              </div>
-            </div>
-          </>}
-        >
-          {/* Figma 19:6351: 240w, HORIZONTAL, gap=8, pad=12h/8v
-              border=1px #e9e9e7 (--border), fill=#fff (--card), corner=10px
-              Aligner(16×18.5, center checkbox) + AL(vertical, grow=1, Label + Secondary text) */}
-          <div className={[
-            "flex gap-xs px-sm py-xs w-[240px] rounded-[10px] border border-border bg-card",
-            richFlipped ? "flex-row-reverse" : "",
-          ].filter(Boolean).join(" ")}>
-            <div className="shrink-0 flex items-center h-5">
-              <Checkbox checked={richChecked} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="typo-paragraph-sm text-muted-foreground">Label</p>
-              {richShowLine2 && (
-                <p className="text-xs leading-[16px] text-muted-foreground">Secondary text</p>
-              )}
-            </div>
-          </div>
-        </CheckboxExploreTab>
-      </TabsContent>
-
-      {/* ---- Tab: Rich Advanced (Figma 2748:542) ---- */}
-      <TabsContent value="richAdvanced" className="mt-md">
-        <CheckboxExploreTab
-          controls={<>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">State</Label>
-              <Select value={raState} onValueChange={setRaState}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Default">Default</SelectItem>
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Hover">Hover</SelectItem>
-                  <SelectItem value="Disabale">Disable</SelectItem>
-                  <SelectItem value="Disabale Checked">Disable Checked</SelectItem>
-                  <SelectItem value="Selected">Selected</SelectItem>
-                  <SelectItem value="Selected - Hover">Selected - Hover</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Icon Size</Label>
-              <Select value={raIconSize} onValueChange={setRaIconSize}>
-                <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Regular">Regular</SelectItem>
-                  <SelectItem value="Small">Small</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-xs">
-              <Label className="text-xs text-muted-foreground">Icon</Label>
-              <IconPicker value={raIconName} onChange={setRaIconName} size="sm" />
-            </div>
-            {raIconSize === "Regular" && (<>
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Recommended</Label>
-                <div className="pt-1">
-                  <Switch checked={raRecommended} onCheckedChange={setRaRecommended} />
-                </div>
-              </div>
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Sub-Title</Label>
-                <div className="pt-1">
-                  <Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} />
-                </div>
-              </div>
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
-                <div className="pt-1">
-                  <Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} />
-                </div>
-              </div>
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
-                <div className="pt-1">
-                  <Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} />
-                </div>
-              </div>
-              <div className="space-y-xs">
-                <Label className="text-xs text-muted-foreground">Description</Label>
-                <div className="pt-1">
-                  <Switch checked={raDescription} onCheckedChange={setRaDescription} />
-                </div>
-              </div>
-            </>)}
-          </>}
-        >
-          {/* Figma Regular: 720w, gap=12, pad=16, corner=12, stroke=1 */}
-          {/* Figma Small: 720w, gap=8, pad=16h/12v, corner=12, stroke=1 */}
-          {raIconSize === "Regular" ? (
+      {cbTab === "rich" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+            {/* Figma 19:6351: 240w, HORIZONTAL, gap=8, pad=12h/8v
+                border=1px #e9e9e7 (--border), fill=#fff (--card), corner=10px
+                Aligner(16×18.5, center checkbox) + AL(vertical, grow=1, Label + Secondary text) */}
             <div className={[
-              "flex gap-sm p-md rounded-xl border w-full max-w-[720px] transition-all",
-              raIsSelected ? "border-border-strong" : "border-border",
-              raIsDisabled ? "bg-muted" : "bg-card",
-              raIsHover ? "shadow" : "",
+              "flex gap-xs px-sm py-xs w-[240px] rounded-[10px] border border-border bg-card",
+              richFlipped ? "flex-row-reverse" : "",
             ].filter(Boolean).join(" ")}>
-              <RaIconComp className="size-3xl shrink-0 text-foreground" />
-              <div className="flex-1 min-w-0 space-y-xs">
-                <div className="space-y-3xs">
-                  <div className="flex items-center gap-sm">
-                    <span className="font-semibold text-base leading-6 text-foreground flex-1">Landing Page</span>
-                    {raRecommended && (
-                      <span className="text-xs bg-[#eff6ff] text-[#2563eb] px-xs py-3xs rounded-full shrink-0">
-                        Recommended
-                      </span>
-                    )}
-                    <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
-                  </div>
-                  {(raSubTitle || raSubTitle2 || raSubTitle3) && (
-                    <div className="flex items-center gap-xs flex-wrap typo-paragraph-sm text-card-foreground">
-                      {raSubTitle && <span>Auto-tracked landing page</span>}
-                      {raSubTitle && raSubTitle2 && <span className="text-muted-foreground">•</span>}
-                      {raSubTitle2 && <span>1-2 days</span>}
-                      {(raSubTitle || raSubTitle2) && raSubTitle3 && <span className="text-muted-foreground">•</span>}
-                      {raSubTitle3 && <span>22% audience interest</span>}
-                    </div>
-                  )}
-                </div>
-                {raDescription && (
-                  <p className="typo-paragraph-sm text-muted-foreground">Includes SEO optimization, custom domain support, and integration with marketing tools.</p>
+              <div className="shrink-0 flex items-center h-5">
+                <Checkbox checked={richChecked} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="typo-paragraph-sm text-muted-foreground">Label</p>
+                {richShowLine2 && (
+                  <p className="text-xs leading-[16px] text-muted-foreground">Secondary text</p>
                 )}
               </div>
             </div>
-          ) : (
-            <div className={[
-              "flex items-center gap-xs px-md py-sm rounded-xl border w-full max-w-[720px] transition-all",
-              raIsSelected ? "border-border-strong" : "border-border",
-              raIsDisabled ? "bg-muted" : "bg-card",
-              raIsHover ? "shadow" : "",
-            ].filter(Boolean).join(" ")}>
-              <RaIconComp className="size-lg shrink-0 text-muted-foreground" />
-              <span className="typo-paragraph-sm text-foreground flex-1 min-w-0 truncate">Landing Page</span>
-              <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Checked?</Label>
+                <div className="pt-1">
+                  <Switch checked={richChecked} onCheckedChange={setRichChecked} />
+                </div>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Flipped</Label>
+                <div className="pt-1">
+                  <Switch checked={richFlipped} onCheckedChange={setRichFlipped} />
+                </div>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Show Line 2</Label>
+                <div className="pt-1">
+                  <Switch checked={richShowLine2} onCheckedChange={setRichShowLine2} />
+                </div>
+              </div>
             </div>
-          )}
-        </CheckboxExploreTab>
-      </TabsContent>
-    </Tabs>
+          </div>
+        </>
+      )}
+
+      {/* ---- Tab: Rich Advanced (Figma 2748:542) ---- */}
+      {cbTab === "richAdvanced" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+            {/* Figma Regular: 720w, gap=12, pad=16, corner=12, stroke=1 */}
+            {/* Figma Small: 720w, gap=8, pad=16h/12v, corner=12, stroke=1 */}
+            {raIconSize === "Regular" ? (
+              <div className={[
+                "flex gap-sm p-md rounded-xl border w-full max-w-[720px] transition-all",
+                raIsSelected ? "border-border-strong" : "border-border",
+                raIsDisabled ? "bg-muted" : "bg-card",
+                raIsHover ? "shadow" : "",
+              ].filter(Boolean).join(" ")}>
+                <RaIconComp className="size-3xl shrink-0 text-foreground" />
+                <div className="flex-1 min-w-0 space-y-xs">
+                  <div className="space-y-3xs">
+                    <div className="flex items-center gap-sm">
+                      <span className="font-semibold text-base leading-6 text-foreground flex-1">Landing Page</span>
+                      {raRecommended && (
+                        <span className="text-xs bg-[#eff6ff] text-[#2563eb] px-xs py-3xs rounded-full shrink-0">
+                          Recommended
+                        </span>
+                      )}
+                      <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
+                    </div>
+                    {(raSubTitle || raSubTitle2 || raSubTitle3) && (
+                      <div className="flex items-center gap-xs flex-wrap typo-paragraph-sm text-card-foreground">
+                        {raSubTitle && <span>Auto-tracked landing page</span>}
+                        {raSubTitle && raSubTitle2 && <span className="text-muted-foreground">•</span>}
+                        {raSubTitle2 && <span>1-2 days</span>}
+                        {(raSubTitle || raSubTitle2) && raSubTitle3 && <span className="text-muted-foreground">•</span>}
+                        {raSubTitle3 && <span>22% audience interest</span>}
+                      </div>
+                    )}
+                  </div>
+                  {raDescription && (
+                    <p className="typo-paragraph-sm text-muted-foreground">Includes SEO optimization, custom domain support, and integration with marketing tools.</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className={[
+                "flex items-center gap-xs px-md py-sm rounded-xl border w-full max-w-[720px] transition-all",
+                raIsSelected ? "border-border-strong" : "border-border",
+                raIsDisabled ? "bg-muted" : "bg-card",
+                raIsHover ? "shadow" : "",
+              ].filter(Boolean).join(" ")}>
+                <RaIconComp className="size-lg shrink-0 text-muted-foreground" />
+                <span className="typo-paragraph-sm text-foreground flex-1 min-w-0 truncate">Landing Page</span>
+                <Checkbox checked={raIsSelected} disabled={raIsDisabled} className="shrink-0" />
+              </div>
+            )}
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md">
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">State</Label>
+                <Select value={raState} onValueChange={setRaState}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Default">Default</SelectItem>
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Hover">Hover</SelectItem>
+                    <SelectItem value="Disabale">Disable</SelectItem>
+                    <SelectItem value="Disabale Checked">Disable Checked</SelectItem>
+                    <SelectItem value="Selected">Selected</SelectItem>
+                    <SelectItem value="Selected - Hover">Selected - Hover</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Icon Size</Label>
+                <Select value={raIconSize} onValueChange={setRaIconSize}>
+                  <SelectTrigger size="sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Regular">Regular</SelectItem>
+                    <SelectItem value="Small">Small</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-xs">
+                <Label className="text-xs text-muted-foreground">Icon</Label>
+                <IconPicker value={raIconName} onChange={setRaIconName} size="sm" />
+              </div>
+              {raIconSize === "Regular" && (<>
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Recommended</Label>
+                  <div className="pt-1">
+                    <Switch checked={raRecommended} onCheckedChange={setRaRecommended} />
+                  </div>
+                </div>
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Sub-Title</Label>
+                  <div className="pt-1">
+                    <Switch checked={raSubTitle} onCheckedChange={setRaSubTitle} />
+                  </div>
+                </div>
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Sub-Title 2</Label>
+                  <div className="pt-1">
+                    <Switch checked={raSubTitle2} onCheckedChange={setRaSubTitle2} />
+                  </div>
+                </div>
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Sub-Title 3</Label>
+                  <div className="pt-1">
+                    <Switch checked={raSubTitle3} onCheckedChange={setRaSubTitle3} />
+                  </div>
+                </div>
+                <div className="space-y-xs">
+                  <Label className="text-xs text-muted-foreground">Description</Label>
+                  <div className="pt-1">
+                    <Switch checked={raDescription} onCheckedChange={setRaDescription} />
+                  </div>
+                </div>
+              </>)}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -10370,22 +10379,27 @@ function BadgeExploreBehavior() {
   const [dotVariant, setDotVariant] = useState("default")
   const [dotSize, setDotSize] = useState("default")
 
+  const [badgeTab, setBadgeTab] = useState<"label" | "round" | "dot">("label")
+
   const IconLeft = allLucideIcons.find((i) => i.name === iconLeftName)?.icon ?? allLucideIcons.find((i) => i.name === "Circle")!.icon
   const IconRight = allLucideIcons.find((i) => i.name === iconRightName)?.icon ?? allLucideIcons.find((i) => i.name === "X")!.icon
   const RoundIcon = allLucideIcons.find((i) => i.name === roundIconName)?.icon ?? allLucideIcons.find((i) => i.name === "Bell")!.icon
 
   return (
-    <Tabs defaultValue="label">
-      <TabsList>
-        <TabsTrigger value="label">Label</TabsTrigger>
-        <TabsTrigger value="round">Round</TabsTrigger>
-        <TabsTrigger value="dot">Dot</TabsTrigger>
-      </TabsList>
+    <div className="rounded-xl border border-border overflow-hidden">
+      {/* ── Tabs ── */}
+      <div className="flex border-b border-border bg-muted/30">
+        {(["label", "round", "dot"] as const).map(t => (
+          <button key={t} onClick={() => setBadgeTab(t)} className={cn("px-lg py-xs typo-paragraph-sm font-medium transition-colors border-b-2 -mb-px", badgeTab === t ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground")}>
+            {t === "label" ? "Label" : t === "round" ? "Round" : "Dot"}
+          </button>
+        ))}
+      </div>
 
       {/* ── Badge/Label ── */}
-      <TabsContent value="label" className="mt-md">
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px]">
+      {badgeTab === "label" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
             <Badge variant={labelVariant as any} level={labelLevel as any} size={labelSize as any} className={labelState === "Focus" ? "ring-[3px] ring-ring" : ""}>
               {showIconLeft && <IconLeft />}
               {labelText}
@@ -10450,13 +10464,13 @@ function BadgeExploreBehavior() {
               </div>
             </div>
           </div>
-        </div>
-      </TabsContent>
+        </>
+      )}
 
       {/* ── Badge/Round ── */}
-      <TabsContent value="round" className="mt-md">
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px]">
+      {badgeTab === "round" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
             <BadgeRound variant={roundVariant as any} size={roundSize as any} className={roundState === "Focus" ? "ring-[3px] ring-ring" : ""}>
               {roundType === "numeric" ? roundNumber : <RoundIcon />}
             </BadgeRound>
@@ -10508,13 +10522,13 @@ function BadgeExploreBehavior() {
               )}
             </div>
           </div>
-        </div>
-      </TabsContent>
+        </>
+      )}
 
       {/* ── Badge/Dot ── */}
-      <TabsContent value="dot" className="mt-md">
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px]">
+      {badgeTab === "dot" && (
+        <>
+          <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
             <BadgeDot variant={dotVariant as any} size={dotSize as any} />
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
@@ -10537,9 +10551,9 @@ function BadgeExploreBehavior() {
               </div>
             </div>
           </div>
-        </div>
-      </TabsContent>
-    </Tabs>
+        </>
+      )}
+    </div>
   )
 }
 
