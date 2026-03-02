@@ -15,13 +15,13 @@ import { buttonVariants } from "@/components/ui/button"
  *
  * Sub-components (Figma instances):
  * - Date Picker / Header (264:29273): nav buttons (Icon Button Outline Small 32×32 r=8) + title (14px/600)
- * - .Date Picker / Weekday Name (22:7455): 48×32 in grid, text 12px/400 muted-foreground
- * - Date Picker / Day (781:40922): 48×48 r=4 p=8
+ * - .Date Picker / Weekday Name (22:7455): 32×32 in grid, text 12px/400 muted-foreground
+ * - Date Picker / Day (781:40922): Size=Small 32×32 r=4
  *   States: Default(bg-card), Hover(bg-accent), Selected(bg-primary text-primary-foreground),
- *           Disabled(bg-background text-muted-foreground), Focus(bg-primary + ring)
- *   Position: Single(r=4), Start(r-left), End(r-right), Middle(r=0, selected=bg-accent text-foreground)
+ *           Disabled(bg-card text-muted-foreground opacity-50), Focus(bg-primary + ring)
+ *   Position: Single(r=4 all), Start(r-left only), End(r-right only), Middle(r=0, selected=bg-accent text-foreground)
  *
- * Layout: container no padding (popover provides p-sm), header-to-grid gap=16px, row gap=1px, multi-month gap=16px.
+ * Layout: container p-sm, header-to-grid gap=16px, row gap=1px, multi-month gap=16px.
  */
 function Calendar({
   className,
@@ -55,34 +55,39 @@ function Calendar({
           "size-2xl rounded-lg p-[7px]"
         ),
 
-        /* ── Weekday Name (Figma: .Date Picker / Weekday Name 48×32) ── */
+        /* ── Weekday Name (Figma: .Date Picker / Weekday Name 32×32) ── */
         weekday:
-          "text-muted-foreground rounded-sm w-[48px] h-[32px] font-normal text-[12px] leading-[16px]",
+          "text-muted-foreground rounded-sm w-[32px] h-[32px] font-normal text-[12px] leading-[16px]",
 
-        /* ── Day cell wrapper (Figma: Date Picker / Day — Position handling) ── */
+        /* ── Day cell wrapper (Figma: Date Picker / Day — Position handling)
+              rdp v9 applies ALL state classes (selected, disabled, range_middle…)
+              to this <td>. The <button> inside carries bg/text styling. ── */
         day: cn(
           "relative p-0 text-center typo-paragraph-sm focus-within:relative focus-within:z-20",
           props.mode === "range"
-            ? "[&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has(>.day-range-end)]:rounded-r-sm [&:has(>.day-range-start)]:rounded-l-sm first:[&:has([aria-selected])]:rounded-l-sm last:[&:has([aria-selected])]:rounded-r-sm"
+            ? "[&:has(>.day-range-end)]:rounded-r-sm [&:has(>.day-range-start)]:rounded-l-sm first:[&:has([aria-selected])]:rounded-l-sm last:[&:has([aria-selected])]:rounded-r-sm"
             : "[&:has([aria-selected])]:rounded-sm"
         ),
 
-        /* ── Day button (Figma: Day Size=Large 48×48 r=4 p=8)
-              Default: bg-card (white), Hover: bg-accent (muted) ── */
+        /* ── Day button (Figma: Day Size=Small 32×32 r=4)
+              Default: bg-card, hover: bg-accent
+              Selected (Single/Start/End): bg-primary text-primary-foreground
+              Selected (Middle): bg-accent text-foreground (via range_middle override)
+              Disabled: bg-card text-muted-foreground opacity-50 ── */
         day_button:
-          "inline-flex items-center justify-center size-[48px] rounded-sm p-xs typo-paragraph-sm font-normal bg-card text-foreground transition-colors hover:bg-accent aria-selected:opacity-100 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring",
+          "inline-flex items-center justify-center whitespace-nowrap rounded-sm size-[32px] typo-paragraph-sm font-normal bg-card text-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:hover:bg-primary aria-selected:hover:text-primary-foreground aria-selected:focus:bg-primary",
 
-        /* ── Day states (Figma: Date Picker / Day States) ── */
+        /* ── Day states (Figma: Date Picker / Day States)
+              Applied to <td>. Button uses aria-selected to pick up primary bg. ── */
         range_start: "day-range-start rounded-l-sm",
         range_end: "day-range-end rounded-r-sm",
-        selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rounded-sm",
+        selected: "rounded-sm",
         today: "ring-1 ring-primary/40 rounded-sm",
         outside:
-          "day-outside text-muted-foreground/40 aria-selected:text-primary-foreground/70",
-        disabled: "bg-background text-muted-foreground cursor-not-allowed",
+          "day-outside text-muted-foreground/40 [&>button]:text-muted-foreground/40 [&>button]:aria-selected:text-primary-foreground/70",
+        disabled: "[&>button]:bg-card [&>button]:text-muted-foreground [&>button]:opacity-50 [&>button]:pointer-events-none",
         range_middle:
-          "aria-selected:bg-accent aria-selected:text-foreground aria-selected:rounded-none aria-selected:hover:bg-accent/80",
+          "[&>button]:aria-selected:bg-accent [&>button]:aria-selected:text-foreground [&>button]:aria-selected:rounded-none [&>button]:aria-selected:hover:bg-accent/80",
         hidden: "invisible",
         ...classNames,
       }}
