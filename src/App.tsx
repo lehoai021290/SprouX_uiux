@@ -1961,7 +1961,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Variant</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["default","Primary"],["secondary","Secondary"],["outline","Outline"],["ghost","Ghost"],["ghost-muted","Ghost Muted"],["destructive","Destructive"],["destructive-secondary","Destructive Secondary"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setVariant(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", variant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setVariant(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", variant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -1969,7 +1969,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Size</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["lg","Large (40px)"],["default","Regular (36px)"],["sm","Small (32px)"],["xs","Mini (24px)"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setSize(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", size === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setSize(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", size === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -1977,7 +1977,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">State</Label>
                 <div className="flex flex-wrap gap-xs">
                   {["Default","Hover & Active","Focus","Disabled"].map(v => (
-                    <button key={v} onClick={() => setState(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", state === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                    <button key={v} onClick={() => setState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", state === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
                   ))}
                 </div>
               </div>
@@ -2040,7 +2040,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Variant</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["default","Primary"],["secondary","Secondary"],["outline","Outline"],["ghost","Ghost"],["ghost-muted","Ghost Muted"],["destructive","Destructive"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setIbVariant(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibVariant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbVariant(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", ibVariant === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2048,7 +2048,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Size</Label>
                 <div className="flex flex-wrap gap-xs">
                   {([["lg","Large (40px)"],["default","Regular (36px)"],["sm","Small (32px)"],["xs","Mini (24px)"]] as const).map(([v,l]) => (
-                    <button key={v} onClick={() => setIbSize(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbSize(v as any)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", ibSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2056,7 +2056,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">Roundness</Label>
                 <div className="flex flex-wrap gap-xs">
                   {[["false","Default (r=8)"],["true","Round (full)"]].map(([v,l]) => (
-                    <button key={v} onClick={() => setIbRound(v === "true")} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", String(ibRound) === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
+                    <button key={v} onClick={() => setIbRound(v === "true")} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", String(ibRound) === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{l}</button>
                   ))}
                 </div>
               </div>
@@ -2064,7 +2064,7 @@ function ButtonExploreBehavior() {
                 <Label className="text-xs text-muted-foreground">State</Label>
                 <div className="flex flex-wrap gap-xs">
                   {["Default","Hover & Active","Focus","Disabled"].map(v => (
-                    <button key={v} onClick={() => setIbState(v)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", ibState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                    <button key={v} onClick={() => setIbState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", ibState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
                   ))}
                 </div>
               </div>
@@ -15994,7 +15994,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Type</Label>
             <div className="flex flex-wrap gap-xs">
               {["Basic", "Range"].map(v => (
-                <button key={v} onClick={() => setCalendarType(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarType === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarType(v as any)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", calendarType === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -16002,7 +16002,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Style</Label>
             <div className="flex flex-wrap gap-xs">
               {["1 Month", "2 Month", "Year and Month", "Only Month", "Only Year"].map(v => (
-                <button key={v} onClick={() => setCalendarStyle(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarStyle === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarStyle(v as any)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", calendarStyle === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -16010,7 +16010,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">Size</Label>
             <div className="flex flex-wrap gap-xs">
               {["Small", "Large", "Custom days"].map(v => (
-                <button key={v} onClick={() => setCalendarSize(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", calendarSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setCalendarSize(v as any)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", calendarSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
@@ -16018,7 +16018,7 @@ function DatePickerExploreBehavior() {
             <Label className="text-xs text-muted-foreground">State</Label>
             <div className="flex flex-wrap gap-xs">
               {["Placeholder", "Value", "Focus"].map(v => (
-                <button key={v} onClick={() => setInputState(v as any)} className={cn("px-sm py-xs rounded-lg text-sm border transition-colors", inputState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+                <button key={v} onClick={() => setInputState(v as any)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", inputState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
               ))}
             </div>
           </div>
