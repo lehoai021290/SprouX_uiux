@@ -2705,16 +2705,16 @@ const buttonGroupSections: TocSection[] = [
 ]
 
 function ButtonGroupExploreBehavior() {
-  const [skin, setSkin] = useState("outline")
-  const [size, setSize] = useState("default")
+  const [skin, setSkin] = useState("outlined")
+  const [size, setSize] = useState("regular")
   const [state, setState] = useState("default")
   const [showLeftIcon, setShowLeftIcon] = useState(false)
   const [showRightIcon, setShowRightIcon] = useState(false)
   const [leftIcon, setLeftIcon] = useState("Mail")
   const [rightIcon, setRightIcon] = useState("ChevronRight")
   // Icon Button tab
-  const [ibSkin, setIbSkin] = useState("outline")
-  const [ibSize, setIbSize] = useState("default")
+  const [ibSkin, setIbSkin] = useState("outlined")
+  const [ibSize, setIbSize] = useState("default")  // Figma "Default" matches option value
   const [ibState, setIbState] = useState("default")
   const [ibIcon, setIbIcon] = useState("AlignLeft")
 
