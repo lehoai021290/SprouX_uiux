@@ -23,6 +23,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge, BadgeRound, BadgeDot } from "@/components/ui/badge"
 import { Card, CardInner, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
+import { Chip } from "@/components/ui/chip"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -8889,6 +8890,235 @@ function ToggleGroupDocs() {
             <div>
               <p className="font-semibold text-foreground">Tabs</p>
               <p className="text-muted-foreground mt-0.5">For navigating between content panels (not toggling state).</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ================================================================
+   Chip Docs
+   ================================================================ */
+
+const chipSections: TocSection[] = [
+  { id: "explore-behavior", label: "Explore Behavior" },
+  { id: "installation", label: "Installation" },
+  { id: "examples", label: "Examples" },
+  { id: "props", label: "Props" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "figma-mapping", label: "Figma Mapping" },
+  { id: "accessibility", label: "Accessibility" },
+  { id: "related", label: "Related Components" },
+]
+
+function ChipExploreBehavior() {
+  const [chipState, setChipState] = useState<"Default" | "Hover" | "Selected">("Default")
+  const [chipSize, setChipSize] = useState<"md" | "sm">("md")
+  const [chipStyle, setChipStyle] = useState<"Default" | "Closable" | "Icon prefix" | "Icon prefix - Closable">("Default")
+
+  const hasIcon = chipStyle.includes("Icon prefix")
+  const isClosable = chipStyle.includes("Closable")
+  const isSelected = chipState === "Selected"
+  const isHover = chipState === "Hover"
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[160px]">
+        <div className={isHover ? "[&_[data-slot=chip]]:bg-accent [&_[data-slot=chip]]:text-foreground" : ""}>
+          <Chip
+            size={chipSize}
+            selected={isSelected}
+            icon={hasIcon ? <Search /> : undefined}
+            closable={isClosable}
+            onClose={() => {}}
+          >
+            Chip name
+          </Chip>
+        </div>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="flex flex-col gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">States</Label>
+            <div className="flex flex-wrap gap-xs">
+              {(["Default", "Hover", "Selected"] as const).map(v => (
+                <button key={v} onClick={() => setChipState(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", chipState === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Sizes</Label>
+            <div className="flex flex-wrap gap-xs">
+              {(["md", "sm"] as const).map(v => (
+                <button key={v} onClick={() => setChipSize(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", chipSize === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v === "md" ? "md (32px)" : "sm (24px)"}</button>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Styles</Label>
+            <div className="flex flex-wrap gap-xs">
+              {(["Default", "Closable", "Icon prefix", "Icon prefix - Closable"] as const).map(v => (
+                <button key={v} onClick={() => setChipStyle(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", chipStyle === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ChipDocs() {
+  const [selected, setSelected] = useState<string[]>(["React"])
+
+  return (
+    <div className="space-y-12">
+      <TableOfContents sections={chipSections} />
+
+      <header className="space-y-md pb-3xl">
+        <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Data Display</p>
+        <h1 className="typo-heading-2">Chip</h1>
+        <p className="typo-paragraph text-muted-foreground max-w-3xl">Compact element for filters, tags, or selections. Supports icon prefix, closable action, and selected state.</p>
+      </header>
+
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <ChipExploreBehavior />
+      </section>
+
+      <InstallationSection
+        deps="pnpm add lucide-react"
+        importCode={`import { Chip } from "@/components/ui/chip"`}
+      />
+
+      <section id="examples" className="space-y-6 pt-xl border-t border-border">
+        <h2 className="font-heading font-semibold text-xl">Examples</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Example title="Default" description="Basic chip with text label." code={`<Chip>Chip name</Chip>`}>
+            <Chip>Chip name</Chip>
+          </Example>
+
+          <Example title="Sizes" description="md (32px) and sm (24px) sizes." code={`<Chip size="md">Medium</Chip>\n<Chip size="sm">Small</Chip>`}>
+            <Chip size="md">Medium</Chip>
+            <Chip size="sm">Small</Chip>
+          </Example>
+
+          <Example title="Selected" description="Selected state with stronger border and foreground text." code={`<Chip selected>Selected</Chip>\n<Chip>Unselected</Chip>`}>
+            <Chip selected>Selected</Chip>
+            <Chip>Unselected</Chip>
+          </Example>
+
+          <Example title="Closable" description="X icon for dismissible chips." code={`<Chip closable onClose={() => {}}>Closable</Chip>`}>
+            <Chip closable onClose={() => {}}>Closable</Chip>
+          </Example>
+
+          <Example title="Icon prefix" description="Icon before the label for categorization." code={`<Chip icon={<Search />}>Search</Chip>\n<Chip icon={<Mail />}>Email</Chip>`}>
+            <Chip icon={<Search />}>Search</Chip>
+            <Chip icon={<Mail />}>Email</Chip>
+          </Example>
+
+          <Example title="Icon prefix + Closable" description="Both icon and close action." code={`<Chip icon={<User />} closable onClose={() => {}}>John Doe</Chip>`}>
+            <Chip icon={<User />} closable onClose={() => {}}>John Doe</Chip>
+          </Example>
+
+          <Example title="Filter group" description="Selectable chip group for filtering. Toggle selected state on click." code={`const [selected, setSelected] = useState(["React"])\n\n{["React","Vue","Angular","Svelte"].map(f => (\n  <Chip\n    key={f}\n    selected={selected.includes(f)}\n    onClick={() => toggleSelection(f)}\n  >{f}</Chip>\n))}`}>
+            <div className="flex flex-wrap gap-xs">
+              {["React", "Vue", "Angular", "Svelte"].map(f => (
+                <Chip
+                  key={f}
+                  selected={selected.includes(f)}
+                  onClick={() => setSelected(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f])}
+                >
+                  {f}
+                </Chip>
+              ))}
+            </div>
+          </Example>
+
+          <Example title="Closable tags" description="Removable tag pattern with closable chips." code={`<Chip closable onClose={() => {}}>React</Chip>\n<Chip closable onClose={() => {}}>TypeScript</Chip>`}>
+            <div className="flex flex-wrap gap-xs">
+              <Chip closable onClose={() => {}}>React</Chip>
+              <Chip closable onClose={() => {}}>TypeScript</Chip>
+              <Chip closable onClose={() => {}}>Tailwind</Chip>
+            </div>
+          </Example>
+        </div>
+      </section>
+
+      <section id="props" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead><tr className="border-b border-border bg-muted"><th className="text-left p-3 font-semibold">Prop</th><th className="text-left p-3 font-semibold">Type</th><th className="text-left p-3 font-semibold">Default</th><th className="text-left p-3 font-semibold">Description</th></tr></thead>
+            <tbody className="[&_tr]:border-b [&_tr]:border-border [&_td]:p-3">
+              <tr><td className="font-mono text-primary">selected</td><td>boolean</td><td>false</td><td>Selected state — stronger border + foreground text</td></tr>
+              <tr><td className="font-mono text-primary">size</td><td>"md" | "sm"</td><td>"md"</td><td>md=32px, sm=24px height</td></tr>
+              <tr><td className="font-mono text-primary">icon</td><td>ReactNode</td><td>—</td><td>Prefix icon (16×16)</td></tr>
+              <tr><td className="font-mono text-primary">closable</td><td>boolean</td><td>false</td><td>Show X close icon</td></tr>
+              <tr><td className="font-mono text-primary">onClose</td><td>{"() => void"}</td><td>—</td><td>Callback when X is clicked</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
+        <h2 className="font-heading font-semibold text-xl">Best Practices</h2>
+        <div className="flex gap-4">
+          <DoItem>
+            <p>Use chips for compact, interactive tags like filters, categories, or selections.</p>
+            <p>Provide clear visual feedback for selected state.</p>
+            <p>Use closable chips for removable tags (e.g. multi-select tokens).</p>
+          </DoItem>
+          <DontItem>
+            <p>Don't use chips for primary actions — use Button instead.</p>
+            <p>Don't use more than 2 lines of chips in a filter group.</p>
+            <p>Don't mix sizes in the same chip group.</p>
+          </DontItem>
+        </div>
+      </section>
+
+      <FigmaMapping id="figma-mapping" rows={[
+        ["States", "Default", "default", "border-border, text-card-foreground"],
+        ["States", "Hover", "hover:", "bg-accent, text-foreground"],
+        ["States", "Selected", "selected", "border-border-strong, text-foreground"],
+        ["Sizes", "md", 'size="md"', "h-2xl (32px)"],
+        ["Sizes", "sm", 'size="sm"', "h-xl (24px)"],
+        ["Styles", "Default", "—", "Text only, px-sm"],
+        ["Styles", "Closable", "closable", "X icon 16×16 on right"],
+        ["Styles", "Icon prefix", "icon={<Icon />}", "Icon 16×16 on left"],
+        ["Styles", "Icon prefix - Closable", "icon + closable", "Icon left + X right"],
+      ]} />
+
+      <section id="accessibility" className="space-y-4 pt-3xl">
+        <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
+        <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+          <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
+            <li>Chips render as <code className="text-xs bg-muted px-1 rounded font-mono">{"<button>"}</code> for keyboard interaction.</li>
+            <li>Close action has <code className="text-xs bg-muted px-1 rounded font-mono">aria-label="Remove"</code>.</li>
+            <li>Selected state uses <code className="text-xs bg-muted px-1 rounded font-mono">data-selected</code> attribute.</li>
+            <li>Filter groups should use <code className="text-xs bg-muted px-1 rounded font-mono">role="group"</code> with <code className="text-xs bg-muted px-1 rounded font-mono">aria-label</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="related" className="space-y-4 pb-12">
+        <h2 className="font-heading font-semibold text-xl">Related Components</h2>
+        <div className="rounded-xl border border-border divide-y divide-border text-xs">
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Badge</p>
+              <p className="text-muted-foreground mt-0.5">For static status indicators (not interactive).</p>
+            </div>
+            <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
+          </div>
+          <div className="px-5 py-3.5 flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">Toggle Group</p>
+              <p className="text-muted-foreground mt-0.5">For exclusive selection between options.</p>
             </div>
             <span className="text-muted-foreground text-[10px] font-mono bg-muted px-2 py-0.5 rounded">Available</span>
           </div>
@@ -19348,6 +19578,7 @@ const components = [
   { id: "carousel", label: "Carousel" },
   { id: "card", label: "Card" },
   { id: "checkbox", label: "Checkbox" },
+  { id: "chip", label: "Chip" },
   { id: "collapsible", label: "Collapsible" },
   { id: "combobox", label: "Combobox" },
   { id: "command", label: "Command" },
@@ -19593,6 +19824,7 @@ function App() {
           {active === "toggle-group" && <ToggleGroupDocs />}
           {active === "slider" && <SliderDocs />}
           {active === "carousel" && <CarouselDocs />}
+          {active === "chip" && <ChipDocs />}
           {active === "card" && <CardDocs />}
           {active === "badge" && <BadgeDocs />}
           {active === "avatar" && <AvatarDocs />}
