@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
  *           → closable prop + icon prop
  *
  * Specs (md):
- *   Container: rounded-full, border=--border (default) / --border-strong (selected)
+ *   Container: rounded-full, border=--border (default) / --primary (selected, teal-600)
  *   Text: 14px/600, color=--muted-foreground (default+hover) / --foreground (selected)
  *   Padding: [12,0,12,0] default, [12,0,8,0] closable, [8,0,12,0] icon, [8,0,8,0] both
  *   Gap: 4px between icon/text/close
@@ -56,7 +56,7 @@ function Chip({
         "inline-flex items-center gap-[4px] rounded-full border typo-paragraph-sm-bold transition-colors",
         size === "sm" ? "h-xl" : "h-2xl",
         selected
-          ? "border-border-strong text-foreground"
+          ? "border-primary text-foreground"
           : "border-border text-muted-foreground hover:bg-accent",
         paddingClass,
         "[&_svg]:size-md [&_svg]:shrink-0",
