@@ -15991,36 +15991,32 @@ function DatePickerDocs() {
             <DatePicker date={new Date()} />
           </Example>
 
-          <Example title="With callback" description="Handle date selection with onDateChange." code={`<DatePicker\n  onDateChange={(date) => console.log(date)}\n/>`}>
-            <DatePicker onDateChange={(d) => console.log(d)} />
+          <Example title="With label" description="Show Label=True variant from Figma. Adds a label above the input." code={`<DatePicker label="Date" />`}>
+            <DatePicker label="Date" />
           </Example>
 
           <Example title="Date Range" description="Select a start and end date with a 2-month calendar." code={`<DateRangePicker />`}>
             <DateRangePicker />
           </Example>
 
-          <Example title="Date Range with pre-selected" description="Pass initial from/to dates." code={`<DateRangePicker\n  from={new Date(2025, 0, 15)}\n  to={new Date(2025, 1, 14)}\n/>`}>
-            <DateRangePicker from={new Date(2025, 0, 15)} to={new Date(2025, 1, 14)} />
+          <Example title="Date Range with label" description="Range picker with Show Label=True." code={`<DateRangePicker\n  label="Period"\n  from={new Date(2025, 0, 15)}\n  to={new Date(2025, 1, 14)}\n/>`}>
+            <DateRangePicker label="Period" from={new Date(2025, 0, 15)} to={new Date(2025, 1, 14)} />
           </Example>
 
-          <Example title="Date Range with callback" description="Handle range selection with onRangeChange." code={`<DateRangePicker\n  onRangeChange={(range) => console.log(range)}\n/>`}>
-            <DateRangePicker onRangeChange={(r) => console.log(r)} />
-          </Example>
-
-          <Example title="Date & Time" description="Calendar with a time input below. Combines date and time into a single Date object." code={`<DateTimePicker />`}>
+          <Example title="Date & Time" description="Calendar + Time Picker Input (Figma: clock icon, 124×36, r=8)." code={`<DateTimePicker />`}>
             <DateTimePicker />
           </Example>
 
-          <Example title="Date & Time with pre-selected" description="Pass an initial date with time." code={`<DateTimePicker\n  date={new Date()}\n/>`}>
-            <DateTimePicker date={new Date()} />
+          <Example title="Date & Time with labels" description="Both date and time inputs with labels." code={`<DateTimePicker\n  label="Appointment"\n  timeLabel="Time"\n  date={new Date()}\n/>`}>
+            <DateTimePicker label="Appointment" timeLabel="Time" date={new Date()} />
           </Example>
 
-          <Example title="Date Range & Time" description="2-month range calendar with start/end time inputs." code={`<DateRangeTimePicker />`}>
+          <Example title="Date Range & Time" description="2-month range calendar with From/To time inputs." code={`<DateRangeTimePicker />`}>
             <DateRangeTimePicker />
           </Example>
 
-          <Example title="Date Range & Time with pre-selected" description="Pass initial from/to dates with times." code={`<DateRangeTimePicker\n  from={new Date(2025, 0, 15)}\n  to={new Date(2025, 1, 14)}\n/>`}>
-            <DateRangeTimePicker from={new Date(2025, 0, 15)} to={new Date(2025, 1, 14)} />
+          <Example title="Date Range & Time with label" description="Full range + time with label." code={`<DateRangeTimePicker\n  label="Event period"\n  from={new Date(2025, 0, 15)}\n  to={new Date(2025, 1, 14)}\n/>`}>
+            <DateRangeTimePicker label="Event period" from={new Date(2025, 0, 15)} to={new Date(2025, 1, 14)} />
           </Example>
         </div>
       </section>
