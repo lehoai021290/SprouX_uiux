@@ -15797,10 +15797,12 @@ function DatePickerExploreBehavior() {
   const rangeFrom = new Date(2025, 0, 15)
   const rangeTo = new Date(2025, 1, 14)
 
-  /* Map Style → rdp captionLayout + numberOfMonths */
+  /* Map Style → rdp captionLayout + numberOfMonths
+     "dropdown-months" = month IS dropdown → Figma "Only Month"
+     "dropdown-years"  = year IS dropdown  → Figma "Only Year" */
   const captionLayout = calendarStyle === "Year and Month" ? "dropdown" as const
-    : calendarStyle === "Only Month" ? "dropdown-years" as const
-    : calendarStyle === "Only Year" ? "dropdown-months" as const
+    : calendarStyle === "Only Month" ? "dropdown-months" as const
+    : calendarStyle === "Only Year" ? "dropdown-years" as const
     : "label" as const
   const numMonths = calendarStyle === "2 Month" ? 2 : calendarType === "Range" && calendarStyle === "1 Month" ? 2 : 1
 
