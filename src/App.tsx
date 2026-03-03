@@ -12612,6 +12612,120 @@ const dialogSections: TocSection[] = [
   { id: "related", label: "Related Components" },
 ]
 
+function DialogExploreBehavior() {
+  const [type, setType] = useState<"Desktop" | "Desktop Scrollable" | "Mobile" | "Mobile Full Screen">("Desktop")
+  const [showCloseButton, setShowCloseButton] = useState(true)
+  const [showTitle, setShowTitle] = useState(true)
+  const [showDescription, setShowDescription] = useState(true)
+  const [showFooter, setShowFooter] = useState(true)
+
+  const isMobile = type.startsWith("Mobile")
+  const isScrollable = type.includes("Scrollable") || type.includes("Full Screen")
+
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+        <div className={cn(
+          "relative w-full bg-card border border-border shadow grid pointer-events-none",
+          isMobile && type === "Mobile Full Screen" ? "max-w-xs rounded-none" : isMobile ? "max-w-xs rounded-xl" : "max-w-lg rounded-xl",
+          isScrollable ? "gap-0" : "gap-xs p-md"
+        )}>
+          {/* Close button */}
+          {showCloseButton && (
+            <div className={cn("absolute opacity-70", isScrollable ? "right-md top-md" : "right-md top-md")}>
+              <X className="size-md" />
+            </div>
+          )}
+
+          {/* Scrollable layout = Header / Content / Footer as separate sections */}
+          {isScrollable ? (
+            <>
+              {/* Header */}
+              <div className="p-md flex flex-col gap-xs sm:text-left border-b border-border">
+                {showTitle && <h3 className="typo-heading-4 text-foreground">Edit profile</h3>}
+                {showDescription && <p className="typo-paragraph-sm text-muted-foreground">Make changes to your profile here.</p>}
+              </div>
+              {/* Scrollable content */}
+              <div className="p-md space-y-md max-h-[180px] overflow-y-auto">
+                <div className={cn("grid items-center gap-md", isMobile ? "grid-cols-1" : "grid-cols-4")}>
+                  <Label className={isMobile ? "" : "text-right"}>Name</Label>
+                  <Input defaultValue="Pedro Duarte" className={isMobile ? "" : "col-span-3"} readOnly />
+                </div>
+                <div className={cn("grid items-center gap-md", isMobile ? "grid-cols-1" : "grid-cols-4")}>
+                  <Label className={isMobile ? "" : "text-right"}>Username</Label>
+                  <Input defaultValue="@peduarte" className={isMobile ? "" : "col-span-3"} readOnly />
+                </div>
+                <div className={cn("grid items-center gap-md", isMobile ? "grid-cols-1" : "grid-cols-4")}>
+                  <Label className={isMobile ? "" : "text-right"}>Email</Label>
+                  <Input defaultValue="pedro@example.com" className={isMobile ? "" : "col-span-3"} readOnly />
+                </div>
+              </div>
+              {/* Footer */}
+              {showFooter && (
+                <div className={cn("p-md border-t border-border flex gap-xs", isMobile ? "flex-col" : "justify-end")}>
+                  <Button variant="outline" className={isMobile ? "w-full" : ""}>Cancel</Button>
+                  <Button className={isMobile ? "w-full" : ""}>Save changes</Button>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {/* Standard layout */}
+              {(showTitle || showDescription) && (
+                <div className="flex flex-col gap-xs sm:text-left">
+                  {showTitle && <h3 className="typo-heading-4 text-foreground">Edit profile</h3>}
+                  {showDescription && <p className="typo-paragraph-sm text-muted-foreground">Make changes to your profile here. Click save when you&apos;re done.</p>}
+                </div>
+              )}
+              <div className={cn("grid gap-md py-md", isMobile ? "grid-cols-1" : "grid-cols-4")}>
+                <Label className={isMobile ? "" : "text-right"}>Name</Label>
+                <Input defaultValue="Pedro Duarte" className={isMobile ? "" : "col-span-3"} readOnly />
+              </div>
+              {showFooter && (
+                <div className={cn("flex gap-xs", isMobile ? "flex-col" : "flex-col-reverse sm:flex-row sm:justify-end")}>
+                  <Button variant="outline" className={isMobile ? "w-full" : ""}>Cancel</Button>
+                  <Button className={isMobile ? "w-full" : ""}>Save changes</Button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+      {/* Controls panel */}
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <div className="flex flex-col gap-md">
+          <div className="space-y-xs">
+            <Label className="text-xs text-muted-foreground">Type</Label>
+            <div className="flex flex-wrap gap-xs">
+              {(["Desktop", "Desktop Scrollable", "Mobile", "Mobile Full Screen"] as const).map(v => (
+                <button key={v} onClick={() => setType(v)} className={cn("px-sm py-[5px] rounded-md text-xs border transition-colors", type === v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:bg-accent")}>{v}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-lg">
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Close Button</Label>
+              <div className="pt-1"><Switch checked={showCloseButton} onCheckedChange={setShowCloseButton} /></div>
+            </div>
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Title</Label>
+              <div className="pt-1"><Switch checked={showTitle} onCheckedChange={setShowTitle} /></div>
+            </div>
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Description</Label>
+              <div className="pt-1"><Switch checked={showDescription} onCheckedChange={setShowDescription} /></div>
+            </div>
+            <div className="space-y-xs">
+              <Label className="text-xs text-muted-foreground">Show Footer</Label>
+              <div className="pt-1"><Switch checked={showFooter} onCheckedChange={setShowFooter} /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function DialogDocs() {
   return (
     <div className="space-y-12">
@@ -12626,40 +12740,7 @@ function DialogDocs() {
       {/* ---- Explore Behavior ---- */}
       <section id="explore-behavior" className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
-        <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[200px]">
-            {/* Static preview — dialog face visible without clicking (same pattern as AlertDialog) */}
-            <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
-              {/* Close button (top-right) */}
-              <div className="absolute right-md top-md opacity-70">
-                <X className="size-md" />
-              </div>
-              {/* Header */}
-              <div className="flex flex-col gap-xs sm:text-left">
-                <h3 className="typo-heading-4 text-foreground">Edit profile</h3>
-                <p className="typo-paragraph-sm text-muted-foreground">Make changes to your profile here. Click save when you&apos;re done.</p>
-              </div>
-              {/* Form content */}
-              <div className="grid gap-md py-md">
-                <div className="grid grid-cols-4 items-center gap-md">
-                  <Label className="text-right">Name</Label>
-                  <Input defaultValue="Pedro Duarte" className="col-span-3" readOnly />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-md">
-                  <Label className="text-right">Username</Label>
-                  <Input defaultValue="@peduarte" className="col-span-3" readOnly />
-                </div>
-              </div>
-              {/* Footer */}
-              <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
-                <Button type="submit">Save changes</Button>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border bg-muted/50 p-lg">
-            <p className="typo-paragraph-mini text-muted-foreground">Static preview of Dialog face. Figma (151:12298): bg-card, border-border, rounded-xl, shadow, p-md gap-xs, close X button top-right.</p>
-          </div>
-        </div>
+        <DialogExploreBehavior />
       </section>
 
       {/* ---- Installation ---- */}
