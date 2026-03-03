@@ -16520,6 +16520,9 @@ function CollapsibleDocs() {
               </CollapsibleTrigger>
             </Collapsible>
           </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <p className="typo-paragraph-mini text-muted-foreground">Click "Show more" to expand. Collapsible uses "Show more / Show less" text trigger pattern (NOT Accordion cards). Animation: collapsible-down/up 0.2s ease-out.</p>
+          </div>
         </div>
       </section>
 
@@ -16531,7 +16534,7 @@ function CollapsibleDocs() {
 
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Example title="Show More / Less" description="Classic text truncation pattern with a toggle trigger." code={`<Collapsible open={isOpen} onOpenChange={setIsOpen}>\n  <p className="typo-paragraph-sm text-muted-foreground">\n    SprouX is a comprehensive design system built for SaaS applications...\n  </p>\n  <CollapsibleContent>\n    <p className="typo-paragraph-sm text-muted-foreground mt-xs">\n      It includes over 40 production-ready components with dark mode support...\n    </p>\n  </CollapsibleContent>\n  <CollapsibleTrigger className="typo-paragraph-sm font-medium text-primary hover:underline mt-xs">\n    {isOpen ? "Show less" : "Show more"}\n  </CollapsibleTrigger>\n</Collapsible>`}>
           <Collapsible open={isOpen2} onOpenChange={setIsOpen2} className="max-w-sm">
             <p className="typo-paragraph-sm text-muted-foreground">SprouX is a comprehensive design system built for SaaS applications, providing a unified set of components, tokens, and patterns.</p>
@@ -16569,17 +16572,18 @@ function CollapsibleDocs() {
       </section>
 
       {/* ---- Props ---- */}
-      <section id="props" className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
           Built on{" "}
           <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-collapsible</code>.
-          Supports all Radix Collapsible props in addition to the following:
+          Supports all Radix Collapsible props.
         </p>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Component</th>
                 <th className="px-4 py-3 font-semibold">Prop</th>
                 <th className="px-4 py-3 font-semibold">Type</th>
                 <th className="px-4 py-3 font-semibold">Default</th>
@@ -16587,18 +16591,18 @@ function CollapsibleDocs() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              <tr><td className="px-4 py-3 font-mono text-primary">open</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Controlled open state.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-primary">defaultOpen</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Initial open state (uncontrolled).</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-primary">onOpenChange</td><td className="px-4 py-3 font-mono text-muted-foreground">(open: boolean) =&gt; void</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Callback when open state changes.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-primary">disabled</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Prevents interaction with the collapsible.</td></tr>
-              <tr><td className="px-4 py-3 font-mono text-primary">asChild</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Merge props onto child element (Trigger/Content).</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">Collapsible</td><td className="px-4 py-3 font-mono">open</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Controlled open state</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">Collapsible</td><td className="px-4 py-3 font-mono">defaultOpen</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Initial open state (uncontrolled)</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">Collapsible</td><td className="px-4 py-3 font-mono">onOpenChange</td><td className="px-4 py-3 text-muted-foreground">{"(open: boolean) => void"}</td><td className="px-4 py-3 text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Callback when open state changes</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">Collapsible</td><td className="px-4 py-3 font-mono">disabled</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Prevents interaction</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CollapsibleTrigger</td><td className="px-4 py-3 font-mono">asChild</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Merge props onto child element</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       {/* ---- Design Tokens ---- */}
-      <section id="design-tokens" className="space-y-4 pt-3xl">
+      <section id="design-tokens" className="space-y-4 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code> and sourced from the Figma file <strong>[SprouX - DS] Foundation & Component</strong>.
@@ -16614,7 +16618,10 @@ function CollapsibleDocs() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Content border (when styled)</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--primary</td><td className="px-4 py-3 font-mono text-muted-foreground">#0f766e</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#0f766e" }} /></td><td className="px-4 py-3 text-muted-foreground">Trigger text color (text-primary)</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">List item borders (when styled)</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#6f6f6a</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#6f6f6a" }} /></td><td className="px-4 py-3 text-muted-foreground">Content text, disabled trigger</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">collapsible-down/up</td><td className="px-4 py-3 font-mono text-muted-foreground">0.2s ease-out</td><td className="px-4 py-3"></td><td className="px-4 py-3 text-muted-foreground">Open/close animation (shared with Accordion)</td></tr>
             </tbody>
           </table>
         </div>
@@ -16660,10 +16667,10 @@ function CollapsibleDocs() {
 
       {/* ---- Figma Mapping ---- */}
       <FigmaMapping id="figma-mapping" rows={[
-        ["State", "Open", "open", "true — content visible"],
-        ["State", "Closed", "open", "false — content hidden"],
-        ["Sub-component", "Trigger", "CollapsibleTrigger", "Toggle button"],
-        ["Sub-component", "Content", "CollapsibleContent", "Animated visibility"],
+        ["—", "Collapsible", "Collapsible", "Root wrapper, controlled via open/onOpenChange, disabled prop"],
+        ["—", "Trigger", "CollapsibleTrigger", "Text link: 'Show more / Show less', text-primary hover:underline"],
+        ["—", "Content", "CollapsibleContent", "overflow-hidden, animate-collapsible-down/up (0.2s ease-out)"],
+        ["—", "Pattern", "—", "Show more/Show less text trigger (NOT Accordion cards)"],
       ]} />
 
       {/* ---- Related Components ---- */}
