@@ -15747,12 +15747,15 @@ function CommandDocs() {
               <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
-                  <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
-                  <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
-                  <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+                  <CommandItem><CalendarIcon className="mr-xs size-md" /> Calendar</CommandItem>
+                  <CommandItem><Smile className="mr-xs size-md" /> Search Emoji</CommandItem>
+                  <CommandItem><Calculator className="mr-xs size-md" /> Calculator</CommandItem>
                 </CommandGroup>
               </CommandList>
             </Command>
+          </div>
+          <div className="border-t border-border bg-muted/50 p-lg">
+            <p className="typo-paragraph-mini text-muted-foreground">Interactive command palette. Figma (66:5046): bg-background, rounded-xl, border-border. Item selected state = bg-accent (NOT bg-muted). Search icon = size-md text-muted-foreground.</p>
           </div>
         </div>
       </section>
@@ -15766,21 +15769,21 @@ function CommandDocs() {
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Example title="Inline" description="Embedded command menu with search, grouped items, and keyboard shortcuts." code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>\n      <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Example title="Inline" description="Embedded command menu with search, grouped items, and keyboard shortcuts." code={`<Command className="rounded-lg border shadow-md">\n  <CommandInput placeholder="Type a command or search..." />\n  <CommandList>\n    <CommandEmpty>No results found.</CommandEmpty>\n    <CommandGroup heading="Suggestions">\n      <CommandItem><CalendarIcon className="mr-xs size-md" /> Calendar</CommandItem>\n      <CommandItem><Smile className="mr-xs size-md" /> Search Emoji</CommandItem>\n    </CommandGroup>\n    <CommandSeparator />\n    <CommandGroup heading="Settings">\n      <CommandItem><User className="mr-xs size-md" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>\n      <CommandItem><Settings className="mr-xs size-md" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>\n    </CommandGroup>\n  </CommandList>\n</Command>`}>
           <Command className="rounded-lg border shadow-md">
             <CommandInput placeholder="Type a command or search..." />
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Suggestions">
-                <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
-                <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
-                <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+                <CommandItem><CalendarIcon className="mr-xs size-md" /> Calendar</CommandItem>
+                <CommandItem><Smile className="mr-xs size-md" /> Search Emoji</CommandItem>
+                <CommandItem><Calculator className="mr-xs size-md" /> Calculator</CommandItem>
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup heading="Settings">
-                <CommandItem><User className="mr-2 size-4" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>
-                <CommandItem><Settings className="mr-2 size-4" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>
+                <CommandItem><User className="mr-xs size-md" /> Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>
+                <CommandItem><Settings className="mr-xs size-md" /> Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>
               </CommandGroup>
             </CommandList>
           </Command>
@@ -15800,14 +15803,14 @@ function CommandDocs() {
               <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
-                  <CommandItem><CalendarIcon className="mr-2 size-4" /> Calendar</CommandItem>
-                  <CommandItem><Smile className="mr-2 size-4" /> Search Emoji</CommandItem>
-                  <CommandItem><Calculator className="mr-2 size-4" /> Calculator</CommandItem>
+                  <CommandItem><CalendarIcon className="mr-xs size-md" /> Calendar</CommandItem>
+                  <CommandItem><Smile className="mr-xs size-md" /> Search Emoji</CommandItem>
+                  <CommandItem><Calculator className="mr-xs size-md" /> Calculator</CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
                 <CommandGroup heading="Settings">
-                  <CommandItem><User className="mr-2 size-4" /> Profile</CommandItem>
-                  <CommandItem><Settings className="mr-2 size-4" /> Settings</CommandItem>
+                  <CommandItem><User className="mr-xs size-md" /> Profile</CommandItem>
+                  <CommandItem><Settings className="mr-xs size-md" /> Settings</CommandItem>
                 </CommandGroup>
               </CommandList>
             </CommandDialog>
@@ -15817,8 +15820,39 @@ function CommandDocs() {
       </section>
 
 
+      {/* ---- Props ---- */}
+      <section id="props" className="space-y-4 pt-xl border-t border-border">
+        <h2 className="font-heading font-semibold text-xl">Props</h2>
+        <p className="typo-paragraph-sm text-muted-foreground">
+          Built on{" "}
+          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">cmdk</code>.
+          Supports all cmdk props.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-muted border-b border-border text-left">
+                <th className="px-4 py-3 font-semibold">Component</th>
+                <th className="px-4 py-3 font-semibold">Prop</th>
+                <th className="px-4 py-3 font-semibold">Type</th>
+                <th className="px-4 py-3 font-semibold">Default</th>
+                <th className="px-4 py-3 font-semibold">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">Command</td><td className="px-4 py-3 font-mono">filter</td><td className="px-4 py-3 text-muted-foreground">{"(value: string, search: string) => number"}</td><td className="px-4 py-3 text-muted-foreground">built-in</td><td className="px-4 py-3 text-muted-foreground">Custom filter function (return 0-1 relevance score)</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CommandInput</td><td className="px-4 py-3 font-mono">placeholder</td><td className="px-4 py-3 text-muted-foreground">string</td><td className="px-4 py-3 text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Search input placeholder text</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CommandGroup</td><td className="px-4 py-3 font-mono">heading</td><td className="px-4 py-3 text-muted-foreground">string</td><td className="px-4 py-3 text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Group label heading text</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CommandItem</td><td className="px-4 py-3 font-mono">disabled</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Disable the item</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CommandItem</td><td className="px-4 py-3 font-mono">onSelect</td><td className="px-4 py-3 text-muted-foreground">{"(value: string) => void"}</td><td className="px-4 py-3 text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Callback when item is selected</td></tr>
+              <tr><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">CommandDialog</td><td className="px-4 py-3 font-mono">open</td><td className="px-4 py-3 text-muted-foreground">boolean</td><td className="px-4 py-3 text-muted-foreground">false</td><td className="px-4 py-3 text-muted-foreground">Controlled open state for dialog mode</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       {/* ---- Design Tokens ---- */}
-      <section id="design-tokens" className="space-y-4 pt-3xl">
+      <section id="design-tokens" className="space-y-4 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
           These tokens are defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code> and sourced from the Figma file <strong>[SprouX - DS] Foundation & Component</strong>.
@@ -15834,11 +15868,11 @@ function CommandDocs() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#ffffff" }} /></td><td className="px-4 py-3 text-muted-foreground">Command background</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Command border</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--muted</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#f7f7f6" }} /></td><td className="px-4 py-3 text-muted-foreground">Item hover background</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#252522" }} /></td><td className="px-4 py-3 text-muted-foreground">Item text color</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#afafab</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#afafab" }} /></td><td className="px-4 py-3 text-muted-foreground">Placeholder text</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--background</td><td className="px-4 py-3 font-mono text-muted-foreground">#f7f7f6</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#f7f7f6" }} /></td><td className="px-4 py-3 text-muted-foreground">Command container background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Container border + input separator</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--accent</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Item selected/hover background</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#252522</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#252522" }} /></td><td className="px-4 py-3 text-muted-foreground">Item text color</td></tr>
+              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--muted-foreground</td><td className="px-4 py-3 font-mono text-muted-foreground">#6f6f6a</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#6f6f6a" }} /></td><td className="px-4 py-3 text-muted-foreground">Placeholder, search icon, group heading, shortcut</td></tr>
             </tbody>
           </table>
         </div>
@@ -15919,14 +15953,14 @@ function CommandDocs() {
 
             {/* ---- Figma Mapping ---- */}
       <FigmaMapping id="figma-mapping" rows={[
-        ["Input Height", "40px", "—", "h-3xl, bg-transparent"],
-        ["Input Icon", "Search", "CommandInput", "Search icon, size-md"],
-        ["List Max Height", "300px", "—", "max-h-[300px]"],
-        ["Item State", "Selected", "—", "data-[selected=true]:bg-muted"],
-        ["Item Padding", "px-xs py-2xs", "—", "px-xs py-2xs text-sm"],
-        ["Group Heading", "Label", "CommandGroup", "px-xs py-2xs text-xs font-medium"],
-        ["Empty State", "Centered", "CommandEmpty", "py-lg text-center text-sm"],
-        ["Icon Size", "16px", "—", "[&_svg]:size-md"],
+        ["66:5046", "Command", "Command", "rounded-xl, border-border, bg-background, py-xs"],
+        ["66:5600", "Command Item", "CommandItem", "rounded-md, px-xs py-[6px], gap-xs, data-[selected=true]:bg-accent"],
+        ["—", "Input wrapper", "CommandInput", "border-b, px-xs, pt-[2px] pb-[6px], Search icon size-md"],
+        ["—", "Group heading", "CommandGroup", "px-xs py-xs, typo-paragraph-mini, text-muted-foreground"],
+        ["—", "Separator", "CommandSeparator", "h-px bg-border"],
+        ["—", "Shortcut", "CommandShortcut", "ml-auto typo-paragraph-mini text-muted-foreground"],
+        ["—", "Empty", "CommandEmpty", "py-xl text-center typo-paragraph-sm"],
+        ["—", "Dialog mode", "CommandDialog", "Wraps Command inside Dialog with overflow-hidden p-0"],
       ]} />
 
       {/* ---- Related Components ---- */}
