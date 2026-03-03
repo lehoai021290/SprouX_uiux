@@ -19292,8 +19292,8 @@ function NavigationMenuDocs() {
       {/* ---- Explore Behavior ---- */}
       <section id="explore-behavior" className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
-        <div className="rounded-xl border border-border bg-background">
-          <div className="p-4xl pb-[280px] flex items-start justify-center min-h-[160px]">
+        <div className="rounded-xl border border-border bg-background overflow-visible">
+          <div className="p-4xl pb-[300px] flex items-start justify-center min-h-[160px] overflow-visible">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
