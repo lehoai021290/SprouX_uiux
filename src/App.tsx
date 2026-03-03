@@ -19372,21 +19372,21 @@ function NavigationMenuDocs() {
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Example
           title="With dropdown content"
           description="Navigation items with rich dropdown panels containing links."
-          code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <ul className="grid gap-3 p-4 w-[400px]">\n          <li>\n            <NavigationMenuLink asChild>\n              <a href="/docs">Introduction</a>\n            </NavigationMenuLink>\n          </li>\n        </ul>\n      </NavigationMenuContent>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}
+          code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <ul className="grid gap-sm p-md w-[400px]">\n          <li>\n            <NavigationMenuLink asChild>\n              <a href="/docs">Introduction</a>\n            </NavigationMenuLink>\n          </li>\n        </ul>\n      </NavigationMenuContent>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}
         >
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 w-[400px]">
+                  <ul className="grid gap-sm p-md w-[400px]">
                     <li>
                       <NavigationMenuLink asChild>
-                        <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted" href="#">
+                        <a className="block select-none space-y-3xs rounded-md p-sm leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent" href="#">
                           <div className="typo-paragraph-sm-bold">Introduction</div>
                           <p className="typo-paragraph-mini text-muted-foreground">Re-usable components for your applications.</p>
                         </a>
@@ -19418,7 +19418,7 @@ function NavigationMenuDocs() {
       </section>
 
       {/* ---- Props ---- */}
-      <section id="props" className="space-y-4 pt-3xl">
+      <section id="props" className="space-y-4 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
           Built on{" "}
