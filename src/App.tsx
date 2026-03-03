@@ -37,15 +37,8 @@ import {
   TableCell,
   TableCaption,
 } from "@/components/ui/table"
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog"
+// Dialog components — static preview only (no live Dialog in showcase)
+// Import retained for reference: Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -12634,32 +12627,37 @@ function DialogDocs() {
       <section id="explore-behavior" className="space-y-4">
         <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
         <div className="rounded-xl border border-border overflow-hidden bg-background">
-          <div className="p-4xl flex items-center justify-center min-h-[160px]">
-            <Dialog>
-              <DialogTrigger asChild><Button variant="outline">Open Dialog</Button></DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-md py-md">
-                  <div className="grid grid-cols-4 items-center gap-md">
-                    <Label htmlFor="dialog-name" className="text-right">Name</Label>
-                    <Input id="dialog-name" defaultValue="Pedro Duarte" className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-md">
-                    <Label htmlFor="dialog-username" className="text-right">Username</Label>
-                    <Input id="dialog-username" defaultValue="@peduarte" className="col-span-3" />
-                  </div>
+          <div className="p-4xl flex items-center justify-center min-h-[200px]">
+            {/* Static preview — dialog face visible without clicking (same pattern as AlertDialog) */}
+            <div className="relative w-full max-w-lg border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
+              {/* Close button (top-right) */}
+              <div className="absolute right-md top-md opacity-70">
+                <X className="size-md" />
+              </div>
+              {/* Header */}
+              <div className="flex flex-col gap-xs sm:text-left">
+                <h3 className="typo-heading-4 text-foreground">Edit profile</h3>
+                <p className="typo-paragraph-sm text-muted-foreground">Make changes to your profile here. Click save when you&apos;re done.</p>
+              </div>
+              {/* Form content */}
+              <div className="grid gap-md py-md">
+                <div className="grid grid-cols-4 items-center gap-md">
+                  <Label className="text-right">Name</Label>
+                  <Input defaultValue="Pedro Duarte" className="col-span-3" readOnly />
                 </div>
-                <DialogFooter>
-                  <Button type="submit">Save changes</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+                <div className="grid grid-cols-4 items-center gap-md">
+                  <Label className="text-right">Username</Label>
+                  <Input defaultValue="@peduarte" className="col-span-3" readOnly />
+                </div>
+              </div>
+              {/* Footer */}
+              <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
+                <Button type="submit">Save changes</Button>
+              </div>
+            </div>
           </div>
           <div className="border-t border-border bg-muted/50 p-lg">
-            <p className="typo-paragraph-mini text-muted-foreground">Click "Open Dialog" to see the modal. Figma (151:12298): bg-card, border-border, rounded-xl, shadow, p-md, close button top-right.</p>
+            <p className="typo-paragraph-mini text-muted-foreground">Static preview of Dialog face. Figma (151:12298): bg-card, border-border, rounded-xl, shadow, p-md gap-xs, close X button top-right.</p>
           </div>
         </div>
       </section>
@@ -12673,72 +12671,46 @@ function DialogDocs() {
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
+        {/* Static previews — dialog face visible without clicking (same as AlertDialog) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Example title="Default" description="A dialog with form inputs for editing user profile information." code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent className="sm:max-w-[425px]">\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Make changes to your profile here.</DialogDescription>\n    </DialogHeader>\n    <div className="grid gap-4 py-4">\n      <div className="grid grid-cols-4 items-center gap-4">\n        <Label htmlFor="name" className="text-right">Name</Label>\n        <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />\n      </div>\n    </div>\n    <DialogFooter>\n      <Button type="submit">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Edit Profile</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Edit profile</DialogTitle>
-                <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">Name</Label>
-                  <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">Username</Label>
-                  <Input id="username" defaultValue="@peduarte" className="col-span-3" />
+        <Example title="With Form" description="Dialog with form inputs for editing user profile." code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Make changes to your profile here.</DialogDescription>\n    </DialogHeader>\n    <div className="grid gap-md py-md">\n      <div className="grid grid-cols-4 items-center gap-md">\n        <Label htmlFor="name" className="text-right">Name</Label>\n        <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />\n      </div>\n    </div>\n    <DialogFooter>\n      <Button type="submit">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}>
+            <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
+              <div className="absolute right-md top-md opacity-70"><X className="size-md" /></div>
+              <div className="flex flex-col gap-xs sm:text-left">
+                <h3 className="typo-heading-4 text-foreground">Edit profile</h3>
+                <p className="typo-paragraph-sm text-muted-foreground">Make changes to your profile here.</p>
+              </div>
+              <div className="grid gap-md py-md">
+                <div className="grid grid-cols-4 items-center gap-md">
+                  <Label className="text-right">Name</Label>
+                  <Input defaultValue="Pedro Duarte" className="col-span-3" readOnly />
                 </div>
               </div>
-              <DialogFooter>
+              <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
                 <Button type="submit">Save changes</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+              </div>
+            </div>
         </Example>
 
         <Example
-          title="Confirmation dialog"
-          description="Common pattern for confirming user actions before proceeding."
-          code={`<Dialog>
-  <DialogTrigger asChild>
-    <Button variant="outline">Delete Item</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Confirm deletion</DialogTitle>
-      <DialogDescription>Are you sure you want to delete this item? This action cannot be undone.</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <Button variant="outline">Cancel</Button>
-      <Button variant="destructive">Delete</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`}
+          title="Confirmation"
+          description="Common pattern for confirming destructive actions."
+          code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Delete Item</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Confirm deletion</DialogTitle>\n      <DialogDescription>Are you sure? This action cannot be undone.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter>\n      <Button variant="outline">Cancel</Button>\n      <Button variant="destructive">Delete</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}
         >
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Delete Item</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Confirm deletion</DialogTitle>
-                <DialogDescription>Are you sure you want to delete this item? This action cannot be undone.</DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
+            <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
+              <div className="absolute right-md top-md opacity-70"><X className="size-md" /></div>
+              <div className="flex flex-col gap-xs sm:text-left">
+                <h3 className="typo-heading-4 text-foreground">Confirm deletion</h3>
+                <p className="typo-paragraph-sm text-muted-foreground">Are you sure you want to delete this item? This action cannot be undone.</p>
+              </div>
+              <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
                 <Button variant="outline">Cancel</Button>
                 <Button variant="destructive">Delete</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+              </div>
+            </div>
         </Example>
         </div>
       </section>
-
 
       {/* ---- Props ---- */}
       <section id="props" className="space-y-4 pt-xl border-t border-border">
