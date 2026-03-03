@@ -12629,7 +12629,7 @@ function DialogDocs() {
         <div className="rounded-xl border border-border overflow-hidden bg-background">
           <div className="p-4xl flex items-center justify-center min-h-[200px]">
             {/* Static preview — dialog face visible without clicking (same pattern as AlertDialog) */}
-            <div className="relative w-full max-w-lg border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
+            <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
               {/* Close button (top-right) */}
               <div className="absolute right-md top-md opacity-70">
                 <X className="size-md" />
@@ -12672,7 +12672,7 @@ function DialogDocs() {
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
         {/* Static previews — dialog face visible without clicking (same as AlertDialog) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <Example title="With Form" description="Dialog with form inputs for editing user profile." code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>Make changes to your profile here.</DialogDescription>\n    </DialogHeader>\n    <div className="grid gap-md py-md">\n      <div className="grid grid-cols-4 items-center gap-md">\n        <Label htmlFor="name" className="text-right">Name</Label>\n        <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />\n      </div>\n    </div>\n    <DialogFooter>\n      <Button type="submit">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}>
             <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
               <div className="absolute right-md top-md opacity-70"><X className="size-md" /></div>
@@ -12706,6 +12706,23 @@ function DialogDocs() {
               <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
                 <Button variant="outline">Cancel</Button>
                 <Button variant="destructive">Delete</Button>
+              </div>
+            </div>
+        </Example>
+
+        <Example
+          title="Without Close Button"
+          description="Dialog with showCloseButton={false} — user must use footer actions."
+          code={`<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Terms</Button>\n  </DialogTrigger>\n  <DialogContent showCloseButton={false}>\n    <DialogHeader>\n      <DialogTitle>Terms of Service</DialogTitle>\n      <DialogDescription>Please read and accept the terms.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter>\n      <Button variant="outline">Decline</Button>\n      <Button>Accept</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`}
+        >
+            <div className="relative w-full border border-border rounded-xl bg-card p-md shadow grid gap-xs pointer-events-none">
+              <div className="flex flex-col gap-xs sm:text-left">
+                <h3 className="typo-heading-4 text-foreground">Terms of Service</h3>
+                <p className="typo-paragraph-sm text-muted-foreground">Please read and accept the terms before continuing.</p>
+              </div>
+              <div className="flex flex-col-reverse gap-xs sm:flex-row sm:justify-end">
+                <Button variant="outline">Decline</Button>
+                <Button>Accept</Button>
               </div>
             </div>
         </Example>
