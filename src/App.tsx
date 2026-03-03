@@ -19378,12 +19378,12 @@ function NavigationMenuDocs() {
           description="Navigation items with rich dropdown panels containing links."
           code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <ul className="grid gap-sm p-md w-[400px]">\n          <li>\n            <NavigationMenuLink asChild>\n              <a href="/docs">Introduction</a>\n            </NavigationMenuLink>\n          </li>\n        </ul>\n      </NavigationMenuContent>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}
         >
-          <NavigationMenu>
+          <NavigationMenu viewport={false}>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid gap-sm p-md w-[400px]">
+                  <ul className="grid gap-sm p-md w-[350px]">
                     <li>
                       <NavigationMenuLink asChild>
                         <a className="block select-none space-y-3xs rounded-md p-sm leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent" href="#">
