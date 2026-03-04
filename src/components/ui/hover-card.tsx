@@ -6,9 +6,18 @@ import { cn } from "@/lib/utils"
 /**
  * SprouX Hover Card
  *
- * Figma: [SprouX - DS] Foundation & Component
+ * Figma: [SprouX - DS] Foundation & Component → Hover Card (303:246487)
  *
  * Rich preview card that appears on hover. Built on Radix HoverCard.
+ *
+ * Figma tokens:
+ * - Content BG: --card (#ffffff / #252522)
+ * - Content border: --border (#e9e9e7)
+ * - Content radius: 8px (--radius-lg)
+ * - Content padding: 8px (--spacing-xs)
+ * - Content shadow: shadow (2 drop-shadows, same as Dialog/Drawer)
+ * - Content inner gap: 8px (--spacing-xs)
+ * - Content example gap: 16px (--spacing-md) between avatar + text
  */
 function HoverCard(
   props: React.ComponentProps<typeof HoverCardPrimitive.Root>
@@ -36,7 +45,7 @@ function HoverCardContent({
       align={align}
       sideOffset={sideOffset}
       className={cn(
-        "z-50 w-64 rounded-md border border-border bg-card p-md text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "z-50 w-64 rounded-lg border border-border bg-card p-xs text-foreground shadow outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         className
       )}
       {...props}

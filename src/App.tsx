@@ -18863,27 +18863,152 @@ const hoverCardSections: TocSection[] = [
   { id: "related", label: "Related Components" },
 ]
 
+function HoverCardPropsTable() {
+  const renderTable = (title: string, props: { name: string; type: string; default: string; description: string }[]) => (
+    <div className="space-y-2">
+      <h3 className="font-body font-semibold text-sm">{title}</h3>
+      <div className="overflow-x-auto rounded-xl border border-border">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="bg-muted border-b border-border text-left">
+              <th className="px-4 py-3 font-semibold">Prop</th>
+              <th className="px-4 py-3 font-semibold">Type</th>
+              <th className="px-4 py-3 font-semibold">Default</th>
+              <th className="px-4 py-3 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.map((p) => (
+              <tr key={p.name} className="border-b border-border last:border-0">
+                <td className="px-4 py-3 font-mono text-primary font-semibold whitespace-nowrap">{p.name}</td>
+                <td className="px-4 py-3 font-mono text-muted-foreground max-w-xs">{p.type}</td>
+                <td className="px-4 py-3 font-mono">{p.default}</td>
+                <td className="px-4 py-3 text-muted-foreground">{p.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="space-y-4">
+      {renderTable("HoverCard (Root)", [
+        { name: "openDelay", type: "number", default: "700", description: "Milliseconds before the hover card opens." },
+        { name: "closeDelay", type: "number", default: "300", description: "Milliseconds before the hover card closes." },
+        { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
+        { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Called when open state changes." },
+      ])}
+      {renderTable("HoverCardTrigger", [
+        { name: "asChild", type: "boolean", default: "false", description: "Merge props onto child element instead of rendering a default button." },
+        { name: "children", type: "React.ReactNode", default: "—", description: "Trigger element (link or button)." },
+      ])}
+      {renderTable("HoverCardContent", [
+        { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "Horizontal alignment relative to trigger." },
+        { name: "sideOffset", type: "number", default: "4", description: "Distance from the trigger in pixels." },
+        { name: "className", type: "string", default: "—", description: "Additional CSS classes for the content panel." },
+      ])}
+    </div>
+  )
+}
+
+function HoverCardTokensTable() {
+  const tokens = [
+    { token: "--card", value: "#ffffff / #252522", hex: "#ffffff", usage: "Content background" },
+    { token: "--border", value: "#e9e9e7 / #4f4f4a", hex: "#e9e9e7", usage: "Content border" },
+    { token: "--foreground", value: "#252522 / #f7f7f6", hex: "#252522", usage: "Title text color" },
+    { token: "--muted-foreground", value: "#6f6f6a / #c6c6c2", hex: "#6f6f6a", usage: "Description / meta text color" },
+    { token: "shadow", value: "2 drop-shadows", hex: "—", usage: "Content elevation (same as Dialog/Drawer)" },
+    { token: "rounded-lg", value: "8px", hex: "—", usage: "Content border-radius (Figma r=8)" },
+    { token: "--spacing-xs", value: "8px", hex: "—", usage: "Content padding (Figma p=8)" },
+    { token: "--spacing-md", value: "16px", hex: "—", usage: "Content inner gap (avatar ↔ text, Figma gap=16)" },
+    { token: "--spacing-3xs", value: "4px", hex: "—", usage: "Text stack gap (title ↔ description, Figma gap=4)" },
+  ]
+
+  return (
+    <div className="overflow-x-auto rounded-xl border border-border">
+      <table className="w-full text-xs">
+        <thead>
+          <tr className="bg-muted border-b border-border text-left">
+            <th className="px-4 py-3 font-semibold">Token</th>
+            <th className="px-4 py-3 font-semibold">Value (Light / Dark)</th>
+            <th className="px-4 py-3 font-semibold">Swatch</th>
+            <th className="px-4 py-3 font-semibold">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.token} className="border-b border-border last:border-0">
+              <td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">{t.token}</td>
+              <td className="px-4 py-3 font-mono text-muted-foreground">{t.value}</td>
+              <td className="px-4 py-3">
+                {t.hex !== "—" && (
+                  <div className="size-5 rounded border border-border" style={{ backgroundColor: t.hex }} />
+                )}
+              </td>
+              <td className="px-4 py-3 text-muted-foreground">{t.usage}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+/**
+ * Explore Behavior — static face preview matching Figma component.
+ *
+ * Figma "Hover Card" (303:246487):
+ *   No variant properties. r=8, p=8(xs), border, bg-card, shadow.
+ *   Content example (303:246583): Avatar 40×40 + text stack (gap=4).
+ *   Static preview shows hover card content face directly (Rule #34).
+ */
+function HoverCardExploreBehavior() {
+  return (
+    <div className="rounded-xl border border-border overflow-hidden">
+      <div className="bg-primary/5 p-4xl flex items-center justify-center min-h-[200px]">
+        {/* Static hover card face preview — matches HoverCardContent structure */}
+        <div className="w-72 rounded-lg border border-border bg-card p-xs shadow pointer-events-none">
+          <div className="flex gap-md">
+            <div className="size-10 shrink-0 rounded-full bg-muted border border-border flex items-center justify-center">
+              <span className="typo-paragraph-sm-bold text-muted-foreground">N</span>
+            </div>
+            <div className="flex flex-col gap-3xs">
+              <p className="typo-paragraph-sm-bold text-foreground">@nextjs</p>
+              <p className="typo-paragraph-sm text-foreground">The React Framework – created and maintained by @vercel.</p>
+              <p className="typo-paragraph-mini text-muted-foreground">Joined December 2021</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-border bg-muted/50 p-lg">
+        <p className="typo-paragraph-mini text-muted-foreground">Figma (303:246487): No variant properties. Content r=8 (rounded-lg), p=8 (p-xs), border, bg-card, shadow. Inner content gap=16 (gap-md), text stack gap=4 (gap-3xs).</p>
+      </div>
+    </div>
+  )
+}
+
 function HoverCardDocs() {
   return (
     <div className="space-y-12">
       <TableOfContents sections={hoverCardSections} />
 
+      {/* ---- Header ---- */}
       <header className="space-y-md pb-3xl">
         <p className="text-xs text-muted-foreground font-mono tracking-wide uppercase">Components / Overlay & Feedback</p>
         <h1 className="typo-heading-2">Hover Card</h1>
         <p className="typo-paragraph text-muted-foreground max-w-3xl">
           Rich preview card that appears on hover. Built on Radix HoverCard.
+          Shows content previews like user profiles or article summaries without click interaction.
         </p>
       </header>
 
-      <Playground controls={[]} render={() => (
-        <HoverCard>
-          <HoverCardTrigger asChild><Button variant="ghost">Hover me</Button></HoverCardTrigger>
-          <HoverCardContent className="w-60">
-            <p className="text-sm">This content appears when you hover over the trigger.</p>
-          </HoverCardContent>
-        </HoverCard>
-      )} />
+      {/* ---- Explore Behavior ---- */}
+      <section id="explore-behavior" className="space-y-4">
+        <h2 className="font-heading font-semibold text-xl">Explore Behavior</h2>
+        <HoverCardExploreBehavior />
+      </section>
 
       {/* ---- Installation ---- */}
       <InstallationSection
@@ -18891,117 +19016,141 @@ function HoverCardDocs() {
         importCode={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card"`}
       />
 
+      {/* ---- Examples ---- */}
       <section id="examples" className="space-y-6 pt-xl border-t border-border">
         <h2 className="font-heading font-semibold text-xl">Examples</h2>
 
+        {/* Static previews — hover card face visible without hovering */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Example
-          title="Basic hover card"
-          description="Hover over the link to see a rich preview card."
-          code={`<HoverCard>\n  <HoverCardTrigger asChild>\n    <a href="#" className="text-sm font-medium underline">@sproux</a>\n  </HoverCardTrigger>\n  <HoverCardContent>\n    <div className="space-y-2">\n      <h4 className="text-sm font-semibold">SprouX Design System</h4>\n      <p className="text-xs text-muted-foreground">\n        A comprehensive design system built with React, Tailwind CSS v4, and Radix UI.\n      </p>\n    </div>\n  </HoverCardContent>\n</HoverCard>`}
-        >
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <a href="#" className="text-sm font-medium underline">@sproux</a>
-            </HoverCardTrigger>
-            <HoverCardContent>
+          <Example title="Basic" description="Simple text preview card." code={`<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline">@sproux</a>
+  </HoverCardTrigger>
+  <HoverCardContent>
+    <div className="space-y-2">
+      <h4 className="text-sm font-semibold">SprouX Design System</h4>
+      <p className="text-xs text-muted-foreground">
+        A comprehensive design system built with React, Tailwind CSS v4, and Radix UI.
+      </p>
+    </div>
+  </HoverCardContent>
+</HoverCard>`}>
+            <div className="w-64 rounded-lg border border-border bg-card p-xs shadow pointer-events-none">
               <div className="space-y-2">
                 <h4 className="text-sm font-semibold">SprouX Design System</h4>
                 <p className="text-xs text-muted-foreground">
                   A comprehensive design system built with React, Tailwind CSS v4, and Radix UI.
                 </p>
               </div>
-            </HoverCardContent>
-          </HoverCard>
-        </Example>
+            </div>
+          </Example>
 
-        <Example
-          title="With avatar"
-          description="User profile preview with avatar on hover."
-          code={`<HoverCard>\n  <HoverCardTrigger asChild>\n    <Button variant="ghost">@designer</Button>\n  </HoverCardTrigger>\n  <HoverCardContent className="w-72">\n    <div className="flex gap-3">\n      <div className="size-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">D</div>\n      <div className="space-y-1">\n        <h4 className="text-sm font-semibold">Designer</h4>\n        <p className="text-xs text-muted-foreground">Design system engineer. Building components one token at a time.</p>\n      </div>\n    </div>\n  </HoverCardContent>\n</HoverCard>`}
-        >
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <Button variant="ghost">@designer</Button>
-            </HoverCardTrigger>
-            <HoverCardContent className="w-72">
-              <div className="flex gap-3">
-                <div className="size-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">D</div>
-                <div className="space-y-1">
-                  <h4 className="text-sm font-semibold">Designer</h4>
-                  <p className="text-xs text-muted-foreground">Design system engineer. Building components one token at a time.</p>
+          <Example title="With Avatar" description="User profile preview with avatar." code={`<HoverCard>
+  <HoverCardTrigger asChild>
+    <Button variant="ghost">@designer</Button>
+  </HoverCardTrigger>
+  <HoverCardContent className="w-72">
+    <div className="flex gap-md">
+      <div className="size-10 shrink-0 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">D</div>
+      <div className="flex flex-col gap-3xs">
+        <h4 className="typo-paragraph-sm-bold">Designer</h4>
+        <p className="typo-paragraph-sm text-muted-foreground">Design system engineer. Building components one token at a time.</p>
+      </div>
+    </div>
+  </HoverCardContent>
+</HoverCard>`}>
+            <div className="w-72 rounded-lg border border-border bg-card p-xs shadow pointer-events-none">
+              <div className="flex gap-md">
+                <div className="size-10 shrink-0 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">D</div>
+                <div className="flex flex-col gap-3xs">
+                  <h4 className="typo-paragraph-sm-bold">Designer</h4>
+                  <p className="typo-paragraph-sm text-muted-foreground">Design system engineer. Building components one token at a time.</p>
                 </div>
               </div>
-            </HoverCardContent>
-          </HoverCard>
-        </Example>
+            </div>
+          </Example>
+
+          <Example title="Figma Content" description="Matches Figma .Hover Card Content (303:246583) layout." code={`<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline">@nextjs</a>
+  </HoverCardTrigger>
+  <HoverCardContent className="w-80">
+    <div className="flex gap-md">
+      <Avatar className="size-10">
+        <AvatarFallback>N</AvatarFallback>
+      </Avatar>
+      <div className="flex flex-col gap-3xs">
+        <p className="typo-paragraph-sm-bold">@nextjs</p>
+        <p className="typo-paragraph-sm text-foreground">The React Framework – created and maintained by @vercel.</p>
+        <p className="typo-paragraph-mini text-muted-foreground">Joined December 2021</p>
+      </div>
+    </div>
+  </HoverCardContent>
+</HoverCard>`}>
+            <div className="w-80 rounded-lg border border-border bg-card p-xs shadow pointer-events-none">
+              <div className="flex gap-md">
+                <div className="size-10 shrink-0 rounded-full bg-muted border border-border flex items-center justify-center">
+                  <span className="typo-paragraph-sm-bold text-muted-foreground">N</span>
+                </div>
+                <div className="flex flex-col gap-3xs">
+                  <p className="typo-paragraph-sm-bold text-foreground">@nextjs</p>
+                  <p className="typo-paragraph-sm text-foreground">The React Framework – created and maintained by @vercel.</p>
+                  <p className="typo-paragraph-mini text-muted-foreground">Joined December 2021</p>
+                </div>
+              </div>
+            </div>
+          </Example>
+        </div>
+
+        {/* Interactive demos — hover to open real hover cards */}
+        <div className="rounded-xl border border-border overflow-hidden">
+          <div className="px-md py-xs bg-muted/50 border-b border-border">
+            <span className="text-xs font-medium text-muted-foreground">Interactive Demo</span>
+          </div>
+          <div className="p-lg flex flex-wrap gap-sm">
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <a href="#" className="typo-paragraph-sm-bold underline">@sproux</a>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-semibold">SprouX Design System</h4>
+                  <p className="text-xs text-muted-foreground">A comprehensive design system built with React, Tailwind CSS v4, and Radix UI.</p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <a href="#" className="typo-paragraph-sm-bold underline">@designer</a>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-72">
+                <div className="flex gap-md">
+                  <div className="size-10 shrink-0 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">D</div>
+                  <div className="flex flex-col gap-3xs">
+                    <h4 className="typo-paragraph-sm-bold">Designer</h4>
+                    <p className="typo-paragraph-sm text-muted-foreground">Design system engineer. Building components one token at a time.</p>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
         </div>
       </section>
 
       {/* ---- Props ---- */}
       <section id="props" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Props</h2>
-        <p className="typo-paragraph-sm text-muted-foreground">
-          Built on{" "}
-          <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">@radix-ui/react-hover-card</code>.
-          Supports all Radix HoverCard props.
-        </p>
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-body font-semibold text-sm mb-2">HoverCard</h3>
-            <div className="overflow-x-auto rounded-xl border border-border">
-              <table className="w-full text-xs">
-                <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
-                <tbody className="divide-y divide-border">
-                  <tr><td className="px-4 py-3 font-mono text-primary">openDelay</td><td className="px-4 py-3 font-mono text-muted-foreground">number</td><td className="px-4 py-3 font-mono text-muted-foreground">700</td><td className="px-4 py-3 text-muted-foreground">Milliseconds before the hover card opens.</td></tr>
-                  <tr><td className="px-4 py-3 font-mono text-primary">closeDelay</td><td className="px-4 py-3 font-mono text-muted-foreground">number</td><td className="px-4 py-3 font-mono text-muted-foreground">300</td><td className="px-4 py-3 text-muted-foreground">Milliseconds before the hover card closes.</td></tr>
-                  <tr><td className="px-4 py-3 font-mono text-primary">open</td><td className="px-4 py-3 font-mono text-muted-foreground">boolean</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Controlled open state.</td></tr>
-                  <tr><td className="px-4 py-3 font-mono text-primary">onOpenChange</td><td className="px-4 py-3 font-mono text-muted-foreground">(open: boolean) =&gt; void</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Called when open state changes.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-body font-semibold text-sm mb-2">HoverCardContent</h3>
-            <div className="overflow-x-auto rounded-xl border border-border">
-              <table className="w-full text-xs">
-                <thead><tr className="bg-muted border-b border-border text-left"><th className="px-4 py-3 font-semibold">Prop</th><th className="px-4 py-3 font-semibold">Type</th><th className="px-4 py-3 font-semibold">Default</th><th className="px-4 py-3 font-semibold">Description</th></tr></thead>
-                <tbody className="divide-y divide-border">
-                  <tr><td className="px-4 py-3 font-mono text-primary">align</td><td className="px-4 py-3 font-mono text-muted-foreground">"start" | "center" | "end"</td><td className="px-4 py-3 font-mono text-muted-foreground">"center"</td><td className="px-4 py-3 text-muted-foreground">Horizontal alignment relative to trigger.</td></tr>
-                  <tr><td className="px-4 py-3 font-mono text-primary">sideOffset</td><td className="px-4 py-3 font-mono text-muted-foreground">number</td><td className="px-4 py-3 font-mono text-muted-foreground">4</td><td className="px-4 py-3 text-muted-foreground">Distance from the trigger in pixels.</td></tr>
-                  <tr><td className="px-4 py-3 font-mono text-primary">className</td><td className="px-4 py-3 font-mono text-muted-foreground">string</td><td className="px-4 py-3 font-mono text-muted-foreground">—</td><td className="px-4 py-3 text-muted-foreground">Additional CSS classes for the content panel.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <HoverCardPropsTable />
       </section>
 
       {/* ---- Design Tokens ---- */}
       <section id="design-tokens" className="space-y-4 pt-3xl">
         <h2 className="font-heading font-semibold text-xl">Design Tokens</h2>
         <p className="typo-paragraph-sm text-muted-foreground">
-          These tokens are defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code> and sourced from the Figma file <strong>[SprouX - DS] Foundation & Component</strong>.
+          Defined in <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">src/index.css</code>, sourced from Figma <strong>[SprouX - DS] Foundation & Component</strong>.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-border">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-muted border-b border-border text-left">
-                <th className="px-4 py-3 font-semibold">Token</th>
-                <th className="px-4 py-3 font-semibold">Value</th>
-                <th className="px-4 py-3 font-semibold">Swatch</th>
-                <th className="px-4 py-3 font-semibold">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--card</td><td className="px-4 py-3 font-mono text-muted-foreground">#ffffff</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#ffffff" }} /></td><td className="px-4 py-3 text-muted-foreground">Card background</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--border</td><td className="px-4 py-3 font-mono text-muted-foreground">#e9e9e7</td><td className="px-4 py-3"><div className="size-5 rounded border border-border" style={{ backgroundColor: "#e9e9e7" }} /></td><td className="px-4 py-3 text-muted-foreground">Card border</td></tr>
-              <tr className="border-b border-border last:border-0"><td className="px-4 py-3 font-mono font-semibold whitespace-nowrap">--shadow-md</td><td className="px-4 py-3 font-mono text-muted-foreground">elevation</td><td className="px-4 py-3"></td><td className="px-4 py-3 text-muted-foreground">Card shadow</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <HoverCardTokensTable />
       </section>
-
 
       {/* ---- Best Practices ---- */}
       <section id="best-practices" className="space-y-6 pt-xl border-t border-border">
@@ -19020,17 +19169,32 @@ function HoverCardDocs() {
             </DontItem>
           </div>
         </div>
+
+        <div className="space-y-4">
+          <h3 className="font-body font-semibold text-sm">Layout</h3>
+          <div className="flex gap-4">
+            <DoItem>
+              <p>Follow Figma layout: avatar + text stack with gap-md (16px) horizontal, gap-3xs (4px) vertical text stack.</p>
+              <p>Use <code className="text-xs bg-muted px-1 rounded font-mono">w-72</code> or <code className="text-xs bg-muted px-1 rounded font-mono">w-80</code> for richer content with avatars.</p>
+            </DoItem>
+            <DontItem>
+              <p>Don't nest HoverCards inside other HoverCards — confusing hover behavior.</p>
+              <p>Don't use HoverCard for navigation menus — use <strong>NavigationMenu</strong> or <strong>DropdownMenu</strong>.</p>
+            </DontItem>
+          </div>
+        </div>
       </section>
 
       {/* ---- Figma Mapping ---- */}
-      <FigmaMapping id="figma-mapping" rows={[
-        ["Content Width", "256px", "—", "w-64"],
+      <FigmaMapping id="figma-mapping" nodeId="303:246487" rows={[
+        ["Content", "Hover Card (r=8, p=8, bg-card, shadow)", "HoverCardContent", "rounded-lg border border-border bg-card p-xs shadow"],
+        ["Inner layout", "HORIZONTAL gap=16", "—", "flex gap-md (content example)"],
+        ["Text stack", "VERTICAL gap=4", "—", "flex flex-col gap-3xs"],
+        ["Title text", "Geist 600 14/20 --foreground", "—", "typo-paragraph-sm-bold text-foreground"],
+        ["Body text", "Geist 400 14/20 --foreground", "—", "typo-paragraph-sm text-foreground"],
+        ["Meta text", "Geist 400 12/16 --muted-foreground", "—", "typo-paragraph-mini text-muted-foreground"],
         ["Alignment", "Center (default)", "align", '"center"'],
         ["Side Offset", "4px", "sideOffset", "4"],
-        ["Animation", "Open", "—", "zoom-in-95, fade-in-0"],
-        ["Animation", "Close", "—", "zoom-out-95, fade-out-0"],
-        ["Border", "Border", "—", "border border-border"],
-        ["Shadow", "Medium", "—", "shadow-md"],
       ]} />
 
       {/* ---- Accessibility ---- */}
@@ -19038,19 +19202,35 @@ function HoverCardDocs() {
         <h2 className="font-heading font-semibold text-xl">Accessibility</h2>
         <div className="space-y-3 typo-paragraph-sm text-muted-foreground">
           <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
-            <h3 className="font-body font-semibold text-sm text-foreground">Labeling</h3>
+            <h3 className="font-body font-semibold text-sm text-foreground">Keyboard Support</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th className="pr-6 py-2 font-semibold">Key</th>
+                    <th className="pr-6 py-2 font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd></td>
+                    <td className="pr-6 py-2 text-muted-foreground">Focus trigger → opens hover card</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="pr-6 py-2"><kbd className="bg-muted border border-border rounded px-1.5 py-0.5 text-[10px] font-mono">Tab</kbd> (away)</td>
+                    <td className="pr-6 py-2 text-muted-foreground">Move focus away → closes hover card</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
+            <h3 className="font-body font-semibold text-sm text-foreground">Touch & Focus</h3>
             <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
               <li>Content appears on hover/focus — not for essential information.</li>
               <li>Touch devices may not trigger hover — provide alternative access.</li>
-              <li>Content is portaled to avoid clipping.</li>
-            </ul>
-          </div>
-          <div className="rounded-xl border border-border p-5 space-y-3 text-xs">
-            <h3 className="font-body font-semibold text-sm text-foreground">Keyboard support</h3>
-            <ul className="space-y-1.5 list-disc list-inside text-muted-foreground">
-              <li>HoverCard opens when the trigger receives focus via <code className="bg-muted px-1 rounded font-mono">Tab</code>.</li>
-              <li>Card dismisses when focus moves away from trigger and content.</li>
-              <li>No additional keyboard shortcuts needed — Radix handles focus management.</li>
+              <li>Content is portaled to avoid clipping issues.</li>
+              <li>Radix handles focus management automatically.</li>
             </ul>
           </div>
         </div>
