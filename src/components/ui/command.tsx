@@ -19,10 +19,11 @@ import {
  *
  * Figma specs:
  *   Container: r=12 (rounded-xl), border=--border, bg=--background, py=8 (py-xs)
- *   Input: r=8, bg=--input, h=32, Search icon + X close, pad=[8,0,8,0]
+ *   Input wrapper: border-b, px=8, pt=2 pb=6 (Spacer h=40). Input: h=32 (h-2xl), bg=transparent
+ *   Search icon: size-md, --muted-foreground
  *   Separator: 1px --border
  *   List: pad=[4,0,4,0]
- *   Group label: 12px/400 --muted-foreground, pad=[8,5.5,8,5.5]
+ *   Group label: 12px/400 --muted-foreground, pad=[8,8,8,8] (px-xs py-xs), h=32
  *   Item (Regular): r=6 (rounded-md), pad=[8,6,8,6], gap=8, text 14px/400 --foreground
  *   Item (Hover): fills=--accent
  */
@@ -63,8 +64,8 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="flex items-center border-b border-border px-xs" cmdk-input-wrapper="">
-      <Search className="mr-xs size-md shrink-0 opacity-50" />
+    <div data-slot="command-input-wrapper" className="flex items-center border-b border-border px-xs pt-[2px] pb-[6px]" cmdk-input-wrapper="">
+      <Search className="mr-xs size-md shrink-0 text-muted-foreground" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
@@ -110,7 +111,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden px-[4px] py-0 text-foreground [&_[cmdk-group-heading]]:px-xs [&_[cmdk-group-heading]]:py-[5.5px] [&_[cmdk-group-heading]]:typo-paragraph-mini [&_[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden px-[4px] py-0 text-foreground [&_[cmdk-group-heading]]:px-xs [&_[cmdk-group-heading]]:py-xs [&_[cmdk-group-heading]]:typo-paragraph-mini [&_[cmdk-group-heading]]:text-muted-foreground",
         className
       )}
       {...props}

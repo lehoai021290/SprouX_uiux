@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils"
  * Specs:
  *   Header: h=48, pad=[8,8,8,8] (p-xs), text 14px/600 (font-semibold), border-bottom 1px --border
  *   Cell: h=48, pad=[8,8,8,8] (p-xs), text 14px/400, border-bottom 1px --border
- *   Row hover: bg=--accent  |  Row selected: bg=--muted
+ *   Row hover: bg=--accent  |  Row selected: bg=--accent-selected
  */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
@@ -66,7 +66,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "border-b border-border transition-colors hover:bg-accent data-[state=selected]:bg-muted",
+        "border-b border-border transition-colors hover:bg-accent data-[state=selected]:bg-accent-selected",
         className
       )}
       {...props}
