@@ -23,10 +23,10 @@ const OTPSizeContext = React.createContext<OtpSize>("default")
 
 /** Slot dimension per size */
 const slotSizeClass = {
-  lg: "size-3xl",       // 40px
-  default: "size-9",    // 36px
-  sm: "size-2xl",       // 32px
-  xs: "size-xl",        // 24px
+  lg: "size-size-lg",       // 40px
+  default: "size-size-md",  // 36px
+  sm: "size-size-sm",       // 32px
+  xs: "size-size-xs",       // 24px
 } as const
 
 /** Border radius per size — Left position */

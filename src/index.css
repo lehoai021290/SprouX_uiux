@@ -182,6 +182,17 @@
   --spacing-4xl: 48px;
   --spacing-5xl: 64px;
 
+  /* --- Component Size (height/width tokens for consistent component sizing) ---
+   * Figma collection: "Size" — ensures components align when placed side by side.
+   * size-xs=24 (Mini), size-sm=32 (Small), size-md=36 (Default),
+   * size-lg=40 (Large), size-xl=48 (Extra Large)
+   */
+  --spacing-size-xs: 24px;
+  --spacing-size-sm: 32px;
+  --spacing-size-md: 36px;
+  --spacing-size-lg: 40px;
+  --spacing-size-xl: 48px;
+
   /* --- Max Width (Tailwind defaults for named breakpoints) --- */
   --max-width-xs: 20rem;    /* 320px */
   --max-width-sm: 24rem;    /* 384px */

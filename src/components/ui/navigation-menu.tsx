@@ -67,7 +67,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-[36px] w-max items-center justify-center rounded-lg bg-background px-md py-xs typo-paragraph-sm-bold text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent data-[state=open]:text-foreground"
+  "group inline-flex h-size-md w-max items-center justify-center rounded-lg bg-background px-md py-xs typo-paragraph-sm-bold text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent data-[state=open]:text-foreground"
 )
 
 function NavigationMenuTrigger({

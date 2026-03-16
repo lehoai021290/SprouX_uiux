@@ -327,7 +327,7 @@ function SidebarInput({
       data-slot="sidebar-input"
       data-sidebar="input"
       className={cn(
-        "h-2xl w-full bg-background shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+        "h-size-sm w-full bg-background shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
         className
       )}
       {...props}
@@ -503,9 +503,9 @@ const sidebarMenuButtonVariants = cva(
           "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
       size: {
-        default: "h-2xl typo-paragraph-sm",
+        default: "h-size-sm typo-paragraph-sm",
         sm: "h-7 typo-paragraph-mini",
-        lg: "h-3xl typo-paragraph-sm group-data-[collapsible=icon]:!p-0",
+        lg: "h-size-lg typo-paragraph-sm group-data-[collapsible=icon]:!p-0",
       },
     },
     defaultVariants: {

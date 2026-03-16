@@ -24,10 +24,10 @@ const toggleVariants = cva(
           "border border-border bg-transparent hover:bg-outline-hover data-[state=on]:bg-outline-hover",
       },
       size: {
-        default: "h-[36px] px-xs min-w-[36px] gap-xs",
-        sm: "h-2xl px-2xs min-w-2xl gap-2xs",
-        lg: "h-3xl px-sm min-w-3xl gap-xs",
-        mini: "h-xl px-3xs min-w-xl rounded-sm gap-3xs typo-paragraph-mini-bold",
+        default: "h-size-md px-xs min-w-size-md gap-xs",
+        sm: "h-size-sm px-2xs min-w-size-sm gap-2xs",
+        lg: "h-size-lg px-sm min-w-size-lg gap-xs",
+        mini: "h-size-xs px-3xs min-w-size-xs rounded-sm gap-3xs typo-paragraph-mini-bold",
       },
     },
     defaultVariants: {

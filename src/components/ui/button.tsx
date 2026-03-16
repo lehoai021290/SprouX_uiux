@@ -53,17 +53,17 @@ const buttonVariants = cva(
           "bg-destructive-subtle text-destructive-subtle-foreground border border-destructive-border hover:bg-destructive-subtle active:bg-destructive-subtle focus-visible:ring-focus-error",
       },
       size: {
-        lg: "h-3xl px-xl gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
-        default: "h-[36px] px-md gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
-        sm: "h-2xl px-sm gap-2xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
-        xs: "h-xl px-xs gap-2xs typo-paragraph-mini-bold [&_svg:not([class*='size-'])]:size-md",
+        lg: "h-size-lg px-xl gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        default: "h-size-md px-md gap-xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        sm: "h-size-sm px-sm gap-2xs typo-paragraph-sm-bold [&_svg:not([class*='size-'])]:size-md",
+        xs: "h-size-xs px-xs gap-2xs typo-paragraph-mini-bold [&_svg:not([class*='size-'])]:size-md",
         /* ── Icon Button sizes (Figma: 4838:17100)
               Regular=36×36 pad=8 icon=20, Large=40×40 pad=10 icon=20,
               Small=32×32 pad=7 icon=18, Mini=24×24 pad=4 r=4 icon=16 ── */
-        icon: "size-[36px] p-xs [&_svg:not([class*='size-'])]:size-lg",
-        "icon-lg": "size-3xl p-[10px] [&_svg:not([class*='size-'])]:size-lg",
-        "icon-sm": "size-2xl p-[7px] [&_svg:not([class*='size-'])]:size-[18px]",
-        "icon-xs": "size-xl p-3xs !rounded-sm [&_svg:not([class*='size-'])]:size-md",
+        icon: "size-size-md p-xs [&_svg:not([class*='size-'])]:size-lg",
+        "icon-lg": "size-size-lg p-[10px] [&_svg:not([class*='size-'])]:size-lg",
+        "icon-sm": "size-size-sm p-[7px] [&_svg:not([class*='size-'])]:size-[18px]",
+        "icon-xs": "size-size-xs p-3xs !rounded-sm [&_svg:not([class*='size-'])]:size-md",
       },
     },
     defaultVariants: {

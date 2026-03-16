@@ -11,7 +11,7 @@ import { extendTailwindMerge } from "tailwind-merge"
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      spacing: ["0", "4xs", "3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"],
+      spacing: ["0", "4xs", "3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "size-xs", "size-sm", "size-md", "size-lg", "size-xl"],
     },
     classGroups: {
       "font-size": [
